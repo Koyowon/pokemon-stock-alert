@@ -1,7 +1,31 @@
+
 {
   "region": "전북특별자치도 전체",
-  "chains": ["CU", "GS25", "이마트24"],
-  "product_keywords": ["30주년", "30th", "celebration", "futuristic"],
+  "chains": [
+    "CU",
+    "GS25",
+    "이마트24",
+    "세븐일레븐"
+  ],
+  "chain_product_names": {
+    "CU": [
+      "30주년기념카드"
+    ],
+    "GS25": [],
+    "이마트24": [
+      "포켓몬카드(30주년셀레브레이션)"
+    ],
+    "세븐일레븐": [
+      "포켓몬확장팩(30주년)"
+    ]
+  },
+  "product_keywords": [
+    "30주년",
+    "30th",
+    "celebration",
+    "셀레브레이션",
+    "futuristic"
+  ],
   "products": [
     {
       "name": "포켓몬카드 30th CELEBRATION 낱개팩",
@@ -10,7 +34,10 @@
       "enabled": true
     }
   ],
-  "region_address_keywords": ["전북", "전라북도", "전북특별자치도"],
-  "schedule_target_minutes": 10,
-  "note": "Barcode is unverified for Korean convenience stores. Live inventory adapters are not yet connected."
+  "region_address_keywords": [
+    "전북",
+    "전라북도",
+    "전북특별자치도"
+  ],
+  "schedule_target_minutes": 10
 }
