@@ -3,21 +3,20 @@
   "region": "전북특별자치도 전체",
   "chains": [
     "CU",
-    "GS25",
     "이마트24",
     "세븐일레븐"
   ],
   "chain_product_names": {
     "CU": [
-      "30주년기념카드"
+      "포켓몬)30주년기념카드"
     ],
-    "GS25": [],
     "이마트24": [
-      "포켓몬카드(30주년셀레브레이션)"
+      "포켓몬)포켓몬카드(30주년셀레브레이션)"
     ],
     "세븐일레븐": [
-      "포켓몬확장팩(30주년)"
-    ]
+      "비전)포켓몬확장팩(30주년)_H"
+    ],
+    "GS25": []
   },
   "product_keywords": [
     "30주년",
@@ -39,5 +38,14 @@
     "전라북도",
     "전북특별자치도"
   ],
-  "schedule_target_minutes": 10
+  "schedule_target_minutes": 10,
+  "notification": {
+    "method": "telegram",
+    "notify_on_new_stock": true,
+    "notify_on_stock_increase": true,
+    "include_chain": true,
+    "include_store": true,
+    "include_address": true,
+    "include_quantity": true
+  }
 }
