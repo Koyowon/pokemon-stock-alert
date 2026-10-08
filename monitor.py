@@ -67,7 +67,6 @@ def main():
     print(f'Processed {len(records)} records')
 
 
+
 if __name__ == '__main__':
-    if '--test-telegram' not in sys.argv:
-        sys.argv.append('--test-telegram')
     main()
