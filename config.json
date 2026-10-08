@@ -1,0 +1,8 @@
+{
+  "region": "전북특별자치도 전체",
+  "chains": ["CU", "GS25", "이마트24"],
+  "product_keywords": ["30주년", "30th", "celebration", "futuristic"],
+  "region_address_keywords": ["전북", "전라북도", "전북특별자치도"],
+  "schedule_target_minutes": 10,
+  "note": "Keywords and Jeonbuk address matching are preliminary. Actual store adapters must be validated and added."
+}
