@@ -146,8 +146,11 @@ def stock(plu, codes):
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 4
+    sample_count = 0
+    max_samples = 8
 
     def collect(data, expected):
+        nonlocal sample_count
         rows = data.get('stores')
         if not isinstance(rows, list):
             raise ValueError('missing stores array')
@@ -165,6 +168,13 @@ def stock(plu, codes):
                 statuses[code] = 'OK'
             elif statuses[code] != 'OK':
                 statuses[code] = 'NULL_OR_INVALID_QTY'
+                if sample_count < max_samples:
+                    sample_count += 1
+                    print(
+                        f'QTY_SAMPLE {sample_count} | store={code} | plu={plu} | '
+                        f'qty_type={type(qty).__name__} | qty_value={repr(qty)[:80]} | '
+                        f'fields={sorted(str(k) for k in row.keys())}'
+                    )
         for code in expected:
             if code not in returned and statuses[code] != 'OK':
                 statuses[code] = 'MISSING_IN_RESPONSE'
@@ -196,7 +206,7 @@ def stock(plu, codes):
                 print('WARNING: 3 consecutive failed batches; stopping this product to protect API')
                 break
         time.sleep(1.5)
-    print(f'Inventory diagnostics: {fallback_calls} bounded single-store probes')
+    print(f'Inventory diagnostics: {fallback_calls} bounded single-store probes; {sample_count} quantity samples')
     return values, statuses
 
 
