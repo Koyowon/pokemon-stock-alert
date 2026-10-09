@@ -1,0 +1,47 @@
+name: Test Telegram notification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram test message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+          chat_id = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+          if not token or not chat_id:
+              raise SystemExit('ERROR: Telegram secrets are missing. Check repository Actions secrets.')
+
+          message = (
+              '✅ 포켓몬 카드 재고 알림 테스트 성공!\n'
+              '남원·아산 이마트24 감시 봇의 텔레그램 연결이 정상입니다.\n'
+              '※ 실제 재고 입고 알림이 아닌 테스트 메시지입니다.'
+          )
+          url = 'https://api.telegram.org/bot' + token + '/sendMessage'
+          data = urllib.parse.urlencode({'chat_id': chat_id, 'text': message}).encode()
+          request = urllib.request.Request(url, data=data, method='POST')
+          try:
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  result = json.load(response)
+          except urllib.error.HTTPError as exc:
+              print(f'ERROR: Telegram HTTP {exc.code}. Check bot token, chat ID, and whether you started the bot.')
+              raise SystemExit(1)
+          except Exception as exc:
+              print(f'ERROR: Telegram request failed ({type(exc).__name__}).')
+              raise SystemExit(1)
+          if not result.get('ok'):
+              raise SystemExit('ERROR: Telegram did not confirm message delivery.')
+          print('TELEGRAM_TEST_SUCCESS: Telegram accepted the test message.')
+          PY
