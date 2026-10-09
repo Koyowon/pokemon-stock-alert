@@ -11,6 +11,7 @@ concurrency:
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,12 +24,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python monitor.py
-      - name: Save inventory state
+      - name: Save stock and store cache
+        if: always()
         run: |
-          if ! git diff --quiet -- state.json; then
+          git add state.json stores.json
+          if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add state.json
-            git commit -m 'Update stock state [skip ci]'
+            git commit -m 'Update stock/store cache [skip ci]'
+            git pull --rebase
             git push
           fi
