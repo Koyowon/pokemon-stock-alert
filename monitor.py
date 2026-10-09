@@ -85,7 +85,7 @@ def get_stores():
         successful = 0
         for keyword, city in REGIONS.items():
             try:
-                data = api('stores', {'keyword': keyword})
+                data = api('stores', {'keyword': keyword, 'limit': 100})
                 rows = data.get('stores')
                 if not isinstance(rows, list) or not rows:
                     raise ValueError('empty or invalid store list')
