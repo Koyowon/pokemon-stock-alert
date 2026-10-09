@@ -8,13 +8,19 @@
   ],
   "chain_product_names": {
     "CU": [
-      "포켓몬)30주년기념카드"
+      "포켓몬)30주년기념카드",
+      "초전브레이커",
+      "인페르노X"
     ],
     "이마트24": [
-      "포켓몬)포켓몬카드(30주년셀레브레이션)"
+      "포켓몬)포켓몬카드(30주년셀레브레이션)",
+      "초전브레이커",
+      "인페르노X"
     ],
     "세븐일레븐": [
-      "비전)포켓몬확장팩(30주년)_H"
+      "비전)포켓몬확장팩(30주년)_H",
+      "초전브레이커",
+      "인페르노X"
     ],
     "GS25": []
   },
@@ -23,13 +29,31 @@
     "30th",
     "celebration",
     "셀레브레이션",
-    "futuristic"
+    "futuristic",
+    "초전브레이커",
+    "인페르노X",
+    "인페르노x"
   ],
   "products": [
     {
-      "name": "포켓몬카드 30th CELEBRATION 낱개팩",
+      "id": "pokemon_30th",
+      "name": "포켓몬카드 30th CELEBRATION",
       "barcode": "8800286275732",
       "barcode_status": "unverified",
+      "enabled": true
+    },
+    {
+      "id": "super_electric_breaker",
+      "name": "포켓몬카드 초전브레이커",
+      "barcode": null,
+      "barcode_status": "unknown",
+      "enabled": true
+    },
+    {
+      "id": "inferno_x",
+      "name": "포켓몬카드 인페르노X",
+      "barcode": null,
+      "barcode_status": "unknown",
       "enabled": true
     }
   ],
