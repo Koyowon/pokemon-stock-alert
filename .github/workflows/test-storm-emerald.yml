@@ -1,0 +1,17 @@
+name: Test Storm Emerald inventory
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Compare Emart24 inventory with official app
+        run: python test_storm_emerald.py
