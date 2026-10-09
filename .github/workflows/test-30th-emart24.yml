@@ -1,0 +1,61 @@
+name: Test 30th pack - Gwangju Wolgye
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe store and inventory
+        run: |
+          python - <<'PY'
+          import json, urllib.parse, urllib.request
+
+          ROOT = 'https://mcp.aka.page/api/emart24'
+          BARCODE = '8800286275732'
+
+          def get(path, params):
+              url = ROOT + path + '?' + urllib.parse.urlencode(params)
+              req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req, timeout=25) as response:
+                  return json.load(response)
+
+          def collect_stores(obj):
+              if isinstance(obj, list):
+                  for item in obj:
+                      yield from collect_stores(item)
+              elif isinstance(obj, dict):
+                  if ('bizNo' in obj or 'storeName' in obj) and ('storeName' in obj or 'name' in obj):
+                      yield obj
+                  else:
+                      for val in obj.values():
+                          if isinstance(val, (list, dict)):
+                              yield from collect_stores(val)
+
+          try:
+              directory = get('/stores', {'keyword':'광주월계', 'limit':100})
+          except Exception as e:
+              print('STORE_LOOKUP_ERROR:', type(e).__name__, str(e)[:300])
+              raise SystemExit(1)
+
+          stores = list(collect_stores(directory))
+          matches = [s for s in stores if '월계' in str(s.get('storeName', s.get('name', '')))]
+          print('STORE_MATCHES:', json.dumps(matches, ensure_ascii=False))
+          if not matches:
+              print('No match for 광주월계. Try alternate store keyword or verify store directory coverage.')
+              print('DIRECTORY_STRUCTURE:', json.dumps(directory, ensure_ascii=False)[:1500])
+              raise SystemExit(0)
+
+          for store in matches:
+              bizno = str(store.get('bizNo', '')).strip()
+              if not bizno:
+                  print('MISSING_BIZNO:', store)
+                  continue
+              try:
+                  result = get('/inventory', {'pluCd':BARCODE, 'bizNoArr':bizno})
+                  print('INVENTORY_RESULT store=', store.get('storeName'), 'bizNo=', bizno)
+                  print(json.dumps(result, ensure_ascii=False)[:6000])
+              except Exception as e:
+                  print('INVENTORY_ERROR store=', bizno, type(e).__name__, str(e)[:300])
+          PY
