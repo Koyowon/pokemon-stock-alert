@@ -140,31 +140,50 @@ def notify(message):
 
 
 def stock(plu, codes):
-    """Missing/null stock stays unknown. Failed batches get one bounded retry."""
+    """Conservative batch requests; limited single-store diagnosis on HTTP 500."""
     values = {}
     consecutive_failures = 0
+    fallback_calls = 0
+    max_fallback_calls = 4  # Per product/run: avoid hammering an unstable API.
+
+    def collect(data, expected):
+        rows = data.get('stores')
+        if not isinstance(rows, list):
+            raise ValueError('missing stores array')
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            code = str(row.get('bizNo') or '').strip()
+            qty = row.get('bizQty')
+            if code in expected and type(qty) is int and qty >= 0:
+                values[code] = qty
+
     for start in range(0, len(codes), 3):
         batch = codes[start:start + 3]
         try:
             data = api('inventory', {'pluCd': plu, 'bizNoArr': ','.join(batch)}, attempts=2)
-            rows = data.get('stores')
-            if not isinstance(rows, list):
-                raise ValueError('missing stores array')
-            for row in rows:
-                if not isinstance(row, dict):
-                    continue
-                code = str(row.get('bizNo') or '').strip()
-                qty = row.get('bizQty')
-                if code in batch and type(qty) is int and qty >= 0:
-                    values[code] = qty
+            collect(data, batch)
             consecutive_failures = 0
         except (RuntimeError, ValueError) as exc:
             consecutive_failures += 1
-            print(f'WARNING: inventory failed for {len(batch)} stores: {exc}')
+            print(f'WARNING: inventory batch failed ({len(batch)} stores): {exc}')
+            # A few single-store probes distinguish batch failure from store-specific failure.
+            if fallback_calls < max_fallback_calls:
+                for code in batch:
+                    if fallback_calls >= max_fallback_calls:
+                        break
+                    fallback_calls += 1
+                    time.sleep(2)
+                    try:
+                        data = api('inventory', {'pluCd': plu, 'bizNoArr': code}, attempts=1)
+                        collect(data, [code])
+                    except (RuntimeError, ValueError) as single_exc:
+                        print(f'WARNING: single-store lookup failed ({code}): {single_exc}')
             if consecutive_failures >= 3:
-                print('WARNING: 3 consecutive failed batches; stopping this product')
+                print('WARNING: 3 consecutive failed batches; stopping this product to protect API')
                 break
         time.sleep(1.5)
+    print(f'Inventory diagnostics: {fallback_calls} bounded single-store probes')
     return values
 
 
