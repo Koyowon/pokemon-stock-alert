@@ -7,8 +7,8 @@ import urllib.request
 BASE = 'https://mcp.aka.page/api/emart24'
 PRODUCT = '스톰에메랄다'
 PLU = '8800286279709'
-STORE_NAME = '남원더라우점'
-APP_QTY = 30
+STORE_NAME = '남원중앙하이츠점'
+APP_QTY = 0
 
 
 def get(path, params):
