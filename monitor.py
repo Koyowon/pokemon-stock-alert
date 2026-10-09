@@ -16,6 +16,7 @@ REGIONS = {'남원': '남원시', '아산': '아산시'}
 PRODUCTS = {
     '초전브레이커 낱개팩': '8809945338207',
     '인페르노X 낱개팩': '8800286278535',
+    '30주년 셀레브레이션 팩': '8800286275732',
 }
 SEED = {
     '21475': {'name': 'R남원이그린점', 'address': '전북특별자치도 남원시 황죽로 11'},
@@ -146,11 +147,8 @@ def stock(plu, codes):
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 4
-    sample_count = 0
-    max_samples = 8
 
     def collect(data, expected):
-        nonlocal sample_count
         rows = data.get('stores')
         if not isinstance(rows, list):
             raise ValueError('missing stores array')
@@ -168,13 +166,6 @@ def stock(plu, codes):
                 statuses[code] = 'OK'
             elif statuses[code] != 'OK':
                 statuses[code] = 'NULL_OR_INVALID_QTY'
-                if sample_count < max_samples:
-                    sample_count += 1
-                    print(
-                        f'QTY_SAMPLE {sample_count} | store={code} | plu={plu} | '
-                        f'qty_type={type(qty).__name__} | qty_value={repr(qty)[:80]} | '
-                        f'fields={sorted(str(k) for k in row.keys())}'
-                    )
         for code in expected:
             if code not in returned and statuses[code] != 'OK':
                 statuses[code] = 'MISSING_IN_RESPONSE'
@@ -206,7 +197,7 @@ def stock(plu, codes):
                 print('WARNING: 3 consecutive failed batches; stopping this product to protect API')
                 break
         time.sleep(1.5)
-    print(f'Inventory diagnostics: {fallback_calls} bounded single-store probes; {sample_count} quantity samples')
+    print(f'Inventory diagnostics: {fallback_calls} bounded single-store probes')
     return values, statuses
 
 
