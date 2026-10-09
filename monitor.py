@@ -93,7 +93,15 @@ def main():
     unknown = 0
     for plu, product in PRODUCTS.items():
         for group in chunks(list(stores), 10):
-            data = get_json('inventory', {'pluCd': plu, 'bizNoArr': ','.join(group)})
+            for store_code in group:
+    try:
+        data = get_json('inventory', {
+            'pluCd': plu,
+            'bizNoArr': store_code
+        })
+    except Exception as e:
+        print(f"재고조회 실패: {store_code} / {e}")
+        continue
             results = data.get('stores')
             if not isinstance(results, list):
                 raise RuntimeError(f'Invalid inventory response for {product}')
