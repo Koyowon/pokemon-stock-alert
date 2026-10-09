@@ -1,72 +1,80 @@
-"""Jeonbuk Pokemon 30th anniversary stock monitor: safe integration scaffold."""
+"""Emart24 Pokemon card stock watcher (verified Namwon pilot stores)."""
 import json
 import os
-import sys
 import urllib.parse
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-CONFIG = json.loads((ROOT / 'config.json').read_text(encoding='utf-8'))
-STATE = ROOT / 'state.json'
+STATE_FILE = ROOT / 'state.json'
+API = 'https://mcp.aka.page/api/emart24/inventory'
+PRODUCTS = {
+    '8809945338207': '초전브레이커 낱개팩',
+    '8809945338214': '초전브레이커 박스',
+    '8800286278535': '인페르노X 낱개팩',
+}
+# Verified in user-provided API responses. Expand only after checking other store IDs.
+STORES = {
+    '21475': 'R남원이그린점',
+    '21598': '남원중앙하이츠점',
+    '22612': '남원센트럴점',
+    '23439': '남원요천로점',
+    '24252': '남원도통점',
+}
 
+def get_json(url):
+    req = urllib.request.Request(url, headers={'User-Agent': 'PokemonStockMonitor/1.0', 'Accept': 'application/json'})
+    with urllib.request.urlopen(req, timeout=25) as response:
+        return json.load(response)
 
 def telegram(message):
-    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
-    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
+    token = os.environ.get('TELEGRAM_BOT_TOKEN')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     if not token or not chat_id:
-        raise RuntimeError('Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID secrets')
-    data = urllib.parse.urlencode({'chat_id': chat_id, 'text': message}).encode()
+        raise RuntimeError('Missing Telegram secrets')
+    data = urllib.parse.urlencode({'chat_id': chat_id, 'text': message}).encode('utf-8')
     req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage', data=data)
     with urllib.request.urlopen(req, timeout=20) as response:
         result = json.load(response)
     if not result.get('ok'):
-        raise RuntimeError('Telegram rejected the message')
-
-
-def load_stock():
-    """Return stock records only from VERIFIED, permitted store integrations.
-
-    Expected record keys: chain, store, address, product, quantity, checked_at.
-    IMPORTANT: No CU, GS25 or emart24 integration has been verified yet.
-    Never treat unavailable data as zero stock.
-    """
-    return []
-
+        raise RuntimeError('Telegram rejected message')
 
 def main():
-    if '--test-telegram' in sys.argv:
-        telegram('✅ 포켓몬카드 30주년 재고 알리미 테스트 성공!\n대상: 전북특별자치도 / CU·GS25·이마트24\n※ 실제 재고조회 연동은 아직 준비 중입니다.')
-        print('Telegram test sent')
-        return
-    records = load_stock()
-    if not records:
-        print('No verified store data source connected; no stock claims or alerts sent.')
-        return
-    # This section activates only when verified adapters return actual observations.
-    previous = json.loads(STATE.read_text(encoding='utf-8')) if STATE.exists() else {}
+    previous = json.loads(STATE_FILE.read_text(encoding='utf-8')) if STATE_FILE.exists() else {}
     updated = dict(previous)
-    for r in records:
-        if not all(k in r for k in ('chain', 'store', 'address', 'product', 'quantity', 'checked_at')):
-            continue
-        if not isinstance(r['quantity'], int) or r['quantity'] < 0:
-            continue
-        if r['chain'] not in CONFIG['chains']:
-            continue
-        if not any(x in r['product'].lower() for x in CONFIG['product_keywords']):
-            continue
-        if not any(x in r['address'] for x in CONFIG['region_address_keywords']):
-            continue
-        key = '|'.join([r['chain'], r['store'], r['product']])
-        old = previous.get(key)
-        qty = r['quantity']
-        if qty > 0 and (old is None or qty > old):
-            telegram(f"🎉 포켓몬카드 30주년 재고 발견\n편의점: {r['chain']}\n매장: {r['store']}\n주소: {r['address']}\n상품: {r['product']}\n수량: {qty}개\n조회: {r['checked_at']}\n※ 방문 전 매장에 확인하세요.")
-        updated[key] = qty
-    STATE.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'Processed {len(records)} records')
-
-
+    checked = 0
+    for plu, product in PRODUCTS.items():
+        params = urllib.parse.urlencode({'pluCd': plu, 'bizNoArr': ','.join(STORES)})
+        payload = get_json(f'{API}?{params}')
+        if payload.get('success') is not True:
+            raise RuntimeError(f'Inventory API failed: {product}')
+        data = payload.get('data') or {}
+        inventory = data.get('stores')
+        if not isinstance(inventory, list) or not inventory:
+            raise RuntimeError(f'No store inventory returned for {product}; refusing to mark as sold out')
+        for store in inventory:
+            biz_no = str(store.get('bizNo', ''))
+            if biz_no not in STORES:
+                continue
+            qty = store.get('bizQty')
+            if isinstance(qty, bool) or not isinstance(qty, int) or qty < 0:
+                print(f'UNKNOWN {product} {STORES[biz_no]}: {qty!r}')
+                continue
+            checked += 1
+            key = f'emart24|{biz_no}|{plu}'
+            old = previous.get(key)
+            print(f'{product} | {STORES[biz_no]} | {qty}개 (previous={old})')
+            if qty > 0 and (old is None or (isinstance(old, int) and qty > old)):
+                name = store.get('storeName') or STORES[biz_no]
+                address = store.get('address') or '주소 미확인'
+                telegram(f'🎉 포켓몬카드 재고 발견!\n편의점: 이마트24\n매장: {name}\n주소: {address}\n상품: {product}\n재고: {qty}개\n조회: {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}\n※ 방문 전 매장 확인 필수')
+            updated[key] = qty
+    if checked == 0:
+        raise RuntimeError('No numeric inventory received; state not changed')
+    if updated != previous:
+        STATE_FILE.write_text(json.dumps(updated, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f'Finished: {checked} numeric inventory entries')
 
 if __name__ == '__main__':
     main()
