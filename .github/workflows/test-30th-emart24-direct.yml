@@ -1,0 +1,47 @@
+name: Test 30th pack - Gwangju direct inventory
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check inventory using storeCode 20927
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.parse
+          import urllib.request
+          import urllib.error
+
+          ROOT = 'https://mcp.aka.page/api/emart24/inventory'
+          STORE = '20927'
+          PRODUCTS = {
+              '30th_pack': '8800286275732',
+              'storm_emerald_control': '8800286279709',
+          }
+          for name, plu in PRODUCTS.items():
+              url = ROOT + '?' + urllib.parse.urlencode({'pluCd': plu, 'bizNoArr': STORE})
+              print('\nPRODUCT:', name, 'PLU:', plu, 'STORE_CODE:', STORE, flush=True)
+              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json'})
+              try:
+                  with urllib.request.urlopen(req, timeout=25) as response:
+                      raw = response.read().decode('utf-8', errors='replace')
+                      print('HTTP_STATUS:', response.status)
+                  try:
+                      data = json.loads(raw)
+                      print('API_RESULT:', json.dumps(data, ensure_ascii=False)[:7000])
+                      stores = data.get('data', {}).get('stores', []) if isinstance(data, dict) and isinstance(data.get('data'), dict) else []
+                      for store in stores:
+                          print('STORE_QTY:', store.get('storeName'), 'bizNo:', store.get('bizNo'), 'bizQty:', repr(store.get('bizQty')))
+                      if not stores:
+                          print('NO_STORES_RETURNED: Cannot infer zero stock.')
+                  except json.JSONDecodeError:
+                      print('NON_JSON_RESPONSE:', raw[:500])
+              except urllib.error.HTTPError as exc:
+                  print('HTTP_ERROR:', exc.code, exc.read(500).decode('utf-8', errors='replace'))
+              except Exception as exc:
+                  print('REQUEST_ERROR:', type(exc).__name__, str(exc)[:300])
+          print('\nPROBE_FINISHED: A successful workflow does not mean stock was confirmed.')
+          PY
