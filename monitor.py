@@ -1,3 +1,4 @@
+
 """Emart24 stock monitor for Namwon and Asan, with conservative API retries."""
 import json
 import os
@@ -222,12 +223,35 @@ def main():
                 continue
             numeric += 1
             old = previous.get(key)
-            if qty > 0 and (type(old) is not int or qty > old):
+            message = None
+            if type(old) is int:
+                if qty > old:
+                    message = (
+                        f'🟢 포켓몬카드 재고 입고/증가!\n상품: {product}\n'
+                        f'매장: 이마트24 {store["name"]}\n주소: {store["address"]}\n'
+                        f'이전 재고: {old}개 → 현재 재고: {qty}개 (+{qty - old}개)'
+                    )
+                elif qty < old:
+                    if qty == 0:
+                        message = (
+                            f'🔴 포켓몬카드 품절 확인!\n상품: {product}\n'
+                            f'매장: 이마트24 {store["name"]}\n주소: {store["address"]}\n'
+                            f'이전 재고: {old}개 → 현재 재고: 0개'
+                        )
+                    else:
+                        message = (
+                            f'🟠 포켓몬카드 재고 감소!\n상품: {product}\n'
+                            f'매장: 이마트24 {store["name"]}\n주소: {store["address"]}\n'
+                            f'이전 재고: {old}개 → 현재 재고: {qty}개 (-{old - qty}개)'
+                        )
+            elif qty > 0:
                 message = (
-                    f'🎉 포켓몬카드 재고 발견!\n상품: {product}\n'
+                    f'🟢 포켓몬카드 첫 재고 확인!\n상품: {product}\n'
                     f'매장: 이마트24 {store["name"]}\n주소: {store["address"]}\n'
-                    f'재고: {qty}개\n※ 방문 전 매장에 확인하세요.'
+                    f'현재 재고: {qty}개'
                 )
+            if message is not None:
+                message += '\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요.'
                 if not notify(message):
                     print(f'WARNING: alert failed, state not advanced: {key}')
                     continue
