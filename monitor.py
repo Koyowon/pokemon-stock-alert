@@ -145,7 +145,7 @@ def stock(plu, codes):
     statuses = {code: 'NOT_CHECKED' for code in codes}
     consecutive_failures = 0
     fallback_calls = 0
-    max_fallback_calls = 4
+    max_fallback_calls = 6
 
     def collect(data, expected):
         rows = data.get('stores')
