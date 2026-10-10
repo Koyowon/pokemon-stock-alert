@@ -15,8 +15,6 @@ STATE_FILE = ROOT / 'state.json'
 STORES_FILE = ROOT / 'stores.json'
 REGIONS = {'남원': '남원시', '아산': '아산시'}
 PRODUCTS = {
-    '초전브레이커 낱개팩': '8809945338207',
-    '인페르노X 낱개팩': '8800286278535',
     '30주년 셀레브레이션 팩': '8800286275732',
 }
 SEED = {
