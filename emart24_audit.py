@@ -169,3 +169,36 @@ for code in retry_codes:
         )
 
     time.sleep(2)
+    print("\n=== NULL RAW RESPONSE AUDIT ===", flush=True)
+
+sample_codes = [
+    "21475",  # 남원 R남원이그린점
+    "28664",  # 남원하정점
+    "01538",  # 아산염치점
+    "03400",  # 아산순천향대점
+]
+
+for code in sample_codes:
+    name = stores.get(code, {}).get("name", code)
+    try:
+        data = api("inventory", {
+            "pluCd": PLU,
+            "bizNoArr": code,
+        })
+
+        print(f"\nSAMPLE | {code} | {name}", flush=True)
+        print(
+            json.dumps(data, ensure_ascii=False, indent=2)[:3000],
+            flush=True,
+        )
+
+    except Exception as exc:
+        print(
+            f"SAMPLE ERROR | {code} | {name} | "
+            f"{type(exc).__name__}: {exc}",
+            flush=True,
+        )
+
+    time.sleep(2)
+
+print("\n=== RAW RESPONSE AUDIT END ===", flush=True)
