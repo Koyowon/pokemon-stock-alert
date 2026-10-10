@@ -200,4 +200,4 @@ for code in sample_codes:
         )
 
     time.sleep(2)
-print("\n=== RAW RESPONSE AUDIT END ===", flush=True)
+print("\n=== NULL RAW RESPONSE AUDIT ===", flush=True)
