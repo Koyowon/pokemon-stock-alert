@@ -1,121 +1,129 @@
 import json
+import re
 import time
-import urllib.error
-import urllib.parse
+import html
 import urllib.request
+import urllib.parse
+import urllib.error
+from html.parser import HTMLParser
 
 BASE = "https://mcp.aka.page/api/seveneleven"
-PRODUCT = "비전)포켓몬확장팩(30주년)_H"
-REGIONS = ["남원", "아산"]
+STORE = "신남삼성점"
+EXPECTED_ADDRESS = "강원도 인제군 남면"
+KEYWORDS = [
+    "포켓몬확장팩(30주년)",
+    "비전)포켓몬확장팩(30주년)_H",
+    "30주년",
+]
 TIMEOUT = 20
 
-def request_api(path, params):
+class HTMLData(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+    def handle_data(self, data):
+        value = data.strip()
+        if value:
+            self.parts.append(value)
+
+def fetch(path, params):
+    params = dict(params)
+    params["format"] = "html"
     url = BASE + path + "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(
         url,
-        headers={
-            "User-Agent": "Mozilla/5.0",
-            "Accept": "application/json, text/html;q=0.9, */*;q=0.8",
-        },
+        headers={"User-Agent": "Mozilla/5.0",
+                 "Accept": "text/html, application/json"},
     )
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-            status = response.status
-            content_type = response.headers.get("Content-Type", "")
-            raw = response.read(100000).decode("utf-8", errors="replace")
-        return status, content_type, raw, None
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
+            return res.status, res.read(100000).decode(
+                "utf-8", errors="replace"
+            ), None
     except urllib.error.HTTPError as exc:
-        raw = exc.read(4000).decode("utf-8", errors="replace")
-        return exc.code, "", raw, "HTTP_ERROR"
+        return exc.code, exc.read(4000).decode(
+            "utf-8", errors="replace"
+        ), "HTTP_ERROR"
     except Exception as exc:
-        return None, "", "", f"{type(exc).__name__}: {exc}"
+        return None, "", str(exc)
 
-def inspect(name, path, params):
+def inspect(title, path, params):
     print("\n" + "=" * 65, flush=True)
-    print("TEST:", name, flush=True)
+    print("TEST:", title, flush=True)
     print("PARAMS:", json.dumps(params, ensure_ascii=False), flush=True)
-    status, content_type, raw, error = request_api(path, params)
+    status, body, error = fetch(path, params)
     print("HTTP:", status, flush=True)
-    print("CONTENT_TYPE:", content_type, flush=True)
     if error:
         print("ERROR:", error, flush=True)
-    print("BODY_LENGTH:", len(raw), flush=True)
+    print("BODY_LENGTH:", len(body), flush=True)
+
     try:
-        data = json.loads(raw)
-        print("JSON:", json.dumps(data, ensure_ascii=False, indent=2)[:6000], flush=True)
-        analyze(data)
+        data = json.loads(body)
+        print("JSON:", json.dumps(
+            data, ensure_ascii=False, indent=2
+        )[:12000], flush=True)
     except (ValueError, TypeError):
-        print("BODY_PREVIEW:", raw[:4000], flush=True)
-        print("NOTE: Non-JSON response; quantity not verified.", flush=True)
+        parser = HTMLData()
+        parser.feed(body)
+        text = "\n".join(parser.parts)
+        print("HTML_TEXT:", text[:12000], flush=True)
+
+        for label in (
+            "product", "products", "id", "itemCode",
+            "storeCode", "storeName", "stockAvailable",
+            "stockQuantity", "stockError", "note",
+            "totalStoreCount", "count",
+        ):
+            matches = [
+                line for line in text.splitlines()
+                if label.lower() in line.lower()
+            ]
+            if matches:
+                print("FIELD", label, ":",
+                      matches[:15], flush=True)
+
     if status != 200:
-        print("WARNING: Request failed. This does NOT mean zero stock.", flush=True)
+        print("WARNING: HTTP error is NOT zero stock.", flush=True)
     return status
 
-def analyze(data):
-    if not isinstance(data, dict):
-        print("ANALYSIS: Unexpected JSON structure.", flush=True)
-        return
-
-    print("TOP_LEVEL_KEYS:", list(data.keys()), flush=True)
-    found = []
-
-    def walk(obj, path="root", depth=0):
-        if depth > 8 or len(found) >= 40:
-            return
-        if isinstance(obj, dict):
-            quantity_keys = [
-                key for key in obj
-                if any(word in key.lower() for word in
-                       ("qty", "quantity", "stock", "remain", "inventory"))
-            ]
-            if quantity_keys:
-                found.append((path, {
-                    key: obj[key] for key in quantity_keys
-                }))
-            for key, value in obj.items():
-                if isinstance(value, (dict, list)):
-                    walk(value, path + "." + str(key), depth + 1)
-        elif isinstance(obj, list):
-            for index, value in enumerate(obj[:100]):
-                walk(value, path + "[" + str(index) + "]", depth + 1)
-
-    walk(data)
-    if not found:
-        print("QUANTITY_FIELDS: None found; inventory NOT confirmed.", flush=True)
-    else:
-        for path, values in found:
-            print("QUANTITY_FIELD:", path,
-                  json.dumps(values, ensure_ascii=False), flush=True)
-        print("NOTE: Field meanings must be verified before alerts.", flush=True)
-
 def main():
-    print("Seven-Eleven 30th Anniversary Inventory Diagnostic", flush=True)
-    print("PRODUCT:", PRODUCT, flush=True)
-    print("READ-ONLY: no purchases, no state updates, no alerts", flush=True)
+    print("SEVEN ELEVEN 30TH REFERENCE STORE DIAGNOSTIC")
+    print("STORE:", STORE)
+    print("EXPECTED AREA:", EXPECTED_ADDRESS)
+    print("READ ONLY: no state changes or alerts")
+    print("REFERENCE ONLY: third-party site showed 20 units")
+    print("20 is NOT an API-confirmed quantity")
 
     inspect(
-        "30th PRODUCT SEARCH",
-        "/products",
-        {"query": PRODUCT, "format": "html"},
+        "REFERENCE STORE SEARCH",
+        "/stores",
+        {"keyword": STORE, "limit": "20"},
     )
     time.sleep(2)
 
-    for region in REGIONS:
+    for keyword in KEYWORDS:
         inspect(
-            "30th INVENTORY - " + region,
+            "PRODUCT SEARCH: " + keyword,
+            "/products",
+            {"query": keyword, "size": "30"},
+        )
+        time.sleep(2)
+
+        inspect(
+            "INVENTORY: " + keyword,
             "/inventory",
             {
-                "keyword": PRODUCT,
-                "storeKeyword": region,
-                "storeLimit": "10",
-                "format": "html",
+                "keyword": keyword,
+                "storeKeyword": STORE,
+                "storeLimit": "20",
             },
         )
         time.sleep(2)
 
-    print("\n" + "=" * 65, flush=True)
-    print("DIAGNOSTIC FINISHED", flush=True)
-    print("HTTP 502, null, or missing quantity is NOT zero stock.", flush=True)
+    print("\n" + "=" * 65)
+    print("DIAGNOSTIC FINISHED")
+    print("Unknown stock must never be treated as zero.")
+    print("Verify store name AND address before using quantity.")
 
 if __name__ == "__main__":
     main()
