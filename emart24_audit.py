@@ -124,3 +124,48 @@ print("New store candidates:", len(new), flush=True)
 print("Directory errors:", len(errors), flush=True)
 print("Inventory failed batches:", batch_failures, flush=True)
 print("Read-only diagnostic. No files changed. No Telegram sent.", flush=True)
+print("\n=== INDIVIDUAL RETRY ===", flush=True)
+
+retry_codes = [
+    code for code, status in statuses.items()
+    if status == "BATCH_ERROR"
+]
+
+for code in retry_codes:
+    name = stores.get(code, {}).get("name", code)
+    try:
+        data = api("inventory", {
+            "pluCd": PLU,
+            "bizNoArr": code,
+        })
+        rows = data.get("stores")
+        if not isinstance(rows, list):
+            raise ValueError("Missing stores list")
+
+        matched = [
+            row for row in rows
+            if isinstance(row, dict)
+            and str(row.get("bizNo") or "").strip() == code
+        ]
+
+        if not matched:
+            result = "MISSING_IN_RESPONSE"
+        else:
+            qty = matched[0].get("bizQty")
+            if type(qty) is int and qty >= 0:
+                result = f"NUMERIC | qty={qty}"
+            elif qty is None:
+                result = "NULL"
+            else:
+                result = f"INVALID_QTY | {str(qty)[:80]}"
+
+        print(f"RETRY | {code} | {name} | {result}", flush=True)
+
+    except Exception as exc:
+        print(
+            f"RETRY | {code} | {name} | ERROR | "
+            f"{type(exc).__name__}: {exc}",
+            flush=True,
+        )
+
+    time.sleep(2)
