@@ -1,5 +1,5 @@
 """Telegram inline keyboard polling; only this workflow consumes getUpdates."""
-import json,os,urllib.parse,urllib.request
+import json,os,urllib.parse,urllib.request,urllib.error
 from pathlib import Path
 from unified_settings import CONTROL,IDS,CHAINS,load
 ROOT=Path(__file__).resolve().parent
@@ -14,6 +14,17 @@ def api(method,**kwargs):
     with urllib.request.urlopen(req,timeout=25) as response: result=json.load(response)
     if result.get('ok') is not True: raise RuntimeError('Telegram '+method+' failed')
     return result['result']
+
+def best_effort(method, **kwargs):
+    try:
+        return api(method, **kwargs)
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError, RuntimeError) as exc:
+        print('TELEGRAM_OPTIONAL_FAILED', method, type(exc).__name__, flush=True)
+        return None
+
+def save_progress(data, cursor):
+    CONTROL.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    CURSOR.write_text(json.dumps(cursor,indent=2)+'\n',encoding='utf-8')
 
 def initial():
     def read(path):return json.loads(path.read_text(encoding='utf-8'))
@@ -43,22 +54,20 @@ def main():
         if cb:
             cbchat=str((cb.get('message') or {}).get('chat',{}).get('id',''))
             if cbchat!=CHAT:
-                api('answerCallbackQuery',callback_query_id=cb['id'],text='권한이 없습니다',show_alert='true');continue
+                best_effort('answerCallbackQuery',callback_query_id=cb['id'],text='권한이 없습니다',show_alert='true');continue
             parts=cb.get('data','').split(':')
             if len(parts)==3 and parts[0]=='set' and parts[1] in CHAINS and parts[2] in IDS:
                 chain,rid=parts[1:]
                 data['chains'][chain][rid]=not data['chains'][chain][rid]
                 changed=True
-                api('answerCallbackQuery',callback_query_id=cb['id'],text=LABEL[chain]+' '+CITY[rid]+' '+('ON' if data['chains'][chain][rid] else 'OFF'))
+                best_effort('answerCallbackQuery',callback_query_id=cb['id'],text=LABEL[chain]+' '+CITY[rid]+' '+('ON' if data['chains'][chain][rid] else 'OFF'))
                 text,markup=panel(data)
-                api('editMessageText',chat_id=CHAT,message_id=cb['message']['message_id'],text=text,reply_markup=markup)
-            else:api('answerCallbackQuery',callback_query_id=cb['id'],text='알 수 없는 명령')
+                best_effort('sendMessage',chat_id=CHAT,text=text,reply_markup=markup)
+            else:best_effort('answerCallbackQuery',callback_query_id=cb['id'],text='알 수 없는 명령')
         elif str(msg.get('chat',{}).get('id',''))==CHAT and msg.get('text','').split('@')[0].split(' ')[0] in ('/regions','/status','/start'):
             text,markup=panel(data)
             api('sendMessage',chat_id=CHAT,text=text,reply_markup=markup)
-    if changed or not CONTROL.exists():
-        CONTROL.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-        print('CONTROL_SAVED')
-    CURSOR.write_text(json.dumps(cursor,indent=2)+'\n',encoding='utf-8')
+    save_progress(data,cursor)
+    if changed: print('CONTROL_SAVED',flush=True)
     print('TELEGRAM_UPDATES',len(updates),'OFFSET',cursor['offset'])
 if __name__=='__main__':main()
