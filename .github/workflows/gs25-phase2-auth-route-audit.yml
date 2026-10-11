@@ -1,0 +1,31 @@
+name: GS25 Phase 2 Auth Route Audit
+on:
+  workflow_dispatch:
+    inputs:
+      skip_health:
+        description: 'Skip the one read-only health request (offline audit only)'
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit GS25 authentication route and product assumptions
+        env:
+          SKIP_HEALTH: ${{ inputs.skip_health }}
+        run: |
+          if [ "$SKIP_HEALTH" = "true" ]; then
+            python gs25_auth_route_audit.py --skip-health
+          else
+            python gs25_auth_route_audit.py
+          fi
