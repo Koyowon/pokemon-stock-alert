@@ -1,0 +1,57 @@
+{
+  "checked_at_utc": "2026-10-11T16:04:48.493440+00:00",
+  "item_code": "8800286275732",
+  "regions": {
+    "asan": {
+      "checked_at_utc": "2026-10-11T16:04:48.493440+00:00",
+      "positive": {
+        "V6N57": {
+          "name": "아산시민점",
+          "quantity": 14
+        },
+        "VDQ67": {
+          "name": "온양사랑점",
+          "quantity": 14
+        },
+        "VFM85": {
+          "name": "탕정호반점",
+          "quantity": 14
+        },
+        "VFZ93": {
+          "name": "아산삼정점",
+          "quantity": 14
+        },
+        "VJE48": {
+          "name": "온양행복점",
+          "quantity": 14
+        }
+      }
+    },
+    "jeju": {
+      "checked_at_utc": "2026-10-11T16:04:48.493440+00:00",
+      "positive": {
+        "VHF83": {
+          "name": "연동신광점",
+          "quantity": 14
+        },
+        "VHX62": {
+          "name": "제주봉성점",
+          "quantity": 14
+        },
+        "VY142": {
+          "name": "제주바오젠점",
+          "quantity": 14
+        }
+      }
+    },
+    "jeonju": {
+      "checked_at_utc": "2026-10-11T16:04:48.493440+00:00",
+      "positive": {}
+    },
+    "namwon": {
+      "checked_at_utc": "2026-10-11T16:04:48.493440+00:00",
+      "positive": {}
+    }
+  },
+  "version": 1
+}
