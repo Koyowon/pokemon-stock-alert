@@ -10,6 +10,7 @@ REGIONS = {'namwon': '남원', 'asan': '아산', 'jeonju': '전주', 'jeju': '�
 CHAINS = {'emart24': '이마트24', 'cu': 'CU', 'gs25': 'GS25'}
 BARCODE = '8800286275732'
 KST = timezone(timedelta(hours=9))
+PAGES_URL = 'https://koyowon.github.io/pokemon-stock-alert/'
 
 
 def read(relative):
@@ -25,14 +26,9 @@ def region_for(address, city=''):
     return next((rid for rid, name in REGIONS.items() if name in combined), None)
 
 
-def naver_map(chain, name, address=''):
+def map_bridge(chain, name, address=''):
     query = (str(address) + ' ' + str(name)).strip() if address else CHAINS[chain] + ' ' + str(name)
-    return 'https://map.naver.com/p/search/' + quote(query, safe='')
-
-
-def naver_app(chain, name, address=''):
-    query = (str(address) + ' ' + str(name)).strip() if address else CHAINS[chain] + ' ' + str(name)
-    return 'nmap://search?query=' + quote(query, safe='') + '&appname=pokemon.stock.alert'
+    return PAGES_URL + '?q=' + quote(query, safe='')
 
 
 def checked_at(value):
@@ -108,7 +104,7 @@ def messages():
                 lines.append('• ' + escape(str(name)) + ' — ' + str(quantity) + '개')
                 if checked != '확인 시각 미기록':
                     lines.append('  ' + checked)
-                lines.append('  <a href="' + escape(naver_map(chain, name, address), quote=True) + '">🗺 네이버지도에서 보기</a>')
+                lines.append('  <a href="' + escape(map_bridge(chain, name, address), quote=True) + '">🗺 네이버지도에서 보기</a>')
         if not total:
             continue
         chunk = ''
