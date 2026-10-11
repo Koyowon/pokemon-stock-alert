@@ -1,0 +1,18 @@
+name: GS25 Read Only Rediagnostic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run GS25 read-only rediagnostic
+        run: python gs25_readonly_rediagnostic.py
