@@ -1,0 +1,18 @@
+name: Emart24 Jeonju Full Inventory Probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run read-only Jeonju 63-store inventory diagnostic
+        run: python emart24_jeonju_full_inventory_probe.py
