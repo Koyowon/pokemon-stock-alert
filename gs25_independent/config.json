@@ -7,6 +7,6 @@
     {"id": "namwon", "name": "남원시", "enabled": true},
     {"id": "asan", "name": "아산시", "enabled": true},
     {"id": "jeonju", "name": "전주시", "enabled": true},
-    {"id": "jeju", "name": "제주시", "enabled": false}
+    {"id": "jeju", "name": "제주시", "enabled": true}
   ]
 }
