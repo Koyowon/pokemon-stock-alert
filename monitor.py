@@ -8,6 +8,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from region_config import load_enabled_regions
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
 BASE = "https://mcp.aka.page/api/emart24"
@@ -157,6 +158,10 @@ def get_stores(active_regions):
     print("Total unique matched stores:", len(active_stores))
     return active_stores
 
+
+def naver_map(name, address=''):
+    return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
+
 def notify(message):
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
@@ -301,6 +306,7 @@ def main():
                     f"주소: {store['address']}\n현재 재고: {qty}개"
                 )
             if message is not None:
+                message += "\n🗺 네이버지도: " + naver_map(store["name"], store["address"])
                 message += "\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
                 if not notify(message):
                     print(f"WARNING: alert failed, state not advanced: {key}")

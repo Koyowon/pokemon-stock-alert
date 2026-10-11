@@ -8,6 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from region_config import load_enabled_regions
+from urllib.parse import quote
 
 URL = "https://mcp.aka.page/api/cu/inventory"
 BARCODE = "8800286275732"
@@ -195,6 +196,10 @@ def save_state(state):
     temp.replace(STATE_FILE)
 
 
+
+def naver_map(name, address=''):
+    return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
+
 def telegram(message):
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
@@ -284,28 +289,41 @@ def main():
         previous = stock_number(old.get("stock"))
         previously_alerted = bool(old.get("alerted", False))
 
-        should_alert = (
-            quantity > 0
-            and (previous == 0 or not previously_alerted)
-        )
-        alerted = previously_alerted
-        if quantity == 0:
-            alerted = False
+        # An absent old quantity is unknown, not zero. Preserve first-positive alerts.
+        # Previously alerted flag is retained for compatibility with the old state.
+        message = None
+        if previous is None:
+            if quantity > 0:
+                message = "🟢 CU 포켓몬카드 첫 재고 확인!"
+        elif quantity > previous:
+            message = "🟢 CU 포켓몬카드 재고 입고/증가!"
+        elif quantity < previous:
+            message = ("🔴 CU 포켓몬카드 품절 확인!" if quantity == 0
+                       else "🟠 CU 포켓몬카드 재고 감소!")
+        elif quantity > 0 and not previously_alerted:
+            # Migrated old state: retry an unsent first-positive alert.
+            message = "🟢 CU 포켓몬카드 재고 확인!"
 
-        if should_alert:
-            message = (
-                "🚨 CU 포켓몬 30주년 카드 재고 발견!\n"
-                "상품: " + PRODUCT + "\n"
-                "바코드: " + BARCODE + "\n"
-                "지역: " + item["city"] + "\n"
-                "매장: " + item["name"] + "\n"
-                "주소: " + item["address"] + "\n"
-                "조회 재고: " + str(quantity) + "개\n"
-                "※ 방문 전 매장에 재고를 확인하세요."
+        alerted = previously_alerted if quantity > 0 else False
+        if message is not None:
+            if previous is None:
+                detail = f"현재 재고: {quantity}개"
+            else:
+                detail = f"이전 재고: {previous}개 → 현재 재고: {quantity}개"
+            body = (
+                message + "\n"
+                + "상품: " + PRODUCT + "\n"
+                + "바코드: " + BARCODE + "\n"
+                + "지역: " + item["city"] + "\n"
+                + "매장: " + item["name"] + "\n"
+                + "주소: " + item["address"] + "\n"
+                + detail + "\n"
+                + "🗺 네이버지도: " + naver_map(item["name"], item["address"]) + "\n"
+                + "※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
             )
-            if telegram(message):
-                alerted = True
-                print("ALERT_SENT:", code, quantity, flush=True)
+            if telegram(body):
+                alerted = quantity > 0
+                print("ALERT_SENT:", code, previous, quantity, flush=True)
             else:
                 print("ALERT_PENDING:", code, flush=True)
                 continue

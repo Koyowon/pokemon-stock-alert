@@ -9,6 +9,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -59,6 +60,10 @@ def safe(value):
     return re.sub(r'\s+', ' ', ''.join(c for c in str(value) if c.isprintable()))[:80]
 
 
+
+def naver_map(name, address=''):
+    return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
+
 def telegram(message):
     token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
@@ -90,12 +95,13 @@ def main():
             raise RuntimeError('STATE_ITEM_CODE_MISMATCH')
     else:
         previous = {'version': 1, 'item_code': code, 'regions': {}}
-    new_state = {'version': 1, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
+    new_state = {'version': 2, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     failures = 0
     alerts = 0
     for region in enabled:
         rid = region['id']
         seen = {}
+        conflicts = set()
         failed = False
         for term in KEYWORDS[rid]:
             try:
@@ -115,33 +121,65 @@ def main():
                 sid = safe(row.get('storeCode', ''))
                 name = safe(row.get('storeName') or row.get('name') or '')
                 q = quantity(row)
-                if not sid or not name or q is None:
+                if not sid or not name or q is None or sid in conflicts:
                     continue
-                if sid not in seen or q > seen[sid]['quantity']:
+                if sid in seen and seen[sid]['quantity'] != q:
+                    conflicts.add(sid)
+                    seen.pop(sid, None)
+                    print(f'STOCK_CONFLICT region={rid} store={sid}', flush=True)
+                else:
                     seen[sid] = {'name': name, 'quantity': q}
         positives = {sid: item for sid, item in seen.items() if item['quantity'] > 0}
-        print(f'REGION region={rid} scanned={len(seen)} positive={len(positives)} complete={not failed}', flush=True)
-        for sid, item in sorted(positives.items()):
-            print(f'POSITIVE region={rid} store={item["name"]} code={sid} qty={item["quantity"]}', flush=True)
+        print(f'REGION region={rid} scanned={len(seen)} positive={len(positives)} complete={not failed} conflicts={len(conflicts)}', flush=True)
         if failed:
             print(f'SKIP_REGION_STATE region={rid} reason=PARTIAL_SCAN', flush=True)
             continue
         prior = previous.get('regions', {}).get(rid)
         if prior is None:
             print(f'BASELINE region={rid} positive={len(positives)} no_initial_alert', flush=True)
+            # First scan is baseline: do not send a flood of notifications.
         else:
-            old = prior.get('positive', {})
-            changes = [(sid, item) for sid, item in positives.items() if sid not in old or int(old[sid]['quantity']) == 0]
-            if changes:
-                lines = [f'🚨 GS25 포켓몬 30주년 후보 재고 감지 | {region["name"]}', f'조회 코드: {code}']
-                lines += [f'{item["name"]}: {item["quantity"]}개 (매장 {sid})' for sid, item in sorted(changes)[:25]]
-                if len(changes) > 25:
-                    lines.append(f'그 외 {len(changes)-25}곳은 GitHub 로그 확인')
-                lines.append('제3자 API 기준 / 실제 판매재고 확인 필요')
-                telegram('\n'.join(lines))
+            # Version 1 persisted positives only; missing old stores are unknown, not zero.
+            old = prior.get('stores', prior.get('positive', {}))
+            changes = []
+            for sid, item in sorted(seen.items()):
+                q = item['quantity']
+                former = old.get(sid)
+                if former is None:
+                    if q > 0:
+                        changes.append((sid, item, None))
+                    continue
+                prev_q = int(former['quantity'])
+                if q != prev_q:
+                    changes.append((sid, item, prev_q))
+            # Only observed numeric quantities count as zero; absent stores are unknown.
+            for sid, item, prev_q in changes:
+                q = item['quantity']
+                title = ('🟢 GS25 포켓몬카드 입고/증가!' if prev_q is None or q > prev_q
+                         else '🔴 GS25 포켓몬카드 품절 확인!' if q == 0
+                         else '🟠 GS25 포켓몬카드 재고 감소!')
+                detail = f'현재 재고: {q}개' if prev_q is None else f'이전 재고: {prev_q}개 → 현재 재고: {q}개'
+                msg = (f'{title}\n지역: {region["name"]}\n매장: GS25 {item["name"]}\n'
+                       f'조회 코드: {code}\n{detail}\n'
+                       f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
+                       '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
+                try:
+                    telegram(msg)
+                except (OSError, ValueError, RuntimeError) as exc:
+                    print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
+                    # Avoid advancing this store's baseline if the alert was not sent.
+                    if former is None:
+                        seen.pop(sid, None)
+                    else:
+                        seen[sid] = former
+                    continue
                 alerts += 1
-                print(f'ALERT_SENT region={rid} new_positive={len(changes)}', flush=True)
-        new_state['regions'][rid] = {'positive': positives, 'checked_at_utc': new_state['checked_at_utc']}
+                print(f'ALERT_SENT region={rid} store={sid} old={prev_q} new={q}', flush=True)
+        # Keep prior observations for stores absent from this scan, but never infer zero.
+        prior_stores = prior.get('stores', prior.get('positive', {})) if prior else {}
+        merged = dict(prior_stores)
+        merged.update(seen)
+        new_state['regions'][rid] = {'stores': merged, 'checked_at_utc': new_state['checked_at_utc']}
     if new_state['regions'] != previous.get('regions', {}):
         STATE.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
         print('STATE_WRITTEN', flush=True)
