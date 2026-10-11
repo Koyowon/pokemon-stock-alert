@@ -11,7 +11,7 @@
       "namwon": true,
       "asan": true,
       "jeonju": true,
-      "jeju": false
+      "jeju": true
     },
     "gs25": {
       "namwon": true,
