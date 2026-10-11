@@ -1,0 +1,32 @@
+name: Emart24 Jeonju State Baseline
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pokemon-stock-monitor
+  cancel-in-progress: false
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Initialize Jeonju numeric state without alerts
+        run: python emart24_jeonju_state_baseline.py
+      - name: Commit state baseline only
+        run: |
+          git add -- state.json
+          if git diff --cached --quiet; then
+            echo 'No state changes to commit'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Initialize Jeonju inventory baseline [skip ci]'
+          git push origin HEAD:main
