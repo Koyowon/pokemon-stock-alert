@@ -91,28 +91,34 @@ def messages():
     output = [
         '📦 현재 재고 현황 (마지막 저장 기록)\n'
         '⚠️ 실시간 조회가 아니며 구매 가능 수량을 보장하지 않습니다.\n'
-        '양수 재고만 표시합니다. 표시되지 않은 매장은 품절 또는 미확인일 수 있습니다.\n'
+        '양수 재고가 저장된 매장만 표시합니다.\n'
         '이마트24·CU는 매장별 확인 시각이 기록되지 않습니다.'
     ]
-    for rid, city in REGIONS.items():
-        lines = ['📍 ' + city]
-        for chain, label in CHAINS.items():
+    for chain, label in CHAINS.items():
+        lines = ['🏪 ' + label + ' 재고 현황']
+        total = 0
+        for rid, city in REGIONS.items():
             rows = sorted(data[rid][chain], key=lambda item: (-item[1], item[0]))
-            lines.append('\n🏪 ' + label + ' | 양수 재고 ' + str(len(rows)) + '개 매장')
             if not rows:
-                lines.append('저장된 양수 재고 없음 (품절 여부 미확인)')
+                continue
+            total += len(rows)
+            lines.append('\n📍 ' + city + ' | ' + str(len(rows)) + '개 매장')
             for name, quantity, address, checked in rows:
                 lines.append('• ' + name + ' — ' + str(quantity) + '개')
-                lines.append('  ' + checked)
-                lines.append('  📱 앱 열기: ' + naver_app(chain, name, address))
-                lines.append('  🌐 웹 지도: ' + naver_map(chain, name, address))
+                if checked != '확인 시각 미기록':
+                    lines.append('  ' + checked)
+                lines.append('  🗺 ' + naver_map(chain, name, address))
+        if not total:
+            continue
         chunk = ''
         for line in lines:
             addition = line + '\n'
             if chunk and len(chunk) + len(addition) > 3400:
                 output.append(chunk.rstrip())
-                chunk = '📍 ' + city + ' (계속)\n'
+                chunk = '🏪 ' + label + ' (계속)\n'
             chunk += addition
         if chunk:
             output.append(chunk.rstrip())
+    if len(output) == 1:
+        output.append('현재 저장된 양수 재고가 없습니다. 품절 여부는 별도 확인이 필요합니다.')
     return output
