@@ -1,5 +1,6 @@
 """Read-only inventory snapshots for the Telegram control bot."""
 import json
+from html import escape
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -104,10 +105,10 @@ def messages():
             total += len(rows)
             lines.append('\n📍 ' + city + ' | ' + str(len(rows)) + '개 매장')
             for name, quantity, address, checked in rows:
-                lines.append('• ' + name + ' — ' + str(quantity) + '개')
+                lines.append('• ' + escape(str(name)) + ' — ' + str(quantity) + '개')
                 if checked != '확인 시각 미기록':
                     lines.append('  ' + checked)
-                lines.append('  🗺 ' + naver_map(chain, name, address))
+                lines.append('  <a href="' + escape(naver_map(chain, name, address), quote=True) + '">🗺 네이버지도에서 보기</a>')
         if not total:
             continue
         chunk = ''

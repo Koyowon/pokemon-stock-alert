@@ -58,7 +58,7 @@ def panel(data):
 
 def send_stock():
     for text in stock_messages():
-        api('sendMessage', chat_id=CHAT, text=text, disable_web_page_preview='true')
+        api('sendMessage', chat_id=CHAT, text=text, parse_mode='HTML', disable_web_page_preview='true')
 
 
 def main():
