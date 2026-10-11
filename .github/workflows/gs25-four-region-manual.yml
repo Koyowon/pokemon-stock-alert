@@ -1,0 +1,17 @@
+name: GS25 Four Region Manual Stock Sample
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stock-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run read-only GS25 four-region sample
+        run: python3 gs25_independent/live_probe.py
