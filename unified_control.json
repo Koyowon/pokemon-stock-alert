@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "chains": {
+    "emart24": {
+      "namwon": true,
+      "asan": true,
+      "jeonju": true,
+      "jeju": false
+    },
+    "cu": {
+      "namwon": true,
+      "asan": true,
+      "jeonju": true,
+      "jeju": false
+    },
+    "gs25": {
+      "namwon": true,
+      "asan": true,
+      "jeonju": true,
+      "jeju": true
+    }
+  }
+}
