@@ -1,0 +1,19 @@
+name: GS25 Stage 3 Manual REST Probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Python syntax validation
+        run: python3 -c "import ast, pathlib; ast.parse(pathlib.Path('gs25_independent/stage3_probe.py').read_text(encoding='utf-8'))"
+      - name: Read-only GS25 public REST diagnostic
+        run: python3 gs25_independent/stage3_probe.py
