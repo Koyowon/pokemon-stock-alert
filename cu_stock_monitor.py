@@ -6,6 +6,7 @@ import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
+
 from region_config import load_enabled_regions
 
 URL = "https://mcp.aka.page/api/cu/inventory"
@@ -41,6 +42,11 @@ PREFIXES = {
         "충청남도 아산시",
         "충남 아산시",
     ),
+}
+
+REGION_IDS = {
+    "남원": "namwon",
+    "아산": "asan",
 }
 
 
@@ -255,15 +261,10 @@ def main():
     successful_queries = 0
     failed_queries = 0
 
-        enabled_regions = load_enabled_regions()
-
-    region_ids = {
-        "남원": "namwon",
-        "아산": "asan",
-    }
+    enabled_regions = load_enabled_regions()
 
     for city, points in POINTS.items():
-        region_id = region_ids[city]
+        region_id = REGION_IDS[city]
 
         if region_id not in enabled_regions:
             print("REGION_DISABLED:", city, flush=True)
@@ -340,6 +341,9 @@ def main():
     )
 
     if successful_queries == 0:
+        if not (set(REGION_IDS.values()) & enabled_regions):
+            print("ALL_CONFIGURED_REGIONS_DISABLED", flush=True)
+            return
         raise RuntimeError(
             "All CU queries failed; state unchanged"
         )
