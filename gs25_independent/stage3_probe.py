@@ -1,84 +1,109 @@
 #!/usr/bin/env python3
-"""Manual GS25 product identity audit: read only; no state writes or alerts."""
+"""Manual GS25 catalog candidate discovery. Public catalog only, no stock or alerts."""
 import json
+import re
+import urllib.error
 import urllib.parse
 import urllib.request
-import urllib.error
 
 BASE = 'https://mcp.aka.page/api/actions/query'
-TARGET = '8800286275732'  # Assumed, not verified
-TERMS = ('8800286275732', '포켓몬 30주년', '30주년 기념팩', '포켓몬카드', '포켓몬', '30주년', '기념팩', 'MEGA')
+ASSUMED_CODE = '8800286275732'  # Unverified; do not treat as product identity
+TERMS = ('포켓몬 30주년', '포켓몬카드', '포켓몬 카드', '포켓몬', '30주년', '메가진화', 'MEGA')
 NAME_KEYS = ('itemName', 'productName', 'name', 'goodsName', 'itemNm', 'productNm')
 CODE_KEYS = ('itemCode', 'barcode', 'barCode', 'ean', 'gtin')
-HINTS = ('포켓몬', 'pokemon', '30주년', '30th', '기념팩', 'mega')
+MAX_BYTES = 262144
 
-def fetch(action, **params):
-    url = BASE + '?' + urllib.parse.urlencode({'action': action, 'format': 'json', **params})
-    req = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'gs25-manual-identity-audit/2.1'})
+
+def fetch(term):
+    url = BASE + '?' + urllib.parse.urlencode({
+        'action': 'gs25SearchProducts', 'format': 'json', 'keyword': term, 'limit': 100})
+    req = urllib.request.Request(url, headers={
+        'Accept': 'application/json', 'User-Agent': 'gs25-catalog-candidate-audit/3.0'})
     try:
-        with urllib.request.urlopen(req, timeout=15) as res:
-            status, body = res.status, res.read(262145)
+        with urllib.request.urlopen(req, timeout=15) as response:
+            status, body = response.status, response.read(MAX_BYTES + 1)
     except urllib.error.HTTPError as exc:
-        status, body = exc.code, exc.read(262145)
+        return [], 'HTTP_' + str(exc.code), False
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        return None, 'NETWORK_' + type(exc).__name__
-    if status != 200:
-        return None, 'HTTP_' + str(status)
-    if not body or len(body) > 262144:
-        return None, 'EMPTY_OR_OVERSIZE'
+        return [], 'NETWORK_' + type(exc).__name__, False
+    if status != 200 or len(body) > MAX_BYTES:
+        return [], 'BAD_HTTP_OR_OVERSIZE', False
     try:
         obj = json.loads(body.decode('utf-8'))
     except (UnicodeError, ValueError):
-        return None, 'INVALID_JSON'
+        return [], 'INVALID_JSON', False
     if not isinstance(obj, dict) or obj.get('success') is not True or obj.get('error') or obj.get('isError'):
-        return None, 'API_NOT_CONFIRMED_SUCCESS'
+        return [], 'API_UNCONFIRMED', False
     data = obj.get('data')
-    return (data, 'OK') if isinstance(data, dict) else (None, 'DATA_SCHEMA_UNKNOWN')
+    products = data.get('products') if isinstance(data, dict) else None
+    if not isinstance(products, list):
+        return [], 'PRODUCTS_MISSING', False
+    return products, 'OK', len(products) >= 100
 
-def exact_code(p):
-    return isinstance(p, dict) and any(str(p.get(k, '')).strip() == TARGET for k in CODE_KEYS)
 
-def name_hint(p):
-    if not isinstance(p, dict):
-        return 'NOT_PRESENT'
-    names = [p[k] for k in NAME_KEYS if isinstance(p.get(k), str)]
-    if not names:
-        return 'NOT_PRESENT'
-    return 'TARGET_RELATED_HINT' if any(h in ' '.join(names).lower() for h in HINTS) else 'NO_TARGET_HINT'
+def product_name(p):
+    for k in NAME_KEYS:
+        v = p.get(k)
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return ''
+
+
+def product_code(p):
+    for k in CODE_KEYS:
+        v = p.get(k)
+        if isinstance(v, (str, int)) and re.fullmatch(r'\d{8,14}', str(v).strip()):
+            return str(v).strip()
+    return ''
+
+
+def classify(name):
+    text = re.sub(r'\s+', '', name).casefold()
+    pokemon = '포켓몬' in text or 'pokemon' in text
+    anniversary = '30주년' in text or '30th' in text
+    pack = any(w in text for w in ('기념팩', '확장팩', '카드', '팩', 'pack'))
+    if pokemon and anniversary and pack:
+        return 'STRONG_NAME_MATCH'
+    if pokemon and (anniversary or pack):
+        return 'RELATED_POKEMON'
+    return 'OTHER'
+
+
+def safe_name(name):
+    # Public catalog product names only; prevent terminal/control character injection.
+    clean = re.sub(r'[\x00-\x1f\x7f\x1b]', ' ', name)
+    return re.sub(r'\s+', ' ', clean).strip()[:85]
+
 
 def main():
-    print('GS25_CATALOG_IDENTITY_AUDIT; MANUAL_ONLY; READ_ONLY; NO_SECRETS; NO_STATE_WRITES; NO_ALERTS')
-    print('TARGET_CODE_ASSUMED=' + TARGET)
-    matched = []
-    for i, term in enumerate(TERMS, 1):
-        data, status = fetch('gs25SearchProducts', keyword=term, limit=100)
-        products = data.get('products') if data else None
-        if not isinstance(products, list):
-            print(f'SEARCH_{i}: status={status}; products=UNKNOWN')
-            continue
-        hits = [p for p in products if exact_code(p)]
-        matched.extend(hits)
-        print(f'SEARCH_{i}: status=OK; products={len(products)}; exact_code_matches={len(hits)}; result_limit_reached={len(products)>=100}')
-        for p in hits[:2]:
-            print(f'SEARCH_{i}: MATCH_NAME_EVIDENCE={name_hint(p)}')
-    data, status = fetch('gs25CheckInventory', itemCode=TARGET, storeKeyword='남원', storeLimit=1)
-    if status != 'OK':
-        print(f'DIRECT_LOOKUP: status={status}; IDENTITY_UNKNOWN')
-    else:
-        inv = data.get('inventory')
-        stores = inv.get('stores') if isinstance(inv, dict) else None
-        print(f'DIRECT_LOOKUP: status=OK; echoed_code_matches={str(data.get("itemCode")) == TARGET}; '
-              f'metadata_name_hint={name_hint(data)}; stores_array_present={isinstance(stores,list)}; '
-              f'stores_count={len(stores) if isinstance(stores,list) else "UNKNOWN"}')
-        print('DIRECT_LOOKUP: STOCK_VALUES_HIDDEN; ECHOED_CODE_IS_NOT_IDENTITY_PROOF')
-    if matched and any(name_hint(p) == 'TARGET_RELATED_HINT' for p in matched):
-        print('TARGET_IDENTITY=CATALOG_CODE_AND_NAME_HINT_MATCH; HUMAN_CONFIRMATION_RECOMMENDED')
-    elif matched:
-        print('TARGET_IDENTITY=CATALOG_CODE_MATCH_NAME_UNCONFIRMED')
-    else:
-        print('TARGET_IDENTITY=NOT_CONFIRMED; ABSENCE_IN_SEARCH_IS_NOT_PROOF_OF_INVALID_CODE')
-    print('NO_STOCK_ALERTS; ZERO_STOCK_NOT_INFERRED')
+    print('GS25_CANDIDATE_DISCOVERY; MANUAL_ONLY; PUBLIC_CATALOG_ONLY; NO_STOCK_REQUESTS')
+    print('ASSUMED_CODE=' + ASSUMED_CODE + '; UNVERIFIED')
+    unique = {}
+    for index, term in enumerate(TERMS, 1):
+        products, status, limited = fetch(term)
+        print(f'SEARCH_{index}: status={status}; rows={len(products)}; limit_reached={limited}')
+        for p in products:
+            if not isinstance(p, dict):
+                continue
+            name, code = product_name(p), product_code(p)
+            if not name or not code:
+                continue
+            category = classify(name)
+            if category == 'OTHER':
+                continue
+            key = (code, name)
+            unique[key] = (category, code, name)
+    strong = sorted((v for v in unique.values() if v[0] == 'STRONG_NAME_MATCH'), key=lambda x: x[2])
+    related = sorted((v for v in unique.values() if v[0] == 'RELATED_POKEMON'), key=lambda x: x[2])
+    print(f'UNIQUE_STRONG_NAME_MATCHES={len(strong)}; UNIQUE_RELATED_POKEMON={len(related)}')
+    for category, code, name in (strong[:20] + related[:12]):
+        print(f'CANDIDATE: class={category}; code={code}; name={safe_name(name)}; IDENTITY_NOT_VERIFIED')
+    matches = [v for v in unique.values() if v[1] == ASSUMED_CODE]
+    print(f'ASSUMED_CODE_IN_RELATED_CATALOG={bool(matches)}')
+    print('NO_INVENTORY_LOOKUPS; NO_STATE_WRITES; NO_ALERTS; NO_ZERO_STOCK_INFERENCE')
+    print('CANDIDATES_REQUIRE_INDEPENDENT_IDENTITY_CONFIRMATION')
     return 0
+
 
 if __name__ == '__main__':
     raise SystemExit(main())
