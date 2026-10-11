@@ -77,8 +77,13 @@ def main():
     assert config['provider'] == 'GS25'
     code = config['item_code']
     assert re.fullmatch(r'\d{8,14}', code)
-    enabled = [r for r in config['regions'] if r.get('enabled')]
-    assert enabled and all(r['id'] in KEYWORDS for r in enabled)
+    sys.path.insert(0, str(ROOT.parent))
+    from unified_settings import enabled as unified_enabled
+    active = unified_enabled('gs25', {r['id'] for r in config['regions'] if r.get('enabled')})
+    enabled = [r for r in config['regions'] if r['id'] in active]
+    assert all(r['id'] in KEYWORDS for r in enabled)
+    if not enabled:
+        print('GS25_ALL_REGIONS_OFF'); return 0
     if STATE.exists():
         previous = json.loads(STATE.read_text(encoding='utf-8'))
         if previous.get('item_code') != code:

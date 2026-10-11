@@ -236,7 +236,8 @@ def stock(plu, codes):
 
 def main():
     print("EMART24 STOCK MONITOR START", flush=True)
-    enabled_regions = load_enabled_regions()
+    from unified_settings import enabled as unified_enabled
+    enabled_regions = unified_enabled("emart24", load_enabled_regions())
     active_regions = {
         keyword: city for keyword, city in REGIONS.items()
         if REGION_IDS[keyword] in enabled_regions

@@ -228,7 +228,8 @@ def main():
     successful_queries = 0
     failed_queries = 0
 
-    enabled_regions = load_enabled_regions()
+    from unified_settings import enabled as unified_enabled
+    enabled_regions = unified_enabled("cu", load_enabled_regions())
 
     for city, points in POINTS.items():
         region_id = REGION_IDS[city]
