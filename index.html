@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>네이버지도 연결</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;background:#f7f8fa;color:#20252b;margin:0}main{max-width:460px;margin:12vh auto;padding:24px}section{background:white;border-radius:18px;padding:26px;box-shadow:0 4px 18px #0001}h1{font-size:23px}p{line-height:1.6;color:#59616a}a{display:block;text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-weight:700;margin-top:12px;background:#03c75a;color:white}a.secondary{background:#eef1f3;color:#20252b}#query{font-weight:600;word-break:break-word}</style>
+</head>
+<body><main><section><h1>🗺 네이버지도 연결</h1><p id="query">매장 정보를 확인하는 중...</p><a id="app" href="#">📱 네이버지도 앱 열기</a><a id="web" class="secondary" href="#">🌐 웹 지도로 보기</a><p>앱이 열리지 않으면 웹 지도로 보기를 눌러주세요. 아이폰 텔레그램에서는 앱 실행이 제한될 수 있습니다.</p></section></main>
+<script>
+const query = new URLSearchParams(location.search).get('q') || '';
+const app = document.getElementById('app');
+const web = document.getElementById('web');
+const q = query.trim().slice(0,180);
+document.getElementById('query').textContent = q || '매장 이름이 없습니다.';
+if(q){
+  app.href = 'nmap://search?query=' + encodeURIComponent(q) + '&appname=' + encodeURIComponent(location.origin);
+  web.href = 'https://map.naver.com/p/search/' + encodeURIComponent(q);
+}else{
+  app.style.display='none';
+  web.href='https://map.naver.com/';
+}
+</script>
+</body></html>
