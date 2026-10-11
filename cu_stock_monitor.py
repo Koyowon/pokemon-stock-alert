@@ -255,7 +255,20 @@ def main():
     successful_queries = 0
     failed_queries = 0
 
+        enabled_regions = load_enabled_regions()
+
+    region_ids = {
+        "남원": "namwon",
+        "아산": "asan",
+    }
+
     for city, points in POINTS.items():
+        region_id = region_ids[city]
+
+        if region_id not in enabled_regions:
+            print("REGION_DISABLED:", city, flush=True)
+            continue
+
         for lat, lng in points:
             try:
                 stores = query(city, lat, lng)
