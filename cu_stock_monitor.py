@@ -6,6 +6,7 @@ import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
+from region_config import load_enabled_regions
 
 URL = "https://mcp.aka.page/api/cu/inventory"
 BARCODE = "8800286275732"
