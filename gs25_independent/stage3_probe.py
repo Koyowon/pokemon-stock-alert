@@ -1,87 +1,101 @@
 #!/usr/bin/env python3
-"""Manual, read-only Daiso MCP GS25 REST smoke test. No secrets or stock writes."""
-import html
+"""Read-only manual GS25 public REST response-shape probe.
+
+No credentials, state changes, alerts, or stock claims. Logs only bounded,
+allowlisted metadata; never logs raw responses, store/customer details, or URLs.
+"""
 import json
-import re
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
 
 BASE = 'https://mcp.aka.page/api/actions/query'
-TARGET = '8800286275732'  # assumed, not independently verified
+TARGET = '8800286275732'  # Assumed barcode, NOT verified for GS25.
 TIMEOUT = 15
+MAX_BODY = 131072
 
 
-def request(label, action, **params):
-    query = urllib.parse.urlencode({'action': action, 'format': 'html', **params})
+def shape(value):
+    """Return only structural type/count information, not field names or values."""
+    if isinstance(value, dict):
+        return f'object fields={min(len(value), 999)}'
+    if isinstance(value, list):
+        return f'array entries={min(len(value), 999)}'
+    if value is None:
+        return 'null'
+    if isinstance(value, bool):
+        return 'boolean'
+    if isinstance(value, (int, float)):
+        return 'number'
+    if isinstance(value, str):
+        return 'string'
+    return 'other'
+
+
+def probe(label, action, **params):
+    query = urllib.parse.urlencode({'action': action, 'format': 'json', **params})
     req = urllib.request.Request(BASE + '?' + query, headers={
-        'Accept': 'text/html, application/json',
-        'User-Agent': 'gs25-independent-manual-probe/1.0',
+        'Accept': 'application/json',
+        'User-Agent': 'gs25-independent-manual-json-probe/1.1',
     })
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
             status = response.status
-            content_type = response.headers.get('Content-Type', '')
-            body = response.read(65536).decode('utf-8', errors='replace')
-    except urllib.error.HTTPError as error:
-        status = error.code
-        content_type = error.headers.get('Content-Type', '')
-        body = error.read(8192).decode('utf-8', errors='replace')
-    except (urllib.error.URLError, TimeoutError, OSError) as error:
-        print(f'{label}: NETWORK_ERROR ({type(error).__name__}); STOCK_UNKNOWN')
+            content_type = response.headers.get('Content-Type', '').split(';')[0].strip().lower()
+            raw = response.read(MAX_BODY + 1)
+    except urllib.error.HTTPError as exc:
+        status = exc.code
+        content_type = exc.headers.get('Content-Type', '').split(';')[0].strip().lower()
+        raw = exc.read(MAX_BODY + 1)
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        print(f'{label}: NETWORK_ERROR kind={type(exc).__name__}; STOCK_UNKNOWN')
         return 'NETWORK_ERROR'
 
-    if status == 403:
+    if status == 401:
+        result = 'AUTH_REQUIRED_401'
+    elif status == 403:
         result = 'ACCESS_DENIED_403'
     elif status == 429:
         result = 'RATE_LIMITED_429'
-    elif status in (401,):
-        result = 'AUTH_REQUIRED_401'
-    elif status >= 500:
-        result = 'SERVICE_ERROR'
     elif status == 404:
         result = 'ENDPOINT_NOT_FOUND_404'
+    elif status >= 500:
+        result = 'SERVICE_ERROR'
     elif status != 200:
         result = 'HTTP_UNEXPECTED'
+    elif len(raw) > MAX_BODY:
+        result = 'BODY_TOO_LARGE'
+    elif not raw.strip():
+        result = 'EMPTY_RESPONSE'
     else:
-        # Never convert absent or empty results to zero inventory.
-        lowered = html.unescape(re.sub(r'<[^>]+>', ' ', body)).lower()
-        if any(x in lowered for x in ('rate limit', 'quota exceeded', 'too many requests')):
-            result = 'POSSIBLE_QUOTA_ERROR'
-        elif any(x in lowered for x in ('unauthorized', 'forbidden', 'access denied')):
-            result = 'POSSIBLE_ACCESS_ERROR'
-        elif any(x in lowered for x in ('not found', '상품이 없습니다', '검색 결과가 없습니다', 'no results')):
-            result = 'NO_PRODUCT_OR_RESULTS_UNVERIFIED'
-        elif not body.strip():
-            result = 'EMPTY_RESPONSE'
-        elif 'json' in content_type.lower():
-            try:
-                parsed = json.loads(body)
-                if isinstance(parsed, dict) and (parsed.get('isError') is True or parsed.get('error')):
-                    result = 'API_ERROR_IN_200'
-                else:
-                    result = 'JSON_RESPONSE_REQUIRES_SCHEMA_REVIEW'
-            except ValueError:
-                result = 'INVALID_JSON'
+        try:
+            parsed = json.loads(raw.decode('utf-8'))
+        except (UnicodeDecodeError, ValueError):
+            result = 'NON_JSON_RESPONSE'
         else:
-            result = 'HTML_RESPONSE_REQUIRES_SCHEMA_REVIEW'
-    print(f'{label}: HTTP_{status} {result}; STOCK_UNKNOWN; type={content_type.split(";")[0] or "unspecified"}; bytes={len(body.encode("utf-8"))}')
+            if isinstance(parsed, dict) and (parsed.get('isError') is True or bool(parsed.get('error'))):
+                result = 'API_ERROR_IN_200'
+            else:
+                result = 'JSON_SCHEMA_REVIEW_REQUIRED'
+            print(f'{label}: HTTP_{status} {result}; content_type={content_type or "unspecified"}; root={shape(parsed)}; STOCK_UNKNOWN')
+            return result
+
+    print(f'{label}: HTTP_{status} {result}; content_type={content_type or "unspecified"}; STOCK_UNKNOWN')
     return result
 
 
 def main():
-    print('GS25_STAGE3_MANUAL_PROBE; NO_CREDENTIALS; NO_STATE_WRITES; NO_ALERTS')
-    print('TARGET_CODE_ASSUMED=' + TARGET)
+    print('GS25_STAGE3_JSON_PROBE; READ_ONLY; NO_CREDENTIALS; NO_STATE_WRITES; NO_ALERTS')
+    print('TARGET_ITEM_CODE_ASSUMED=' + TARGET)
     results = [
-        request('CONTROL_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='코카콜라캔350ML', limit=3),
-        request('TARGET_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='포켓몬', limit=3),
-        request('TARGET_INVENTORY_BY_CODE', 'gs25CheckInventory', itemCode=TARGET, storeKeyword='남원', storeLimit=3),
+        probe('CONTROL_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='코카콜라캔350ML', limit=3),
+        probe('TARGET_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='포켓몬', limit=3),
+        probe('TARGET_INVENTORY_BY_CODE', 'gs25CheckInventory', itemCode=TARGET, storeKeyword='남원', storeLimit=3),
     ]
     print('GS25_STAGE3_RESULTS=' + ','.join(results))
     print('GS25_STOCK_NOT_VERIFIED; ZERO_STOCK_NOT_INFERRED')
-    # A diagnostic workflow should finish successfully even when external service denies access.
-    return 0
+    return 0  # Manual diagnostics report external errors as findings.
 
 
 if __name__ == '__main__':
