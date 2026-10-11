@@ -1,0 +1,33 @@
+name: Store Coverage Audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate coverage reports
+        run: python3 store_coverage_audit.py
+
+      - name: Upload CSV reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: store-coverage-reports
+          path: |
+            store_coverage_inventory.csv
+            store_coverage_summary.csv
+          if-no-files-found: error
+          retention-days: 30
