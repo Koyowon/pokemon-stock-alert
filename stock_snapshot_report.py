@@ -29,6 +29,11 @@ def naver_map(chain, name, address=''):
     return 'https://map.naver.com/p/search/' + quote(query, safe='')
 
 
+def naver_app(chain, name, address=''):
+    query = (str(address) + ' ' + str(name)).strip() if address else CHAINS[chain] + ' ' + str(name)
+    return 'nmap://search?query=' + quote(query, safe='') + '&appname=pokemon.stock.alert'
+
+
 def checked_at(value):
     if not value:
         return '확인 시각 미기록'
@@ -99,7 +104,8 @@ def messages():
             for name, quantity, address, checked in rows:
                 lines.append('• ' + name + ' — ' + str(quantity) + '개')
                 lines.append('  ' + checked)
-                lines.append('  🗺 ' + naver_map(chain, name, address))
+                lines.append('  📱 앱 열기: ' + naver_app(chain, name, address))
+                lines.append('  🌐 웹 지도: ' + naver_map(chain, name, address))
         chunk = ''
         for line in lines:
             addition = line + '\n'
