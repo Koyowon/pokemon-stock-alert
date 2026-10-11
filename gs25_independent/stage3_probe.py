@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Read-only GS25 schema and item-code validation probe.
+"""GS25 independent manual item identity check; read-only, no credentials.
 
-No secrets, no state writes, no alerts, no raw JSON, no store identifiers.
-Only a small number of explicit GET requests to the public Daiso MCP API.
+Only publicly documented Daiso MCP REST actions. Does not log response bodies,
+product/store names, store identifiers, addresses or stock numbers. No alerts.
 """
 import json
 import urllib.error
@@ -10,127 +10,106 @@ import urllib.parse
 import urllib.request
 
 BASE = 'https://mcp.aka.page/api/actions/query'
-TARGET = '8800286275732'  # Unverified product code
-MAX_BODY = 131072
+TARGET = '8800286275732'  # NOT VERIFIED as the desired product
 TIMEOUT = 15
-SAFE_FIELDS = {
-    'realStockQuantity', 'stockQuantity', 'remainQuantity',
-    'quantity', 'stock', 'stockCount', 'availableQuantity',
-    'inventoryQuantity', 'o2oRemainQuantity', 'stockStatus',
-    'stockLabel', 'inStock', 'itemCode', 'count', 'total',
-    'success', 'error', 'isError', 'message', 'code',
-}
-QUANTITY_FIELDS = {
-    'realStockQuantity', 'stockQuantity', 'remainQuantity',
-    'quantity', 'stock', 'stockCount', 'availableQuantity',
-    'inventoryQuantity', 'o2oRemainQuantity',
-}
+MAX_BYTES = 131072
+SEARCH_TERMS = ('포켓몬 30주년', '30주년 기념팩', '포켓몬카드', '포켓몬')
 
 
-def type_name(value):
-    if value is None:
-        return 'null'
-    if isinstance(value, bool):
-        return 'boolean'
-    if isinstance(value, (int, float)):
-        return 'number'
-    if isinstance(value, str):
-        return 'string'
-    if isinstance(value, list):
-        return 'array'
-    if isinstance(value, dict):
-        return 'object'
-    return 'other'
-
-
-def request(label, action, **params):
+def fetch(action, **params):
     url = BASE + '?' + urllib.parse.urlencode({'action': action, 'format': 'json', **params})
     req = urllib.request.Request(url, headers={
         'Accept': 'application/json',
-        'User-Agent': 'gs25-independent-schema-probe/1.3',
+        'User-Agent': 'gs25-independent-identity-probe/2.0',
     })
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-            status = resp.status
-            raw = resp.read(MAX_BODY + 1)
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
+            status, body = res.status, res.read(MAX_BYTES + 1)
     except urllib.error.HTTPError as exc:
-        status = exc.code
-        raw = exc.read(MAX_BODY + 1)
+        status, body = exc.code, exc.read(MAX_BYTES + 1)
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        print(f'{label}: NETWORK_ERROR type={type(exc).__name__}; STOCK_UNKNOWN')
-        return
-    print(f'{label}: HTTP_{status}')
+        return None, 'NETWORK_' + type(exc).__name__
     if status in (401, 403, 429):
-        print(f'{label}: ACCESS_OR_RATE_LIMIT; STOCK_UNKNOWN')
-        return
-    if status != 200 or not raw or len(raw) > MAX_BODY:
-        print(f'{label}: HTTP_OR_BODY_ERROR; STOCK_UNKNOWN')
-        return
+        return None, 'HTTP_' + str(status)
+    if status != 200:
+        return None, 'HTTP_UNEXPECTED_' + str(status)
+    if not body or len(body) > MAX_BYTES:
+        return None, 'EMPTY_OR_OVERSIZE'
     try:
-        root = json.loads(raw.decode('utf-8'))
-    except (UnicodeDecodeError, ValueError):
-        print(f'{label}: NON_JSON_RESPONSE; STOCK_UNKNOWN')
-        return
-    if not isinstance(root, dict):
-        print(f'{label}: UNEXPECTED_ROOT={type_name(root)}; STOCK_UNKNOWN')
-        return
-    print(f'{label}: root_safe_keys={",".join(sorted(SAFE_FIELDS & root.keys())) or "none"}')
-    print(f'{label}: success_type={type_name(root.get("success"))}; success_true={root.get("success") is True}')
-    if root.get('success') is not True or root.get('error') or root.get('isError'):
-        print(f'{label}: API_NOT_CONFIRMED_SUCCESS; STOCK_UNKNOWN')
-        return
-    data = root.get('data')
+        obj = json.loads(body.decode('utf-8'))
+    except (UnicodeError, ValueError):
+        return None, 'INVALID_JSON'
+    if not isinstance(obj, dict) or obj.get('success') is not True or obj.get('isError') or obj.get('error'):
+        return None, 'API_UNCONFIRMED_SUCCESS'
+    data = obj.get('data')
     if not isinstance(data, dict):
-        print(f'{label}: DATA_NOT_OBJECT; STOCK_UNKNOWN')
+        return None, 'DATA_SCHEMA_UNKNOWN'
+    return data, 'OK'
+
+
+def code_of(item):
+    value = item.get('itemCode') if isinstance(item, dict) else None
+    return value if isinstance(value, str) and value.isdigit() else None
+
+
+def numeric_stock(value):
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, int):
+        return value >= 0
+    if isinstance(value, float):
+        return value.is_integer() and value >= 0
+    if isinstance(value, str):
+        return value.strip().isdigit()
+    return False
+
+
+def check_inventory(label, code):
+    data, status = fetch('gs25CheckInventory', itemCode=code, storeKeyword='남원', storeLimit=3)
+    if status != 'OK':
+        print(f'{label}: {status}; STOCK_UNKNOWN')
         return
-    print(f'{label}: data_safe_keys={",".join(sorted(SAFE_FIELDS & data.keys())) or "none"}')
-    if label == 'TARGET_PRODUCT_SEARCH':
-        products = data.get('products')
-        if not isinstance(products, list):
-            print(f'{label}: PRODUCTS_ARRAY_MISSING; TARGET_CODE_UNVERIFIED')
-            return
-        exact = sum(isinstance(p, dict) and str(p.get('itemCode', '')) == TARGET for p in products)
-        print(f'{label}: products_returned={len(products)}; exact_target_code_matches={exact}')
-        print(f'{label}: TARGET_CODE_' + ('MATCH_IN_SEARCH_RESULTS' if exact else 'NOT_CONFIRMED_BY_SEARCH'))
-    elif label == 'TARGET_INVENTORY_BY_CODE':
-        code = data.get('itemCode')
-        print(f'{label}: response_item_code_type={type_name(code)}; target_code_matches={str(code) == TARGET}')
-        inv = data.get('inventory')
-        if not isinstance(inv, dict):
-            print(f'{label}: INVENTORY_OBJECT_MISSING; STOCK_UNKNOWN')
-            return
-        print(f'{label}: inventory_safe_keys={",".join(sorted(SAFE_FIELDS & inv.keys())) or "none"}')
-        stores = inv.get('stores')
-        if not isinstance(stores, list):
-            print(f'{label}: STORES_ARRAY_MISSING; STOCK_UNKNOWN')
-            return
-        print(f'{label}: stores_returned={len(stores)}')
-        # Inspect up to 3 entries without printing store names, IDs, addresses, or values.
-        for i, store in enumerate(stores[:3]):
-            if not isinstance(store, dict):
-                print(f'{label}: store_sample_{i}_type={type_name(store)}')
-                continue
-            print(f'{label}: store_sample_{i}_safe_keys={",".join(sorted(SAFE_FIELDS & store.keys())) or "none"}; other_key_count={len(store.keys() - SAFE_FIELDS)}')
-            for key in sorted(QUANTITY_FIELDS & store.keys()):
-                val = store[key]
-                numeric = (isinstance(val, (int, float)) and not isinstance(val, bool)) or (isinstance(val, str) and val.strip().isdigit())
-                print(f'{label}: store_sample_{i}.{key}: type={type_name(val)} numeric_compatible={numeric} value_hidden')
-            for key in ('stockStatus', 'stockLabel', 'inStock'):
-                if key in store:
-                    print(f'{label}: store_sample_{i}.{key}: type={type_name(store[key])} value_hidden')
-        print(f'{label}: STORE_COUNTS_ARE_NOT_QUANTITIES; STOCK_NOT_VERIFIED')
-    else:
-        products = data.get('products')
-        print(f'{label}: products_returned={len(products) if isinstance(products, list) else "unavailable"}')
+    same = data.get('itemCode') == code
+    inv = data.get('inventory')
+    stores = inv.get('stores') if isinstance(inv, dict) else None
+    if not isinstance(stores, list):
+        print(f'{label}: returned_code_matches={same}; STORES_SCHEMA_UNKNOWN; STOCK_UNKNOWN')
+        return
+    valid = sum(isinstance(s, dict) and numeric_stock(s.get('realStockQuantity')) for s in stores)
+    print(f'{label}: returned_code_matches={same}; stores_returned={len(stores)}; numeric_stock_fields={valid}; STOCK_VALUES_HIDDEN')
+    print(f'{label}: ITEM_IDENTITY_' + ('SEARCH_CONFIRMED' if label == 'TARGET_INVENTORY' else 'CONTROL_ONLY'))
+    print(f'{label}: NO_STOCK_ALERTS; ZERO_NOT_INFERRED')
 
 
 def main():
-    print('GS25_STAGE3_FIELD_AUDIT; READ_ONLY; NO_SECRETS; NO_STATE_WRITES; NO_ALERTS')
+    print('GS25_IDENTITY_PROBE; MANUAL_ONLY; READ_ONLY; NO_SECRETS; NO_STATE_WRITES; NO_ALERTS')
     print('TARGET_CODE_ASSUMED=' + TARGET)
-    request('CONTROL_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='코카콜라캔350ML', limit=3)
-    request('TARGET_PRODUCT_SEARCH', 'gs25SearchProducts', keyword='포켓몬', limit=20)
-    request('TARGET_INVENTORY_BY_CODE', 'gs25CheckInventory', itemCode=TARGET, storeKeyword='남원', storeLimit=3)
-    print('GS25_STOCK_NOT_VERIFIED; ZERO_STOCK_NOT_INFERRED')
+    control, status = fetch('gs25SearchProducts', keyword='코카콜라캔350ML', limit=5)
+    control_codes = [code_of(x) for x in control.get('products', [])] if status == 'OK' and isinstance(control.get('products'), list) else []
+    control_code = next((x for x in control_codes if x), None)
+    print(f'CONTROL_SEARCH: status={status}; valid_product_codes={sum(bool(x) for x in control_codes)}')
+    if control_code:
+        check_inventory('CONTROL_INVENTORY', control_code)
+    else:
+        print('CONTROL_INVENTORY: SKIPPED_NO_SEARCH_CONFIRMED_CODE')
+
+    found = False
+    for idx, term in enumerate(SEARCH_TERMS, 1):
+        data, state = fetch('gs25SearchProducts', keyword=term, limit=50)
+        products = data.get('products') if state == 'OK' else None
+        if not isinstance(products, list):
+            print(f'TARGET_SEARCH_{idx}: status={state}; PRODUCTS_UNAVAILABLE')
+            continue
+        matches = sum(code_of(p) == TARGET for p in products)
+        print(f'TARGET_SEARCH_{idx}: status=OK; products_returned={len(products)}; exact_code_matches={matches}')
+        found = found or matches > 0
+    print('TARGET_IDENTITY=' + ('SEARCH_CODE_CONFIRMED' if found else 'NOT_CONFIRMED'))
+    if found:
+        check_inventory('TARGET_INVENTORY', TARGET)
+    else:
+        print('TARGET_INVENTORY: SKIPPED_UNVERIFIED_ITEM_CODE')
+        print('NEXT_ACTION: VERIFY_TARGET_CODE_FROM_GS25_PRODUCT_SEARCH_OR_PRODUCT_LABEL')
+    print('NO_STOCK_ALERTS; ZERO_STOCK_NOT_INFERRED')
     return 0
 
 
