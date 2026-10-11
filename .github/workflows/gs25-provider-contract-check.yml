@@ -1,0 +1,19 @@
+name: GS25 Provider Contract Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Offline provider contract tests
+        run: python3 -m unittest discover -s gs25_independent -p 'test_provider.py' -v
+      - name: Configuration validation
+        run: python3 gs25_independent/monitor.py
