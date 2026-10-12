@@ -1,0 +1,38 @@
+name: GS25 Asan Stage 2 Readonly Probe
+on:
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: 'Batch index (0,1,2,...); each batch has 10 candidates'
+        required: true
+        default: '0'
+permissions:
+  contents: read
+concurrency:
+  group: gs25-asan-stage2-readonly
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests (no network)
+        run: python3 -m unittest discover -s gs25_asan_stage2 -p 'test_*.py' -v
+      - name: Read-only API probe (no secrets)
+        env:
+          BATCH: ${{ inputs.batch }}
+        run: python3 gs25_asan_stage2/probe.py --batch "$BATCH" --batch-size 10 --max-seconds 90
+      - name: Upload independent result artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gs25-asan-stage2-batch-${{ inputs.batch }}
+          path: asan_stage2_artifacts/
+          if-no-files-found: warn
+          retention-days: 30
