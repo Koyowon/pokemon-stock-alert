@@ -1,84 +1,71 @@
 #!/usr/bin/env python3
-"""Read-only OpenStreetMap discovery; no stock-state or approval modifications."""
-import csv
-import json
-import time
-import urllib.parse
-import urllib.request
+"""Read-only OSM GS25 candidate discovery. No production state writes.
+Nominatim bounding box is only a discovery window, NOT city-boundary proof.
+"""
+import csv, json, time, urllib.parse, urllib.request
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-OUT = ROOT / 'gs25_asan_full_discovery.csv'
-SUMMARY = ROOT / 'gs25_asan_full_discovery_summary.json'
-ENDPOINTS = [
-    'https://overpass.private.coffee/api/interpreter',
-    'https://overpass-api.de/api/interpreter',
-    'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
-]
-# Limit to Asan administrative boundary. Do not replace this with a city-sized
-# bounding box: that would include neighboring cities and invalidate coverage.
-QUERY = '''[out:json][timeout:60];
-area["name"="아산시"]["boundary"="administrative"]["admin_level"="4"]->.asan;
-(
- nwr(area.asan)["brand"~"GS25|지에스25",i];
- nwr(area.asan)["name"~"^(GS25|지에스25)",i];
-);
-out center tags;'''
+ROOT=Path(__file__).resolve().parent
+OUT=ROOT/'gs25_asan_full_discovery.csv'
+SUMMARY=ROOT/'gs25_asan_full_discovery_summary.json'
+HEAD={'User-Agent':'pokemon-stock-alert/1.0 (read-only geographic store research; contact via GitHub repository)'}
+SERVERS=['https://overpass.private.coffee/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass-api.de/api/interpreter']
 
-def fetch():
-    failures = []
-    payload = urllib.parse.urlencode({'data': QUERY}).encode('utf-8')
-    for endpoint in ENDPOINTS:
-        for attempt in range(2):
-            try:
-                request = urllib.request.Request(endpoint, data=payload, headers={
-                    'User-Agent': 'pokemon-stock-alert/1.1 (read-only geographic coverage audit)',
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json',
-                })
-                with urllib.request.urlopen(request, timeout=90) as response:
-                    data = json.load(response)
-                if not isinstance(data.get('elements'), list):
-                    raise ValueError('Response missing elements array')
-                return data, endpoint
-            except Exception as exc:
-                failures.append(f'{endpoint} attempt={attempt+1}: {type(exc).__name__}: {exc}')
-                time.sleep(2 + attempt * 3)
-    raise RuntimeError('OVERPASS_UNAVAILABLE: ' + ' | '.join(failures))
+def get_json(url, data=None, timeout=35):
+    req=urllib.request.Request(url,data=data,headers=HEAD)
+    with urllib.request.urlopen(req,timeout=timeout) as r:return json.load(r)
+
+def bounds():
+    url='https://nominatim.openstreetmap.org/search?'+urllib.parse.urlencode({'q':'아산시, 충청남도, 대한민국','format':'json','limit':5,'addressdetails':1})
+    items=get_json(url)
+    matches=[x for x in items if '아산' in (x.get('display_name') or '') and x.get('boundingbox')]
+    if not matches:raise RuntimeError('ASAN_BOUNDARY_NOT_FOUND: Nominatim returned no matching bounding box')
+    b=matches[0]['boundingbox']
+    return tuple(map(float,(b[0],b[2],b[1],b[3]))),matches[0]['display_name']
+
+def query(b):
+    south,west,north,east=b
+    bbox=f'({south},{west},{north},{east})'
+    # Spatially limited POI query avoids expensive name-based nationwide area scans.
+    return f'''[out:json][timeout:35];(node["shop"="convenience"]["name"~"GS25|지에스25",i]{bbox};way["shop"="convenience"]["name"~"GS25|지에스25",i]{bbox};node["brand"~"GS25|지에스25",i]{bbox};way["brand"~"GS25|지에스25",i]{bbox};);out center tags;'''
 
 def main():
-    data, endpoint = fetch()
-    rows = []
-    for item in data['elements']:
-        tags = item.get('tags') or {}
-        name = tags.get('name', '')
-        brand = tags.get('brand', '')
-        if not ('GS25' in name.upper() or '지에스25' in name or 'GS25' in brand.upper() or '지에스25' in brand):
-            continue
-        center = item.get('center') or item
-        address = ' '.join(filter(None, [tags.get('addr:province', ''), tags.get('addr:city', ''), tags.get('addr:street', ''), tags.get('addr:housenumber', '')])).strip()
-        rows.append({'osm_type': item.get('type',''), 'osm_id': item.get('id',''),
-            'store_name': name, 'address': address, 'latitude': center.get('lat',''),
-            'longitude': center.get('lon',''),
-            'source_url': f"https://www.openstreetmap.org/{item.get('type')}/{item.get('id')}",
-            'api_store_code': '', 'code_address_verified': 'no', 'approval': 'pending'})
-    rows.sort(key=lambda r: (r['store_name'], str(r['osm_id'])))
-    fields = ['osm_type','osm_id','store_name','address','latitude','longitude','source_url','api_store_code','code_address_verified','approval']
-    with OUT.open('w', encoding='utf-8-sig', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(rows)
-    summary = {'source': 'OpenStreetMap Overpass', 'endpoint': endpoint,
-        'city': '아산시', 'stores_found': len(rows),
-        'with_address': sum(bool(r['address']) for r in rows),
-        'with_coordinates': sum(r['latitude'] != '' and r['longitude'] != '' for r in rows),
-        'api_codes_verified': 0, 'completeness': 'NOT GUARANTEED; OSM may omit stores',
-        'production_modified': False}
-    SUMMARY.write_text(json.dumps(summary, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    print(f"FULL_DISCOVERY source=OSM city=아산시 stores={len(rows)} with_address={summary['with_address']} with_coordinates={summary['with_coordinates']} verified_codes=0", flush=True)
-    print('READ_ONLY: no monitoring code, approval CSV or stock state modified', flush=True)
-    if not rows:
-        raise SystemExit('NO_RESULTS: OSM may have no GS25 coverage; do not treat as zero real stores')
+    failures=[]
+    try:
+        bbox,place=bounds()
+        print('GEOCODE_OK '+place,flush=True)
+    except Exception as exc:
+        raise SystemExit('GEOCODE_FAILED '+str(exc))
+    q=query(bbox)
+    data=None;endpoint=None
+    for host in SERVERS:
+        try:
+            data=get_json(host,data=urllib.parse.urlencode({'data':q}).encode(),timeout=50)
+            if 'elements' not in data:raise ValueError('no elements field')
+            endpoint=host;break
+        except Exception as exc:
+            failures.append(f'{host}: {type(exc).__name__}: {exc}')
+            print('SOURCE_FAILED '+failures[-1],flush=True)
+            time.sleep(1)
+    if data is None:raise SystemExit('OVERPASS_UNAVAILABLE: '+' | '.join(failures))
+    rows=[];seen=set()
+    for e in data['elements']:
+        t=e.get('tags') or {};key=(e.get('type'),e.get('id'))
+        if key in seen:continue
+        seen.add(key)
+        name=t.get('name','');brand=t.get('brand','')
+        if not any(s in (name+' '+brand).upper() for s in ('GS25','지에스25')):continue
+        center=e.get('center',e)
+        addr=' '.join(filter(None,[t.get('addr:province'),t.get('addr:city'),t.get('addr:street'),t.get('addr:housenumber')]))
+        rows.append({'osm_type':e.get('type',''),'osm_id':e.get('id',''),'store_name':name,'address':addr,'latitude':center.get('lat',''),'longitude':center.get('lon',''),'source_url':f"https://www.openstreetmap.org/{e.get('type')}/{e.get('id')}",'api_store_code':'','code_address_verified':'no','approval':'pending','boundary_verified':'no'})
+    rows.sort(key=lambda r:(r['store_name'],str(r['osm_id'])))
+    fields=['osm_type','osm_id','store_name','address','latitude','longitude','source_url','api_store_code','code_address_verified','approval','boundary_verified']
+    with OUT.open('w',encoding='utf-8-sig',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=fields);w.writeheader();w.writerows(rows)
+    summary={'source':'OSM Overpass + Nominatim bounding box','endpoint':endpoint,'city':'아산시','stores_found':len(rows),'with_address':sum(bool(r['address']) for r in rows),'with_coordinates':sum(r['latitude']!='' and r['longitude']!='' for r in rows),'api_codes_verified':0,'boundary_verified':False,'completeness':'NOT GUARANTEED; bounding box may include neighboring municipalities; all results pending','production_modified':False,'bbox':bbox}
+    SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(f"FULL_DISCOVERY source=OSM_BBOX city=아산시 stores={len(rows)} with_address={summary['with_address']} with_coordinates={summary['with_coordinates']} verified_codes=0",flush=True)
+    print('READ_ONLY: no monitoring code, approval CSV or stock state modified',flush=True)
+    if not rows:raise SystemExit('NO_RESULTS: no OSM GS25 candidates; do not treat as no GS25 stores')
 
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':main()
