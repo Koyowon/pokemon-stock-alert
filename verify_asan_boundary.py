@@ -5,6 +5,7 @@ Never auto-approves inventory store codes. Requires network access on GitHub Act
 import csv, io, json, os, sys, urllib.request
 from pathlib import Path
 from shapely.geometry import shape, Point
+from shapely.ops import unary_union
 
 BASE=Path(__file__).resolve().parent
 SOURCE=Path(os.environ.get('SOURCE_CSV', str(BASE/'gs25_asan_full_discovery.csv')))
@@ -28,10 +29,24 @@ def main():
         props=f.get('properties') or {}
         names=[str(v) for k,v in props.items() if k.lower() in ('shapeName'.lower(),'name','adm_nm','name_en','name_ko')]
         if any('아산' in n or 'asan' in n.lower() for n in names):matched.append(f)
-    if len(matched)!=1:
-        samples=[str(f.get('properties',{}))[:160] for f in features[:5]]
-        raise RuntimeError(f'ASAN_BOUNDARY_UNRESOLVED: found {len(matched)} named polygons; sample={samples}')
-    polygon=shape(matched[0]['geometry'])
+    if not matched:
+        raise RuntimeError('ASAN_BOUNDARY_UNRESOLVED: no matching Asan-si polygons')
+    # The ADM2 dataset may split a municipality into multiple geometry features.
+    # Accept only Asan-named shapes whose centroid lies near Asan; never choose
+    # the first matching feature or infer an unrelated region from its name.
+    polygons=[]
+    for f in matched:
+        geom=shape(f['geometry'])
+        centroid=geom.centroid
+        bounds=geom.bounds
+        print(f"ASAN_POLYGON shapeID={f.get('properties',{}).get('shapeID','')} bounds={bounds} centroid=({centroid.y:.6f},{centroid.x:.6f})")
+        if geom.is_empty or not geom.is_valid:
+            raise RuntimeError('ASAN_BOUNDARY_INVALID_GEOMETRY')
+        if not (36.5 <= centroid.y <= 37.2 and 126.7 <= centroid.x <= 127.5):
+            raise RuntimeError(f'ASAN_BOUNDARY_OUT_OF_REGION: {bounds}')
+        polygons.append(geom)
+    polygon=unary_union(polygons)
+    print(f'ASAN_BOUNDARY_OK named_features={len(matched)} merged_geometry={polygon.geom_type}')
     counts={'inside':0,'outside':0,'on_boundary':0,'unknown':0}
     for row in rows:
         try:
