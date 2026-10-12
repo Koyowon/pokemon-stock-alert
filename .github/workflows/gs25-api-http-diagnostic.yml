@@ -1,0 +1,62 @@
+name: GS25 API HTTP Diagnostic (Read Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gs25-api-http-diagnostic
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Read repository configuration only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Single GS25 API request - status and Retry-After only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          config = json.loads(Path('gs25_independent/config.json').read_text(encoding='utf-8'))
+          code = config['item_code']
+          if not isinstance(code, str) or not code.isdecimal() or not 8 <= len(code) <= 14:
+              raise ValueError('Invalid item_code in config')
+          query = urllib.parse.urlencode({
+              'action': 'gs25CheckInventory',
+              'format': 'json',
+              'itemCode': code,
+              'storeKeyword': '남원',
+              'storeLimit': 100,
+          })
+          url = 'https://mcp.aka.page/api/actions/query?' + query
+          request = urllib.request.Request(url, headers={
+              'Accept': 'application/json',
+              'User-Agent': 'gs25-stock-monitor/1.0',
+          })
+          print('Diagnostic: one request only; no retries, no secrets, no state writes.', flush=True)
+          try:
+              with urllib.request.urlopen(request, timeout=8) as response:
+                  print('HTTP_STATUS:', response.status)
+                  print('RETRY_AFTER:', response.headers.get('Retry-After', '(absent)'))
+          except urllib.error.HTTPError as exc:
+              print('HTTP_STATUS:', exc.code)
+              print('RETRY_AFTER:', exc.headers.get('Retry-After', '(absent)'))
+              print('RESULT: HTTP error observed; response body deliberately not read')
+          except (urllib.error.URLError, TimeoutError, OSError) as exc:
+              print('HTTP_STATUS: unavailable')
+              print('RETRY_AFTER: unavailable')
+              print('TRANSPORT_ERROR_TYPE:', type(exc).__name__)
+          PY
