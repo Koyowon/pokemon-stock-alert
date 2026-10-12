@@ -1,0 +1,24 @@
+name: GS25 Asan Guard Integration Test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply integration to temporary runner checkout only
+        run: python3 integrate_gs25_guard.py
+      - name: Run existing guard tests
+        run: python3 -m unittest discover -s gs25_independent -p 'test_gs25_asan_guard.py' -v
+      - name: Run integration regression tests
+        run: python3 test_gs25_guard_integration.py
+      - name: Verify no stock state changes
+        run: |
+          git diff --exit-code -- gs25_independent/gs25_stock_state.json
+          echo 'DRY_RUN_OK: No production code committed and no stock state changed'
