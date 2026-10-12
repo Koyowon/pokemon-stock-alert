@@ -1,0 +1,27 @@
+﻿osm_type,osm_id,store_name,address,latitude,longitude,source_url,api_store_code,code_address_verified,approval,boundary_verified
+node,10656066635,GS25,충청남도 아산시 온중로 5,36.7714737,126.9960356,https://www.openstreetmap.org/node/10656066635,,no,pending,no
+node,10657129644,GS25,충청남도 아산시 시민로 277-1,36.7745581,126.9950129,https://www.openstreetmap.org/node/10657129644,,no,pending,no
+node,11343361325,GS25,,36.7542638,126.9740465,https://www.openstreetmap.org/node/11343361325,,no,pending,no
+node,11343477159,GS25,충청남도 아산시 남부로 129,36.7713013,126.995966,https://www.openstreetmap.org/node/11343477159,,no,pending,no
+node,11685009324,GS25,,36.9210819,127.0497044,https://www.openstreetmap.org/node/11685009324,,no,pending,no
+node,12392896238,GS25,,36.7811206,127.086058,https://www.openstreetmap.org/node/12392896238,,no,pending,no
+node,12392906729,GS25,,36.7824165,127.0904281,https://www.openstreetmap.org/node/12392906729,,no,pending,no
+node,12420181415,GS25,충청남도 천안시 불당18로 31,36.8053004,127.1048472,https://www.openstreetmap.org/node/12420181415,,no,pending,no
+node,12768234057,GS25,,36.769763,126.9496624,https://www.openstreetmap.org/node/12768234057,,no,pending,no
+node,13460282260,GS25,290,36.7255755,127.1064533,https://www.openstreetmap.org/node/13460282260,,no,pending,no
+node,13669924380,GS25,,36.8199335,127.1101559,https://www.openstreetmap.org/node/13669924380,,no,pending,no
+node,13669924383,GS25,,36.8210651,127.1100621,https://www.openstreetmap.org/node/13669924383,,no,pending,no
+node,13669924386,GS25,,36.8223748,127.1070097,https://www.openstreetmap.org/node/13669924386,,no,pending,no
+node,13669924391,GS25,,36.8154093,127.1027228,https://www.openstreetmap.org/node/13669924391,,no,pending,no
+node,4631358167,GS25,,36.7834293,127.0158027,https://www.openstreetmap.org/node/4631358167,,no,pending,no
+node,4634107489,GS25,,36.7061362,127.1098664,https://www.openstreetmap.org/node/4634107489,,no,pending,no
+way,601189985,GS25,,36.7735718,126.9332323,https://www.openstreetmap.org/way/601189985,,no,pending,no
+node,4806068160,GS25 불당갤러리점,,36.7999277,127.1065661,https://www.openstreetmap.org/node/4806068160,,no,pending,no
+node,4791902246,GS25 불당명품점,검은들3길 25,36.8116722,127.1099399,https://www.openstreetmap.org/node/4791902246,,no,pending,no
+node,4791901926,GS25 불당센트럴점,번영로 100,36.8102986,127.108487,https://www.openstreetmap.org/node/4791901926,,no,pending,no
+node,4796047597,GS25 불당타운점,,36.8041571,127.1087751,https://www.openstreetmap.org/node/4796047597,,no,pending,no
+way,1167114395,GS25 아산온천점,,36.8530804,126.9826762,https://www.openstreetmap.org/way/1167114395,,no,pending,no
+node,4658639384,GS25 예산터미널점,,36.694214,126.8319524,https://www.openstreetmap.org/node/4658639384,,no,pending,no
+node,4791902247,GS25 천안불당점,검은들3길 58,36.8100412,127.1097827,https://www.openstreetmap.org/node/4791902247,,no,pending,no
+node,7869973847,GS25 평택호점,,36.9237528,126.9056445,https://www.openstreetmap.org/node/7869973847,,no,pending,no
+node,10992203166,GS25아산온주점,,36.7602339,127.0243596,https://www.openstreetmap.org/node/10992203166,,no,pending,no
