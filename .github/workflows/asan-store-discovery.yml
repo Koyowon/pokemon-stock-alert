@@ -1,0 +1,26 @@
+name: Asan GS25 Store Discovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover Asan GS25 candidate stores
+        run: python3 asan_store_discovery.py
+      - name: Upload candidate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asan-gs25-discovery
+          path: |
+            asan_gs25_candidates.csv
+            asan_gs25_discovery_summary.json
+          if-no-files-found: warn
+          retention-days: 30
