@@ -13,6 +13,7 @@ from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
+from gs25_asan_guard import filter_asan_seen
 CONFIG = ROOT / 'config.json'
 STATE = ROOT / 'gs25_stock_state.json'
 API = 'https://mcp.aka.page/api/actions/query'
@@ -129,6 +130,11 @@ def main():
                     print(f'STOCK_CONFLICT region={rid} store={sid}', flush=True)
                 else:
                     seen[sid] = {'name': name, 'quantity': q}
+        if rid == 'asan' and not failed:
+            prior_asan = previous.get('regions', {}).get('asan')
+            before_guard = len(seen)
+            seen = filter_asan_seen(seen, prior_asan)
+            print(f'ASAN_GUARD kept={len(seen)} excluded={before_guard - len(seen)}', flush=True)
         positives = {sid: item for sid, item in seen.items() if item['quantity'] > 0}
         print(f'REGION region={rid} scanned={len(seen)} positive={len(positives)} complete={not failed} conflicts={len(conflicts)}', flush=True)
         if failed:
