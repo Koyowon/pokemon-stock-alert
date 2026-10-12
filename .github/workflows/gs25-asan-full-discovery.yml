@@ -1,0 +1,28 @@
+name: GS25 Asan Full Store Discovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover GS25 stores within Asan administrative boundary
+        run: python3 gs25_asan_full_discovery.py
+      - name: Upload read-only discovery reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gs25-asan-full-discovery
+          path: |
+            gs25_asan_full_discovery.csv
+            gs25_asan_full_discovery_summary.json
+          if-no-files-found: warn
