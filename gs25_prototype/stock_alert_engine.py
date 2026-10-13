@@ -16,10 +16,11 @@ def _key(product_code, store_code):
 
 
 def process_mock_snapshot(state_path, product_code, product_name, stores, observed_at=None):
-    """Record mock stock changes and pending mock alerts in one atomic state document.
+    """Atomically store offline mock stock changes and v3 outbox entries.
 
-    First observation establishes baseline. Only increases queue an alert.
-    Older/equal-time observations are ignored. All storage is local and offline.
+    First observation establishes baseline. Only increases queue events.
+    Older/equal-time observations are ignored. Storage durability errors
+    propagate without automatically retrying a potentially committed change.
     """
     if not isinstance(product_name, str) or not product_name.strip() or len(product_name) > 120:
         raise StockAlertError("invalid product name")
@@ -27,7 +28,8 @@ def process_mock_snapshot(state_path, product_code, product_name, stores, observ
         raise StockAlertError("stores must be a nonempty list")
     if observed_at is None:
         observed_at = datetime.now(timezone.utc).isoformat()
-    timestamp = parse_timestamp(observed_at).isoformat()
+    observation = parse_timestamp(observed_at)
+    timestamp = observation.isoformat()
 
     validated = []
     seen = set()
@@ -52,7 +54,7 @@ def process_mock_snapshot(state_path, product_code, product_name, stores, observ
             previous = state["items"].get(key)
             if previous is not None:
                 prior_time = parse_timestamp(previous["observed_at"])
-                if parse_timestamp(timestamp) <= prior_time:
+                if observation <= prior_time:
                     continue
                 old = previous["quantity"]
                 if quantity > old:
