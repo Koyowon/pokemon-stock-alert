@@ -334,16 +334,23 @@ def main():
     # Candidate registry is an audit overlay, not a replacement for API results.
     # Missing stores must never be interpreted as zero stock.
     if "asan" in enabled_regions:
-        from cu_asan_registry import summarize_observations
-        asan_observed = {
-            code: item
-            for code, item in observed.items()
-            if item["city"] == "아산"
-        }
-        summarize_observations(
-            asan_observed,
-            query_succeeded=asan_successful_queries > 0,
-        )
+        try:
+            from cu_asan_registry import summarize_observations
+            asan_observed = {
+                code: item
+                for code, item in observed.items()
+                if item["city"] == "아산"
+            }
+            summarize_observations(
+                asan_observed,
+                query_succeeded=asan_successful_queries > 0,
+            )
+        except Exception as exc:
+            print(
+                "ASAN_CU_DIAGNOSTIC_ERROR:",
+                type(exc).__name__,
+                flush=True,
+            )
 
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
