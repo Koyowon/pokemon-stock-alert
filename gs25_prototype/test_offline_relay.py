@@ -94,6 +94,38 @@ class OfflineRelayTests(unittest.TestCase):
         self.assertEqual(status, 502)
         self.assertNotIn('inventory', payload)
 
+    def test_stock_transport_exception_is_safe_error(self):
+        relay = self.relay()
+        relay.fake_stock = lambda *_: (_ for _ in ()).throw(RuntimeError('fake transport'))
+        status, payload = self.query(relay)
+        self.assertEqual((status, payload), (502, {'error': 'STOCK_UNAVAILABLE'}))
+
+    def test_repeated_unauthorized_revokes_session(self):
+        relay = self.relay()
+        relay.fake_stock = lambda *_: (401, {})
+        status, payload = self.query(relay)
+        self.assertEqual((status, payload), (403, {'error': 'SESSION_REVOKED'}))
+        self.assertEqual(self.query(relay)[1]['error'], 'SESSION_REVOKED')
+
+    def test_symlink_lock_file_rejected(self):
+        import sys
+        if not hasattr(os, 'O_NOFOLLOW'):
+            self.skipTest('O_NOFOLLOW unavailable')
+        lock = self.path.with_suffix('.lock')
+        lock.symlink_to(self.path)
+        status, payload = self.query(self.relay())
+        self.assertEqual(status, 502)
+        self.assertEqual(payload['error'], 'SESSION_FAILURE')
+
+    def test_malformed_base64_jwt_returns_safe_error(self):
+        self.path.write_text(json.dumps({
+            'accessToken': 'fake.abcde.sig', 'refreshToken': jwt(NOW + 7200), 'deviceId': 'fake-device'
+        }))
+        os.chmod(self.path, 0o600)
+        status, payload = self.query(self.relay())
+        self.assertNotEqual(status, 200)
+        self.assertNotIn('inventory', payload)
+
 
 if __name__ == '__main__':
     unittest.main()
