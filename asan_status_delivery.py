@@ -27,6 +27,9 @@ def delivery_key(snapshot):
     rows = snapshot["candidates"]
     if len(rows) != 123 or any(row.get("status") == "NOT_QUERIED" for row in rows):
         raise ValueError("Incomplete Asan snapshot")
+    ids = [r.get("registry_id") for r in rows]
+    if len(set(ids)) != 123 or any(not isinstance(i, str) or not i for i in ids):
+        raise ValueError("Duplicate or missing Asan registry IDs")
     canonical = [(r["registry_id"], r["status"], r["stock"]) for r in rows]
     return hashlib.sha256(json.dumps(canonical, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
