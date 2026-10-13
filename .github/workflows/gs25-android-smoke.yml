@@ -60,7 +60,16 @@ jobs:
             curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8765/mock_screen.html | grep "MOCK_001";
             adb reverse tcp:8765 tcp:8765;
             adb shell am start -a android.intent.action.VIEW -d http://127.0.0.1:8765/mock_screen.html;
-            sleep 15;
+            sleep 3;
+            echo "CHROME_FIRST_RUN_OFFLINE_DISMISS";
+            for attempt in 1 2 3 4 5; do
+              adb shell uiautomator dump /sdcard/gs25-onboarding.xml >/dev/null;
+              adb pull /sdcard/gs25-onboarding.xml /tmp/gs25-onboarding.xml >/dev/null;
+              python3 -c "import xml.etree.ElementTree as E,re,subprocess,sys; root=E.parse(\"/tmp/gs25-onboarding.xml\").getroot(); labels=(\"Use without an account\",\"No thanks\",\"Not now\",\"Got it\",\"Continue without an account\"); matches=[n for n in root.iter(\"node\") if n.get(\"text\") in labels or n.get(\"content-desc\") in labels]; n=matches[0] if matches else None; print(\"CHROME_ONBOARDING_BUTTON\",n.get(\"text\") or n.get(\"content-desc\") if n is not None else \"none\"); bounds=[int(x) for x in re.findall(r\"[0-9]+\",n.get(\"bounds\",\"\"))] if n is not None else []; subprocess.run([\"adb\",\"shell\",\"input\",\"tap\",str((bounds[0]+bounds[2])//2),str((bounds[1]+bounds[3])//2)],check=True) if len(bounds)==4 else sys.exit(1)" || break;
+              sleep 2;
+            done;
+            adb shell am start -a android.intent.action.VIEW -d http://127.0.0.1:8765/mock_screen.html;
+            sleep 12;
             echo "ANDROID_ACTIVITY_DIAGNOSTIC";
             adb shell dumpsys window | grep -E "mCurrentFocus|mFocusedApp" || true;
             echo "ANDROID_UI_DUMP";
