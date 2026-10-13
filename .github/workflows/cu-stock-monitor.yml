@@ -1,49 +1,43 @@
 name: CU Pokemon 30th Stock Monitor
 
+# On this test branch, run only the Asan observation probe.
+# The main branch retains its original scheduled monitoring workflow.
 on:
-  schedule:
-    - cron: '2,7,12,17,22,27,32,37,42,47,52,57 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: cu-stock-monitor
+  group: cu-asan-observation-test
   cancel-in-progress: false
 
 jobs:
-  monitor:
+  observe-asan:
     runs-on: ubuntu-latest
     timeout-minutes: 12
-
     steps:
-      - name: Checkout
+      - name: Checkout selected branch
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Check CU stock
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python cu_stock_monitor.py
+      - name: Run offline regression tests
+        run: python -m unittest -v test_cu_asan_registry test_cu_monitor_isolation test_asan_registry_quality test_asan_live_observation
 
-      - name: Save CU stock state only
-        if: success()
-        run: |
-          if [ -f cu_stock_state.json ]; then
-            git add cu_stock_state.json
-            if ! git diff --cached --quiet; then
-              git config user.name 'github-actions[bot]'
-              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-              git commit -m 'Update CU stock state [skip ci]'
-              git pull --rebase origin main
-              git push origin HEAD:main
-            fi
-          fi
+      - name: Observe Asan CU candidates (read-only, no Telegram)
+        run: python asan_live_observation.py --live --output asan_live_observation_result.json
+
+      - name: Upload Asan observation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asan-cu-observation-report
+          path: asan_live_observation_result.json
+          if-no-files-found: warn
+          retention-days: 7
