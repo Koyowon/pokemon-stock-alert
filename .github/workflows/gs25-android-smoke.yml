@@ -48,7 +48,7 @@ jobs:
           emulator-boot-timeout: 300
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
-            set -euo pipefail
+            set -eu
             adb wait-for-device
             test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1"
             python3 -m http.server 8765 --bind 127.0.0.1 --directory gs25_prototype/android_test > /tmp/gs25-mock-http.log 2>&1 &
