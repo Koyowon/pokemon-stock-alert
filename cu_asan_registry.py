@@ -32,6 +32,20 @@ def normalize_address(value):
     return re.sub(r"\s+", "", value)
 
 
+
+
+def conservative_address_key(value):
+    """Only harmless punctuation and a final administrative dong suffix.
+
+    Never discard buildings, floors, units, road numbers, or other details.
+    """
+    value = str(value or "").strip().lower()
+    value = re.sub(r"^(?:충남|충청남도)\\s+", "", value)
+    value = re.sub(r",\\s*", " ", value)
+    value = re.sub(r"\\s*\\(([가-힣]+동)\\)\\s*$", " ", value)
+    return re.sub(r"\\s+", "", value)
+
+
 def classify_observations(observed_by_code, *, query_succeeded=False):
     """Match by verified code, or uniquely exact name AND address.
 
@@ -48,7 +62,7 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
         else:
             api[code] = {"stock": value}
 
-    by_identity = {}
+    by_identity = {}\n    by_safe_identity = {}
     for code, item in api.items():
         name = normalize_name(item.get("name"))
         address = normalize_address(item.get("address"))
@@ -59,7 +73,7 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
         (normalize_name(s.get("name")), normalize_address(s.get("address")))
         for s in stores
     ]
-    key_counts = Counter(k for k in registry_keys if all(k))
+    key_counts = Counter(k for k in registry_keys if all(k))\n    safe_keys = [(normalize_name(s.get('name')), conservative_address_key(s.get('address'))) for s in stores]\n    safe_counts = Counter(k for k in safe_keys if all(k))
     configured_codes = [
         str(store.get("cu_store_code") or "").strip() for store in stores
     ]
@@ -68,7 +82,7 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
     # Duplicate configured codes are ambiguous and must never be assigned.
     reserved_codes = set(code_counts)
     result = []
-    for store, key, configured_code in zip(stores, registry_keys, configured_codes):
+    for store, key, safe_key, configured_code in zip(stores, registry_keys, safe_keys, configured_codes):
         status = "NOT_OBSERVED" if query_succeeded else "NOT_QUERIED"
         matched_code = ""
         method = ""
