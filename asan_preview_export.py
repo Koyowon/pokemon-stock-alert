@@ -1,6 +1,7 @@
 """Offline Asan Telegram preview export. No stock API or Telegram calls."""
 import argparse
 import json
+import os
 from collections import Counter
 from pathlib import Path
 from asan_stock_chunks import preview_asan_stock_messages, TELEGRAM_TEXT_LIMIT
