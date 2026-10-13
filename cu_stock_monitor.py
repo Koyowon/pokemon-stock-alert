@@ -231,6 +231,7 @@ def main():
     observed = {}
     conflicts = set()
     successful_queries = 0
+    asan_successful_queries = 0
     failed_queries = 0
 
     from unified_settings import enabled as unified_enabled
@@ -246,6 +247,8 @@ def main():
             try:
                 stores = query(city, lat, lng)
                 successful_queries += 1
+                if city == "아산":
+                    asan_successful_queries += 1
                 print(
                     "QUERY_OK:", city, lat, lng,
                     "VALID_STORES:", len(stores), flush=True,
@@ -288,12 +291,7 @@ def main():
         }
         summarize_observations(
             asan_observed,
-            query_succeeded=any(
-                city == "아산" for city, points in POINTS.items()
-                if REGION_IDS[city] in enabled_regions
-            ) and any(
-                item["city"] == "아산" for item in observed.values()
-            ),
+            query_succeeded=asan_successful_queries > 0,
         )
 
     if successful_queries == 0:
