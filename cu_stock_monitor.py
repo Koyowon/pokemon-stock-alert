@@ -233,8 +233,8 @@ def store_identity_status(old, item):
         return "CONFLICT"
 
     def normalized_name(value):
-        value = re.sub(r"^(?:CU|씨유)\\s*", "", str(value or ""), flags=re.I)
-        return re.sub(r"\\s+", "", value).lower()
+        value = re.sub(r"^(?:CU|씨유)\s*", "", str(value or ""), flags=re.I)
+        return re.sub(r"\s+", "", value).lower()
 
     old_name = normalized_name(old.get("name"))
     new_name = normalized_name(item.get("name"))
@@ -245,7 +245,7 @@ def store_identity_status(old, item):
 
     def road_key(value):
         match = re.search(
-            r"([가-힣A-Za-z0-9·]+(?:대로|로|길)(?:\\d+번길)?)\\s+(\\d+(?:-\\d+)?)",
+            r"([가-힣A-Za-z0-9·]+(?:대로|로|길)(?:\d+번길)?)\s+(\d+(?:-\d+)?)",
             str(value or ""),
         )
         return match.groups() if match else None
@@ -258,14 +258,14 @@ def store_identity_status(old, item):
         return "CONFLICT"
 
     for pattern in (
-        r"(?:^|[^\\d])(\\d{1,4})\\s*호(?:[^\\d]|$)",
-        r"(지하\\s*\\d+|지\\s*\\d+|\\d+\\s*층)",
+        r"(?:^|[^\d])(\d{1,4})\s*호(?:[^\d]|$)",
+        r"(지하\s*\d+|지\s*\d+|\d+\s*층)",
     ):
         old_part = re.search(pattern, str(old.get("address") or ""))
         new_part = re.search(pattern, str(item.get("address") or ""))
         if old_part and new_part:
-            if re.sub(r"\\s+", "", old_part.group(1)) != re.sub(
-                r"\\s+", "", new_part.group(1)
+            if re.sub(r"\s+", "", old_part.group(1)) != re.sub(
+                r"\s+", "", new_part.group(1)
             ):
                 return "CONFLICT"
     return "MATCH"
