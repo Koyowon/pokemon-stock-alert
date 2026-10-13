@@ -91,7 +91,7 @@
 "ASAN-CU-090","CU 온양제일호텔점","충청남도 아산시 온천대로 1462 (온천동, 온양제일호텔)","충청남도 아산시 온천대로 1462 (온천동, 온양제일호텔)","주소 미확인","","18553","36.78211","126.9994672","AREA_LABEL_UNRESOLVED;NO_ADDRESS_ADMIN_TOKEN","P3_COORDINATES_PRESENT",""
 "ASAN-CU-091","CU 아산트라팰리스2호점","충청남도 아산시 탕정면 탕정면로 37, 분산상가 102호","충청남도 아산시 탕정면 탕정면로 37, 분산상가 102호","주소 미확인","탕정면","19483","","","AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P2_LOCATION",""
 "ASAN-CU-092","CU 아산팬더점","충청남도 아산시 아산로 103-17, 1층 103~105호 (실옥동)","충청남도 아산시 아산로 103-17, 1층 103~105호 (실옥동)","주소 미확인","","27756","36.7901843","126.9938723","AREA_LABEL_UNRESOLVED;NO_ADDRESS_ADMIN_TOKEN","P3_COORDINATES_PRESENT",""
-"ASAN-CU-093","CU 아산배방한성점","충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호","충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호","주소 미확인","배방읍","27959","","","REPEATED_CITY;AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P0_REVIEW",""
+"ASAN-CU-093","CU 아산배방한성점","충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호","충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호","주소 미확인","배방읍","27959","","","REPEATED_CITY;REPEATED_UNIT_SUFFIX;AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P0_REVIEW",""
 "ASAN-CU-094","CU 아산이지더원8단지점","충청남도 아산시 둔포면 아산밸리남로 81, 815동 1층 104~106호","충청남도 아산시 둔포면 아산밸리남로 81, 815동 1층 104~106호","주소 미확인","둔포면","31397","","","AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P2_LOCATION",""
 "ASAN-CU-095","CU 아산테크노밸리센터점","충청남도 아산시 둔포면 아산밸리서로 168, 1층 103호","충청남도 아산시 둔포면 아산밸리서로 168, 1층 103호","주소 미확인","둔포면","32498","","","AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P2_LOCATION",""
 "ASAN-CU-096","CU 선문대학교오렌지점","충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교","충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교","주소 미확인","탕정면","32601","","","REPEATED_LANDMARK;AREA_LABEL_UNRESOLVED;COORDINATES_MISSING","P2_LOCATION",""
