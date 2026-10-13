@@ -1,7 +1,7 @@
 """Asan-only live observation probe. Never writes state or sends Telegram.
 
 Run explicitly with --live to call the existing CU inventory API.
-All 119 registry candidates remain in the output, including NOT_OBSERVED.
+All 123 registry candidates remain in the output, including NOT_OBSERVED.
 """
 import argparse
 import json
@@ -34,8 +34,8 @@ def observe(points, query_fn, classify_fn):
                 conflicts.add(code)
                 observed.pop(code, None)
     rows = classify_fn(observed, query_succeeded=successes > 0)
-    if len(rows) != 119:
-        raise ValueError("Expected 119 registry candidates")
+    if len(rows) != 123:
+        raise ValueError("Expected 123 registry candidates")
     diagnostic = audit_unmatched(observed, rows, conflicts=conflicts)
     return {"barcode": BARCODE, "candidate_count": len(rows),
             "query_successes": successes, "query_failures": failures,
