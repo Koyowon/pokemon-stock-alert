@@ -1,0 +1,30 @@
+name: GS25 Android offline smoke (manual only)
+
+# Intentionally no push, pull_request, schedule or workflow_run triggers.
+# This file is on an isolated test branch; do not copy to main without approval.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gs25-android-offline-smoke
+  cancel-in-progress: false
+
+jobs:
+  android-offline-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify offline mock parser
+        run: python -m unittest discover -s gs25_prototype/android_test -p 'test_*.py' -v
+      # Android emulator boot is intentionally staged for separate execution approval.
+      # A future approved revision can add a pinned emulator runner, KVM diagnostics,
+      # and a local-only mock page. No GS25 app, credentials or external stock API.
