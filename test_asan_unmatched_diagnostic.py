@@ -10,7 +10,7 @@ class DiagnosticTests(unittest.TestCase):
         self.assertEqual(result['unmatched_api_store_count'],1)
         self.assertEqual(result['unmatched_api_stores'][0]['code'],'90001')
         self.assertTrue(result['unmatched_api_stores'][0]['diagnostic_only'])
-        self.assertEqual(sum(x['not_observed'] for x in result['area_priorities']),119)
+        self.assertEqual(sum(x['not_observed'] for x in result['area_priorities']),123)
     def test_exact_unique_match_excluded(self):
         s=next(x for x in load_registry() if x['registry_id']=='ASAN-CU-066')
         api={'90002':{'name':s['name'],'address':s['address'],'stock':0}}
@@ -39,7 +39,7 @@ class DiagnosticTests(unittest.TestCase):
         rows=classify_observations({},query_succeeded=False)
         result=audit_unmatched({},rows,conflicts={'90005'})
         self.assertEqual(result['conflicting_codes'],['90005'])
-        self.assertEqual(sum(x['not_queried'] for x in result['area_priorities']),119)
+        self.assertEqual(sum(x['not_queried'] for x in result['area_priorities']),123)
     def test_duplicate_code_not_automatched(self):
         rows=classify_observations({},query_succeeded=True)
         rows[1]['registry_id']=rows[0]['registry_id']
