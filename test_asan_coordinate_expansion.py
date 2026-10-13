@@ -18,7 +18,7 @@ class CoordinateExpansionTests(unittest.TestCase):
         self.assertEqual(build_points(include_provisional=True,stores=s),POINTS["아산"])
     def test_audit_marks_unverified(self):
         result=expansion_audit()
-        self.assertEqual(result["candidates"],119)
+        self.assertEqual(result["candidates"],123)
         self.assertEqual(len(result["provisional_coordinate_candidates"]),3)
         self.assertTrue(all(not p["verified"] for p in result["provisional_coordinate_candidates"]))
 if __name__=="__main__":
