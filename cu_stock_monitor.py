@@ -263,6 +263,8 @@ def main():
                     elif (
                         previous["stock"] != item["stock"]
                         or previous["city"] != item["city"]
+                        or previous["name"] != item["name"]
+                        or previous["address"] != item["address"]
                     ):
                         conflicts.add(code)
                         observed.pop(code, None)
