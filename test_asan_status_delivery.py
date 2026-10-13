@@ -55,7 +55,7 @@ class AsanStatusDeliveryTests(unittest.TestCase):
 
     def test_failed_send_no_marker(self):
         self.assertEqual(self.send(sender=lambda p: False), "SEND_FAILED")
-        self.assertFalse(self.marker.exists())
+        self.assertEqual(json.loads(self.marker.read_text())["state"], "IN_FLIGHT")
 
     def test_partial_query_rejected(self):
         partial = build_snapshot({}, query_succeeded=False)
