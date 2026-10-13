@@ -21,7 +21,7 @@ class AsanMonitorGitWiringTests(unittest.TestCase):
         self.assertIn("and not conflicts", self.source)
 
     def test_legacy_save_precedes_status(self):
-        self.assertLess(self.source.index("    save_state(state)"), self.source.index("    # Independent Asan status channel"))
+        self.assertLess(self.source.index("    save_state(state)"), self.source.index("            result = deliver_persistent("))
 
     def test_persistent_path_is_fail_closed(self):
         from asan_github_status_persistence import deliver_persistent
