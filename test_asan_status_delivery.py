@@ -57,6 +57,14 @@ class AsanStatusDeliveryTests(unittest.TestCase):
         self.assertEqual(self.send(sender=lambda p: False), "SEND_FAILED")
         self.assertEqual(json.loads(self.marker.read_text())["state"], "IN_FLIGHT")
 
+    def test_duplicate_registry_id_rejected(self):
+        duplicate = dict(self.snapshot)
+        rows = [dict(row) for row in self.snapshot["candidates"]]
+        rows[1]["registry_id"] = rows[0]["registry_id"]
+        duplicate["candidates"] = rows
+        with self.assertRaises(ValueError):
+            delivery_key(duplicate)
+
     def test_partial_query_rejected(self):
         partial = build_snapshot({}, query_succeeded=False)
         with self.assertRaises(ValueError):
