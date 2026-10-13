@@ -1573,7 +1573,7 @@
     {
       "registry_id": "ASAN-CU-093",
       "name": "CU 아산배방한성점",
-      "address": "",
+      "address": "충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호",
       "area": "주소 미확인",
       "cu_store_code": "27959",
       "latitude": "",
@@ -1585,7 +1585,7 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.27959 (과거 저장 기록, 현재 주소 미검증); 원본 주소에 지명·호수 중복 표기 의심, 정정 보류"
     },
     {
       "registry_id": "ASAN-CU-094",
@@ -1624,7 +1624,7 @@
     {
       "registry_id": "ASAN-CU-096",
       "name": "CU 선문대학교오렌지점",
-      "address": "",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교",
       "area": "주소 미확인",
       "cu_store_code": "32601",
       "latitude": "",
@@ -1636,7 +1636,7 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.32601 (과거 저장 기록, 현재 주소 미검증)"
     },
     {
       "registry_id": "ASAN-CU-097",
@@ -1658,7 +1658,7 @@
     {
       "registry_id": "ASAN-CU-098",
       "name": "CU 선문대학교기숙사점",
-      "address": "",
+      "address": "충청남도 아산시 선문로221번길 70 (탕정면) 선문대학교 아산캠퍼스 생활관친교관1층",
       "area": "주소 미확인",
       "cu_store_code": "37980",
       "latitude": "",
@@ -1670,12 +1670,12 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.37980 (과거 저장 기록, 현재 주소 미검증)"
     },
     {
       "registry_id": "ASAN-CU-099",
       "name": "CU 아산온천마을점",
-      "address": "",
+      "address": "충청남도 아산시 시장길15번길 13",
       "area": "주소 미확인",
       "cu_store_code": "40839",
       "latitude": "",
@@ -1687,7 +1687,7 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.40839 (과거 저장 기록, 현재 주소 미검증)"
     },
     {
       "registry_id": "ASAN-CU-100",
@@ -1726,7 +1726,7 @@
     {
       "registry_id": "ASAN-CU-102",
       "name": "CU 아산권곡주공점",
-      "address": "",
+      "address": "충청남도 아산시 박물관로 13 (권곡동, 주공아파트) 1층 상가동 102호",
       "area": "주소 미확인",
       "cu_store_code": "42772",
       "latitude": "",
@@ -1738,7 +1738,7 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.42772 (과거 저장 기록, 현재 주소 미검증)"
     },
     {
       "registry_id": "ASAN-CU-103",
@@ -1811,7 +1811,7 @@
     {
       "registry_id": "ASAN-CU-107",
       "name": "CU 아산모산점",
-      "address": "",
+      "address": "충청남도 아산시 배방읍 모산로 151-1 (공수리)",
       "area": "주소 미확인",
       "cu_store_code": "54071",
       "latitude": "",
@@ -1823,7 +1823,7 @@
       "sources": "기존 CU 모니터 로컬 상태",
       "source_urls": "",
       "duplicate_note": "점포명 대조 필요",
-      "review_note": "중복/개명 후보; 삭제 보류"
+      "review_note": "중복/개명 후보; 삭제 보류; 주소 출처: cu_stock_state.json / stores.54071 (과거 저장 기록, 현재 주소 미검증)"
     },
     {
       "registry_id": "ASAN-CU-108",
