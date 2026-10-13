@@ -1,0 +1,67 @@
+name: Asan CU Offline Regression Tests
+
+# Manual only. No stock APIs, state persistence, or notifications.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: asan-offline-tests-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  offline-tests:
+    if: github.ref == 'refs/heads/test/cu-asan-auto-match-20261013'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout selected test branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check Python syntax without imports
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+
+          modules = [
+              "cu_asan_registry.py",
+              "cu_monitor.py",
+              "asan_live_observation.py",
+              "asan_coordinate_expansion.py",
+              "asan_unmatched_diagnostic.py",
+              "test_cu_asan_registry.py",
+              "test_cu_monitor_isolation.py",
+              "test_asan_registry_quality.py",
+              "test_asan_live_observation.py",
+              "test_asan_coordinate_expansion.py",
+              "test_asan_unmatched_diagnostic.py",
+              "test_asan_safe_address.py",
+          ]
+          for name in modules:
+              path = Path(name)
+              if not path.is_file():
+                  raise FileNotFoundError(name)
+              ast.parse(path.read_text(encoding="utf-8"), filename=name)
+              print(f"SYNTAX PASS: {name}")
+          PY
+
+      - name: Run 62 offline regression tests
+        run: |
+          python -m unittest -v \
+            test_cu_asan_registry \
+            test_cu_monitor_isolation \
+            test_asan_registry_quality \
+            test_asan_live_observation \
+            test_asan_coordinate_expansion \
+            test_asan_unmatched_diagnostic \
+            test_asan_safe_address
