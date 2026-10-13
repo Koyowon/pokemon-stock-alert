@@ -13,10 +13,10 @@ def load_registry(path=REGISTRY_FILE):
     if data.get("product_barcode") != PRODUCT_BARCODE:
         raise ValueError("Unexpected CU product barcode")
     stores = data.get("stores")
-    if not isinstance(stores, list) or len(stores) != 119:
-        raise ValueError("Expected exactly 119 Asan CU candidates")
+    if not isinstance(stores, list) or len(stores) != 123:
+        raise ValueError("Expected exactly 123 Asan CU candidates")
     ids = [s["registry_id"] for s in stores]
-    if len(set(ids)) != 119:
+    if len(set(ids)) != 123:
         raise ValueError("Duplicate Asan CU registry IDs")
     return stores
 
