@@ -2,6 +2,10 @@
 
 Disabled by default. Deduplication uses a separate, private status marker.
 """
+import errno
+import fcntl
+import stat
+import uuid
 import hashlib
 import json
 import os
@@ -27,12 +31,25 @@ def delivery_key(snapshot):
     return hashlib.sha256(json.dumps(canonical, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
 
-def send_status(snapshot, pages, sender, *, marker_path=None, environ=None):
-    """Fail closed: no send without opt-in and explicit, separate marker path.
+def _atomic_marker(path, data):
+    temp = path.with_name(path.name + "." + uuid.uuid4().hex + ".tmp")
+    try:
+        with temp.open("x", encoding="utf-8") as stream:
+            json.dump(data, stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temp, path)
+        fd = os.open(path.parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+    finally:
+        temp.unlink(missing_ok=True)
 
-    Marker is written only after every page succeeds. A failed multi-page send
-    can repeat earlier pages on retry; callers must not promise exactly-once.
-    """
+
+def send_status(snapshot, pages, sender, *, marker_path=None, environ=None):
+    """Journal each page before sending; uncertain deliveries require reconciliation."""
     env = os.environ if environ is None else environ
     if not enabled(env):
         return "DISABLED"
@@ -40,33 +57,54 @@ def send_status(snapshot, pages, sender, *, marker_path=None, environ=None):
     if not path:
         return "NO_MARKER_PATH"
     path = Path(path)
-    if path.is_symlink() or not path.parent.is_dir():
-        return "INVALID_MARKER_PATH"
-    if path.name == "cu_stock_state.json":
-        return "INVALID_MARKER_PATH"
     from cu_stock_monitor import STATE_FILE
-    if path.resolve() == STATE_FILE.resolve():
+    if (path.is_symlink() or not path.parent.is_dir() or path.name == "cu_stock_state.json"
+            or path.resolve() == STATE_FILE.resolve()):
         return "INVALID_MARKER_PATH"
     key = delivery_key(snapshot)
-    if path.exists():
-        try:
-            old = json.loads(path.read_text(encoding="utf-8"))
-            if old.get("key") == key:
-                return "UNCHANGED"
-        except (OSError, ValueError, AttributeError):
-            return "INVALID_MARKER"
-    if not pages or any(not isinstance(page, str) or len(page) > 4096 for page in pages):
+    if not pages or any(not isinstance(p, str) or not p or len(p) > 4096 for p in pages):
         raise ValueError("Invalid status pages")
-    for page in pages:
-        if sender(page) is not True:
-            return "SEND_FAILED"
-    tmp = path.with_name(path.name + ".tmp")
+    page_hash = hashlib.sha256(json.dumps(pages, ensure_ascii=False).encode()).hexdigest()
+    lock_path = path.with_name(path.name + ".lock")
+    if lock_path.is_symlink():
+        return "INVALID_LOCK"
+    fd = os.open(lock_path, os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0), 0o600)
     try:
-        with tmp.open("x", encoding="utf-8") as stream:
-            json.dump({"key": key}, stream)
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(tmp, path)
+        if not stat.S_ISREG(os.fstat(fd).st_mode) or os.fstat(fd).st_nlink != 1:
+            return "INVALID_LOCK"
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as exc:
+            if exc.errno in (errno.EAGAIN, errno.EACCES):
+                return "LOCKED"
+            raise
+        if path.is_symlink():
+            return "INVALID_MARKER_PATH"
+        if path.exists():
+            try:
+                old = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(old, dict):
+                    return "INVALID_MARKER"
+                if old.get("state") == "IN_FLIGHT":
+                    return "NEEDS_RECONCILIATION"
+                if old.get("key") == key and old.get("state", "DONE") == "DONE":
+                    return "UNCHANGED"
+                if old.get("state", "DONE") != "DONE":
+                    return "INVALID_MARKER"
+            except (OSError, ValueError, AttributeError):
+                return "INVALID_MARKER"
+        for index, page in enumerate(pages):
+            _atomic_marker(path, {"key": key, "pages_sha256": page_hash,
+                                  "state": "IN_FLIGHT", "page_index": index,
+                                  "page_count": len(pages)})
+            try:
+                success = sender(page) is True
+            except Exception:
+                return "NEEDS_RECONCILIATION"
+            if not success:
+                return "SEND_FAILED" if index == 0 else "NEEDS_RECONCILIATION"
+        _atomic_marker(path, {"key": key, "pages_sha256": page_hash,
+                              "state": "DONE", "page_count": len(pages)})
+        return "SENT"
     finally:
-        tmp.unlink(missing_ok=True)
-    return "SENT"
+        os.close(fd)
