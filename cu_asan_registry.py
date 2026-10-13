@@ -60,33 +60,38 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
         for s in stores
     ]
     key_counts = Counter(k for k in registry_keys if all(k))
-    claimed_codes = set()
+    configured_codes = [
+        str(store.get("cu_store_code") or "").strip() for store in stores
+    ]
+    code_counts = Counter(code for code in configured_codes if code)
+    # Reserve every configured code, even when its API result is absent.
+    # Duplicate configured codes are ambiguous and must never be assigned.
+    reserved_codes = set(code_counts)
     result = []
-    for store, key in zip(stores, registry_keys):
-        configured_code = str(store.get("cu_store_code") or "").strip()
+    for store, key, configured_code in zip(stores, registry_keys, configured_codes):
         status = "NOT_OBSERVED" if query_succeeded else "NOT_QUERIED"
         matched_code = ""
         method = ""
-        if configured_code and configured_code in api:
-            matched_code = configured_code
-            method = "REGISTERED_CODE"
-        elif not configured_code and all(key) and key_counts[key] == 1:
-            candidates = by_identity.get(key, [])
+        if configured_code:
+            if code_counts[configured_code] == 1 and configured_code in api:
+                matched_code = configured_code
+                method = "REGISTERED_CODE"
+        elif all(key) and key_counts[key] == 1:
+            candidates = [
+                code for code in by_identity.get(key, [])
+                if code not in reserved_codes
+            ]
             if len(candidates) == 1:
                 matched_code = candidates[0]
                 method = "EXACT_NAME_ADDRESS"
 
         stock = None
-        if matched_code and matched_code not in claimed_codes:
-            claimed_codes.add(matched_code)
+        if matched_code:
             stock = api[matched_code].get("stock")
             if type(stock) is int and stock >= 0:
                 status = "ZERO_STOCK" if stock == 0 else "IN_STOCK"
             else:
                 status = "NO_VALID_STOCK_VALUE"
-        elif matched_code:
-            matched_code = ""
-            method = ""
         result.append({
             "registry_id": store["registry_id"],
             "name": store["name"],
