@@ -277,6 +277,25 @@ def main():
     print("UNIQUE_STORES:", len(observed), flush=True)
     print("CONFLICT_STORES:", len(conflicts), flush=True)
 
+    # Candidate registry is an audit overlay, not a replacement for API results.
+    # Missing stores must never be interpreted as zero stock.
+    if "asan" in enabled_regions:
+        from cu_asan_registry import summarize_observations
+        asan_observed = {
+            code: item["stock"]
+            for code, item in observed.items()
+            if item["city"] == "아산"
+        }
+        summarize_observations(
+            asan_observed,
+            query_succeeded=any(
+                city == "아산" for city, points in POINTS.items()
+                if REGION_IDS[city] in enabled_regions
+            ) and any(
+                item["city"] == "아산" for item in observed.values()
+            ),
+        )
+
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
             print("ALL_CONFIGURED_REGIONS_DISABLED", flush=True)
