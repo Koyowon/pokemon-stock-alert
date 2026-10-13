@@ -8,7 +8,7 @@ BARCODE = "8800286275732"
 def canonical(value):
     if not isinstance(value, str):
         return ""
-    return re.sub(r"\\s+", " ", unicodedata.normalize("NFKC", value)).strip()
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFKC", value)).strip()
 
 
 def reconcile_strict(batches):
