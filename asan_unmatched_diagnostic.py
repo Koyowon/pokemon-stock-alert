@@ -5,11 +5,11 @@ from cu_asan_registry import load_registry, normalize_name, normalize_address
 
 def audit_unmatched(observed_by_code, candidates, *, stores=None, conflicts=()):
     stores = load_registry() if stores is None else stores
-    if len(stores) != 119 or len(candidates) != 119:
-        raise ValueError('Expected 119 registry entries and classified candidates')
+    if len(stores) != 123 or len(candidates) != 123:
+        raise ValueError('Expected 123 registry entries and classified candidates')
     registry_ids = {s['registry_id'] for s in stores}
     candidate_ids = [r['registry_id'] for r in candidates]
-    if len(set(candidate_ids)) != 119 or set(candidate_ids) != registry_ids:
+    if len(set(candidate_ids)) != 123 or set(candidate_ids) != registry_ids:
         raise ValueError('Registry and candidate identities differ')
     by_id = {r['registry_id']: r for r in candidates}
     used_codes = {str(r.get('observed_store_code') or '').strip() for r in candidates if r.get('observed_store_code')}
