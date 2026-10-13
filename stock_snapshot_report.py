@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parent
 REGIONS = {'namwon': '남원', 'asan': '아산', 'jeonju': '전주', 'jeju': '제주'}
 CHAINS = {'emart24': '이마트24', 'cu': 'CU', 'gs25': 'GS25'}
 BARCODE = '8800286275732'
+HOLD_UNVERIFIED_CU_CODES = frozenset({'41691', '27756', '40840'})
 KST = timezone(timedelta(hours=9))
 PAGES_URL = 'https://koyowon.github.io/pokemon-stock-alert/'
 
@@ -57,7 +58,9 @@ def collect():
         if rid and name:
             result[rid]['emart24'].append((name, quantity, address, '확인 시각 미기록'))
 
-    for store in read('cu_stock_state.json').get('stores', {}).values():
+    for code, store in read('cu_stock_state.json').get('stores', {}).items():
+        if str(code) in HOLD_UNVERIFIED_CU_CODES:
+            continue
         if not isinstance(store, dict):
             continue
         quantity = store.get('stock')
