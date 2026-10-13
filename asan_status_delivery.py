@@ -24,12 +24,30 @@ def delivery_key(snapshot):
     """Stable observation key: only fully successful Asan runs qualify."""
     if snapshot.get("query_succeeded") is not True or snapshot.get("candidate_count") != 123:
         raise ValueError("Incomplete Asan observation")
+    if snapshot.get("barcode") != "8800286275732":
+        raise ValueError("Unexpected barcode")
+    if snapshot.get("query_failures", 0) or snapshot.get("conflicting_codes"):
+        raise ValueError("Incomplete or conflicting observation")
+    if "query_total" in snapshot and (snapshot["query_total"] < 1 or snapshot.get("query_successes") != snapshot["query_total"]):
+        raise ValueError("Partial coordinate coverage")
     rows = snapshot["candidates"]
     if len(rows) != 123 or any(row.get("status") == "NOT_QUERIED" for row in rows):
         raise ValueError("Incomplete Asan snapshot")
     ids = [r.get("registry_id") for r in rows]
     if len(set(ids)) != 123 or any(not isinstance(i, str) or not i for i in ids):
         raise ValueError("Duplicate or missing Asan registry IDs")
+    if not any(r.get("status") in ("IN_STOCK", "ZERO_STOCK") for r in rows):
+        raise ValueError("No observed stock values")
+    for row in rows:
+        status, stock = row.get("status"), row.get("stock")
+        if status == "IN_STOCK" and (type(stock) is not int or stock <= 0):
+            raise ValueError("Invalid positive stock")
+        if status == "ZERO_STOCK" and (type(stock) is not int or stock != 0):
+            raise ValueError("Invalid zero stock")
+        if status not in ("IN_STOCK", "ZERO_STOCK", "NOT_OBSERVED", "NO_VALID_STOCK_VALUE"):
+            raise ValueError("Invalid stock status")
+        if status not in ("IN_STOCK", "ZERO_STOCK") and stock is not None:
+            raise ValueError("Unknown stock must be null")
     canonical = [(r["registry_id"], r["status"], r["stock"]) for r in rows]
     return hashlib.sha256(json.dumps(canonical, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 

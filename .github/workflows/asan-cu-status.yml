@@ -1,0 +1,54 @@
+name: Asan CU Status (manual isolated)
+on:
+  workflow_dispatch:
+    inputs:
+      send_status:
+        description: 'Send verified Asan status (requires preinitialized state branch)'
+        type: boolean
+        required: true
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: asan-cu-status-exclusive
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: ${{ !inputs.send_status }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest -v test_asan_unknown_policy test_asan_github_status_persistence test_asan_git_branch_cas
+      - run: python asan_live_observation.py --live --output asan_status_preview.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: asan-status-preview
+          path: asan_status_preview.json
+          if-no-files-found: warn
+  deliver:
+    if: ${{ inputs.send_status }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      ASAN_CU_STATUS_TELEGRAM_ENABLED: 'true'
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest -v test_asan_unknown_policy test_asan_github_status_persistence test_asan_git_branch_cas
+      - name: Verify observation and journal before sending
+        run: python asan_live_observation.py --live --send-status

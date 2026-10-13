@@ -9,6 +9,18 @@ class UnknownPolicyTests(unittest.TestCase):
         s=build_snapshot({},query_succeeded=True)
         self.assertEqual(s['status_counts'], {'NOT_OBSERVED':123})
         self.assertTrue(all(row['stock'] is None for row in s['candidates']))
+        with self.assertRaises(ValueError): delivery_key(s)
+    def test_partial_coordinate_coverage_blocks(self):
+        s=build_snapshot({"53982":{"stock":2}},query_succeeded=True)
+        s.update(query_total=2,query_successes=1,query_failures=1)
+        with self.assertRaises(ValueError): delivery_key(s)
+    def test_conflicts_block(self):
+        s=build_snapshot({"53982":{"stock":2}},query_succeeded=True)
+        s["conflicting_codes"]=["53982"]
+        with self.assertRaises(ValueError): delivery_key(s)
+    def test_one_observed_and_unknown_accepted(self):
+        s=build_snapshot({"53982":{"stock":2}},query_succeeded=True)
+        self.assertEqual(s["status_counts"]["NOT_OBSERVED"],122)
         self.assertEqual(len(delivery_key(s)),64)
     def test_not_queried_blocks(self):
         s=build_snapshot({},query_succeeded=False)

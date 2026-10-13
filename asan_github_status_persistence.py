@@ -68,7 +68,7 @@ class GitBranchCAS:
     def cas(self, expected_revision, state):
         if not isinstance(state, dict) or state.get("state") not in ("READY", "IN_FLIGHT", "DONE"):
             raise ValueError("Invalid state")
-        if not isinstance(expected_revision, str) or len(expected_revision) not in (40, 64):
+        if not isinstance(expected_revision, str) or len(expected_revision) not in (40, 64) or any(c not in "0123456789abcdef" for c in expected_revision):
             raise ValueError("Invalid expected revision")
         if self._remote_oid() != expected_revision:
             raise PersistenceError("Remote revision changed")
