@@ -10,6 +10,7 @@ from pathlib import Path
 from cu_asan_registry import classify_observations
 from cu_stock_monitor import POINTS, BARCODE, query
 from asan_coordinate_expansion import build_points
+from asan_unmatched_diagnostic import audit_unmatched
 
 def observe(points, query_fn, classify_fn):
     observed, conflicts = {}, set()
@@ -35,11 +36,12 @@ def observe(points, query_fn, classify_fn):
     rows = classify_fn(observed, query_succeeded=successes > 0)
     if len(rows) != 119:
         raise ValueError("Expected 119 registry candidates")
+    diagnostic = audit_unmatched(observed, rows, conflicts=conflicts)
     return {"barcode": BARCODE, "candidate_count": len(rows),
             "query_successes": successes, "query_failures": failures,
             "conflicting_codes": sorted(conflicts),
             "status_counts": dict(sorted(Counter(r["status"] for r in rows).items())),
-            "candidates": rows}
+            "candidates": rows, "diagnostic": diagnostic}
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
