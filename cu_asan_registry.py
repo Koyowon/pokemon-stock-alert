@@ -40,10 +40,10 @@ def conservative_address_key(value):
     Never discard buildings, floors, units, road numbers, or other details.
     """
     value = str(value or "").strip().lower()
-    value = re.sub(r"^(?:충남|충청남도)\\s+", "", value)
-    value = re.sub(r",\\s*", " ", value)
-    value = re.sub(r"\\s*\\(([가-힣]+동)\\)\\s*$", " ", value)
-    return re.sub(r"\\s+", "", value)
+    value = re.sub(r"^(?:충남|충청남도)\s+", "", value)
+    value = re.sub(r",\s*", " ", value)
+    value = re.sub(r"\s*\(([가-힣]+동)\)\s*$", " ", value)
+    return re.sub(r"\s+", "", value)
 
 
 def classify_observations(observed_by_code, *, query_succeeded=False):
@@ -102,6 +102,14 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
             if len(candidates) == 1:
                 matched_code = candidates[0]
                 method = "EXACT_NAME_ADDRESS"
+            elif len(candidates) == 0 and safe_counts[safe_key] == 1:
+                safe_candidates = [
+                    code for code in by_safe_identity.get(safe_key, [])
+                    if code not in reserved_codes
+                ]
+                if len(safe_candidates) == 1:
+                    matched_code = safe_candidates[0]
+                    method = "SAFE_FORMAT_NAME_ADDRESS"
 
         stock = None
         if matched_code:
