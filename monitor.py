@@ -306,6 +306,14 @@ def main():
                     f"주소: {store['address']}\n현재 재고: {qty}개"
                 )
             if message is not None:
+                region_label = next(
+                    (name for name, city in REGIONS.items() if city in store["address"]),
+                    None,
+                )
+                if region_label is None:
+                    print(f"WARNING: alert held for unknown region: {key}")
+                    continue
+                message += "\n지역: " + region_label
                 message += "\n🗺 네이버지도: " + naver_map(store["name"], store["address"])
                 message += "\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
                 if not notify(message):
