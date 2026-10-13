@@ -28,7 +28,7 @@ jobs:
           python-version: '3.12'
 
       - name: Run offline regression tests
-        run: python -m unittest -v test_cu_asan_registry test_cu_monitor_isolation test_asan_registry_quality test_asan_live_observation test_asan_coordinate_expansion
+        run: python -m unittest -v test_cu_asan_registry test_cu_monitor_isolation test_asan_registry_quality test_asan_live_observation test_asan_coordinate_expansion test_asan_unmatched_diagnostic
 
       - name: Observe Asan CU candidates (read-only, no Telegram)
         run: python asan_live_observation.py --live --include-provisional-coordinates --output asan_live_observation_result.json
