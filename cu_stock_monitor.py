@@ -14,6 +14,8 @@ URL = "https://mcp.aka.page/api/cu/inventory"
 BARCODE = "8800286275732"
 PRODUCT = "포켓몬)30주년기념카드"
 STATE_FILE = Path(__file__).with_name("cu_stock_state.json")
+# Address identity unresolved: do not query-result-alert or advance state for these codes.
+HOLD_UNVERIFIED_CODES = frozenset({"41691", "27756", "40840"})
 
 POINTS = {
     "남원": [
@@ -252,6 +254,9 @@ def main():
                 )
                 for item in stores:
                     code = item["code"]
+                    if code in HOLD_UNVERIFIED_CODES:
+                        print("HOLD_UNVERIFIED_SKIP:", code, flush=True)
+                        continue
                     if code in conflicts:
                         continue
                     previous = observed.get(code)
@@ -284,6 +289,8 @@ def main():
         raise RuntimeError("All CU queries failed; state unchanged")
 
     for code, item in sorted(observed.items()):
+        if code in HOLD_UNVERIFIED_CODES:
+            continue
         quantity = item["stock"]
         old = state["stores"].get(code, {})
         previous = stock_number(old.get("stock"))
