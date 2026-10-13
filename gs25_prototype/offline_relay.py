@@ -21,6 +21,7 @@ class RelayFailure(Exception):
 
 def _jwt_exp(value):
     import base64
+    import binascii
     if not isinstance(value, str) or not re.fullmatch(r'[\w-]+\.[\w-]+\.[\w-]+', value):
         raise RelayFailure(403, 'INVALID_SESSION')
     try:
@@ -29,7 +30,7 @@ def _jwt_exp(value):
         if isinstance(exp, bool) or not isinstance(exp, (int, float)) or exp <= 0:
             raise ValueError()
         return exp
-    except (ValueError, KeyError, TypeError, UnicodeError) as exc:
+    except (ValueError, KeyError, TypeError, UnicodeError, binascii.Error) as exc:
         raise RelayFailure(403, 'INVALID_SESSION') from exc
 
 
@@ -126,9 +127,10 @@ class OfflineRelay:
         return updated
 
     def _session(self, force_token=None):
-        fd = os.open(self.lock_file, os.O_CREAT | os.O_RDWR, 0o600)
+        fd = os.open(self.lock_file, os.O_CREAT | os.O_RDWR | getattr(os, 'O_NOFOLLOW', 0), 0o600)
         try:
-            if stat.S_IMODE(os.fstat(fd).st_mode) & 0o077 or os.fstat(fd).st_uid != os.getuid():
+            info = os.fstat(fd)
+            if not stat.S_ISREG(info.st_mode) or stat.S_IMODE(info.st_mode) & 0o077 or info.st_uid != os.getuid():
                 raise RelayFailure(403, 'INSECURE_LOCK')
             _lock(fd, self.lock_timeout)
             session = _private_read(self.session_file)
@@ -149,10 +151,19 @@ class OfflineRelay:
             if self.revoked:
                 raise RelayFailure(403, 'SESSION_REVOKED')
             session = self._session()
-            status, payload = self.fake_stock(session['accessToken'], item_code, keyword)
+            try:
+                status, payload = self.fake_stock(session['accessToken'], item_code, keyword)
+            except Exception as exc:
+                raise RelayFailure(502, 'STOCK_UNAVAILABLE') from exc
             if status in (401, 403):
                 session = self._session(force_token=session['accessToken'])
-                status, payload = self.fake_stock(session['accessToken'], item_code, keyword)
+                try:
+                    status, payload = self.fake_stock(session['accessToken'], item_code, keyword)
+                except Exception as exc:
+                    raise RelayFailure(502, 'STOCK_UNAVAILABLE') from exc
+                if status in (401, 403):
+                    self.revoked = True
+                    raise RelayFailure(403, 'SESSION_REVOKED')
             if status != 200:
                 raise RelayFailure(502, 'STOCK_UNAVAILABLE')
             return 200, adapt_stores(payload)
