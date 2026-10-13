@@ -8,17 +8,17 @@ def classifier(observed, *, query_succeeded=False):
              "status": "IN_STOCK" if i == 0 and observed else
                        ("NOT_OBSERVED" if query_succeeded else "NOT_QUERIED"),
              "stock": 2 if i == 0 and observed else None}
-            for i in range(119)]
+            for i in range(123)]
 
 def item(stock=2):
     return {"code":"101", "name":"CU 시험점", "address":"충청남도 아산시 시험로 1",
             "stock":stock, "city":"아산"}
 
 class ObservationTests(unittest.TestCase):
-    def test_all_119_preserved(self):
+    def test_all_123_preserved(self):
         r=observe([(36.7,127.0)],lambda *args:[item()],classifier)
-        self.assertEqual(r["candidate_count"],119)
-        self.assertEqual(len(r["candidates"]),119)
+        self.assertEqual(r["candidate_count"],123)
+        self.assertEqual(len(r["candidates"]),123)
         self.assertEqual(r["barcode"],BARCODE)
     def test_deduplicate_coordinates(self):
         calls=[]
