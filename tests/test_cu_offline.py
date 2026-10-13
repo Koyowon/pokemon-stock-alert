@@ -28,6 +28,7 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(len({s["registry_id"] for s in stores}), 119)
         self.assertEqual(len({s["name"] for s in stores}), 119)
         self.assertEqual(sum(bool(s["cu_store_code"]) for s in stores), 28)
+        self.assertTrue(all(s["cu_store_code"].isdigit() for s in stores if s["cu_store_code"]))
         self.assertTrue(all(s["monitor_candidate"] is True for s in stores))
         self.assertTrue(all(s["product_barcode"] == BARCODE for s in stores))
         self.assertTrue(all(s["product_status"] == "NOT_QUERIED" for s in stores))
@@ -55,6 +56,13 @@ class RegistryTests(unittest.TestCase):
         ):
             self.assertTrue(any(r["cu_store_code"] == code and r["status"] == expected for r in rows))
         self.assertTrue(any(r["status"] == "NOT_OBSERVED" for r in rows))
+
+    def test_registry_codes_match_api_identifiers(self):
+        # The CU API returns digit-only store codes, never CSV float strings.
+        code = next(s["cu_store_code"] for s in registry.load_registry() if s["cu_store_code"])
+        self.assertTrue(code.isdigit())
+        rows = registry.classify_observations({code: 2}, query_succeeded=True)
+        self.assertTrue(any(r["cu_store_code"] == code and r["status"] == "IN_STOCK" and r["stock"] == 2 for r in rows))
 
     def test_boolean_is_not_stock_integer(self):
         code = next(s["cu_store_code"] for s in registry.load_registry() if s["cu_store_code"])
