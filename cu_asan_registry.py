@@ -62,18 +62,22 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
         else:
             api[code] = {"stock": value}
 
-    by_identity = {}\n    by_safe_identity = {}
+    by_identity = {}
+    by_safe_identity = {}
     for code, item in api.items():
         name = normalize_name(item.get("name"))
         address = normalize_address(item.get("address"))
         if name and address:
             by_identity.setdefault((name, address), []).append(code)
+            by_safe_identity.setdefault((name, conservative_address_key(item.get('address'))), []).append(code)
 
     registry_keys = [
         (normalize_name(s.get("name")), normalize_address(s.get("address")))
         for s in stores
     ]
-    key_counts = Counter(k for k in registry_keys if all(k))\n    safe_keys = [(normalize_name(s.get('name')), conservative_address_key(s.get('address'))) for s in stores]\n    safe_counts = Counter(k for k in safe_keys if all(k))
+    key_counts = Counter(k for k in registry_keys if all(k))
+    safe_keys = [(normalize_name(s.get('name')), conservative_address_key(s.get('address'))) for s in stores]
+    safe_counts = Counter(k for k in safe_keys if all(k))
     configured_codes = [
         str(store.get("cu_store_code") or "").strip() for store in stores
     ]
