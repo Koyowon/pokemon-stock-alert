@@ -56,7 +56,7 @@ def parse_monitor_log(log_text):
 def convert_monitor_log(log_path, txt_path, json_path):
     """Write only requested preview files after complete validation."""
     snapshot = parse_monitor_log(Path(log_path).read_text(encoding="utf-8"))
-    return write_preview(snapshot, txt_path, json_path)
+    return write_preview(snapshot, txt_path, json_path, input_path=log_path)
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Offline CU monitor log to preview converter")
