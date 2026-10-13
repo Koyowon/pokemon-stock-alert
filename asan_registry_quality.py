@@ -58,11 +58,11 @@ def audit(data):
     }
 
 def baseline_ok(report):
-    return (report['total'] == 119 and report['unique_ids'] == 119
-            and not report['duplicate_ids'] and report['coded'] == 28
-            and report['uncoded'] == 91 and not report['duplicate_codes']
+    return (report['total'] == 123 and report['unique_ids'] == 123
+            and not report['duplicate_ids'] and report['coded'] == 34
+            and report['uncoded'] == 89 and not report['duplicate_codes']
             and report['coordinates_present'] == 3
-            and report['coordinates_missing'] == 116
+            and report['coordinates_missing'] == 120
             and not report['coordinates_invalid']
             and len(report['duplicate_addresses']) == 2
             and report['unknown_area'] == 23 and report['barcode_valid'])
