@@ -142,11 +142,10 @@ def main():
             continue
         prior = previous.get('regions', {}).get(rid)
         if prior is None:
-            print(f'BASELINE region={rid} positive={len(positives)} no_initial_alert', flush=True)
-            # First scan is baseline: do not send a flood of notifications.
-        else:
-            # Version 1 persisted positives only; missing old stores are unknown, not zero.
-            old = prior.get('stores', prior.get('positive', {}))
+            print(f'INITIAL_SCAN region={rid} positive={len(positives)} first_positive_alerts_enabled', flush=True)
+        # Missing previous region/store is unknown, not zero; initial positives alert.
+        if prior is None or isinstance(prior, dict):
+            old = prior.get('stores', prior.get('positive', {})) if prior else {}
             changes = []
             for sid, item in sorted(seen.items()):
                 q = item['quantity']
