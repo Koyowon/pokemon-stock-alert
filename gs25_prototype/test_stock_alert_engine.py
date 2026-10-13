@@ -1,17 +1,20 @@
-"""Offline-only unit tests for locked GS25 mock stock state and outbox."""
-import fcntl
+"""Offline-only unit tests for v3 GS25 mock stock state and leased outbox."""
 import json
 import multiprocessing
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mock_outbox import complete_mock_event, pending_mock_events
+from mock_outbox import (
+    claim_mock_event, complete_mock_event, pending_mock_events,
+    recover_expired_claims, release_mock_event,
+)
 from stock_alert_engine import StockAlertError, mock_notification_preview, process_mock_snapshot
-from stock_state_store import locked_state, read_state
+from stock_state_store import StateDurabilityError, locked_state, read_state
 
 PRODUCT = "MOCK_POKEMON_30"
 NAME = "포켓몬카드 30주년 메가확장팩"
@@ -35,6 +38,22 @@ def _worker(path, ready, start, result):
         result.put(type(exc).__name__)
 
 
+def _hold_lock(path, ready, release):
+    with locked_state(path):
+        ready.put(True)
+        release.wait(5)
+
+
+def _claim_worker(path, identifier, ready, start, result):
+    ready.put(True)
+    start.wait(5)
+    try:
+        claim = claim_mock_event(path, identifier, T3)
+        result.put(claim is not None)
+    except Exception as exc:
+        result.put(type(exc).__name__)
+
+
 class TestOfflineStockAlerts(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -44,18 +63,20 @@ class TestOfflineStockAlerts(unittest.TestCase):
     def process(self, stores, time, product=PRODUCT):
         return process_mock_snapshot(self.path, product, NAME, stores, time)
 
+    def seed_event(self):
+        self.process([store(0)], T1)
+        return self.process([store(2)], T2)[0]
+
     def test_first_snapshot_is_baseline(self):
         self.assertEqual(self.process([store(2)], T1), [])
         self.assertEqual(read_state(self.path)["items"][PRODUCT + "::MOCK_001"]["quantity"], 2)
-        self.assertEqual(read_state(self.path)["version"], 2)
+        self.assertEqual(read_state(self.path)["version"], 3)
 
     def test_restock_and_duplicate_suppression(self):
-        self.process([store(0)], T1)
-        events = self.process([store(2)], T2)
-        self.assertEqual(len(events), 1)
-        self.assertEqual(events[0]["type"], "restocked")
-        self.assertTrue(events[0]["mockOnly"])
-        self.assertIn("테스트 데이터", mock_notification_preview(events[0]))
+        event = self.seed_event()
+        self.assertEqual(event["type"], "restocked")
+        self.assertTrue(event["mockOnly"])
+        self.assertIn("테스트 데이터", mock_notification_preview(event))
         self.assertEqual(self.process([store(2)], T2), [])
         self.assertEqual(self.process([store(2)], T3), [])
         self.assertEqual(len(pending_mock_events(self.path)), 1)
@@ -109,7 +130,7 @@ class TestOfflineStockAlerts(unittest.TestCase):
             mock_notification_preview({"mockOnly": False})
 
     def test_corrupt_stored_timestamp_preserved(self):
-        state = {"version": 2, "items": {"MOCK_A::MOCK_001": {"quantity": 2, "observed_at": "not-a-date"}}, "outbox": {}}
+        state = {"version": 3, "items": {"MOCK_A::MOCK_001": {"quantity": 2, "observed_at": "not-a-date"}}, "outbox": {}}
         self.path.write_text(json.dumps(state))
         before = self.path.read_bytes()
         with self.assertRaises(StockAlertError):
@@ -121,7 +142,7 @@ class TestOfflineStockAlerts(unittest.TestCase):
         self.path.write_text(json.dumps(old))
         self.assertEqual(len(self.process([store(2)], T2)), 1)
         state = read_state(self.path)
-        self.assertEqual(state["version"], 2)
+        self.assertEqual(state["version"], 3)
         self.assertEqual(state["items"][PRODUCT + "::MOCK_001"]["quantity"], 2)
         self.assertEqual(len(state["outbox"]), 1)
 
@@ -134,12 +155,10 @@ class TestOfflineStockAlerts(unittest.TestCase):
         self.assertEqual(self.path.read_bytes(), before)
 
     def test_pending_survives_restart_and_completion(self):
-        self.process([store(0)], T1)
-        self.process([store(2)], T2)
-        pending = pending_mock_events(self.path)
-        self.assertEqual(len(pending), 1)
-        self.assertTrue(complete_mock_event(self.path, pending[0]["id"]))
-        self.assertFalse(complete_mock_event(self.path, pending[0]["id"]))
+        event = self.seed_event()
+        self.assertEqual(len(pending_mock_events(self.path)), 1)
+        claim = claim_mock_event(self.path, event["id"], T3)
+        self.assertTrue(complete_mock_event(self.path, event["id"], claim["claimToken"], T3))
         self.assertEqual(pending_mock_events(self.path), [])
         self.assertEqual(self.process([store(2)], T2), [])
 
@@ -152,14 +171,9 @@ class TestOfflineStockAlerts(unittest.TestCase):
         self.assertEqual(self.path.read_bytes(), before)
 
     def test_lock_timeout(self):
-        # Separate process required: flock locks are per open file description.
-        ready = multiprocessing.Queue()
-        release = multiprocessing.Event()
-        def hold(path, ready, release):
-            with locked_state(path):
-                ready.put(True)
-                release.wait(5)
-        process = multiprocessing.Process(target=hold, args=(self.path, ready, release))
+        ctx = multiprocessing.get_context("spawn")
+        ready, release = ctx.Queue(), ctx.Event()
+        process = ctx.Process(target=_hold_lock, args=(self.path, ready, release))
         process.start()
         try:
             self.assertTrue(ready.get(timeout=5))
@@ -172,21 +186,20 @@ class TestOfflineStockAlerts(unittest.TestCase):
             if process.is_alive():
                 process.terminate()
                 process.join()
+        self.assertEqual(process.exitcode, 0)
 
     def test_concurrent_same_event_queued_once(self):
         self.process([store(0)], T1)
-        ready = multiprocessing.Queue()
-        start = multiprocessing.Event()
-        result = multiprocessing.Queue()
-        processes = [multiprocessing.Process(target=_worker, args=(self.path, ready, start, result)) for _ in range(2)]
+        ctx = multiprocessing.get_context("spawn")
+        ready, start, result = ctx.Queue(), ctx.Event(), ctx.Queue()
+        processes = [ctx.Process(target=_worker, args=(self.path, ready, start, result)) for _ in range(2)]
         for proc in processes:
             proc.start()
         try:
             self.assertTrue(ready.get(timeout=5))
             self.assertTrue(ready.get(timeout=5))
             start.set()
-            outcomes = [result.get(timeout=10) for _ in processes]
-            self.assertEqual(sorted(outcomes), [0, 1])
+            self.assertEqual(sorted(result.get(timeout=10) for _ in processes), [0, 1])
             self.assertEqual(len(pending_mock_events(self.path)), 1)
         finally:
             start.set()
@@ -195,6 +208,98 @@ class TestOfflineStockAlerts(unittest.TestCase):
                 if proc.is_alive():
                     proc.terminate()
                     proc.join()
+        self.assertTrue(all(proc.exitcode == 0 for proc in processes))
+
+    def test_post_rename_fsync_failure_distinguished(self):
+        self.process([store(0)], T1)
+        real_fsync = __import__("os").fsync
+        calls = [0]
+        def fail_directory(fd):
+            calls[0] += 1
+            if calls[0] == 2:
+                raise OSError("directory fsync failure")
+            return real_fsync(fd)
+        with patch("stock_state_store.os.fsync", side_effect=fail_directory):
+            with self.assertRaises(StateDurabilityError) as caught:
+                self.process([store(2)], T2)
+        self.assertEqual(caught.exception.observed_state["items"][PRODUCT + "::MOCK_001"]["quantity"], 2)
+
+    def test_v2_migration(self):
+        event = self.seed_event()
+        state = json.loads(self.path.read_text())
+        state["version"] = 2
+        for entry in state["outbox"].values():
+            for field in ("attempts", "claimToken", "claimExpiresAt"):
+                del entry[field]
+        self.path.write_text(json.dumps(state))
+        self.assertEqual(read_state(self.path)["outbox"][event["id"]]["attempts"], 0)
+        self.process([store(2)], T3)
+        self.assertEqual(json.loads(self.path.read_text())["version"], 3)
+
+    def test_event_id_tampering_rejected(self):
+        event = self.seed_event()
+        state = json.loads(self.path.read_text())
+        state["outbox"][event["id"]]["currentQuantity"] = 3
+        self.path.write_text(json.dumps(state))
+        before = self.path.read_bytes()
+        with self.assertRaises(StockAlertError):
+            pending_mock_events(self.path)
+        self.assertEqual(self.path.read_bytes(), before)
+
+    def test_claim_wrong_token_and_expiry(self):
+        event = self.seed_event()
+        claim = claim_mock_event(self.path, event["id"], T3, lease_seconds=5)
+        with self.assertRaises(StockAlertError):
+            complete_mock_event(self.path, event["id"], "wrong", T3)
+        with self.assertRaises(StockAlertError):
+            complete_mock_event(self.path, event["id"], claim["claimToken"], T4)
+
+    def test_expiry_recovery_and_fencing(self):
+        event = self.seed_event()
+        first = claim_mock_event(self.path, event["id"], T3, lease_seconds=5)
+        self.assertTrue(recover_expired_claims(self.path, T4))
+        second = claim_mock_event(self.path, event["id"], T4)
+        self.assertNotEqual(first["claimToken"], second["claimToken"])
+        with self.assertRaises(StockAlertError):
+            complete_mock_event(self.path, event["id"], first["claimToken"], T4)
+
+    def test_max_three_attempts_failed(self):
+        event = self.seed_event()
+        for attempt in range(3):
+            now = (datetime.fromisoformat(T3) + timedelta(seconds=attempt * 10)).isoformat()
+            claim = claim_mock_event(self.path, event["id"], now)
+            expected = "failed" if attempt == 2 else "pending"
+            self.assertEqual(release_mock_event(self.path, event["id"], claim["claimToken"], now), expected)
+        self.assertIsNone(claim_mock_event(self.path, event["id"], T4))
+        self.assertEqual(read_state(self.path)["outbox"][event["id"]]["status"], "failed")
+
+    def test_concurrent_claim_only_one(self):
+        event = self.seed_event()
+        ctx = multiprocessing.get_context("spawn")
+        ready, start, result = ctx.Queue(), ctx.Event(), ctx.Queue()
+        procs = [ctx.Process(target=_claim_worker, args=(self.path, event["id"], ready, start, result)) for _ in range(2)]
+        for proc in procs:
+            proc.start()
+        try:
+            self.assertTrue(ready.get(timeout=5))
+            self.assertTrue(ready.get(timeout=5))
+            start.set()
+            self.assertEqual(sorted(result.get(timeout=10) for _ in procs), [False, True])
+        finally:
+            start.set()
+            for proc in procs:
+                proc.join(5)
+                if proc.is_alive():
+                    proc.terminate()
+                    proc.join()
+        self.assertTrue(all(proc.exitcode == 0 for proc in procs))
+
+    def test_invalid_lock_timeout(self):
+        for timeout in (True, -1, float("nan"), float("inf")):
+            with self.subTest(timeout=timeout):
+                with self.assertRaises(StockAlertError):
+                    with locked_state(self.path, timeout=timeout):
+                        pass
 
 
 if __name__ == "__main__":
