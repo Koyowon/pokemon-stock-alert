@@ -148,8 +148,8 @@ class AsanAutoMatchTests(unittest.TestCase):
             {"67890": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 5}},
         )
         self.assertEqual(rows[0]["status"], "NOT_OBSERVED")
-        self.assertEqual(rows[1]["status"], "IN_STOCK")
-        self.assertEqual(rows[1]["observed_store_code"], "67890")
+        self.assertEqual(rows[1]["status"], "NOT_OBSERVED")
+        self.assertEqual(rows[1]["observed_store_code"], "")
 
     def test_ambiguous_unreserved_api_matches_are_held(self):
         rows = self.classify(
