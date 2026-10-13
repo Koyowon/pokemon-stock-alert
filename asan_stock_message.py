@@ -1,4 +1,5 @@
 """Pure text formatter for an Asan CU stock snapshot; no side effects."""
+from urllib.parse import quote
 
 VALID_STATUSES = frozenset(("IN_STOCK", "ZERO_STOCK", "NOT_OBSERVED", "NOT_QUERIED", "NO_VALID_STOCK_VALUE"))
 
@@ -17,13 +18,13 @@ def format_asan_stock_message(snapshot):
         if status == "IN_STOCK":
             if type(stock) is not int or stock <= 0:
                 raise ValueError("IN_STOCK requires positive integer stock")
-            groups["IN_STOCK"].append(f"• {row['name']} [{row['registry_id']}] — {stock}개")
+            groups["IN_STOCK"].append(f"• {row['name']} [{row['registry_id']}] — {stock}개\n  🗺 네이버지도: https://map.naver.com/p/search/{quote(str(row.get('address') or row['name']).strip(), safe='')}")
         elif status == "ZERO_STOCK":
             if type(stock) is not int or stock != 0:
                 raise ValueError("ZERO_STOCK requires zero stock")
-            groups["ZERO_STOCK"].append(f"• {row['name']} [{row['registry_id']}] — 0개")
+            groups["ZERO_STOCK"].append(f"• {row['name']} [{row['registry_id']}] — 0개\n  🗺 네이버지도: https://map.naver.com/p/search/{quote(str(row.get('address') or row['name']).strip(), safe='')}")
         else:
-            groups["UNKNOWN"].append(f"• {row['name']} [{row['registry_id']}] — 미확인 ({status})")
+            groups["UNKNOWN"].append(f"• {row['name']} [{row['registry_id']}] — 확인 불가 ({status})")
     for heading, key in (("🟢 재고 있음", "IN_STOCK"), ("⚪ 재고 0개", "ZERO_STOCK"), ("❔ 재고 미확인", "UNKNOWN")):
         lines.append(f"{heading}: {len(groups[key])}개 점포")
         lines.extend(groups[key] or ["• 해당 없음"])
