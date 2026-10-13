@@ -1,0 +1,8 @@
+"registry_id","name","original_area","address_evidence","derived_area","decision","reason","source"
+"ASAN-CU-022","씨유 뉴아산한라점","삼동","(권곡동)","권곡동","PROVISIONAL_CONFLICT_REVIEW","Original area 삼동 conflicts with explicit address parenthetical; do not overwrite","asan_cu_watch_registry.json"
+"ASAN-CU-027","씨유 아산스위첸점","삼동","(모종동)","모종동","PROVISIONAL_CONFLICT_REVIEW","Original area 삼동 conflicts with explicit address parenthetical; do not overwrite","asan_cu_watch_registry.json"
+"ASAN-CU-060","씨유 뉴아산권곡타운점","삼동","(권곡동)","권곡동","PROVISIONAL_CONFLICT_REVIEW","Original area 삼동 conflicts with explicit address parenthetical; do not overwrite","asan_cu_watch_registry.json"
+"ASAN-CU-099","CU 아산온천마을점","주소 미확인","","","UNRESOLVED","Saved CU state matches code 40839 and address but has no explicit district","asan_cu_watch_registry.json;cu_stock_state.json"
+"ASAN-CU-110","CU 아산온중점","","","","UNRESOLVED","No explicit district or CU-only saved-state match; road/name insufficient","asan_cu_watch_registry.json;cu_stock_state.json"
+"ASAN-CU-111","CU 아산모종캐슬3차점","","","","UNRESOLVED","No explicit district or CU-only saved-state match; road/name insufficient","asan_cu_watch_registry.json;cu_stock_state.json"
+"ASAN-CU-113","CU 아산권곡삼부점","","","","UNRESOLVED","No explicit district or CU-only saved-state match; road/name insufficient","asan_cu_watch_registry.json;cu_stock_state.json"
