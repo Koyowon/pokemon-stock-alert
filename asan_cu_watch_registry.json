@@ -3,8 +3,8 @@
   "region": "아산",
   "product_barcode": "8800286275732",
   "source_date": "2026-10-13",
-  "candidate_count": 119,
-  "notes": "119 unverified candidates; absent API observation is never zero stock.",
+  "candidate_count": 123,
+  "notes": "123 Asan CU candidates; six stores manually registered by user approval on 2026-10-13; absent API observation is never zero stock.",
   "stores": [
     {
       "registry_id": "ASAN-CU-001",
@@ -776,7 +776,7 @@
       "name": "씨유 아산온천타운점",
       "address": "충청남도 아산시 중앙로 27 (온천동)",
       "area": "온천동",
-      "cu_store_code": "",
+      "cu_store_code": "53982",
       "latitude": "",
       "longitude": "",
       "status": "CANDIDATE_UNVERIFIED",
@@ -786,7 +786,7 @@
       "sources": "공개 편의점 인허가 기반 목록",
       "source_urls": "https://cafe.ayo.pe.kr/convenience/region/%EC%B6%A9%EB%82%A8/%EC%95%84%EC%82%B0%EC%8B%9C",
       "duplicate_note": "미확인",
-      "review_note": "유지/검증 보류"
+      "review_note": "유지/검증 보류; 사용자 승인 수동 코드 연결(2026-10-13), API 상세주소 차이 검증 생략"
     },
     {
       "registry_id": "ASAN-CU-047",
@@ -1286,7 +1286,7 @@
       "name": "씨유 아산온양힐스테이트점",
       "address": "충청남도 아산시 남산로 120 (온천동)",
       "area": "온천동",
-      "cu_store_code": "",
+      "cu_store_code": "40059",
       "latitude": "",
       "longitude": "",
       "status": "CANDIDATE_UNVERIFIED",
@@ -1296,7 +1296,7 @@
       "sources": "공개 편의점 인허가 기반 목록",
       "source_urls": "https://cafe.ayo.pe.kr/convenience/region/%EC%B6%A9%EB%82%A8/%EC%95%84%EC%82%B0%EC%8B%9C",
       "duplicate_note": "미확인",
-      "review_note": "유지/검증 보류"
+      "review_note": "유지/검증 보류; 사용자 승인 수동 코드 연결(2026-10-13), API 상세주소 차이 검증 생략"
     },
     {
       "registry_id": "ASAN-CU-077",
@@ -2028,6 +2028,74 @@
       "source_urls": "https://www.google.com/maps/search/?api=1&query=%EC%94%A8%EC%9C%A0%EC%95%84%EC%82%B0%EC%9A%B4%EA%B5%90%EC%A0%90%20%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EC%95%84%EC%82%B0%EC%8B%9C%20%EB%91%94%ED%8F%AC%EB%A9%B4%20%EC%84%9D%EA%B3%A1%EA%B8%B8%2040-53",
       "duplicate_note": "기존 점포와 개명/이전 여부 미검증",
       "review_note": "유지/중복·폐점 검증 보류"
+    },
+    {
+      "registry_id": "ASAN-CU-120",
+      "name": "아산온양점",
+      "address": "충청남도 아산시 남산로8번길 40-17 (용화동, 그린빌라트) 그린빌라트",
+      "area": "용화동",
+      "cu_store_code": "43799",
+      "latitude": "",
+      "longitude": "",
+      "status": "CANDIDATE_USER_APPROVED",
+      "monitor_candidate": true,
+      "product_barcode": "8800286275732",
+      "product_status": "NOT_QUERIED",
+      "sources": "CU API 관측 보고서 #38352277768",
+      "source_urls": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/38352277768",
+      "duplicate_note": "사용자 승인 신규 후보",
+      "review_note": "사용자 승인 등록(2026-10-13); 추가 검증 생략"
+    },
+    {
+      "registry_id": "ASAN-CU-121",
+      "name": "아산아람채점",
+      "address": "충청남도 아산시 온천대로 1323-25 (방축동, 아산KD아람채) 아산KD아람채",
+      "area": "방축동",
+      "cu_store_code": "46004",
+      "latitude": "",
+      "longitude": "",
+      "status": "CANDIDATE_USER_APPROVED",
+      "monitor_candidate": true,
+      "product_barcode": "8800286275732",
+      "product_status": "NOT_QUERIED",
+      "sources": "CU API 관측 보고서 #38352277768",
+      "source_urls": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/38352277768",
+      "duplicate_note": "사용자 승인 신규 후보",
+      "review_note": "사용자 승인 등록(2026-10-13); 추가 검증 생략"
+    },
+    {
+      "registry_id": "ASAN-CU-122",
+      "name": "아산온천동점",
+      "address": "충청남도 아산시 온화로11번길 14, (온천동)",
+      "area": "온천동",
+      "cu_store_code": "49877",
+      "latitude": "",
+      "longitude": "",
+      "status": "CANDIDATE_USER_APPROVED",
+      "monitor_candidate": true,
+      "product_barcode": "8800286275732",
+      "product_status": "NOT_QUERIED",
+      "sources": "CU API 관측 보고서 #38352277768",
+      "source_urls": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/38352277768",
+      "duplicate_note": "사용자 승인 신규 후보",
+      "review_note": "사용자 승인 등록(2026-10-13); 추가 검증 생략"
+    },
+    {
+      "registry_id": "ASAN-CU-123",
+      "name": "아산CGV점",
+      "address": "충청남도 아산시 온천대로 1538 (온천동)",
+      "area": "온천동",
+      "cu_store_code": "50619",
+      "latitude": "",
+      "longitude": "",
+      "status": "CANDIDATE_USER_APPROVED",
+      "monitor_candidate": true,
+      "product_barcode": "8800286275732",
+      "product_status": "NOT_QUERIED",
+      "sources": "CU API 관측 보고서 #38352277768",
+      "source_urls": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/38352277768",
+      "duplicate_note": "사용자 승인 신규 후보",
+      "review_note": "사용자 승인 등록(2026-10-13); 추가 검증 생략"
     }
   ]
 }
