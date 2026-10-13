@@ -29,8 +29,8 @@ class UnknownPolicyTests(unittest.TestCase):
         s=build_snapshot({},query_succeeded=True)
         s['candidates'][1]['registry_id']=s['candidates'][0]['registry_id']
         with self.assertRaises(ValueError): delivery_key(s)
-    def test_missing_state_blocks_unknown_snapshot(self):
-        s=build_snapshot({},query_succeeded=True)
+    def test_missing_state_blocks_observed_snapshot(self):
+        s=build_snapshot({"53982":{"stock":2}},query_succeeded=True)
         class Missing:
             def read(self): raise OSError('missing')
         self.assertEqual(deliver_persistent(s,['unknown'],lambda p:self.fail('sent'),Missing(),enabled=True),'STATE_UNAVAILABLE')
