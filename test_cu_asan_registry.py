@@ -115,5 +115,52 @@ class AsanAutoMatchTests(unittest.TestCase):
                          registry.normalize_address(ADDRESS))
 
 
+    def test_registered_code_has_priority_even_when_listed_later(self):
+        rows = self.classify(
+            [candidate(1), candidate(2, code="12345")],
+            {"12345": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 5}},
+        )
+        self.assertEqual(rows[0]["status"], "NOT_OBSERVED")
+        self.assertEqual(rows[1]["status"], "IN_STOCK")
+        self.assertEqual(rows[1]["match_method"], "REGISTERED_CODE")
+
+    def test_duplicate_registered_codes_are_held(self):
+        rows = self.classify(
+            [candidate(1, code="12345"), candidate(2, code="12345")],
+            {"12345": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 5}},
+        )
+        self.assertEqual([row["status"] for row in rows[:2]],
+                         ["NOT_OBSERVED", "NOT_OBSERVED"])
+        self.assertFalse(any(row["observed_store_code"] for row in rows[:2]))
+
+    def test_duplicate_registered_code_cannot_be_auto_claimed(self):
+        rows = self.classify(
+            [candidate(1), candidate(2, code="12345"),
+             candidate(3, code="12345")],
+            {"12345": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 5}},
+        )
+        self.assertEqual([row["status"] for row in rows[:3]],
+                         ["NOT_OBSERVED"] * 3)
+
+    def test_unobserved_registered_code_does_not_block_other_api_code(self):
+        rows = self.classify(
+            [candidate(1, code="12345"), candidate(2)],
+            {"67890": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 5}},
+        )
+        self.assertEqual(rows[0]["status"], "NOT_OBSERVED")
+        self.assertEqual(rows[1]["status"], "IN_STOCK")
+        self.assertEqual(rows[1]["observed_store_code"], "67890")
+
+    def test_ambiguous_unreserved_api_matches_are_held(self):
+        rows = self.classify(
+            [candidate(1), candidate(2, code="99999")],
+            {
+                "12345": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 2},
+                "67890": {"name": "CU아산중앙점", "address": ADDRESS, "stock": 3},
+            },
+        )
+        self.assertEqual(rows[0]["status"], "NOT_OBSERVED")
+
+
 if __name__ == "__main__":
     unittest.main()
