@@ -174,6 +174,7 @@ def main():
                 except (OSError, ValueError, RuntimeError) as exc:
                     print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
                     # Avoid advancing this store's baseline if the alert was not sent.
+                    former = old.get(sid)
                     if former is None:
                         seen.pop(sid, None)
                     else:
