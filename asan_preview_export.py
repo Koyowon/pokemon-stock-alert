@@ -45,21 +45,60 @@ def make_preview(snapshot):
         "pages": pages,
     }
 
-def write_preview(snapshot, txt_path, json_path):
+PROTECTED_NAMES = frozenset({
+    "cu_stock_state.json", "asan_cu_watch_registry.json",
+    "cu_stock_monitor.py", "asan_preview_export.py", "asan_log_preview.py",
+    "asan_stock_snapshot.py", "asan_stock_message.py", "asan_stock_chunks.py",
+    ".gitignore", "README.md",
+})
+REPO_ROOT = Path(__file__).resolve().parent
+
+
+def validate_output_paths(txt_path, json_path, *, input_path=None):
+    """Fail closed on protected, linked, or overlapping output paths."""
+    targets = [Path(txt_path), Path(json_path)]
+    protected = [Path(input_path)] if input_path is not None else []
+    protected += [REPO_ROOT / name for name in PROTECTED_NAMES]
+    resolved = []
+    for target in targets:
+        if target.is_symlink():
+            raise ValueError("Symlink output path forbidden")
+        canonical = target.resolve()
+        if target.name in PROTECTED_NAMES:
+            raise ValueError("Protected repository/state filename")
+        if canonical.is_relative_to(REPO_ROOT) and (
+            canonical.suffix in {".py", ".yml", ".yaml", ".toml", ".ini", ".sh"}
+            or ".git" in canonical.relative_to(REPO_ROOT).parts
+        ):
+            raise ValueError("Repository source/config output forbidden")
+        for item in protected:
+            if canonical == item.resolve() or (
+                target.exists() and item.exists() and target.samefile(item)
+            ):
+                raise ValueError("Output collides with protected input or state")
+        resolved.append(canonical)
+    if resolved[0] == resolved[1] or (
+        targets[0].exists() and targets[1].exists()
+        and targets[0].samefile(targets[1])
+    ):
+        raise ValueError("TXT and JSON output paths overlap")
+    return targets
+
+
+def write_preview(snapshot, txt_path, json_path, *, input_path=None):
     """Stage both outputs and roll back if a commit fails (not crash-atomic)."""
     import os
     import shutil
     import tempfile
 
     preview = make_preview(snapshot)
-    txt_path, json_path = Path(txt_path), Path(json_path)
-    if txt_path.resolve() == json_path.resolve():
-        raise ValueError("TXT and JSON output paths must differ")
+    txt_path, json_path = validate_output_paths(txt_path, json_path, input_path=input_path)
     payloads = (
         (txt_path, ("\n\n".join(preview["pages"]) + "\n").encode("utf-8")),
         (json_path, (json.dumps(preview, ensure_ascii=False, indent=2) + "\n").encode("utf-8")),
     )
     staged, backups, committed = {}, {}, []
+    preserve_backups = False
     try:
         for target, payload in payloads:
             if not target.parent.is_dir() or (target.exists() and not target.is_file()):
@@ -79,17 +118,29 @@ def write_preview(snapshot, txt_path, json_path):
             for target, _ in payloads:
                 os.replace(staged[target], target)
                 committed.append(target)
-        except OSError:
+        except OSError as commit_error:
+            rollback_errors = []
             for target in reversed(committed):
-                if target in backups:
-                    os.replace(backups[target], target)
-                else:
-                    target.unlink(missing_ok=True)
+                try:
+                    if target in backups:
+                        os.replace(backups[target], target)
+                    else:
+                        target.unlink(missing_ok=True)
+                except OSError as rollback_error:
+                    rollback_errors.append(rollback_error)
+            if rollback_errors:
+                preserve_backups = True
+                raise RuntimeError(
+                    'Preview commit failed; rollback failed; backup files preserved'
+                ) from commit_error
             raise
         return preview
     finally:
-        for path in (*staged.values(), *backups.values()):
+        for path in staged.values():
             path.unlink(missing_ok=True)
+        if not preserve_backups:
+            for path in backups.values():
+                path.unlink(missing_ok=True)
 
 
 def main(argv=None):
