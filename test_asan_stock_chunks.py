@@ -22,7 +22,7 @@ class ChunkTests(unittest.TestCase):
         text = "\n".join(page.split("\n", 1)[1] for page in preview_asan_stock_messages(snap))
         self.assertIn("— 8개", text)
         self.assertIn("— 0개", text)
-        self.assertIn("미확인 (NOT_OBSERVED)", text)
+        self.assertIn("확인 불가 (NOT_OBSERVED)", text)
 
     def test_short_message_unchanged(self):
         self.assertEqual(split_telegram_text("short"), ["short"])
