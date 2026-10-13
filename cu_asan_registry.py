@@ -22,14 +22,14 @@ def load_registry(path=REGISTRY_FILE):
 
 
 def normalize_name(value):
-    value = re.sub(r"^(?:씨유|CU)\\s*", "", str(value or "").strip(), flags=re.I)
+    value = re.sub(r"^(?:씨유|CU)\s*", "", str(value or "").strip(), flags=re.I)
     return re.sub(r"[^0-9a-z가-힣]", "", value.lower())
 
 
 def normalize_address(value):
     value = str(value or "").strip().lower()
-    value = re.sub(r"^충남(?:청남도)?\\s+", "", value)
-    return re.sub(r"\\s+", "", value)
+    value = re.sub(r"^충남(?:청남도)?\s+", "", value)
+    return re.sub(r"\s+", "", value)
 
 
 def classify_observations(observed_by_code, *, query_succeeded=False):
