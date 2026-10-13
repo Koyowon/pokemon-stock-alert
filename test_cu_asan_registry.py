@@ -21,9 +21,9 @@ def candidate(number, name="씨유 아산중앙점", address=ADDRESS, code=""):
 
 
 def fixture(*selected):
-    """Supply exactly 119 candidates without editing the real registry."""
+    """Supply exactly 123 candidates without editing the real registry."""
     entries = list(selected)
-    for index in range(len(entries), 119):
+    for index in range(len(entries), 123):
         entries.append(candidate(index + 1, name=f"씨유 테스트미조회{index}점",
                                  address=f"충청남도 아산시 테스트로 {index + 100}"))
     return entries
