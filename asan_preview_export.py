@@ -150,7 +150,7 @@ def main(argv=None):
     parser.add_argument("--json", required=True, type=Path)
     args = parser.parse_args(argv)
     snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
-    report = write_preview(snapshot, args.txt, args.json)
+    report = write_preview(snapshot, args.txt, args.json, input_path=args.snapshot)
     print("ASAN_PREVIEW_OK:", report["candidate_count"], "stores,", report["page_count"], "pages")
 
 if __name__ == "__main__":
