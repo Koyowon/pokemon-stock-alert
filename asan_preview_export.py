@@ -45,12 +45,51 @@ def make_preview(snapshot):
     }
 
 def write_preview(snapshot, txt_path, json_path):
-    """Write only explicitly requested local preview files."""
+    """Stage both outputs and roll back if a commit fails (not crash-atomic)."""
+    import os
+    import shutil
+    import tempfile
+
     preview = make_preview(snapshot)
     txt_path, json_path = Path(txt_path), Path(json_path)
-    txt_path.write_text("\n\n".join(preview["pages"]) + "\n", encoding="utf-8")
-    json_path.write_text(json.dumps(preview, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return preview
+    if txt_path.resolve() == json_path.resolve():
+        raise ValueError("TXT and JSON output paths must differ")
+    payloads = (
+        (txt_path, ("\n\n".join(preview["pages"]) + "\n").encode("utf-8")),
+        (json_path, (json.dumps(preview, ensure_ascii=False, indent=2) + "\n").encode("utf-8")),
+    )
+    staged, backups, committed = {}, {}, []
+    try:
+        for target, payload in payloads:
+            if not target.parent.is_dir() or (target.exists() and not target.is_file()):
+                raise ValueError("Invalid preview output path")
+            fd, name = tempfile.mkstemp(prefix=".asan-preview-", dir=target.parent)
+            staged[target] = Path(name)
+            with os.fdopen(fd, "wb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            if target.exists():
+                fd, name = tempfile.mkstemp(prefix=".asan-backup-", dir=target.parent)
+                os.close(fd)
+                backups[target] = Path(name)
+                shutil.copy2(target, backups[target])
+        try:
+            for target, _ in payloads:
+                os.replace(staged[target], target)
+                committed.append(target)
+        except OSError:
+            for target in reversed(committed):
+                if target in backups:
+                    os.replace(backups[target], target)
+                else:
+                    target.unlink(missing_ok=True)
+            raise
+        return preview
+    finally:
+        for path in (*staged.values(), *backups.values()):
+            path.unlink(missing_ok=True)
+
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Offline-only Asan CU preview exporter")
