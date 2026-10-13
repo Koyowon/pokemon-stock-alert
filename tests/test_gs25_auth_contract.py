@@ -4,7 +4,6 @@ Run manually: python -m unittest -v tests.test_gs25_auth_contract
 These tests model the upstream contract and do not test a live GS25 session.
 """
 import base64
-import multiprocessing
 import stat
 import time
 import json
@@ -221,18 +220,11 @@ class GS25AuthContractTests(unittest.TestCase):
             return os.replace(src, dst)
         self.make(replace=inspect).request()
 
+    @unittest.skip('Requires a separate multi-process race harness; no cross-process CAS implemented')
     def test_multi_process_refresh_rotation_conflict_detected(self):
-        # Two isolated workers can both read the same initial token; a plain
-        # atomic rename does NOT provide compare-and-swap for rotated tokens.
-        # This is a documented risk, not a claim that cross-process locking exists.
-        original = json.loads(self.file.read_text())
-        first = {**original, 'refreshToken': token(NOW + 14400)}
-        second = {**original, 'refreshToken': token(NOW + 21600)}
-        self.file.write_text(json.dumps(first))
-        os.replace(self.file, self.file)  # atomic replace alone has no CAS condition
-        self.file.write_text(json.dumps(second))
-        self.assertEqual(json.loads(self.file.read_text())['refreshToken'], second['refreshToken'])
-        self.assertNotEqual(first['refreshToken'], second['refreshToken'])
+        # Deliberately unverified: thread-level locking is not process-level locking.
+        # A production design needs interprocess locking or compare-and-swap.
+        pass
 
 
 if __name__ == "__main__":
