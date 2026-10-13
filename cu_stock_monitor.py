@@ -447,15 +447,19 @@ def main():
             and asan_successful_queries == len(POINTS["아산"])
             and not conflicts):
         try:
-            from asan_status_delivery import send_status
+            from asan_github_status_persistence import GitBranchCAS, deliver_persistent
             from asan_stock_snapshot import build_snapshot
             from asan_stock_chunks import preview_asan_stock_messages
             asan_rows = {code: item for code, item in observed.items()
                          if item["city"] == "아산"}
             status_snapshot = build_snapshot(asan_rows, query_succeeded=True)
-            result = send_status(status_snapshot,
-                                 preview_asan_stock_messages(status_snapshot),
-                                 telegram)
+            result = deliver_persistent(
+                status_snapshot,
+                preview_asan_stock_messages(status_snapshot),
+                telegram,
+                GitBranchCAS(Path(__file__).resolve().parent),
+                enabled=True,
+            )
             print("ASAN_STATUS_DELIVERY:", result, flush=True)
         except Exception as exc:
             print("ASAN_STATUS_DELIVERY_ERROR:", type(exc).__name__, flush=True)
