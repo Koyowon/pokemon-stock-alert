@@ -77,7 +77,9 @@ class GitBranchCAS:
         blob = self._git("hash-object", "-w", "--stdin",
                          input=json.dumps(state, ensure_ascii=False, sort_keys=True) + "\n")
         tree_oid = self._git("mktree", input=f"100644 blob {blob}\t{STATE_PATH}\n")
-        commit = self._git("commit-tree", tree_oid, "-p", expected_revision,
+        commit = self._git("-c", "user.name=Asan Status Journal",
+                           "-c", "user.email=asan-status@users.noreply.github.com",
+                           "commit-tree", tree_oid, "-p", expected_revision,
                            input="Update Asan CU status delivery journal\n")
         self._git("push", "--porcelain",
                   f"--force-with-lease=refs/heads/{self.branch}:{expected_revision}",
