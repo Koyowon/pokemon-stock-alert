@@ -1,8 +1,12 @@
-name: GS25 Android offline smoke (manual only)
+name: GS25 Android offline smoke (one approved push)
 
-# Test branch only. No automatic triggers and no GS25 services.
+# One approved branch-only workflow-file push. No schedule or PR triggers.
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - test/gs25-android-emulator
+    paths:
+      - .github/workflows/gs25-android-smoke.yml
 
 permissions:
   contents: read
@@ -17,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'
       - name: Validate offline mock parser
@@ -34,7 +38,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
           test -r /dev/kvm && test -w /dev/kvm
       - name: Boot Android and read local mock page
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
         with:
           api-level: 34
           target: google_apis
