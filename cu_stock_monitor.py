@@ -263,6 +263,8 @@ def store_identity_status(old, item):
     ):
         old_part = re.search(pattern, str(old.get("address") or ""))
         new_part = re.search(pattern, str(item.get("address") or ""))
+        if bool(old_part) != bool(new_part):
+            return "UNCERTAIN"
         if old_part and new_part:
             if re.sub(r"\s+", "", old_part.group(1)) != re.sub(
                 r"\s+", "", new_part.group(1)
