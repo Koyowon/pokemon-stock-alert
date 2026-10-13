@@ -28,7 +28,7 @@ def normalize_name(value):
 
 def normalize_address(value):
     value = str(value or "").strip().lower()
-    value = re.sub(r"^충남(?:청남도)?\s+", "", value)
+    value = re.sub(r"^(?:충남|충청남도)\s+", "", value)
     return re.sub(r"\s+", "", value)
 
 
