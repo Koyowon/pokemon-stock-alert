@@ -29,14 +29,6 @@ jobs:
           python-version: '3.12'
       - name: Validate offline mock parser
         run: python -m unittest discover -s gs25_prototype/android_test -p 'test_*.py' -v
-      - name: Grant KVM access (runner only)
-        shell: bash
-        run: |
-          test -e /dev/kvm || { echo 'KVM_NOT_AVAILABLE'; exit 1; }
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-          test -r /dev/kvm && test -w /dev/kvm
       - name: Prepare and syntax-check offline Android script
         shell: bash
         run: |
@@ -104,6 +96,25 @@ jobs:
           GS25_SCRIPT
           bash -n /tmp/gs25-android-offline.sh
           echo BASH_SYNTAX_PASS
+      - name: Diagnose and grant KVM access (runner only)
+        shell: bash
+        run: |
+          set -u
+          echo KVM_DEVICE_BEFORE
+          if [ -e /dev/kvm ]; then ls -l /dev/kvm; stat -c 'KVM_STAT %a %U %G %F' /dev/kvm; else echo KVM_NOT_AVAILABLE; exit 1; fi
+          echo KVM_IDENTITY
+          id
+          echo KVM_WRITE_UDEV_RULE
+          if echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules; then echo KVM_RULE_WRITE_PASS; else echo KVM_RULE_WRITE_FAIL; exit 1; fi
+          echo KVM_RELOAD_RULES
+          if sudo udevadm control --reload-rules; then echo KVM_RELOAD_PASS; else echo KVM_RELOAD_FAIL; exit 1; fi
+          echo KVM_TRIGGER
+          if sudo udevadm trigger --name-match=kvm; then echo KVM_TRIGGER_PASS; else echo KVM_TRIGGER_FAIL; exit 1; fi
+          echo KVM_DEVICE_AFTER
+          ls -l /dev/kvm
+          stat -c 'KVM_STAT %a %U %G %F' /dev/kvm
+          if test -r /dev/kvm; then echo KVM_READ_PASS; else echo KVM_READ_FAIL; exit 1; fi
+          if test -w /dev/kvm; then echo KVM_WRITE_PASS; else echo KVM_WRITE_FAIL; exit 1; fi
       - name: Boot Android and read local mock page
         uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
         with:
