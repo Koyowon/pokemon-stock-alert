@@ -336,7 +336,7 @@ def main():
     if "asan" in enabled_regions:
         from cu_asan_registry import summarize_observations
         asan_observed = {
-            code: item["stock"]
+            code: item
             for code, item in observed.items()
             if item["city"] == "아산"
         }
