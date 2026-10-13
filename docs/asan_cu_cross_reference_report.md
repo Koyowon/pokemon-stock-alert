@@ -69,3 +69,35 @@ See [`asan_cu_candidate_review_priorities.csv`](asan_cu_candidate_review_priorit
 ## Safety
 
 This report and its CSV are non-executable review artifacts. No production CU monitor, scheduled workflow, Telegram logic, GitHub Actions run, or `main` branch was changed.
+
+
+## Follow-up: saved-state address backfill and duplicate review (2026-10-13)
+
+Six previously blank candidate addresses were copied **verbatim** from `cu_stock_state.json` using both the existing digit-only `cu_store_code` and normalized store name. Each candidate's `review_note` now names the saved-state source. This establishes provenance, **not current location or operational status**.
+
+| Candidate | CU code | Saved-state address |
+|---|---|---|
+| ASAN-CU-093 | 27959 | 충청남도 아산시 배방읍 아산시 배방읍 공수리 1480 1층 102호호 |
+| ASAN-CU-096 | 32601 | 충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교 |
+| ASAN-CU-098 | 37980 | 충청남도 아산시 선문로221번길 70 (탕정면) 선문대학교 아산캠퍼스 생활관친교관1층 |
+| ASAN-CU-099 | 40839 | 충청남도 아산시 시장길15번길 13 |
+| ASAN-CU-102 | 42772 | 충청남도 아산시 박물관로 13 (권곡동, 주공아파트) 1층 상가동 102호 |
+| ASAN-CU-107 | 54071 | 충청남도 아산시 배방읍 모산로 151-1 (공수리) |
+
+The ASAN-CU-093 saved address appears to repeat `아산시 배방읍` and the `호` suffix. It was intentionally **not silently corrected**. Other copied addresses also require freshness and formatting checks before being used as geocoding inputs.
+
+### Four collision candidates — source-only follow-up
+
+- **ASAN-CU-008 ↔ ASAN-CU-089:** same address `충청남도 아산시 둔포면 충무로 1396`; candidate sources respectively include a public licensing-based list and map/business listing; both cite the same job-ad URL. The shared job-ad URL is **not independent corroboration** of identity, renaming, or current occupancy.
+- **ASAN-CU-078 ↔ ASAN-CU-079:** same address `충청남도 아산시 둔포면 운용길 73`; both cite a public licensing-based list. This alone cannot distinguish duplicate records, aliases, renamed store or two store units.
+
+None of these four candidate names has a verified matching Asan CU code in the saved CU state. All four remain separate candidates with blank codes; **no merge, delete, or speculative code assignment**.
+
+### Reconciliation after update
+
+- 119 unique registry IDs remain.
+- 119/119 candidates now have nonempty address fields, **but address accuracy is unverified**.
+- 28 historical CU codes remain; all 28 match entries in saved `cu_stock_state.json`.
+- 91 codes remain unresolved.
+- All 119 retain barcode `8800286275732` and `NOT_QUERIED` status.
+- The priority CSV generated before this backfill requires refresh: six `P2_CODE_KNOWN_ADDRESS_MISSING` entries should move to an address-present-but-unverified review category, rather than being treated as missing.
