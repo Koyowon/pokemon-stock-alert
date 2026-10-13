@@ -231,6 +231,7 @@ def main():
     observed = {}
     conflicts = set()
     successful_queries = 0
+    asan_successful_queries = 0
     failed_queries = 0
 
     from unified_settings import enabled as unified_enabled
@@ -246,6 +247,8 @@ def main():
             try:
                 stores = query(city, lat, lng)
                 successful_queries += 1
+                if city == "아산":
+                    asan_successful_queries += 1
                 print(
                     "QUERY_OK:", city, lat, lng,
                     "VALID_STORES:", len(stores), flush=True,
@@ -276,6 +279,20 @@ def main():
     print("FAILED_QUERIES:", failed_queries, flush=True)
     print("UNIQUE_STORES:", len(observed), flush=True)
     print("CONFLICT_STORES:", len(conflicts), flush=True)
+
+    # Candidate registry is an audit overlay, not a replacement for API results.
+    # Missing stores must never be interpreted as zero stock.
+    if "asan" in enabled_regions:
+        from cu_asan_registry import summarize_observations
+        asan_observed = {
+            code: item["stock"]
+            for code, item in observed.items()
+            if item["city"] == "아산"
+        }
+        summarize_observations(
+            asan_observed,
+            query_succeeded=asan_successful_queries > 0,
+        )
 
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
