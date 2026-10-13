@@ -34,8 +34,8 @@ class ObservationTests(unittest.TestCase):
         self.assertEqual(r["candidates"][0]["status"],"NOT_QUERIED")
         self.assertEqual(r["candidates"][0]["stock"],None)
     def test_conflicting_stock_held(self):
-        calls=[iter([item(2)]),iter([item(5)])]
-        r=observe([(36.7,127.0),(36.8,127.1)],lambda *args:list(next(calls.pop(0))),classifier)
+        calls=[[item(2)],[item(5)]]
+        r=observe([(36.7,127.0),(36.8,127.1)],lambda *args:calls.pop(0),classifier)
         self.assertEqual(r["conflicting_codes"],["101"])
         self.assertEqual(r["candidates"][0]["status"],"NOT_OBSERVED")
     def test_partial_failure_keeps_observation(self):
