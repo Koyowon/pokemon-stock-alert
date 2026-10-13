@@ -94,22 +94,23 @@ def classify_observations(observed_by_code, *, query_succeeded=False):
             if code_counts[configured_code] == 1 and configured_code in api:
                 matched_code = configured_code
                 method = "REGISTERED_CODE"
-        elif all(key) and key_counts[key] == 1:
+        elif all(key) and key_counts[key] == 1 and safe_counts[safe_key] == 1:
             candidates = [
                 code for code in by_identity.get(key, [])
                 if code not in reserved_codes
             ]
-            if len(candidates) == 1:
+            safe_candidates = [
+                code for code in by_safe_identity.get(safe_key, [])
+                if code not in reserved_codes
+            ]
+            # An exact result is not safe when a second API row has the
+            # same conservatively normalized identity.
+            if len(safe_candidates) == 1 and len(candidates) == 1:
                 matched_code = candidates[0]
                 method = "EXACT_NAME_ADDRESS"
-            elif len(candidates) == 0 and safe_counts[safe_key] == 1:
-                safe_candidates = [
-                    code for code in by_safe_identity.get(safe_key, [])
-                    if code not in reserved_codes
-                ]
-                if len(safe_candidates) == 1:
-                    matched_code = safe_candidates[0]
-                    method = "SAFE_FORMAT_NAME_ADDRESS"
+            elif len(safe_candidates) == 1 and not candidates:
+                matched_code = safe_candidates[0]
+                method = "SAFE_FORMAT_NAME_ADDRESS"
 
         stock = None
         if matched_code:
