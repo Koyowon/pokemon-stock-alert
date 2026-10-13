@@ -354,6 +354,15 @@ def main():
             print("ASAN_CU_STOCK_SNAPSHOT:", json.dumps(
                 snapshot, ensure_ascii=False, sort_keys=True
             ), flush=True)
+            # Preview only: legacy stock-change alerts remain the sole Telegram sender.
+            from asan_stock_chunks import preview_asan_stock_messages
+            pages = preview_asan_stock_messages(snapshot)
+            print("ASAN_CU_STOCK_ALERT_PREVIEW:", json.dumps({
+                "barcode": BARCODE,
+                "page_count": len(pages),
+                "pages": pages,
+                "delivery": "NOT_SENT",
+            }, ensure_ascii=False), flush=True)
         except Exception as exc:
             print(
                 "ASAN_CU_DIAGNOSTIC_ERROR:",
