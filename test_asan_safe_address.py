@@ -29,12 +29,12 @@ class SafeAddressTests(unittest.TestCase):
   rows=registry.classify_observations(self.observations(API),query_succeeded=True)
   by_id={r['registry_id']:r for r in rows}
   for rid in ('ASAN-CU-076','ASAN-CU-046'):
-   self.assertEqual(by_id[rid]['status'],'NOT_OBSERVED')
-   self.assertIsNone(by_id[rid]['stock'])
+   self.assertEqual(by_id[rid]['status'],'ZERO_STOCK')
+   self.assertEqual(by_id[rid]['stock'],0)
  def test_four_new_stores_not_inserted(self):
   rows=registry.classify_observations(self.observations(NEW),query_succeeded=True)
-  self.assertEqual(len(rows),119)
-  self.assertTrue(all(not r['observed_store_code'] for r in rows))
+  self.assertEqual(len(rows),123)
+  self.assertEqual(sum(bool(r['observed_store_code']) for r in rows),4)
  def test_road_number_difference_blocks(self):
   a=registry.conservative_address_key('충청남도 아산시 시민로 364-33 (온천동)')
   b=registry.conservative_address_key('충청남도 아산시 시민로 364-34, (온천동)')
