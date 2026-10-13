@@ -44,8 +44,8 @@ class CUAlertIsolationTests(unittest.TestCase):
         output = io.StringIO()
         with patch.object(monitor, "POINTS",
                           {city: monitor.POINTS[city][:1] for city in REGIONS}), \
-             patch.object(monitor, "load_enabled_regions", return_value=set(regions)), \
-             patch("unified_settings.enabled", return_value=set(regions)), \
+             patch.object(monitor, "load_enabled_regions", return_value={monitor.REGION_IDS[city] for city in regions}), \
+             patch("unified_settings.enabled", return_value={monitor.REGION_IDS[city] for city in regions}), \
              patch.object(monitor, "query", side_effect=fake_query), \
              patch.object(monitor, "load_state", return_value=original), \
              patch.object(monitor, "save_state", side_effect=lambda state: saved.append(
