@@ -9,13 +9,13 @@ class AsanStockMessageTests(unittest.TestCase):
     def test_all_not_queried(self):
         text = format_asan_stock_message(build_snapshot({}))
         self.assertIn("재고 미확인: 123개 점포", text)
-        self.assertIn("미확인 (NOT_QUERIED)", text)
+        self.assertIn("확인 불가 (NOT_QUERIED)", text)
         self.assertNotIn("— 0개", text)
 
     def test_all_not_observed(self):
         text = format_asan_stock_message(build_snapshot({}, query_succeeded=True))
         self.assertIn("재고 미확인: 123개 점포", text)
-        self.assertIn("미확인 (NOT_OBSERVED)", text)
+        self.assertIn("확인 불가 (NOT_OBSERVED)", text)
 
     def test_positive_zero_unknown_separate(self):
         snap = build_snapshot({"40059": {"stock": 0}, "53982": {"stock": 3}}, query_succeeded=True)
