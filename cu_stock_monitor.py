@@ -345,6 +345,15 @@ def main():
                 asan_observed,
                 query_succeeded=asan_successful_queries > 0,
             )
+            # Read-only snapshot: never enters the alert/state update path.
+            from asan_stock_snapshot import build_snapshot
+            snapshot = build_snapshot(
+                asan_observed,
+                query_succeeded=asan_successful_queries > 0,
+            )
+            print("ASAN_CU_STOCK_SNAPSHOT:", json.dumps(
+                snapshot, ensure_ascii=False, sort_keys=True
+            ), flush=True)
         except Exception as exc:
             print(
                 "ASAN_CU_DIAGNOSTIC_ERROR:",
