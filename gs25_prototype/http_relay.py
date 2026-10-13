@@ -6,6 +6,9 @@ from urllib.parse import urlsplit, parse_qs
 
 HOST = '127.0.0.1'
 MAX_TARGET = 512
+MAX_AUTH_HEADER = 256
+MAX_HEADERS = 24
+CLIENT_TIMEOUT = 0.5
 
 class LocalRelayServer(ThreadingHTTPServer):
     allow_reuse_address = False
@@ -18,6 +21,9 @@ class LocalRelayServer(ThreadingHTTPServer):
 
 class RelayHandler(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
+    def setup(self):
+        super().setup()
+        self.connection.settimeout(CLIENT_TIMEOUT)
     def log_message(self, *args):
         pass  # no secrets, URLs or authorization headers in logs
     def _respond(self, status, payload):
@@ -40,6 +46,10 @@ class RelayHandler(BaseHTTPRequestHandler):
             return self._respond(400, {'error':'INVALID_REQUEST'})
         if self.headers.get('Host') not in (f'{HOST}:{self.server.server_port}', HOST):
             return self._respond(400, {'error':'INVALID_HOST'})
+        if len(self.headers) > MAX_HEADERS or any(len(v) > MAX_AUTH_HEADER for v in self.headers.get_all('Authorization', [])):
+            return self._respond(431, {'error':'HEADERS_TOO_LARGE'})
+        if len(self.headers.get_all('Authorization', [])) != 1:
+            return self._respond(401, {'error':'UNAUTHORIZED'})
         auth = self.headers.get('Authorization', '')
         if not auth.startswith('Bearer ') or auth.count(' ') != 1:
             return self._respond(401, {'error':'UNAUTHORIZED'})
