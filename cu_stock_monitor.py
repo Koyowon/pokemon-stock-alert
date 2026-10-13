@@ -224,6 +224,55 @@ def telegram(message):
         return False
 
 
+
+def store_identity_status(old, item):
+    """Conservative previous-state identity check; no network or state writes."""
+    if not old:
+        return "MATCH"
+    if old.get("city") != item.get("city"):
+        return "CONFLICT"
+
+    def normalized_name(value):
+        value = re.sub(r"^(?:CU|씨유)\s*", "", str(value or ""), flags=re.I)
+        return re.sub(r"\s+", "", value).lower()
+
+    old_name = normalized_name(old.get("name"))
+    new_name = normalized_name(item.get("name"))
+    if not old_name or not new_name:
+        return "UNCERTAIN"
+    if old_name != new_name:
+        return "CONFLICT"
+
+    def road_key(value):
+        match = re.search(
+            r"([가-힣A-Za-z0-9·]+(?:대로|로|길)(?:\d+번길)?)\s+(\d+(?:-\d+)?)",
+            str(value or ""),
+        )
+        return match.groups() if match else None
+
+    old_road = road_key(old.get("address"))
+    new_road = road_key(item.get("address"))
+    if old_road is None or new_road is None:
+        return "UNCERTAIN"
+    if old_road != new_road:
+        return "CONFLICT"
+
+    for pattern in (
+        r"(?:^|[^\d])(\d{1,4})\s*호(?:[^\d]|$)",
+        r"(지하\s*\d+|지\s*\d+|\d+\s*층)",
+    ):
+        old_part = re.search(pattern, str(old.get("address") or ""))
+        new_part = re.search(pattern, str(item.get("address") or ""))
+        if bool(old_part) != bool(new_part):
+            return "UNCERTAIN"
+        if old_part and new_part:
+            if re.sub(r"\s+", "", old_part.group(1)) != re.sub(
+                r"\s+", "", new_part.group(1)
+            ):
+                return "CONFLICT"
+    return "MATCH"
+
+
 def main():
     print("CU STOCK MONITOR START", flush=True)
 
@@ -231,6 +280,7 @@ def main():
     observed = {}
     conflicts = set()
     successful_queries = 0
+    asan_successful_queries = 0
     failed_queries = 0
 
     from unified_settings import enabled as unified_enabled
@@ -246,6 +296,8 @@ def main():
             try:
                 stores = query(city, lat, lng)
                 successful_queries += 1
+                if city == "아산":
+                    asan_successful_queries += 1
                 print(
                     "QUERY_OK:", city, lat, lng,
                     "VALID_STORES:", len(stores), flush=True,
@@ -260,6 +312,8 @@ def main():
                     elif (
                         previous["stock"] != item["stock"]
                         or previous["city"] != item["city"]
+                        or previous["name"] != item["name"]
+                        or previous["address"] != item["address"]
                     ):
                         conflicts.add(code)
                         observed.pop(code, None)
@@ -277,6 +331,20 @@ def main():
     print("UNIQUE_STORES:", len(observed), flush=True)
     print("CONFLICT_STORES:", len(conflicts), flush=True)
 
+    # Candidate registry is an audit overlay, not a replacement for API results.
+    # Missing stores must never be interpreted as zero stock.
+    if "asan" in enabled_regions:
+        from cu_asan_registry import summarize_observations
+        asan_observed = {
+            code: item["stock"]
+            for code, item in observed.items()
+            if item["city"] == "아산"
+        }
+        summarize_observations(
+            asan_observed,
+            query_succeeded=asan_successful_queries > 0,
+        )
+
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
             print("ALL_CONFIGURED_REGIONS_DISABLED", flush=True)
@@ -286,6 +354,10 @@ def main():
     for code, item in sorted(observed.items()):
         quantity = item["stock"]
         old = state["stores"].get(code, {})
+        identity = store_identity_status(old, item)
+        if identity != "MATCH":
+            print("STORE_IDENTITY_HOLD:", code, identity, flush=True)
+            continue
         previous = stock_number(old.get("stock"))
         previously_alerted = bool(old.get("alerted", False))
 
