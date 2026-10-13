@@ -144,42 +144,41 @@ def main():
         if prior is None:
             print(f'INITIAL_SCAN region={rid} positive={len(positives)} first_positive_alerts_enabled', flush=True)
         # Missing previous region/store is unknown, not zero; initial positives alert.
-        if prior is None or isinstance(prior, dict):
-            old = prior.get('stores', prior.get('positive', {})) if prior else {}
-            changes = []
-            for sid, item in sorted(seen.items()):
-                q = item['quantity']
-                former = old.get(sid)
+        old = prior.get('stores', prior.get('positive', {})) if prior else {}
+        changes = []
+        for sid, item in sorted(seen.items()):
+            q = item['quantity']
+            former = old.get(sid)
+            if former is None:
+                if q > 0:
+                    changes.append((sid, item, None))
+                continue
+            prev_q = int(former['quantity'])
+            if q != prev_q:
+                changes.append((sid, item, prev_q))
+        # Only observed numeric quantities count as zero; absent stores are unknown.
+        for sid, item, prev_q in changes:
+            q = item['quantity']
+            title = ('🟢 GS25 포켓몬카드 입고/증가!' if prev_q is None or q > prev_q
+                     else '🔴 GS25 포켓몬카드 품절 확인!' if q == 0
+                     else '🟠 GS25 포켓몬카드 재고 감소!')
+            detail = f'현재 재고: {q}개' if prev_q is None else f'이전 재고: {prev_q}개 → 현재 재고: {q}개'
+            msg = (f'{title}\n지역: {region["name"]}\n매장: GS25 {item["name"]}\n'
+                   f'조회 코드: {code}\n{detail}\n'
+                   f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
+                   '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
+            try:
+                telegram(msg)
+            except (OSError, ValueError, RuntimeError) as exc:
+                print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
+                # Avoid advancing this store's baseline if the alert was not sent.
                 if former is None:
-                    if q > 0:
-                        changes.append((sid, item, None))
-                    continue
-                prev_q = int(former['quantity'])
-                if q != prev_q:
-                    changes.append((sid, item, prev_q))
-            # Only observed numeric quantities count as zero; absent stores are unknown.
-            for sid, item, prev_q in changes:
-                q = item['quantity']
-                title = ('🟢 GS25 포켓몬카드 입고/증가!' if prev_q is None or q > prev_q
-                         else '🔴 GS25 포켓몬카드 품절 확인!' if q == 0
-                         else '🟠 GS25 포켓몬카드 재고 감소!')
-                detail = f'현재 재고: {q}개' if prev_q is None else f'이전 재고: {prev_q}개 → 현재 재고: {q}개'
-                msg = (f'{title}\n지역: {region["name"]}\n매장: GS25 {item["name"]}\n'
-                       f'조회 코드: {code}\n{detail}\n'
-                       f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
-                       '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
-                try:
-                    telegram(msg)
-                except (OSError, ValueError, RuntimeError) as exc:
-                    print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
-                    # Avoid advancing this store's baseline if the alert was not sent.
-                    if former is None:
-                        seen.pop(sid, None)
-                    else:
-                        seen[sid] = former
-                    continue
-                alerts += 1
-                print(f'ALERT_SENT region={rid} store={sid} old={prev_q} new={q}', flush=True)
+                    seen.pop(sid, None)
+                else:
+                    seen[sid] = former
+                continue
+            alerts += 1
+            print(f'ALERT_SENT region={rid} store={sid} old={prev_q} new={q}', flush=True)
         # Keep prior observations for stores absent from this scan, but never infer zero.
         prior_stores = prior.get('stores', prior.get('positive', {})) if prior else {}
         merged = dict(prior_stores)
