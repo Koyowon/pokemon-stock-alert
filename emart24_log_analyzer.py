@@ -60,8 +60,7 @@ def analyze(text: str, previous_health: Health | None = None) -> Summary:
     markers = {code: 0 for code, status in statuses.items() if status == "OK"}
     result = diagnose(statuses, markers, previous_health=previous_health)
     health = result.health
-    if not statuses or (reported is not None and
-                        (reported[0] != result.checked or reported[1] != len(statuses))):
+    if not statuses or reported is None or (\n            reported[0] != result.checked or reported[1] != len(statuses)):
         # Incomplete or inconsistent logs cannot establish a healthy run.
         health = Health.UNKNOWN
     return Summary(
