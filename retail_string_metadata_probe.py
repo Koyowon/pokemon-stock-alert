@@ -123,41 +123,22 @@ def main():
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
-    # UI traffic reference: POST keyword preparation before per-store GET.
-    # This is an unverified behavioral comparison, not a stock confirmation.
-    prep_status=prepare_stock_lookup()
-    print("EMART24_PREPARE_STATUS",json.dumps({"http":prep_status,"inventory_verified":False}),flush=True)
-    comparison=[]
-    # Compare the existing single-store request with a bounded two-store
-    # candidate. This does not establish that comma separation is supported.
-    for label,code in (("single_a","06916"),("single_b","00833"),("combined_candidate","06916,00833")):
-        params=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
-        status,data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+params)
-        fields={key:{**meta(data.get(key)), **structure(data.get(key))} for key in ("storeGoodsInfo","storeGoodsQty")} if isinstance(data,dict) else {}
-        diagnosis=diagnose_stock_fields(data)
-        comparison.append((status,diagnosis))
-        print("EMART24_FIELD_METADATA",json.dumps({"request_kind":label,"http":status,"fields":fields,"diagnosis":diagnosis}),flush=True)
-    print("EMART24_REQUEST_COMPARISON",json.dumps({"result":compare_diagnoses(comparison),"combined_parameter_format_verified":False,"inventory_verified":False}),flush=True)
-    # Reference pair from a published March 2026 Emart24 traffic replay guide.
-    # Compare response shape only; neither product availability nor stock is assumed.
-    reference_query=urllib.parse.urlencode({
-        "searchPluCode":"8800244010504",
-        "bizNoArr":"28339,05015,23233,29512,24437,29109,26137,29796,30200,28057,27928,29570,30162,28187,22579,00367,28967,00737"})
-    reference_http,reference_data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+reference_query)
-    reference_report=diagnose_stock_fields(reference_data)
-    print("EMART24_REFERENCE_SHAPE",json.dumps({
-        "http":reference_http,
-        "goods_type":reference_report.get("goods",{}).get("outer_type","unavailable"),
-        "qty_type":reference_report.get("quantity",{}).get("outer_type","unavailable"),
-        "reason":reference_report["reason"],
-        "structural_candidate":reference_report["reason"]=="schema_only_not_inventory_verified",
+    # Offline interpretation of previously observed metadata only. No new HTTP
+    # calls, raw responses, product details, credentials, or quantities.
+    observed={"storeGoodsInfo":"123","storeGoodsQty":"456"}
+    report=diagnose_stock_fields(observed)
+    assert report["reason"]=="numeric_scalar_in_goods_field"
+    assert structure("123")["json_type"]=="number"
+    assert structure('"abc"')["json_type"]=="string"
+    assert structure('{"a":1}')["json_type"]=="object"
+    print("EMART24_ENCODING_DIAGNOSTIC",json.dumps({
+        "mode":"offline_prior_metadata",
+        "observed_parsed_type":"number",
+        "published_client_contract":"plain_object_and_array",
+        "encoding_or_encryption_confirmed":False,
+        "numeric_scalar_is_inventory":False,
+        "interpretation":"undetermined_without_authorized_client_evidence",
         "inventory_verified":False}),flush=True)
-    params=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
-    try:
-        with urllib.request.urlopen(urllib.request.Request("https://mcp.aka.page/api/cu/inventory?"+params,headers={"Accept":"text/html"}),timeout=12) as r:
-            status=r.status
-    except urllib.error.HTTPError as e:status=e.code
-    except (OSError,TimeoutError) as e:status=type(e).__name__
-    print("CU_RELAY_HTTP",status,flush=True)
-    print("READ_ONLY no_telegram=true no_state_writes=true",flush=True)
+    print("CU_RELAY_STATUS","unknown_previous_http_403",flush=True)
+    print("READ_ONLY no_network=true no_telegram=true no_state_writes=true",flush=True)
 if __name__=="__main__":main()
