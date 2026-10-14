@@ -69,7 +69,7 @@ def compare_diagnoses(items):
     """Classify whether a bounded request comparison changes response shape."""
     if len(items)!=3:
         return "incomplete"
-    signatures=[(status, report["reason"],report["goods"]["json_type"],report["quantity"]["json_type"]) for status,report in items]
+    signatures=[(status, report.get("reason"),report.get("goods",{}).get("json_type","unavailable"),report.get("quantity",{}).get("json_type","unavailable")) for status,report in items]
     return "same_shape" if signatures[0]==signatures[1]==signatures[2] else "different_shape"
 
 def get(url):
