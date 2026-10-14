@@ -50,6 +50,9 @@ class LogAnalyzerTests(unittest.TestCase):
         result = analyze("STORE 001 | X | OK\nitem: 2/2 numeric results\n")
         self.assertEqual(result.health, "UNKNOWN")
 
+    def test_missing_summary_cannot_claim_healthy(self):
+        self.assertEqual(analyze("STORE 001 | X | OK\n").health, "UNKNOWN")
+
     def test_empty_log_not_healthy(self):
         self.assertEqual(analyze("").health, "UNKNOWN")
 
