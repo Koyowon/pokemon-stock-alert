@@ -26,14 +26,28 @@ def request(path,form=None):
 def decode(raw):
     try:return json.loads(raw)
     except (ValueError,TypeError):return None
+# Approved candidate fields only; do not log unknown keys or values.
+CODE_FIELDS=("pluCd","pluCode","barcode","barCode","ean")
+def code_audit(rows):
+    counts={field:{"present":0,"exact_match":0} for field in CODE_FIELDS}
+    if isinstance(rows,list):
+        for row in rows:
+            if isinstance(row,dict):
+                for field in CODE_FIELDS:
+                    if field in row:
+                        counts[field]["present"]+=1
+                        value=row[field]
+                        if isinstance(value,(str,int)) and not isinstance(value,bool) and str(value)==BARCODE:
+                            counts[field]["exact_match"]+=1
+    return counts
 def matches(rows):
     if not isinstance(rows,list):return False
-    return any(isinstance(row,dict) and str(row.get("pluCd",""))==BARCODE for row in rows)
+    return any(item["exact_match"]>0 for item in code_audit(rows).values())
 def search_summary(status,obj):
     if not isinstance(obj,dict):
         return {"http":status,"envelope":"invalid","barcode_verified":False,"product_list_type":"unknown"}
     rows=obj.get("productList")
-    return {"http":status,"envelope":"object","product_list_type":type(rows).__name__,"barcode_verified":matches(rows),"returned_count":len(rows) if isinstance(rows,list) else None}
+    return {"http":status,"envelope":"object","product_list_type":type(rows).__name__,"barcode_verified":matches(rows),"returned_count":len(rows) if isinstance(rows,list) else None,"code_fields":code_audit(rows)}
 def stock_summary(status,obj):
     if not isinstance(obj,dict):return {"http":status,"valid_stock_schema":False,"goods_type":"unknown","qty_type":"unknown"}
     goods=obj.get("storeGoodsInfo")
@@ -41,6 +55,11 @@ def stock_summary(status,obj):
     return {"http":status,"goods_type":type(goods).__name__,"qty_type":type(rows).__name__,"valid_stock_schema":isinstance(goods,dict) and isinstance(rows,list) and str(goods.get("pluCd",""))==BARCODE}
 def main():
     assert matches([{"pluCd":BARCODE}])
+    assert matches([{"barcode":BARCODE}])
+    assert matches([{"ean":int(BARCODE)}])
+    assert not matches([{"barcode":True}])
+    assert not matches([{"other":BARCODE}])
+    assert code_audit([{"pluCd":"private","barcode":BARCODE}])["barcode"]["exact_match"] == 1
     assert not matches([{"pluCd":"other"}])
     assert not stock_summary(200,{"storeGoodsInfo":"123","storeGoodsQty":"123"})["valid_stock_schema"]
     assert not search_summary(200,{"productList":[{"pluCd":"other"}]})["barcode_verified"]
