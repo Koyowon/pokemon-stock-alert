@@ -32,8 +32,10 @@ def inspect(rows, registry, cu_codes, emart_codes):
             status = 'REJECT_UNKNOWN_CANDIDATE'
         elif chain == 'cu' and (r.get('name') != ids[r['registry_id']].get('name') or r.get('address') != ids[r['registry_id']].get('address')):
             status = 'REVIEW_IDENTITY_MISMATCH'
-        elif chain == 'emart24' and '제주시' not in str(r.get('address') or ''):
+        elif chain == 'emart24' and not str(r.get('address') or '').strip().startswith(('제주시 ', '제주특별자치도 제주시 ', '제주도 제주시 ')):
             status = 'REJECT_NOT_JEJU'
+        elif not str(r.get('name') or '').strip() or not str(r.get('address') or '').strip():
+            status = 'REJECT_MISSING_IDENTITY'
         else:
             url = urlparse(str(r.get('source_url') or ''))
             try:
@@ -41,7 +43,7 @@ def inspect(rows, registry, cu_codes, emart_codes):
                 valid_date = observed <= date.today()
             except ValueError:
                 valid_date = False
-            if url.scheme != 'https' or not url.netloc or not valid_date:
+            if url.scheme != 'https' or not url.hostname or url.username or url.password or not valid_date:
                 status = 'REJECT_PROVENANCE'
         out.append({'chain': chain, 'registry_id': r.get('registry_id'), 'store_code': code, 'status': status, 'approved': False})
     return out
