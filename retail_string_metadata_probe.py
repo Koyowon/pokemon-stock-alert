@@ -42,6 +42,29 @@ def structure(value):
     return {"outer_type": "str", "json_type": kind,
             "structurally_valid": isinstance(parsed, (dict, list))}
 
+def diagnose_stock_fields(data):
+    """Only safe structural facts; never return response values."""
+    if not isinstance(data,dict):
+        return {"envelope":"invalid","verified_inventory":False,"reason":"invalid_envelope"}
+    info=data.get("storeGoodsInfo")
+    qty=data.get("storeGoodsQty")
+    a=structure(info)
+    b=structure(qty)
+    # A JSON-encoded number is not an inventory record, even with HTTP 200.
+    valid_info=isinstance(info,dict)
+    valid_qty=isinstance(qty,list)
+    if isinstance(info,str) and a["json_type"]=="number":
+        reason="numeric_scalar_in_goods_field"
+    elif isinstance(qty,str) and b["json_type"]=="number":
+        reason="numeric_scalar_in_quantity_field"
+    elif not (valid_info and valid_qty):
+        reason="unexpected_field_types"
+    else:
+        reason="schema_only_not_inventory_verified"
+    return {"envelope":"object","goods":a,"quantity":b,
+            "same_string_shape":isinstance(info,str) and isinstance(qty,str) and len(info)==len(qty),
+            "verified_inventory":False,"reason":reason}
+
 def get(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url,headers={"Accept":"application/json","X-Requested-With":"XMLHttpRequest"}),timeout=12) as r:
@@ -62,6 +85,10 @@ def main():
     assert structure('"secret"')["json_type"] == "string"
     assert not structure('null')["structurally_valid"]
     assert structure('{"private":"never print"}')["structurally_valid"]
+    assert diagnose_stock_fields({"storeGoodsInfo":"123","storeGoodsQty":"456"})["reason"]=="numeric_scalar_in_goods_field"
+    assert not diagnose_stock_fields({"storeGoodsInfo":{"private":"secret"},"storeGoodsQty":[]})["verified_inventory"]
+    assert diagnose_stock_fields(None)["reason"]=="invalid_envelope"
+    assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"0"})["reason"]=="unexpected_field_types"
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
@@ -69,7 +96,7 @@ def main():
         params=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
         status,data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+params)
         fields={key:{**meta(data.get(key)), **structure(data.get(key))} for key in ("storeGoodsInfo","storeGoodsQty")} if isinstance(data,dict) else {}
-        print("EMART24_FIELD_METADATA",json.dumps({"code":code,"http":status,"fields":fields}),flush=True)
+        print("EMART24_FIELD_METADATA",json.dumps({"code":code,"http":status,"fields":fields,"diagnosis":diagnose_stock_fields(data)}),flush=True)
     params=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
     try:
         with urllib.request.urlopen(urllib.request.Request("https://mcp.aka.page/api/cu/inventory?"+params,headers={"Accept":"text/html"}),timeout=12) as r:
