@@ -43,12 +43,16 @@ def main():
     assert not matches([{"pluCd":"other"}])
     assert not stock_summary(200,{"storeGoodsInfo":"123","storeGoodsQty":"123"})["valid_stock_schema"]
     assert not search_summary(200,{"productList":[{"pluCd":"other"}]})["barcode_verified"]
+    assert search_summary(200,{"productList":[{"pluCd":BARCODE}]})["barcode_verified"]
     print("PRODUCT_SEARCH_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
-    status,obj=request("/stock/stock/search",{"currentPage":"1","pageCnt":"10","sortType":"SALE","saleProductYn":"N","searchWord":BARCODE})
-    summary=search_summary(status,obj)
-    print("EMART24_PRODUCT_SEARCH",json.dumps(summary),flush=True)
+    # Official UI searches by product name; barcode lookup may not be indexed.
+    # Fixed, bounded terms only. No dynamic expansion, no response contents logged.
+    for label, term in (("barcode", BARCODE), ("pokemon_card", "포켓몬카드"), ("pokemon", "포켓몬")):
+        status,obj=request("/stock/stock/search",{"currentPage":"1","pageCnt":"10","sortType":"SALE","saleProductYn":"N","searchWord":term})
+        summary=search_summary(status,obj)
+        print("EMART24_PRODUCT_SEARCH",json.dumps({"query_kind":label,**summary}),flush=True)
     # Read-only comparison only, no stock quantity extraction.
     for code in ("06916","00833"):
         query=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
