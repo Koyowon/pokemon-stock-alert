@@ -13,6 +13,14 @@ class ApprovalTests(unittest.TestCase):
     def test_missing_code(self): self.row['store_code']=''; self.check('BLOCKED_NO_CODE')
     def test_existing_code(self): self.check('REJECT_DUPLICATE_CODE',used=('12345',))
     def test_duplicate_batch(self): self.check('REJECT_DUPLICATE_CODE',rows=[self.row,self.row])
+    def test_duplicate_candidate_distinct_codes(self):
+        second = dict(self.row, store_code='54321')
+        self.check('REJECT_DUPLICATE_CANDIDATE', rows=[self.row, second])
+
+    def test_duplicate_code_whitespace_normalized(self):
+        second = dict(self.row, store_code=' 12345 ')
+        self.check('REJECT_DUPLICATE_CODE', rows=[self.row, second])
+
     def test_wrong_product(self): self.row['barcode']='x'; self.check('REJECT_BARCODE')
     def test_unknown_candidate(self): self.row['registry_id']='X'; self.check('REJECT_UNKNOWN_CANDIDATE')
     def test_mismatch(self): self.row['address']='other'; self.check('REVIEW_IDENTITY_MISMATCH')
