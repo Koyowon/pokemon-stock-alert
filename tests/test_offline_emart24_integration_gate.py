@@ -18,9 +18,9 @@ class GateTests(unittest.TestCase):
                'REGION_IDS = {"남원": "namwon"}\n'
                'qty < old\nqty == 0\nif qty is None:\n    continue\n'
                'consecutive_failures >= 3')
-        # Source snippet above is intentionally not syntactically valid; check rejects it.
-        with self.assertRaises(SyntaxError):
-            gate.inspect_monitor(src)
+        result = gate.inspect_monitor(src)
+        self.assertFalse(result["jeju_region_declared"])
+        self.assertFalse(result["jeju_offline_integration_ready"])
 
     def test_valid_regions_still_cannot_activate_without_integration(self):
         src = ('PRODUCTS = {"30주년": "8800286275732"}\n'
