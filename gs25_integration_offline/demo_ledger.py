@@ -95,11 +95,11 @@ def _validate_receipts(data):
         }:
             raise DemoStateError("invalid delivery entry")
         status, attempts = entry["status"], entry["attempts"]
-        if status not in ("pending", "processing", "completed", "failed"):
+        if status not in ("pending", "processing", "dispatching", "uncertain", "completed", "failed"):
             raise DemoStateError("invalid delivery status")
         if type(attempts) is not int or not 0 <= attempts <= MAX_ATTEMPTS:
             raise DemoStateError("invalid attempts")
-        if status == "processing":
+        if status in ("processing", "dispatching"):
             if attempts == 0 or not isinstance(entry["token"], str) or not entry["token"]:
                 raise DemoStateError("invalid claim")
             _time(entry["expires_at"])
@@ -267,9 +267,10 @@ class OfflineDemoLedger:
     def _recover(entries, now):
         changed = False
         for entry in entries.values():
-            if isinstance(entry, dict) and entry["status"] == "processing" and _time(entry["expires_at"]) <= now:
+            if isinstance(entry, dict) and entry["status"] in ("processing", "dispatching") and _time(entry["expires_at"]) <= now:
                 entry.update(
-                    status="failed" if entry["attempts"] >= MAX_ATTEMPTS else "pending",
+                    status=("uncertain" if entry["status"] == "dispatching" else
+                            "failed" if entry["attempts"] >= MAX_ATTEMPTS else "pending"),
                     token=None, expires_at=None,
                 )
                 changed = True
@@ -318,7 +319,7 @@ class OfflineDemoLedger:
         with self._locked():
             entries = self._read(self.receipts_path, _validate_receipts)
             entry = entries.get(identifier)
-            if not isinstance(entry, dict) or entry["status"] != "processing":
+            if not isinstance(entry, dict) or entry["status"] not in ("processing", "dispatching"):
                 raise DemoStateError("event not claimed")
             if not isinstance(token, str) or entry["token"] != token or _time(entry["expires_at"]) <= instant:
                 raise DemoStateError("invalid or expired claim")
@@ -338,6 +339,42 @@ class OfflineDemoLedger:
     def release(self, event, token, now=None):
         return self._finish(event, token, None, now)
 
+    def _begin_dispatch(self, event, token):
+        """Persist the irreversible boundary before invoking the fake sender."""
+        identifier = self._check_event(event)
+        with self._locked():
+            entries = self._read(self.receipts_path, _validate_receipts)
+            entry = entries.get(identifier)
+            if (not isinstance(entry, dict) or entry["status"] != "processing"
+                    or entry["token"] != token
+                    or _time(entry["expires_at"]) <= _time()):
+                raise DemoStateError("invalid or expired claim")
+            entry["status"] = "dispatching"
+            self._save(self.receipts_path, entries, _validate_receipts)
+
+    def reconcile_uncertain(self, event, *, receipt=None, allow_retry=False):
+        """Manual resolution; retry may duplicate delivery and is opt-in."""
+        identifier = self._check_event(event)
+        if (receipt is None) == (not allow_retry):
+            raise DemoStateError("choose exactly one reconciliation action")
+        if receipt is not None and (
+            not isinstance(receipt, str) or
+            receipt != "FAKE_RECEIPT_" + identifier
+        ):
+            raise DemoStateError("verified fake receipt required")
+        with self._locked():
+            entries = self._read(self.receipts_path, _validate_receipts)
+            entry = entries.get(identifier)
+            if not isinstance(entry, dict) or entry["status"] != "uncertain":
+                raise DemoStateError("event is not uncertain")
+            entry.update(
+                status=("completed" if receipt is not None else
+                        "failed" if entry["attempts"] >= MAX_ATTEMPTS else "pending"),
+                token=None, expires_at=None, receipt=receipt,
+            )
+            self._save(self.receipts_path, entries, _validate_receipts)
+            return entry["status"]
+
     def preview_send(self, event, sender):
         """Only a FakeAlertSender is allowed; no real delivery or transport."""
         identifier = self._check_event(event)
@@ -353,13 +390,9 @@ class OfflineDemoLedger:
         token = self.claim(event)
         if token is None:
             return None
-        try:
-            receipt = sender.send(event, identifier)
-            self.complete(event, token, receipt)
-            return receipt
-        except Exception:
-            try:
-                self.release(event, token)
-            except DemoStateError:
-                pass
-            raise
+        self._begin_dispatch(event, token)
+        # Failures after this point remain 'dispatching' until recovery
+        # quarantines them as 'uncertain'; no automatic resend.
+        receipt = sender.send(event, identifier)
+        self.complete(event, token, receipt)
+        return receipt
