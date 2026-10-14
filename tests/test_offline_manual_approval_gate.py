@@ -27,6 +27,15 @@ class ApprovalTests(unittest.TestCase):
     def test_invalid_source(self): self.row['source_url']='http://example.com'; self.check('REJECT_PROVENANCE')
     def test_future_date(self): self.row['observed_at']='2099-01-01'; self.check('REJECT_PROVENANCE')
     def test_jeju_wrong_region(self): self.row.update(chain='emart24',address='서울'); self.check('REJECT_NOT_JEJU')
+    def test_spoofed_jeju_substring(self):
+        self.row.update(chain='emart24',address='서울특별시 제주시처럼 보이는 거리')
+        self.check('REJECT_NOT_JEJU')
+    def test_missing_emart_name(self):
+        self.row.update(chain='emart24',address='제주시 테스트로 1',name='')
+        self.check('REJECT_MISSING_IDENTITY')
+    def test_credentialed_evidence_url(self):
+        self.row['source_url']='https://user:pass@example.com/store'
+        self.check('REJECT_PROVENANCE')
     def test_jeju_review(self): self.row.update(chain='emart24',address='제주특별자치도 제주시 테스트로 1'); self.check('MANUAL_REVIEW_REQUIRED')
 
 if __name__=='__main__': unittest.main()
