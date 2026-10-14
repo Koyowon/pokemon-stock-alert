@@ -8,6 +8,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from region_config import load_enabled_regions
+from emart24_recovery import request_inventory, InventoryUnavailable
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
@@ -212,10 +213,10 @@ def stock(plu, codes):
     for start in range(0, len(codes), 3):
         batch = codes[start:start + 3]
         try:
-            data = api("inventory", {"pluCd": plu, "bizNoArr": ",".join(batch)}, attempts=2)
+            data = request_inventory({"pluCd": plu, "bizNoArr": ",".join(batch)}, attempts=2)
             collect(data, batch)
             consecutive_failures = 0
-        except (RuntimeError, ValueError) as exc:
+        except (RuntimeError, ValueError, InventoryUnavailable) as exc:
             consecutive_failures += 1
             for code in batch:
                 statuses[code] = "BATCH_ERROR"
@@ -227,9 +228,9 @@ def stock(plu, codes):
                     fallback_calls += 1
                     time.sleep(2)
                     try:
-                        data = api("inventory", {"pluCd": plu, "bizNoArr": code}, attempts=1)
+                        data = request_inventory({"pluCd": plu, "bizNoArr": code}, attempts=1)
                         collect(data, [code])
-                    except (RuntimeError, ValueError) as single_exc:
+                    except (RuntimeError, ValueError, InventoryUnavailable) as single_exc:
                         statuses[code] = "SINGLE_ERROR"
                         print(f"WARNING: single-store lookup failed ({code}): {single_exc}")
             if consecutive_failures >= 3:
@@ -321,7 +322,10 @@ def main():
                     continue
             updated[key] = qty
         print(f"{product}: {len(values)}/{len(stores)} numeric results")
-    save_json(STATE_FILE, updated)
+    if numeric > 0:
+        save_json(STATE_FILE, updated)
+    else:
+        print("WARNING: no verified inventory; state.json left unchanged")
     print(f"Finished: {numeric} numeric inventory entries, {unknown} unknown entries")
     if numeric == 0:
         print("WARNING: No numeric stock values; API health needs investigation")
