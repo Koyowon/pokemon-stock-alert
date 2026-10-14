@@ -8,7 +8,7 @@ on:
         type: boolean
         default: false
       string_metadata_probe:
-        description: 'Only Emart24 field lengths/null/empty/JSON parseability and CU HTTP status'
+        description: 'Emart24 JSON type/structural validity (no values) and CU HTTP status'
         required: false
         type: boolean
         default: false
