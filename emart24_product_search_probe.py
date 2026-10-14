@@ -3,6 +3,7 @@ import json
 import urllib.request
 import urllib.error
 import urllib.parse
+from pathlib import Path
 
 BARCODE="8800286275732"
 BASE="https://everse.emart24.co.kr"
@@ -44,19 +45,39 @@ def main():
     assert not stock_summary(200,{"storeGoodsInfo":"123","storeGoodsQty":"123"})["valid_stock_schema"]
     assert not search_summary(200,{"productList":[{"pluCd":"other"}]})["barcode_verified"]
     assert search_summary(200,{"productList":[{"pluCd":BARCODE}]})["barcode_verified"]
+    assert search_summary(200,{"productList":[]})["returned_count"] == 0
     print("PRODUCT_SEARCH_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
     # Official UI searches by product name; barcode lookup may not be indexed.
     # Fixed, bounded terms only. No dynamic expansion, no response contents logged.
     for label, term in (("barcode", BARCODE), ("pokemon_card", "포켓몬카드"), ("pokemon", "포켓몬")):
-        status,obj=request("/stock/stock/search",{"currentPage":"1","pageCnt":"10","sortType":"SALE","saleProductYn":"N","searchWord":term})
-        summary=search_summary(status,obj)
-        print("EMART24_PRODUCT_SEARCH",json.dumps({"query_kind":label,**summary}),flush=True)
+        pages = (1,) if label == "barcode" else (1, 2, 3)
+        for page in pages:
+            status,obj=request("/stock/stock/search",{"currentPage":str(page),"pageCnt":"10","sortType":"SALE","saleProductYn":"N","searchWord":term})
+            summary=search_summary(status,obj)
+            print("EMART24_PRODUCT_SEARCH",json.dumps({"query_kind":label,"page":page,**summary}),flush=True)
+            if summary["barcode_verified"] or summary.get("returned_count") != 10:
+                break
     # Read-only comparison only, no stock quantity extraction.
     for code in ("06916","00833"):
         query=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
         stock_status,stock_obj=request("/api/stock/v2/stock-search/store?"+query)
         print("EMART24_STOCK_STRUCTURE",json.dumps({"store_code":code,**stock_summary(stock_status,stock_obj)}),flush=True)
+    # CU relay remains unverified; only status, never body or error text.
+    cu_query=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
+    cu_req=urllib.request.Request("https://mcp.aka.page/api/cu/inventory?"+cu_query,headers={"Accept":"text/html"})
+    try:
+        with urllib.request.urlopen(cu_req,timeout=TIMEOUT) as response:
+            cu_status=response.status
+    except urllib.error.HTTPError as e:
+        cu_status=e.code
+    except (OSError,TimeoutError) as e:
+        cu_status=type(e).__name__
+    print("CU_RELAY_STATUS",json.dumps({"http":cu_status,"inventory_verified":False}),flush=True)
+    # Static check only: never execute Telegram workflow or access secrets.
+    tg=Path(".github/workflows/test-telegram.yml")
+    telegram_test_only=tg.is_file() and "[TEST ONLY]" in tg.read_text(encoding="utf-8")
+    print("TELEGRAM_SAFETY",json.dumps({"test_only_label_present":telegram_test_only,"sent":False}),flush=True)
     print("DIAGNOSTIC_DONE no_stock_alerts=true no_telegram=true no_state_writes=true",flush=True)
 if __name__=="__main__":main()
