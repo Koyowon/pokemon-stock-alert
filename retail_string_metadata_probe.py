@@ -88,7 +88,8 @@ def main():
     assert diagnose_stock_fields({"storeGoodsInfo":"123","storeGoodsQty":"456"})["reason"]=="numeric_scalar_in_goods_field"
     assert not diagnose_stock_fields({"storeGoodsInfo":{"private":"secret"},"storeGoodsQty":[]})["verified_inventory"]
     assert diagnose_stock_fields(None)["reason"]=="invalid_envelope"
-    assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"0"})["reason"]=="unexpected_field_types"
+    assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"0"})["reason"]=="numeric_scalar_in_quantity_field"
+    assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"not json"})["reason"]=="unexpected_field_types"
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
