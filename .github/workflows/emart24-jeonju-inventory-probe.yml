@@ -7,6 +7,11 @@ on:
         required: false
         type: boolean
         default: false
+      string_metadata_probe:
+        description: 'Only Emart24 field lengths/null/empty/JSON parseability and CU HTTP status'
+        required: false
+        type: boolean
+        default: false
       safe_schema_diagnostic:
         description: 'Run privacy-safe schema diagnostic and CU registry audit (no Telegram)'
         required: false
@@ -24,7 +29,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run read-only Jeonju inventory probe
-        if: ${{ !inputs.compare_origin_relay && !inputs.safe_schema_diagnostic }}
+        if: ${{ !inputs.compare_origin_relay && !inputs.safe_schema_diagnostic && !inputs.string_metadata_probe && !inputs.string_metadata_probe }}
         run: python emart24_jeonju_inventory_probe.py
       - name: Offline comparison self-test
         if: ${{ inputs.compare_origin_relay && !inputs.safe_schema_diagnostic }}
@@ -33,8 +38,14 @@ jobs:
         if: ${{ inputs.compare_origin_relay && !inputs.safe_schema_diagnostic }}
         run: python retail_origin_relay_diagnostic.py
       - name: Offline privacy-safe schema self-test
-        if: ${{ inputs.safe_schema_diagnostic }}
+        if: ${{ inputs.safe_schema_diagnostic && !inputs.string_metadata_probe }}
         run: python retail_schema_safe_diagnostic.py --self-test
       - name: Run privacy-safe schema and registry audit
         if: ${{ inputs.safe_schema_diagnostic }}
         run: python retail_schema_safe_diagnostic.py
+      - name: String metadata self-test
+        if: ${{ inputs.string_metadata_probe }}
+        run: python retail_string_metadata_probe.py --self-test
+      - name: Bounded string metadata and CU relay status
+        if: ${{ inputs.string_metadata_probe }}
+        run: python retail_string_metadata_probe.py
