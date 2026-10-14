@@ -26,8 +26,8 @@ jobs:
 
           message = (
               '✅ 포켓몬 카드 재고 알림 테스트 성공!\n'
-              '남원·아산 이마트24 감시 봇의 텔레그램 연결이 정상입니다.\n'
-              '※ 실제 재고 입고 알림이 아닌 테스트 메시지입니다.'
+              '포켓몬카드 재고 감시 시스템의 텔레그램 전송 테스트입니다.\n'
+              '※ [TEST ONLY] 실제 입고·재고 확인 결과가 아닙니다.'
           )
           url = 'https://api.telegram.org/bot' + token + '/sendMessage'
           data = urllib.parse.urlencode({'chat_id': chat_id, 'text': message}).encode()
