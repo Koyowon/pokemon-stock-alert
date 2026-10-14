@@ -1,6 +1,12 @@
 name: Emart24 Jeonju Inventory Probe
 on:
   workflow_dispatch:
+    inputs:
+      compare_origin_relay:
+        description: 'Run read-only Emart24 origin/relay and CU Asan comparison'
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -13,4 +19,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run read-only Jeonju inventory probe
+        if: ${{ !inputs.compare_origin_relay }}
         run: python emart24_jeonju_inventory_probe.py
+      - name: Offline safety self-test
+        if: ${{ inputs.compare_origin_relay }}
+        run: python retail_origin_relay_diagnostic.py --self-test
+      - name: Run bounded origin relay and CU Asan diagnostic
+        if: ${{ inputs.compare_origin_relay }}
+        run: python retail_origin_relay_diagnostic.py
