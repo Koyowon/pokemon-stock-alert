@@ -24,7 +24,25 @@ class DemoStateError(ValueError):
 
 
 class DemoDurabilityError(DemoStateError):
-    """File replacement succeeded, but directory fsync was not confirmed."""
+    """An atomic replace may have occurred without confirmed durability.
+
+    phase is 'backup' or 'primary'; replaced indicates whether os.replace
+    returned successfully. Never automatically retry an uncertain write.
+    """
+
+    def __init__(self, message, *, phase="primary", replaced=False):
+        super().__init__(message)
+        self.phase = phase
+        self.replaced = replaced
+
+
+class DemoSaveError(DemoStateError):
+    """A save failed before a successful replace; no automatic retry."""
+
+    def __init__(self, message, *, phase="primary"):
+        super().__init__(message)
+        self.phase = phase
+        self.replaced = False
 
 
 def _time(value=None):
@@ -126,10 +144,16 @@ class OfflineDemoLedger:
         return data
 
     @staticmethod
-    def _write(path, data, validator):
+    def _write(path, data, validator, *, phase="primary"):
+        """Write atomically; distinguish pre-replace from post-replace errors.
+
+        An unconfirmed directory fsync means the replacement may be visible
+        but not durable. No implicit retry or rollback is attempted.
+        """
         validator(data)
         path.parent.mkdir(parents=True, exist_ok=True)
         temporary = None
+        replaced = False
         try:
             with tempfile.NamedTemporaryFile(
                 "w", dir=path.parent, encoding="utf-8", delete=False
@@ -139,25 +163,41 @@ class OfflineDemoLedger:
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary, path)
+            replaced = True
             temporary = None
+            directory_fd = os.open(path.parent, os.O_RDONLY)
             try:
-                directory_fd = os.open(path.parent, os.O_RDONLY)
-                try:
-                    os.fsync(directory_fd)
-                finally:
-                    os.close(directory_fd)
-            except OSError as exc:
-                raise DemoDurabilityError("file replaced; durability unconfirmed") from exc
+                os.fsync(directory_fd)
+            finally:
+                os.close(directory_fd)
+        except (OSError, UnicodeError, TypeError, ValueError) as exc:
+            if replaced:
+                raise DemoDurabilityError(
+                    "file replaced but durability unconfirmed; inspect before retry",
+                    phase=phase, replaced=True,
+                ) from exc
+            raise DemoSaveError(
+                "write failed before confirmed replacement; inspect before retry",
+                phase=phase,
+            ) from exc
         finally:
             if temporary and os.path.exists(temporary):
                 os.unlink(temporary)
 
     def _save(self, path, data, validator):
-        # Backups are verified copies of the last readable state, never of corrupt input.
+        """Preserve validated previous state before attempting primary replace.
+
+        Backup errors stop the primary write. A backup that was replaced but
+        not durably synced is never treated as confirmed safe for overwrite.
+        """
+        validator(data)
         if path.exists():
             prior = self._read(path, validator)
-            self._write(path.with_name(path.name + ".bak"), prior, validator)
-        self._write(path, data, validator)
+            self._write(
+                path.with_name(path.name + ".bak"), prior, validator,
+                phase="backup",
+            )
+        self._write(path, data, validator, phase="primary")
 
     def backup(self):
         """Refresh validated backups under the lock; never silently restore corruption."""
