@@ -31,7 +31,7 @@
 
 ## 이마트24 제주
 - 공식 매장 찾기: https://m.emart24.co.kr/store
-- 이마트24 FAQ는 공식 웹/앱의 매장 찾기를 주소·연락처 조회 수단으로 안내: https://emart24.co.kr/helpdesk/faq/search?search=%EB%A7%A5%EC%9E%A5
+- 이마트24 FAQ는 공식 웹/앱의 매장 찾기를 주소·연락처 조회 수단으로 안내: https://emart24.co.kr/helpdesk/faq/search?search=%EB%A7%A4%EC%9E%A5
 - 공개 검색에서 **제주시 매장과 내부 숫자 코드의 동일 출처 매핑을 확보하지 못함**. 코드 확인 0개.
 - 기존 `stores.json` 제주 점포 0개, 운영 `monitor.py` 제주 지역 미지원, 이마트24 제주 제어 플래그 false. 제주 시드 작성/활성화 금지.
 
