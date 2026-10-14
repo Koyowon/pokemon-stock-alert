@@ -1,0 +1,18 @@
+name: Emart24 Jeonju Origin vs Relay and CU Asan Read-only Diagnostic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline safety self-test
+        run: python retail_origin_relay_diagnostic.py --self-test
+      - name: Bounded live comparison (2 Jeonju stores, 1 CU Asan query)
+        run: python retail_origin_relay_diagnostic.py
