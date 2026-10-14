@@ -72,6 +72,24 @@ def compare_diagnoses(items):
     signatures=[(status, report.get("reason"),report.get("goods",{}).get("json_type","unavailable"),report.get("quantity",{}).get("json_type","unavailable")) for status,report in items]
     return "same_shape" if signatures[0]==signatures[1]==signatures[2] else "different_shape"
 
+def prepare_stock_lookup():
+    """Publicly documented UI preparation call; status only, never body."""
+    form=urllib.parse.urlencode({"pluCd":BARCODE,"searchPage":"STOCK_SEARCH_SERVICE"}).encode("utf-8")
+    req=urllib.request.Request(
+        "https://everse.emart24.co.kr/api/stock/v1/search/keyword",
+        data=form,
+        headers={"Accept":"application/json","X-Requested-With":"XMLHttpRequest",
+                 "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"},
+        method="POST")
+    try:
+        with urllib.request.urlopen(req,timeout=12) as response:
+            response.read(65536)
+            return response.status
+    except urllib.error.HTTPError as e:
+        return e.code
+    except (OSError,ValueError,TimeoutError) as e:
+        return type(e).__name__
+
 def get(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url,headers={"Accept":"application/json","X-Requested-With":"XMLHttpRequest"}),timeout=12) as r:
@@ -105,6 +123,10 @@ def main():
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
+    # UI traffic reference: POST keyword preparation before per-store GET.
+    # This is an unverified behavioral comparison, not a stock confirmation.
+    prep_status=prepare_stock_lookup()
+    print("EMART24_PREPARE_STATUS",json.dumps({"http":prep_status,"inventory_verified":False}),flush=True)
     comparison=[]
     # Compare the existing single-store request with a bounded two-store
     # candidate. This does not establish that comma separation is supported.
