@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       product_search_probe:
-        description: 'Read-only exact barcode search and stock schema comparison (no alerts)'
+        description: 'Read-only barcode vs product-name searches and schema (no alerts)'
         required: false
         type: boolean
         default: false
