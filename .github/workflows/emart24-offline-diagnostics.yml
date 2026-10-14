@@ -1,6 +1,15 @@
 name: Emart24 Offline Diagnostics
 
 on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+    paths:
+      - 'emart24_health_diagnostic.py'
+      - 'test_emart24_health_diagnostic.py'
+      - 'emart24_log_analyzer.py'
+      - 'test_emart24_log_analyzer.py'
+      - '.github/workflows/emart24-offline-diagnostics.yml'
   workflow_dispatch:
 
 permissions:
@@ -8,7 +17,13 @@ permissions:
 
 jobs:
   offline-tests:
-    if: github.ref == 'refs/heads/permission-test-20261013-cu'
+    if: >-
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == 'Koyowon/pokemon-stock-alert' &&
+       github.event.pull_request.head.ref == 'permission-test-20261013-cu' &&
+       github.event.pull_request.base.ref == 'main') ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.ref == 'refs/heads/permission-test-20261013-cu')
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
