@@ -10,7 +10,8 @@ BARCODE = '8800286275732'
 def inspect(rows, registry, cu_codes, emart_codes):
     ids = {r['registry_id']: r for r in registry if not r.get('cu_store_code')}
     used = {'cu': set(map(str, cu_codes)), 'emart24': set(map(str, emart_codes))}
-    counts = Counter((r.get('chain'), r.get('store_code')) for r in rows if r.get('store_code'))
+    counts = Counter((r.get('chain'), str(r.get('store_code') or '').strip()) for r in rows if r.get('store_code'))
+    candidate_counts = Counter(r.get('registry_id') for r in rows if r.get('chain') == 'cu' and r.get('registry_id'))
     out = []
     for r in rows:
         chain, code = r.get('chain'), str(r.get('store_code') or '').strip()
@@ -23,6 +24,8 @@ def inspect(rows, registry, cu_codes, emart_codes):
             status = 'REJECT_CODE_FORMAT'
         elif code in used[chain] or counts[(chain, code)] > 1:
             status = 'REJECT_DUPLICATE_CODE'
+        elif chain == 'cu' and candidate_counts[r.get('registry_id')] > 1:
+            status = 'REJECT_DUPLICATE_CANDIDATE'
         elif r.get('barcode') != BARCODE:
             status = 'REJECT_BARCODE'
         elif chain == 'cu' and r.get('registry_id') not in ids:
