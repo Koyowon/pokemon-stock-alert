@@ -17,6 +17,31 @@ def meta(value):
         parseable=False
     return dict(is_null=False,is_empty=len(value)==0,length=len(value),json_parseable=parseable)
 
+def structure(value):
+    """Describe parsed JSON shape only, never keys or values."""
+    if not isinstance(value, str):
+        return {"outer_type": type(value).__name__, "json_type": "not_string", "structurally_valid": False}
+    try:
+        parsed = json.loads(value)
+    except (ValueError, TypeError):
+        return {"outer_type": "str", "json_type": "invalid_json", "structurally_valid": False}
+    if parsed is None:
+        kind = "null"
+    elif isinstance(parsed, bool):
+        kind = "boolean"
+    elif isinstance(parsed, dict):
+        kind = "object"
+    elif isinstance(parsed, list):
+        kind = "array"
+    elif isinstance(parsed, str):
+        kind = "string"
+    elif isinstance(parsed, (int, float)):
+        kind = "number"
+    else:
+        kind = "unknown"
+    return {"outer_type": "str", "json_type": kind,
+            "structurally_valid": isinstance(parsed, (dict, list))}
+
 def get(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url,headers={"Accept":"application/json","X-Requested-With":"XMLHttpRequest"}),timeout=12) as r:
@@ -31,13 +56,19 @@ def main():
     assert meta("")["is_empty"]
     assert meta('{"key":"private"}')["json_parseable"]
     assert not meta("private")["json_parseable"]
+    assert structure('null')["json_type"] == "null"
+    assert structure('{"private":"never print"}')["json_type"] == "object"
+    assert structure('[1]')["json_type"] == "array"
+    assert structure('"secret"')["json_type"] == "string"
+    assert not structure('null')["structurally_valid"]
+    assert structure('{"private":"never print"}')["structurally_valid"]
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
     for code in ("06916","00833"):
         params=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
         status,data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+params)
-        fields={key:meta(data.get(key)) for key in ("storeGoodsInfo","storeGoodsQty")} if isinstance(data,dict) else {}
+        fields={key:{**meta(data.get(key)), **structure(data.get(key))} for key in ("storeGoodsInfo","storeGoodsQty")} if isinstance(data,dict) else {}
         print("EMART24_FIELD_METADATA",json.dumps({"code":code,"http":status,"fields":fields}),flush=True)
     params=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
     try:
