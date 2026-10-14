@@ -24,5 +24,37 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Offline mocked tests
-        run: python -B -m unittest -v test_emart24_recovery test_emart24_integration
+      - name: Deny all outbound networking during tests
+        run: |
+          sudo iptables -P OUTPUT DROP
+          sudo iptables -F OUTPUT
+          sudo ip6tables -P OUTPUT DROP
+          sudo ip6tables -F OUTPUT
+          python - <<'PY'
+          import socket
+          for family, addr in [(socket.AF_INET, ('1.1.1.1', 443)), (socket.AF_INET6, ('2606:4700:4700::1111', 443, 0, 0))]:
+              try:
+                  sock=socket.socket(family, socket.SOCK_STREAM)
+                  sock.settimeout(1)
+                  try:
+                      sock.connect(addr)
+                  finally:
+                      sock.close()
+              except OSError:
+                  continue
+              raise SystemExit('FAIL: outbound network still reachable')
+          print('Outbound IPv4/IPv6 denied')
+          PY
+      - name: Offline mocked tests with protected state files
+        run: |
+          python -B - <<'PY'
+          import pathlib, subprocess, sys
+          protected=[pathlib.Path('state.json'), pathlib.Path('stores.json')]
+          before={str(p):p.read_bytes() if p.exists() else None for p in protected}
+          result=subprocess.run([sys.executable,'-B','-m','unittest','-v','test_emart24_recovery','test_emart24_integration'],check=False)
+          after={str(p):p.read_bytes() if p.exists() else None for p in protected}
+          if before!=after:
+              raise SystemExit('FAIL: protected state/cache changed')
+          print('Protected state/cache files unchanged')
+          sys.exit(result.returncode)
+          PY
