@@ -1,0 +1,25 @@
+name: Emart24 Offline Diagnostics
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    if: github.ref == 'refs/heads/permission-test-20261013-cu'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run offline diagnostics unit tests
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python -B -m unittest -v test_emart24_health_diagnostic.py test_emart24_log_analyzer.py
