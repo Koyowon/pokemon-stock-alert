@@ -1,0 +1,28 @@
+name: Emart24 Offline Recovery Verification
+on:
+  push:
+    branches: [emart24-recovery]
+    paths:
+      - '.github/workflows/emart24-recovery-offline-check.yml'
+      - 'test_emart24_integration.py'
+      - 'test_emart24_recovery.py'
+      - 'monitor.py'
+      - 'emart24_recovery.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-tests:
+    if: github.ref == 'refs/heads/emart24-recovery'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Offline mocked tests
+        run: python -B -m unittest -v test_emart24_recovery test_emart24_integration
