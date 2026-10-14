@@ -65,6 +65,13 @@ def diagnose_stock_fields(data):
             "same_string_shape":isinstance(info,str) and isinstance(qty,str) and len(info)==len(qty),
             "verified_inventory":False,"reason":reason}
 
+def compare_diagnoses(items):
+    """Classify whether a bounded request comparison changes response shape."""
+    if len(items)!=3:
+        return "incomplete"
+    signatures=[(status, report["reason"],report["goods"]["json_type"],report["quantity"]["json_type"]) for status,report in items]
+    return "same_shape" if signatures[0]==signatures[1]==signatures[2] else "different_shape"
+
 def get(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url,headers={"Accept":"application/json","X-Requested-With":"XMLHttpRequest"}),timeout=12) as r:
@@ -90,14 +97,25 @@ def main():
     assert diagnose_stock_fields(None)["reason"]=="invalid_envelope"
     assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"0"})["reason"]=="numeric_scalar_in_quantity_field"
     assert diagnose_stock_fields({"storeGoodsInfo":"not json","storeGoodsQty":"not json"})["reason"]=="unexpected_field_types"
+    fake={"storeGoodsInfo":"123","storeGoodsQty":"456"}
+    sample=(200,diagnose_stock_fields(fake))
+    assert compare_diagnoses([sample,sample,sample])=="same_shape"
+    assert compare_diagnoses([sample])=="incomplete"
+    assert compare_diagnoses([sample,sample,(403,diagnose_stock_fields(None))])=="different_shape"
     print("METADATA_SELF_TEST_PASS",flush=True)
     import sys
     if "--self-test" in sys.argv:return
-    for code in ("06916","00833"):
+    comparison=[]
+    # Compare the existing single-store request with a bounded two-store
+    # candidate. This does not establish that comma separation is supported.
+    for label,code in (("single_a","06916"),("single_b","00833"),("combined_candidate","06916,00833")):
         params=urllib.parse.urlencode({"searchPluCode":BARCODE,"bizNoArr":code})
         status,data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+params)
         fields={key:{**meta(data.get(key)), **structure(data.get(key))} for key in ("storeGoodsInfo","storeGoodsQty")} if isinstance(data,dict) else {}
-        print("EMART24_FIELD_METADATA",json.dumps({"code":code,"http":status,"fields":fields,"diagnosis":diagnose_stock_fields(data)}),flush=True)
+        diagnosis=diagnose_stock_fields(data)
+        comparison.append((status,diagnosis))
+        print("EMART24_FIELD_METADATA",json.dumps({"request_kind":label,"http":status,"fields":fields,"diagnosis":diagnosis}),flush=True)
+    print("EMART24_REQUEST_COMPARISON",json.dumps({"result":compare_diagnoses(comparison),"combined_parameter_format_verified":False,"inventory_verified":False}),flush=True)
     params=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
     try:
         with urllib.request.urlopen(urllib.request.Request("https://mcp.aka.page/api/cu/inventory?"+params,headers={"Accept":"text/html"}),timeout=12) as r:
