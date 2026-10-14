@@ -11,6 +11,7 @@ import urllib.error
 from unittest.mock import patch
 
 import monitor
+from emart24_recovery import InventoryUnavailable
 
 
 PLU = next(iter(monitor.PRODUCTS.values()))
@@ -54,7 +55,7 @@ class MonitorIntegrationTests(unittest.TestCase):
         calls = []
         def fail(params, **kwargs):
             calls.append((params, kwargs))
-            raise urllib.error.HTTPError("mock", 502, "Bad Gateway", {}, None)
+            raise InventoryUnavailable("Emart24 inventory unavailable; quantity UNKNOWN")
         saved, sent, log = self.run_monitor(fixtures, previous, fail)
         self.assertEqual(saved, [])
         self.assertEqual(sent, [])
