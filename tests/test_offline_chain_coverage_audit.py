@@ -4,7 +4,13 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
-import offline_chain_coverage_audit as audit_module
+import importlib.util
+
+SPEC = importlib.util.spec_from_file_location(
+    "offline_chain_coverage_audit", Path(__file__).with_name("offline_chain_coverage_audit.py")
+)
+audit_module = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(audit_module)
 
 
 class CoverageAuditTests(unittest.TestCase):
