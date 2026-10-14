@@ -138,6 +138,20 @@ def main():
         comparison.append((status,diagnosis))
         print("EMART24_FIELD_METADATA",json.dumps({"request_kind":label,"http":status,"fields":fields,"diagnosis":diagnosis}),flush=True)
     print("EMART24_REQUEST_COMPARISON",json.dumps({"result":compare_diagnoses(comparison),"combined_parameter_format_verified":False,"inventory_verified":False}),flush=True)
+    # Reference pair from a published March 2026 Emart24 traffic replay guide.
+    # Compare response shape only; neither product availability nor stock is assumed.
+    reference_query=urllib.parse.urlencode({
+        "searchPluCode":"8800244010504",
+        "bizNoArr":"28339,05015,23233,29512,24437,29109,26137,29796,30200,28057,27928,29570,30162,28187,22579,00367,28967,00737"})
+    reference_http,reference_data=get("https://everse.emart24.co.kr/api/stock/v2/stock-search/store?"+reference_query)
+    reference_report=diagnose_stock_fields(reference_data)
+    print("EMART24_REFERENCE_SHAPE",json.dumps({
+        "http":reference_http,
+        "goods_type":reference_report.get("goods",{}).get("outer_type","unavailable"),
+        "qty_type":reference_report.get("quantity",{}).get("outer_type","unavailable"),
+        "reason":reference_report["reason"],
+        "structural_candidate":reference_report["reason"]=="schema_only_not_inventory_verified",
+        "inventory_verified":False}),flush=True)
     params=urllib.parse.urlencode({"keyword":BARCODE,"storeKeyword":"아산","size":50,"storeCheck":"true","format":"html"})
     try:
         with urllib.request.urlopen(urllib.request.Request("https://mcp.aka.page/api/cu/inventory?"+params,headers={"Accept":"text/html"}),timeout=12) as r:
