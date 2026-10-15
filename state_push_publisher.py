@@ -59,6 +59,54 @@ def validate_artifact(artifact, expected_digest=None):
     return data
 
 
+
+def merge_gs25_claim_only(base_raw, remote_raw, candidate_raw):
+    """Rebase a GS25 scan only across verified pending->claimed transitions.
+
+    Never overwrite a newer inventory scan, alter a claimed message, or
+    revert an already claimed event to pending.
+    """
+    try:
+        base = json.loads(base_raw) if base_raw is not None else {}
+        remote = json.loads(remote_raw) if remote_raw is not None else {}
+        candidate = json.loads(candidate_raw)
+        if not all(isinstance(x, dict) for x in (base, remote, candidate)):
+            raise ValueError("invalid GS25 JSON")
+        def without_outbox(obj):
+            return {k: v for k, v in obj.items() if k != "pending_alerts"}
+        if without_outbox(base) != without_outbox(remote):
+            raise ValueError("GS25 inventory changed, not claim-only")
+        old = base.get("pending_alerts", {})
+        latest = remote.get("pending_alerts", {})
+        proposed = candidate.get("pending_alerts", {})
+        if not all(isinstance(x, dict) for x in (old, latest, proposed)):
+            raise ValueError("invalid GS25 outbox")
+        if set(old) != set(latest):
+            raise ValueError("GS25 outbox keys changed")
+        for key, before in old.items():
+            after = latest[key]
+            if not isinstance(before, dict) or not isinstance(after, dict):
+                raise ValueError("invalid GS25 event")
+            if after != before and not (before.get("status") == "pending" and
+                after == {**before, "status": "claimed"}):
+                raise ValueError("GS25 outbox modified outside claim")
+        merged = dict(proposed)
+        for key, after in latest.items():
+            if key not in merged:
+                # Old claimed entries may have been trimmed by the scanner.
+                if after.get("status") == "claimed":
+                    continue
+                raise ValueError("GS25 pending event dropped")
+            if merged[key].get("message") != after.get("message"):
+                raise ValueError("GS25 event message changed")
+            if after.get("status") == "claimed":
+                merged[key] = {**merged[key], "status": "claimed"}
+        candidate["pending_alerts"] = merged
+        return (json.dumps(candidate, ensure_ascii=False, sort_keys=True, indent=2) + "\\n").encode("utf-8")
+    except (TypeError, ValueError, KeyError, AttributeError) as exc:
+        raise RuntimeError("GS25 claim-only rebase rejected") from exc
+
+
 def publish_bundle(repo, artifacts, base_sha, max_attempts=3,
                    before_push=None, expected_digests=None):
     """Publish exactly one chain's validated state bundle; return attempt count."""
@@ -108,14 +156,18 @@ def publish_bundle(repo, artifacts, base_sha, max_attempts=3,
     for attempt in range(1, max_attempts + 1):
         git(repo, "fetch", "origin", "main")
         remote = {name: state_at(repo, "FETCH_HEAD", name) for name in paths}
+        publish_data = dict(data)
         for name in paths:
             if remote[name] != original[name] and remote[name] != data[name]:
-                raise RuntimeError(f"same-chain state changed remotely; refusing stale overwrite: {name}")
+                if name == "gs25_independent/gs25_stock_state.json":
+                    publish_data[name] = merge_gs25_claim_only(original[name], remote[name], data[name])
+                else:
+                    raise RuntimeError(f"same-chain state changed remotely; refusing stale overwrite: {name}")
         git(repo, "reset", "--hard", "FETCH_HEAD")
         for name in sorted(paths):
             target = repo / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(data[name])
+            target.write_bytes(publish_data[name])
         git(repo, "add", "--", *sorted(paths))
         if git(repo, "diff", "--cached", "--quiet", check=False).returncode == 0:
             return attempt
