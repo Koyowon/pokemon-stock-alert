@@ -2,17 +2,17 @@
 import json
 import unittest
 
-from store_registry.test_manual_review_queue import QueueTests, NOW
+from store_registry import test_manual_review_queue as queue_fixtures
 from store_registry.review_report import build_report, render_json, render_markdown
 
 
 class ReportTests(unittest.TestCase):
-    setUp = QueueTests.setUp
-    capture = QueueTests.capture
-    captures = QueueTests.captures
-    evidence = QueueTests.evidence
+    setUp = queue_fixtures.QueueTests.setUp
+    capture = queue_fixtures.QueueTests.capture
+    captures = queue_fixtures.QueueTests.captures
+    evidence = queue_fixtures.QueueTests.evidence
     def test_json_report_contains_review_fields_and_no_approval(self):
-        report = build_report(self.root, self.captures(), self.evidence(), NOW)
+        report = build_report(self.root, self.captures(), self.evidence(), queue_fixtures.NOW)
         data = json.loads(render_json(report))
         self.assertEqual(data["approved_for_production"], 0)
         self.assertFalse(data["automatic_registration"])
@@ -41,13 +41,13 @@ class ReportTests(unittest.TestCase):
     def test_missing_capture_not_marked_closed(self):
         captures = self.captures()
         captures[1]["payload"]["stores"] = []
-        report = build_report(self.root, captures, self.evidence(), NOW)
+        report = build_report(self.root, captures, self.evidence(), queue_fixtures.NOW)
         self.assertEqual(report["closure_candidates"], [])
         self.assertEqual(report["items"][0]["repeated_capture"], "unconfirmed")
         self.assertIn("not_repeated", report["items"][0]["quarantine_reasons"])
 
     def test_markdown_escapes_pipe(self):
-        report = build_report(self.root, self.captures(), self.evidence(), NOW)
+        report = build_report(self.root, self.captures(), self.evidence(), queue_fixtures.NOW)
         report["items"][0]["name"] = "Name | Other"
         self.assertIn("Name \\| Other", render_markdown(report))
 
