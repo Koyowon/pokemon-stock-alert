@@ -1,0 +1,46 @@
+name: State Publisher PR Offline Gate
+on:
+  push:
+    branches: [state-push-rollout-pr]
+  pull_request:
+    paths:
+      - '.github/workflows/stock-monitor.yml'
+      - '.github/workflows/cu-stock-monitor.yml'
+      - '.github/workflows/gs25-stock-monitor.yml'
+      - 'state_push_publisher.py'
+      - 'state_artifact_contract.py'
+      - 'tests/test_rollout_pr_offline.py'
+permissions:
+  contents: read
+jobs:
+  offline-only:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/state-push-rollout-pr'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      TELEGRAM_BOT_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
+      STATE_PUBLISH_APPROVED: '0'
+      GIT_ALLOW_PROTOCOL: file
+      GIT_TERMINAL_PROMPT: '0'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: state-push-rollout-pr
+          persist-credentials: false
+      - name: Run review-only tests with sockets disabled
+        run: |
+          python3 - <<'PY'
+          import socket, unittest, sys
+          from unittest.mock import patch
+          def deny(*args, **kwargs):
+              raise AssertionError('NETWORK_DISABLED_IN_REVIEW')
+          with patch.object(socket.socket, 'connect', deny), patch.object(socket.socket, 'connect_ex', deny), patch.object(socket, 'create_connection', deny):
+              result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.discover('tests', pattern='test_rollout_pr_offline.py'))
+              sys.exit(0 if result.wasSuccessful() else 1)
+          PY
+      - name: Confirm no operational state files modified
+        run: |
+          git diff --exit-code -- state.json stores.json cu_stock_state.json gs25_independent/gs25_stock_state.json
+          test -z "$(git ls-files --others --exclude-standard)"
