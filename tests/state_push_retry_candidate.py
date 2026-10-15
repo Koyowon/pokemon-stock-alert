@@ -126,12 +126,22 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", required=True)
     parser.add_argument("--state-file", required=True, choices=sorted(ALLOWED))
-    parser.add_argument("--artifact", required=True)
+    parser.add_argument("--artifact")
+    parser.add_argument("--stores-artifact")
     parser.add_argument("--base-sha", required=True)
     parser.add_argument("--max-attempts", type=int, default=3)
     args = parser.parse_args()
-    count = publish(args.repo, args.state_file, args.artifact,
-                    args.base_sha, args.max_attempts)
+    if args.state_file == "state.json":
+        if not args.artifact or not args.stores_artifact:
+            parser.error("emart24 requires --artifact and --stores-artifact")
+        count = publish_bundle(args.repo, {"state.json": args.artifact,
+                                           "stores.json": args.stores_artifact},
+                               args.base_sha, args.max_attempts)
+    else:
+        if not args.artifact or args.stores_artifact or args.state_file == "stores.json":
+            parser.error("single-chain publish requires --artifact only")
+        count = publish(args.repo, args.state_file, args.artifact,
+                        args.base_sha, args.max_attempts)
     print(f"STATE_PUSH_SUCCESS attempts={count}")
 
 
