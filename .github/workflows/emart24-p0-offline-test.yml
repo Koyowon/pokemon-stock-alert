@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/emart24-p0-offline-test.yml'
       - 'tests/test_emart24_p0_isolated.py'
+      - 'tests/test_emart24_git_collision_offline.py'
   workflow_dispatch:
 
 permissions:
@@ -51,6 +52,10 @@ jobs:
               result = unittest.TextTestRunner(verbosity=2).run(suite)
               sys.exit(0 if result.wasSuccessful() else 1)
           PY
+      - name: Run local-only Git collision simulations
+        shell: bash
+        run: |
+          python3 -m unittest discover -s tests -p "test_emart24_git_collision_offline.py" -v
       - name: Verify no operational state files changed
         if: always()
         run: |
