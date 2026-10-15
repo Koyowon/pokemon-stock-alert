@@ -4,12 +4,15 @@ Do not invoke from production workflows until separately approved.
 Designed for a disposable clean checkout and a separate state artifact.
 """
 import argparse
+import hashlib
+import json
 import os
 import subprocess
 from pathlib import Path
 
 ALLOWED = {
     "state.json",
+    "stores.json",
     "cu_stock_state.json",
     "gs25_independent/gs25_stock_state.json",
 }
@@ -26,56 +29,97 @@ def git(repo, *args, check=True):
 
 
 def state_at(repo, revision, path):
-    result = git(repo, "show", f"{revision}:{path}", check=False)
+    result = subprocess.run(
+        ["git", "-C", str(repo), "show", f"{revision}:{path}"],
+        capture_output=True, check=False,
+    )
     if result.returncode:
-        # Missing at both revisions is acceptable; a mismatch is not.
+        exists = git(repo, "cat-file", "-e", f"{revision}^{{commit}}", check=False)
+        if exists.returncode:
+            raise RuntimeError("cannot resolve git revision")
+        tracked = git(repo, "ls-tree", "-r", "--name-only", revision)
+        if path in tracked.stdout.splitlines():
+            raise RuntimeError("cannot read tracked state file")
         return None
-    return result.stdout.encode("utf-8")
+    return result.stdout
 
 
-def publish(repo, state_path, artifact, base_sha, max_attempts=3, before_push=None):
-    """Return attempt count. Never rerun scans or send alerts on push retry."""
+def validate_artifact(artifact, expected_digest=None):
+    if artifact.is_symlink() or not artifact.is_file():
+        raise ValueError("artifact must be a regular file")
+    data = artifact.read_bytes()
+    try:
+        parsed = json.loads(data.decode("utf-8"))
+    except (ValueError, UnicodeDecodeError) as exc:
+        raise ValueError("invalid JSON artifact") from exc
+    if not isinstance(parsed, dict):
+        raise ValueError("JSON state must be an object")
+    if expected_digest is not None and hashlib.sha256(data).hexdigest() != expected_digest:
+        raise ValueError("artifact checksum mismatch")
+    return data
+
+
+def publish_bundle(repo, artifacts, base_sha, max_attempts=3,
+                   before_push=None, expected_digests=None):
+    """Publish exactly one chain's validated state bundle; return attempt count."""
     repo = Path(repo).resolve()
-    artifact = Path(artifact).resolve()
-    if state_path not in ALLOWED:
+    paths = set(artifacts)
+    if not paths or not (paths <= ALLOWED):
         raise ValueError("state path not allowlisted")
-    if not artifact.is_file() or repo in artifact.parents:
-        raise ValueError("artifact must be an existing file outside the checkout")
+    if "stores.json" in paths and paths != {"state.json", "stores.json"}:
+        raise ValueError("emart24 cache must be bundled with inventory state")
+    if "state.json" in paths and paths != {"state.json", "stores.json"}:
+        raise ValueError("emart24 state requires stores.json")
+    if len(paths) > 1 and paths != {"state.json", "stores.json"}:
+        raise ValueError("mixed-chain state bundle rejected")
     if not 1 <= max_attempts <= 5:
         raise ValueError("max_attempts must be 1..5")
+    if not (repo / ".git").is_dir():
+        raise RuntimeError("requires a disposable normal Git checkout")
     if git(repo, "status", "--porcelain").stdout.strip():
         raise RuntimeError("checkout must be clean")
-    if not git(repo, "rev-parse", "--verify", f"{base_sha}^{{commit}}", check=False).returncode == 0:
+    if git(repo, "rev-parse", "--verify", f"{base_sha}^{{commit}}", check=False).returncode:
         raise RuntimeError("invalid baseline commit")
-    if not (repo / ".git").exists():
-        raise RuntimeError("requires a disposable normal Git checkout")
-
-    data = artifact.read_bytes()
-    # Candidate's baseline is the scan checkout commit, not a retry commit.
-    original = state_at(repo, base_sha, state_path)
+    data = {}
+    for name, artifact in artifacts.items():
+        source = Path(artifact)
+        if not source.is_absolute():
+            raise ValueError("artifact path must be absolute")
+        if repo == source.resolve() or repo in source.resolve().parents:
+            raise ValueError("artifact must be outside checkout")
+        data[name] = validate_artifact(
+            source, (expected_digests or {}).get(name)
+        )
+    original = {name: state_at(repo, base_sha, name) for name in paths}
     for attempt in range(1, max_attempts + 1):
         git(repo, "fetch", "origin", "main")
-        remote = state_at(repo, "FETCH_HEAD", state_path)
-        if remote != original and remote != data:
-            raise RuntimeError("same-chain state changed remotely; refusing stale overwrite")
-        # Safe only in a clean, disposable checkout. Other chain states come
-        # from the newest remote commit, not the original scan checkout.
+        remote = {name: state_at(repo, "FETCH_HEAD", name) for name in paths}
+        for name in paths:
+            if remote[name] != original[name] and remote[name] != data[name]:
+                raise RuntimeError(f"same-chain state changed remotely; refusing stale overwrite: {name}")
         git(repo, "reset", "--hard", "FETCH_HEAD")
-        target = repo / state_path
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(data)
-        git(repo, "add", "--", state_path)
-        if not git(repo, "diff", "--cached", "--quiet", check=False).returncode:
+        for name in sorted(paths):
+            target = repo / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data[name])
+        git(repo, "add", "--", *sorted(paths))
+        if git(repo, "diff", "--cached", "--quiet", check=False).returncode == 0:
             return attempt
         git(repo, "-c", "user.name=github-actions[bot]",
             "-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com",
-            "commit", "-m", f"Update {state_path} [skip ci]")
+            "commit", "-m", "Update isolated chain state [skip ci]")
         if before_push is not None:
             before_push(attempt)
-        pushed = git(repo, "push", "origin", "HEAD:refs/heads/main", check=False)
-        if pushed.returncode == 0:
+        if git(repo, "push", "origin", "HEAD:refs/heads/main", check=False).returncode == 0:
             return attempt
     raise RuntimeError(f"push retry exhausted after {max_attempts} attempts")
+
+
+def publish(repo, state_path, artifact, base_sha, max_attempts=3, before_push=None):
+    if state_path == "state.json":
+        raise ValueError("emart24 requires state.json and stores.json bundle")
+    return publish_bundle(repo, {state_path: artifact}, base_sha,
+                          max_attempts=max_attempts, before_push=before_push)
 
 
 def main():
