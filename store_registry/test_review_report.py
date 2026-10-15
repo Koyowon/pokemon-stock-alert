@@ -6,7 +6,11 @@ from store_registry.test_manual_review_queue import QueueTests, NOW
 from store_registry.review_report import build_report, render_json, render_markdown
 
 
-class ReportTests(QueueTests):
+class ReportTests(unittest.TestCase):
+    setUp = QueueTests.setUp
+    capture = QueueTests.capture
+    captures = QueueTests.captures
+    evidence = QueueTests.evidence
     def test_json_report_contains_review_fields_and_no_approval(self):
         report = build_report(self.root, self.captures(), self.evidence(), NOW)
         data = json.loads(render_json(report))
