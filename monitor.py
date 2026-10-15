@@ -1,6 +1,7 @@
 """Emart24 stock monitor: Namwon/Asan unchanged, Jeonju seed gated OFF by settings."""
 import json
 import os
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -36,7 +37,22 @@ def read_json(path, default):
         return default
 
 def save_json(path, data):
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    """Atomically save JSON without truncating an existing state file on failure."""
+    path = Path(path)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=path.parent,
+            prefix=f".{path.name}.", suffix=".tmp", delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 def api(path, params, attempts=2):
     url = BASE + "/" + path + "?" + urllib.parse.urlencode(params)
@@ -321,10 +337,10 @@ def main():
                     continue
             updated[key] = qty
         print(f"{product}: {len(values)}/{len(stores)} numeric results")
+    if numeric == 0:
+        raise RuntimeError("EMART24_ALL_INVENTORY_UNKNOWN: state unchanged")
     save_json(STATE_FILE, updated)
     print(f"Finished: {numeric} numeric inventory entries, {unknown} unknown entries")
-    if numeric == 0:
-        print("WARNING: No numeric stock values; API health needs investigation")
     print("EMART24 STOCK MONITOR FINISHED", flush=True)
 
 if __name__ == "__main__":
