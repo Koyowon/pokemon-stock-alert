@@ -122,7 +122,8 @@ def build(root):
         "schema_version": 1, "read_only": True, "records": records,
         "report": {"total_unique": len(records), "by_chain": counts,
                    "by_region": by_region, "source_rows": dict(sources),
-                   "conflicts": conflicts, "issues": issues,\n                   "region_review_candidates": region_review_candidates},
+                   "conflicts": conflicts, "issues": issues,
+                   "region_review_candidates": region_review_candidates},
     }
 
 
