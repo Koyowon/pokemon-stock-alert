@@ -21,7 +21,6 @@ jobs:
       TELEGRAM_BOT_TOKEN: ''
       TELEGRAM_CHAT_ID: ''
       STATE_PUBLISH_APPROVED: '0'
-      GIT_ALLOW_PROTOCOL: file
       GIT_TERMINAL_PROMPT: '0'
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
@@ -30,6 +29,8 @@ jobs:
           ref: state-push-rollout-pr
           persist-credentials: false
       - name: Run review-only tests with sockets disabled
+        env:
+          GIT_ALLOW_PROTOCOL: file
         run: |
           python3 - <<'PY'
           import socket, unittest, sys
