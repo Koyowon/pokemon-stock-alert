@@ -102,7 +102,7 @@ def merge_gs25_claim_only(base_raw, remote_raw, candidate_raw):
             if after.get("status") == "claimed":
                 merged[key] = {**merged[key], "status": "claimed"}
         candidate["pending_alerts"] = merged
-        return (json.dumps(candidate, ensure_ascii=False, sort_keys=True, indent=2) + "\\n").encode("utf-8")
+        return (json.dumps(candidate, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
     except (TypeError, ValueError, KeyError, AttributeError) as exc:
         raise RuntimeError("GS25 claim-only rebase rejected") from exc
 
