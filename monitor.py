@@ -9,6 +9,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from region_config import load_enabled_regions
+from experiments.isolated_state_outbox import queue_transition
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
@@ -332,9 +333,8 @@ def main():
                 message += "\n지역: " + region_label
                 message += "\n🗺 네이버지도: " + naver_map(store["name"], store["address"])
                 message += "\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
-                if not notify(message):
-                    print(f"WARNING: alert failed, state not advanced: {key}")
-                    continue
+                updated, event_key = queue_transition(updated, "emart24", message)
+                print(f"ALERT_PENDING: {key} {event_key}")
             updated[key] = qty
         print(f"{product}: {len(values)}/{len(stores)} numeric results")
     if numeric == 0:
