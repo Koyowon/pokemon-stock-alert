@@ -33,7 +33,7 @@ jobs:
         run: python3 gs25_independent/gs25_auto_monitor.py
       - name: Stage chain state and generate manifest
         id: manifest
-        if: always()
+        if: success()
         env:
           RUN_ID: ${{ github.run_id }}
           RUN_ATTEMPT: ${{ github.run_attempt }}
