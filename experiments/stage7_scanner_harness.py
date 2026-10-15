@@ -34,12 +34,14 @@ def scan_synthetic():
              patch("cu_asan_registry.summarize_observations", return_value=None), \
              contextlib.redirect_stdout(io.StringIO()):
             cu.main()
-        assert len(cu_messages) == 1
+        assert len(cu_messages) == 0
         cu_state = json.loads(cu_file.read_text())
         assert cu_state["stores"]["FAKE-CU-01"]["stock"] == 3
         # Scanner's Telegram is replaced by capture only. Convert captured
         # message to pending event, never deliver it.
-        state, eid = queue_transition({"stock": cu_state}, "cu", cu_messages[0])
+        assert len(cu_state["pending_alerts"]) == 1
+        eid = next(iter(cu_state["pending_alerts"]))
+        state = cu_state
         result["chains"]["cu"] = {"state": state, "eid": eid}
 
         # Real emart24 main(), with synthetic store discovery and stock().
@@ -58,10 +60,12 @@ def scan_synthetic():
              patch("unified_settings.enabled", return_value={"asan"}), \
              contextlib.redirect_stdout(io.StringIO()):
             em.main()
-        assert len(em_messages) == 1
+        assert len(em_messages) == 0
         em_state = json.loads(em_state_file.read_text())
         assert em_state["이마트24|FAKE-EM-01|8800286275732"] == 4
-        state, eid = queue_transition({"stock": em_state}, "emart24", em_messages[0])
+        assert len(em_state["pending_alerts"]) == 1
+        eid = next(iter(em_state["pending_alerts"]))
+        state = em_state
         result["chains"]["emart24"] = {"state": state, "eid": eid}
     assert result["telegram_calls"] == 0
     return result
