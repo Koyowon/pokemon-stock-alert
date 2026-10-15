@@ -1,0 +1,97 @@
+name: Isolated Actions Git Push Probe
+on:
+  push:
+    branches:
+      - validation/pr2-git-write-isolated-20261016
+    paths:
+      - .github/workflows/isolated-actions-git-probe.yml
+permissions:
+  contents: write
+concurrency:
+  group: isolated-actions-git-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GIT_TERMINAL_PROMPT: '0'
+      GIT_LFS_SKIP_SMUDGE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-git-write-isolated-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Prove Actions token write and stale push rejection
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='validation/pr2-git-write-isolated-20261016'
+          probe='tests/isolated_git_write_probe_20261016.json'
+          test "${GITHUB_REPOSITORY}" = 'Koyowon/pokemon-stock-alert'
+          test "${GITHUB_REF}" = "refs/heads/$branch"
+          test -f "$probe"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p "$RUNNER_TEMP/isolated-second-writer"
+          git -c protocol.file.allow=never clone --no-local . "$RUNNER_TEMP/isolated-second-writer"
+          # Use the same authenticated origin as checkout, never a local remote.
+          git -C "$RUNNER_TEMP/isolated-second-writer" remote set-url origin "$(git remote get-url origin)"
+          git -C "$RUNNER_TEMP/isolated-second-writer" config user.name 'github-actions[bot]'
+          git -C "$RUNNER_TEMP/isolated-second-writer" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("tests/isolated_git_write_probe_20261016.json")
+          d=json.loads(p.read_text())
+          assert d["alerts"] is False
+          d["actions_token_write"]=True
+          d["sequence"]+=1
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+"\n")
+          PY
+          git add -- "$probe"
+          git commit -m 'test: isolated Actions token first writer [skip ci]'
+          git push origin "HEAD:refs/heads/$branch"
+          echo 'FIRST_ACTIONS_TOKEN_PUSH_OK'
+          cd "$RUNNER_TEMP/isolated-second-writer"
+          git checkout "$branch"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("tests/isolated_git_write_probe_20261016.json")
+          d=json.loads(p.read_text())
+          assert d["alerts"] is False
+          d["stale_writer"]=True
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+"\n")
+          PY
+          git add -- "$probe"
+          git commit -m 'test: isolated stale writer (expect rejection) [skip ci]'
+          if git push origin "HEAD:refs/heads/$branch"; then
+            echo 'UNEXPECTED_STALE_PUSH_SUCCESS'
+            exit 1
+          fi
+          echo 'STALE_ACTIONS_TOKEN_PUSH_REJECTED'
+          git fetch origin "$branch"
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("tests/isolated_git_write_probe_20261016.json")
+          d=json.loads(p.read_text())
+          assert d["alerts"] is False and d["actions_token_write"] is True
+          d["stale_writer_recovered"]=True
+          d["sequence"]+=1
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+"\n")
+          PY
+          git add -- "$probe"
+          git commit -m 'test: isolated Actions stale writer recovered [skip ci]'
+          git push origin "HEAD:refs/heads/$branch"
+          echo 'RECOVERY_ACTIONS_TOKEN_PUSH_OK'
+          git fetch origin "$branch"
+          python3 - <<'PY'
+          import json,subprocess
+          d=json.loads(subprocess.check_output(["git","show","FETCH_HEAD:tests/isolated_git_write_probe_20261016.json"]))
+          assert d["actions_token_write"] is True and d["stale_writer_recovered"] is True and d["alerts"] is False
+          print("ISOLATED_ACTIONS_TOKEN_VERIFIED")
+          PY
