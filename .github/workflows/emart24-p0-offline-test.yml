@@ -11,6 +11,8 @@ on:
       - 'tests/test_state_push_retry_candidate.py'
       - 'tests/state_push_retry_candidate.py'
       - 'tests/test_state_push_p0_integrity.py'
+      - 'tests/state_artifact_recovery_candidate.py'
+      - 'tests/test_state_artifact_recovery.py'
   workflow_dispatch:
 
 permissions:
@@ -72,6 +74,12 @@ jobs:
           GIT_ALLOW_PROTOCOL: file
           GIT_TERMINAL_PROMPT: '0'
         run: python3 -m unittest discover -s tests -p "test_state_push_p0_integrity.py" -v
+      - name: Test offline artifact handoff and rollback guards
+        if: always() && github.ref == 'refs/heads/emart24-p0-isolated-test'
+        env:
+          GIT_ALLOW_PROTOCOL: file
+          GIT_TERMINAL_PROMPT: '0'
+        run: python3 -m unittest discover -s tests -p 'test_state_artifact_recovery.py' -v
       - name: Verify no operational state files changed
         if: always()
         run: |
