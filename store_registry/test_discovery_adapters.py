@@ -1,11 +1,11 @@
 """Offline adapters regression tests, synthetic provider snapshots only."""
 import unittest
 from store_registry.discovery_adapters import normalize_saved, compare_saved
-from store_registry.test_candidates import CandidateReviewTests
+from store_registry import test_candidates as fixtures
 
 
 class DiscoveryAdapterTests(unittest.TestCase):
-    setUp = CandidateReviewTests.setUp
+    setUp = fixtures.CandidateReviewTests.setUp
 
     def test_cu_parsed_discovery_and_strict_region(self):
         data = {"stores": [
