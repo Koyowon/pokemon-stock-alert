@@ -69,6 +69,7 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: write
+      actions: read
     concurrency:
       group: state-publisher-main
       cancel-in-progress: false
@@ -95,9 +96,21 @@ jobs:
           TRUSTED_ARTIFACT_ID: ${{ needs.scan.outputs.artifact_id }}
           TRUSTED_ARTIFACT_DIGEST: ${{ needs.scan.outputs.artifact_digest }}
           GIT_TERMINAL_PROMPT: '0'
+          GH_ACTIONS_READ_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           test -n "$TRUSTED_ARTIFACT_ID"
           [[ "$TRUSTED_ARTIFACT_DIGEST" == sha256:* ]]
+          python3 - <<'PY'
+          import os
+          from state_artifact_platform import validate_platform_artifact
+          validate_platform_artifact(
+              os.environ["TRUSTED_ARTIFACT_ID"],
+              os.environ["TRUSTED_ARTIFACT_DIGEST"],
+              os.environ["RUN_ID"],
+              "chain-gs25-" + os.environ["RUN_ID"] + "-" + os.environ["RUN_ATTEMPT"],
+              os.environ["GH_ACTIONS_READ_TOKEN"],
+          )
+          PY
           python3 state_push_publisher.py --repo "$GITHUB_WORKSPACE" --chain 'gs25' --run-id "$RUN_ID" --run-attempt "$RUN_ATTEMPT" --base-sha "$BASE_SHA" --manifest "$RUNNER_TEMP/downloaded/manifest.json" --trusted-manifest-sha256 "$TRUSTED_MANIFEST_SHA256" --state-file gs25_independent/gs25_stock_state.json --artifact "$RUNNER_TEMP/downloaded/gs25_independent/gs25_stock_state.json"
