@@ -3,7 +3,8 @@
   "alerts": false,
   "purpose": "isolated GitHub concurrency",
   "recovered_from_non_fast_forward": true,
-  "sequence": 3,
+  "sequence": 4,
+  "stale_writer_recovered": true,
   "writers": [
     "A",
     "B"
