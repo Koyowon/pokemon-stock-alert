@@ -1,0 +1,143 @@
+name: Stage12 Isolated State-Branch Candidate E2E
+on:
+  push:
+    branches:
+      - validation/pr2-stage12-code-20261016
+    paths:
+      - .github/workflows/stage12-isolated-e2e.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage12-isolated-state-e2e
+  cancel-in-progress: false
+jobs:
+  isolated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-stage12-code-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Offline candidate and prior regression tests
+        run: |
+          python -m unittest discover -s tests -p test_stage12_candidate.py -v
+          python -m unittest discover -s tests -p test_stage9_stability.py -v
+          python -m unittest discover -s tests -p test_isolated_state_outbox.py -v
+      - name: Dedicated Git state branch, real scanners, claim, audit and recovery
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-stage12-code-20261016'
+          export CODE_ROOT="$GITHUB_WORKSPACE"
+          export STATE_BRANCH='validation/pr2-stage12-state-20261016'
+          export PROBE="experiments/stage12_probe_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}.json"
+          export CLAIM_RUN="stage12-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          CODE_SHA="$(git rev-parse HEAD)"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "$STATE_BRANCH"
+          git worktree add --detach "$RUNNER_TEMP/stage12-state" FETCH_HEAD
+          git worktree add --detach "$RUNNER_TEMP/stage12-stale" FETCH_HEAD
+          cd "$RUNNER_TEMP/stage12-state"
+          export PYTHONPATH="$CODE_ROOT"
+          python3 - <<'PY'
+          import json,os,sys
+          from pathlib import Path
+          sys.path.insert(0,os.environ['CODE_ROOT'])
+          from experiments.stage12_candidate import blank,scan_from_latest
+          p=Path(os.environ['PROBE'])
+          assert not p.exists()
+          state=scan_from_latest(blank())
+          p.write_text(json.dumps(state,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: stage12 publish scanner pending events to isolated state [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE12_PENDING_PUBLISHED_TO_STATE_BRANCH'
+          cd "$RUNNER_TEMP/stage12-stale"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          echo stale > experiments/stage12_stale.txt
+          git add experiments/stage12_stale.txt
+          git commit -m 'test: stale concurrent writer [skip ci]'
+          if git push origin "HEAD:refs/heads/$STATE_BRANCH"; then
+            echo 'UNEXPECTED_STALE_WRITE'; exit 1
+          fi
+          echo 'STAGE12_CONCURRENT_PUSH_REJECTED'
+          git fetch origin "$STATE_BRANCH"
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.stage12_candidate import scan_from_latest
+          p=Path(os.environ['PROBE'])
+          old=json.loads(p.read_text())
+          newer=scan_from_latest(old)
+          for chain in ('cu','emart24'):
+            assert old['chains'][chain]['state']['pending_alerts']==newer['chains'][chain]['state']['pending_alerts']
+          assert old['outcomes']==newer['outcomes']
+          print('STAGE12_REFRESH_LATEST_AND_RESCAN_NO_DUPLICATES')
+          PY
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.stage12_candidate import claim_new,audit
+          p=Path(os.environ['PROBE'])
+          state=json.loads(p.read_text())
+          updated,ids=claim_new(state,os.environ['CLAIM_RUN'])
+          assert len(ids)==2
+          assert set(audit(updated))==set(ids)
+          # No mock delivery before the claim commit is remotely visible.
+          p.write_text(json.dumps(updated,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
+          print('STAGE12_FAILED_CLAIM_SEND_GUARD_CHECKED')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: stage12 durable owned claims [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE12_CLAIMS_COMMITTED'
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          from experiments.stage12_candidate import record_mock_outcome,audit
+          remote=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['PROBE']]))
+          ids=[(chain,eid) for chain in ('cu','emart24')
+               for eid,event in remote['chains'][chain]['state']['pending_alerts'].items()
+               if event['status']=='claimed' and event.get('claim_run')==os.environ['CLAIM_RUN']]
+          assert len(ids)==2 and set(audit(remote))==set(ids)
+          # Only IDs from THIS successful claim commit can be mocked.
+          result=record_mock_outcome(remote,os.environ['CLAIM_RUN'],ids)
+          assert audit(result)==[]
+          Path(os.environ['PROBE']).write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
+          print('STAGE12_OWNED_CLAIMS_ONLY_MOCK_SENT')
+          print('STAGE12_MISSING_ALERT_AUDIT_BEFORE_AND_AFTER')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: stage12 append synthetic mock send outcomes [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          from experiments.stage12_candidate import scan_from_latest,claim_new,audit
+          remote=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['PROBE']]))
+          assert len(remote['outcomes'])==2
+          assert remote['telegram_calls']==0
+          assert audit(remote)==[]
+          rerun=scan_from_latest(remote)
+          _,new=claim_new(rerun,'another-run')
+          assert new==[]
+          assert rerun['outcomes']==remote['outcomes']
+          print('STAGE12_REMOTE_AUDIT_DURABLE_AND_REEXECUTION_SAFE')
+          baseline=json.loads(subprocess.check_output(['git','show','HEAD~2:'+os.environ['PROBE']]))
+          assert sum(len(baseline['chains'][c]['state']['pending_alerts']) for c in ('cu','emart24'))==2
+          assert baseline['outcomes']=={}
+          print('STAGE12_READONLY_ROLLBACK_SNAPSHOT_OK')
+          PY
+          test "$(git -C "$CODE_ROOT" rev-parse HEAD)" = "$CODE_SHA"
+          echo 'STAGE12_CODE_BRANCH_UNCHANGED'
+          echo 'STAGE12_ISOLATED_E2E_SUCCESS'
