@@ -49,13 +49,18 @@ def prepare(source, destination, chain, run_id, attempt, base_sha):
         raise
 
 
-def verify(directory, chain, run_id, attempt, base_sha):
+def verify(directory, chain, run_id, attempt, base_sha, expected_manifest_sha256=None):
     directory = Path(directory)
     if directory.is_symlink() or not directory.is_dir():
         raise ValueError("missing download artifact")
     manifest_path = directory / "manifest.json"
     if manifest_path.is_symlink() or not manifest_path.is_file():
         raise ValueError("missing artifact manifest")
+    if expected_manifest_sha256 is not None:
+        if not re.fullmatch(r"[0-9a-f]{64}", expected_manifest_sha256):
+            raise ValueError("invalid trusted manifest digest")
+        if hashlib.sha256(manifest_path.read_bytes()).hexdigest() != expected_manifest_sha256:
+            raise ValueError("trusted manifest digest mismatch")
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (ValueError, UnicodeError) as exc:
@@ -87,7 +92,7 @@ def verify(directory, chain, run_id, attempt, base_sha):
     return artifacts, manifest["files"]
 
 
-def recover(repo, directory, chain, run_id, attempt, base_sha):
+def recover(repo, directory, chain, run_id, attempt, base_sha, expected_manifest_sha256=None):
     """Retry publication only after full verification; never repeat scan/alerts."""
-    artifacts, digests = verify(directory, chain, run_id, attempt, base_sha)
+    artifacts, digests = verify(directory, chain, run_id, attempt, base_sha, expected_manifest_sha256)
     return publish_bundle(repo, artifacts, base_sha, expected_digests=digests)
