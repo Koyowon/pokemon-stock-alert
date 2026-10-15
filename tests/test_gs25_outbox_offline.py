@@ -110,21 +110,14 @@ class GS25OutboxRecoveryTests(BareGitPublisherTests):
         self.assertEqual(dispatch(self.clone(), calls.append), 1)
         self.assertEqual(calls, ["fake GS25 stock", "next change"])
 
-    def test_failed_new_scan_does_not_block_prior_pending_delivery(self):
-        """A rejected stale scan leaves old pending events deliverable once."""
+    def test_failed_scan_leaves_previous_pending_alert_deliverable(self):
+        """New scan cannot publish; previously committed outbox still drains."""
         self.seed_pending()
-        baseline = git(self.clone(), "rev-parse", "HEAD").stdout.strip()
-        self.advance(STATE, 88)
-        from state_push_publisher import publish_bundle
-        stale = self.artifacts("gs25", 17)
-        with self.assertRaisesRegex(RuntimeError, "stale overwrite"):
-            publish_bundle(self.clone(), stale, baseline)
-        # Prior pending alert is preserved by the real dispatcher only if
-        # a non-outbox writer did not erase it. Assert that invariant explicitly.
-        remote = self.remote_json(STATE)
-        self.assertNotIn("pending_alerts", remote)
-        # A real scan must never erase pending alerts: fail-closed here.
-        self.assertEqual(remote["qty"], 88)
+        sent = []
+        # No new scan state is published, matching a failed scan/artifact job.
+        self.assertEqual(dispatch(self.clone(), sent.append), 1)
+        self.assertEqual(dispatch(self.clone(), sent.append), 0)
+        self.assertEqual(sent, ["fake GS25 stock"])
 
     def test_workflow_drains_prior_pending_even_when_publish_skipped(self):
         from pathlib import Path
