@@ -8,6 +8,7 @@ from store_registry.review_report import build_report
 
 class RegionalAuditTests(unittest.TestCase):
     setUp = fixtures.QueueTests.setUp
+    capture = fixtures.QueueTests.capture
     captures = fixtures.QueueTests.captures
     evidence = fixtures.QueueTests.evidence
 
