@@ -72,3 +72,16 @@ Implemented on this PR branch only:
 The scan now uses a monotonic `alert_sequence` in its state to distinguish repeated legitimate transitions. It retains at most 1,000 historical `claimed` entries, never discards a pending event silently, and fails closed if more than 1,000 events are pending. An offline regression test exercises a 1→3→1→3 stock sequence. These changes address the earlier event-key reuse and unbounded claimed-history findings. Pending capacity still requires operational monitoring.
 
 The at-most-once choice remains deliberate: ambiguous delivery and post-claim crashes can cause missed notifications. `main` protection is still unverified (403). These are explicit sign-off blockers, not a green-light to merge.
+
+## GS25 scan/publish versus notification-claim concurrency (2026-10-16)
+
+The race was reproduced with actual candidate Git publication and dispatcher against disposable `file://` bare Git remotes, never the production remote. A scan based on the previous GS25 state can encounter a concurrent `pending → claimed` notification commit.
+
+Remediation:
+- `state_push_publisher.merge_gs25_claim_only` allows a rebase only when the remote GS25 change relative to the scan base consists **exclusively** of pending-to-claimed transitions with identical event messages. It carries claimed status into the new candidate state, so an already-claimed notification is never reopened. New inventory changes, event removal, event message changes, and other remote modifications still fail closed.
+- The existing bounded push retry handles a claim that lands after fetch but before push. Both pre-existing claim and mid-push collision have real bare-Git regression tests.
+- GS25 `notify` uses `always()` and depends on both `scan` and `publish`, so previously published pending events may be claimed even when the current scan or publication fails. The claim-before-send rule still applies.
+- Tests assert each fake Telegram message is attempted once, claimed entries survive, and the new pending event is eventually delivered without resending the earlier claimed event.
+- Caveats: exactly-once Telegram delivery is impossible with this Git/Telegram split; an ambiguous Telegram timeout or post-claim crash can still lose an alert. Branch protection API remains 403/unverified. No production publish/Telegram/API was attempted.
+
+**NO-GO:** remain Draft; await owner review of main branch protection and explicit acceptance of at-most-once delivery semantics.
