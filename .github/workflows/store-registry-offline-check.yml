@@ -1,0 +1,37 @@
+name: Offline Store Registry Verification
+on:
+  push:
+    branches: [store-registry-offline]
+    paths:
+      - 'store_registry/**'
+      - '.github/workflows/store-registry-offline-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Fetch read-only main snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin refs/heads/main:refs/remotes/origin/main
+          mkdir -p /tmp/store-registry-main/gs25_independent
+          for file in gs25_independent/gs25_stock_state.json cu_stock_state.json stores.json emart24_jeonju_seed.json; do
+            git show "refs/remotes/origin/main:$file" > "/tmp/store-registry-main/$file"
+          done
+          git rev-parse refs/remotes/origin/main
+      - name: Python offline unit and integration checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest -v store_registry.test_registry
+          python3 -m store_registry.verify_main_snapshot --root /tmp/store-registry-main
