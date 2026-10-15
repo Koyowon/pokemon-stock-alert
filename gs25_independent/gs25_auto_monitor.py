@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """GS25 four-region third-party inventory watcher. Baseline first; Telegram on new positives."""
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -99,6 +100,10 @@ def main():
     new_state = {'version': 2, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     failures = 0
     alerts = 0
+    pending = dict(previous.get('pending_alerts', {}))
+    sequence = int(previous.get('alert_sequence', 0))
+    if sequence < 0 or not isinstance(previous.get('pending_alerts', {}), dict):
+        raise ValueError('invalid alert outbox metadata')
     for region in enabled:
         rid = region['id']
         seen = {}
@@ -169,28 +174,38 @@ def main():
                        f'조회 코드: {code}\n{detail}\n'
                        f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
                        '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
-                try:
-                    telegram(msg)
-                except (OSError, ValueError, RuntimeError) as exc:
-                    print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
-                    # Avoid advancing this store's baseline if the alert was not sent.
-                    former = old.get(sid)
-                    if former is None:
-                        seen.pop(sid, None)
-                    else:
-                        seen[sid] = former
-                    continue
+                sequence += 1
+                key = hashlib.sha256(json.dumps([code, sequence, rid, sid, prev_q, q], ensure_ascii=False).encode()).hexdigest()
+                pending.setdefault(key, {'message': msg, 'status': 'pending'})
                 alerts += 1
-                print(f'ALERT_SENT region={rid} store={sid} old={prev_q} new={q}', flush=True)
+                print(f'ALERT_QUEUED region={rid} store={sid} key={key[:12]}', flush=True)
         # Keep prior observations for stores absent from this scan, but never infer zero.
         prior_stores = prior.get('stores', prior.get('positive', {})) if prior else {}
         merged = dict(prior_stores)
         merged.update(seen)
         new_state['regions'][rid] = {'stores': merged, 'checked_at_utc': new_state['checked_at_utc']}
-    if new_state['regions'] != previous.get('regions', {}):
-        STATE.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+    # Retain all pending events, but bound historical claimed entries.
+    claimed = [key for key, value in pending.items() if value.get('status') == 'claimed']
+    for key in claimed[:-1000]:
+        del pending[key]
+    if sum(value.get('status') == 'pending' for value in pending.values()) > 1000:
+        raise RuntimeError('GS25_OUTBOX_CAPACITY: refusing to discard pending alerts')
+    new_state['pending_alerts'] = pending
+    new_state['alert_sequence'] = sequence
+    changed = (new_state['regions'] != previous.get('regions', {}) or
+               pending != previous.get('pending_alerts', {}) or
+               sequence != previous.get('alert_sequence', 0))
+    if changed:
+        # Publish valid complete regions even when other regions failed.
+        # This advances baselines for successfully sent alerts, reducing repeats.
+        tmp = STATE.with_suffix('.tmp')
+        tmp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+        tmp.replace(STATE)
         print('STATE_WRITTEN', flush=True)
     print(f'FINAL errors={failures} alerts={alerts} state={STATE.name}', flush=True)
+    if failures and changed:
+        print('GS25_PARTIAL_SUCCESS: completed regions saved; failed regions preserved', flush=True)
+        return 0
     return 1 if failures else 0
 
 
