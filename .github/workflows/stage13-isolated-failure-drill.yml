@@ -1,0 +1,114 @@
+name: Stage13 Isolated Publisher Dispatcher Failure Drill
+on:
+  push:
+    branches:
+      - validation/pr2-stage13-code-20261016
+    paths:
+      - .github/workflows/stage13-isolated-failure-drill.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage13-isolated-failure-drill
+  cancel-in-progress: false
+jobs:
+  stage13:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-stage13-code-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Offline regression tests
+        run: |
+          python -m unittest discover -s tests -p test_stage13_publisher.py -v
+          python -m unittest discover -s tests -p test_stage12_candidate.py -v
+          python -m unittest discover -s tests -p test_stage9_stability.py -v
+      - name: Actual Git isolated state branch and mocked dispatch
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-stage13-code-20261016'
+          export CODE_ROOT="$GITHUB_WORKSPACE"
+          export BRANCH='validation/pr2-stage13-state-20261016'
+          export PROBE="experiments/stage13_probe_${GITHUB_RUN_ID}_${GITHUB_RUN_ATTEMPT}.json"
+          export RUNKEY="stage13-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          CODE_SHA="$(git rev-parse HEAD)"
+          git fetch origin "$BRANCH"
+          git worktree add --detach "$RUNNER_TEMP/stage13-state" FETCH_HEAD
+          cd "$RUNNER_TEMP/stage13-state"
+          export PYTHONPATH="$CODE_ROOT"
+          python3 - <<'PY'
+          import os
+          from experiments.stage12_candidate import blank,scan_from_latest
+          from experiments.stage13_state_publisher import remote_state,publish_if_unchanged
+          w=os.getcwd();b=os.environ['BRANCH'];p=os.environ['PROBE']
+          sha,old=remote_state(w,b,p)
+          assert old is None
+          state=scan_from_latest(blank())
+          published=publish_if_unchanged(w,b,p,sha,state,"test: stage13 pending")
+          assert published!=sha
+          print('STAGE13_PENDING_PUBLISHED_AND_VERIFIED')
+          # A concurrent stale writer must fail without calling any sender.
+          try:
+            publish_if_unchanged(w,b,p,sha,state,"test: stale")
+          except Exception as e:
+            assert type(e).__name__=='PublishConflict'
+          else:
+            raise AssertionError('stale publisher accepted')
+          print('STAGE13_STALE_BASELINE_REJECTED')
+          PY
+          python3 - <<'PY'
+          import os
+          from experiments.stage13_state_publisher import remote_state,publish_if_unchanged,claim_for_run,missing_or_uncertain
+          from experiments.stage12_candidate import scan_from_latest
+          w=os.getcwd();b=os.environ['BRANCH'];p=os.environ['PROBE']
+          sha,state=remote_state(w,b,p)
+          refreshed=scan_from_latest(state)
+          assert all(refreshed['chains'][c]['state']['pending_alerts']==state['chains'][c]['state']['pending_alerts'] for c in ('cu','emart24'))
+          claimed,ids=claim_for_run(state,os.environ['RUNKEY'],"2026-10-16T00:00:00+00:00")
+          assert len(ids)==2 and len(missing_or_uncertain(claimed))==2
+          newsha=publish_if_unchanged(w,b,p,sha,claimed,"test: stage13 claimed")
+          assert newsha!=sha
+          print('STAGE13_OWNED_CLAIMS_COMMITTED')
+          PY
+          python3 - <<'PY'
+          import os
+          from experiments.stage13_state_publisher import remote_state,publish_if_unchanged,dispatch_claimed,missing_or_uncertain
+          w=os.getcwd();b=os.environ['BRANCH'];p=os.environ['PROBE']
+          sha,remote=remote_state(w,b,p)
+          ids=[(chain,eid) for chain in ('cu','emart24')
+               for eid,e in remote['chains'][chain]['state']['pending_alerts'].items()
+               if e.get('claim_run')==os.environ['RUNKEY']]
+          assert len(ids)==2
+          attempts=[]
+          def mock_send(message):
+            attempts.append(message)
+            if len(attempts)==2: raise TimeoutError('synthetic ambiguous send')
+          result=dispatch_claimed(remote,ids,os.environ['RUNKEY'],mock_send)
+          assert len(attempts)==2
+          assert len(missing_or_uncertain(result))==1
+          assert sorted(x['status'] for x in result['outcomes'].values())==['mock_sent','send_unknown']
+          publish_if_unchanged(w,b,p,sha,result,"test: stage13 audit outcomes")
+          print('STAGE13_MOCK_DISPATCH_AND_UNKNOWN_AUDIT_DURABLE')
+          PY
+          python3 - <<'PY'
+          import os,subprocess,json
+          from experiments.stage13_state_publisher import remote_state,missing_or_uncertain,claim_for_run
+          w=os.getcwd();b=os.environ['BRANCH'];p=os.environ['PROBE']
+          _,latest=remote_state(w,b,p)
+          assert len(missing_or_uncertain(latest))==1
+          _,ids=claim_for_run(latest,'stage13-rerun','2026-10-16T01:00:00+00:00')
+          assert ids==[]
+          baseline=json.loads(subprocess.check_output(['git','show','HEAD~2:'+p]))
+          assert baseline['outcomes']=={}
+          assert latest['telegram_calls']==0
+          print('STAGE13_NO_RETRY_UNKNOWN_AND_ROLLBACK_SNAPSHOT_OK')
+          PY
+          test "$(git -C "$CODE_ROOT" rev-parse HEAD)" = "$CODE_SHA"
+          echo 'STAGE13_CODE_BRANCH_UNCHANGED'
+          echo 'STAGE13_ISOLATED_DRILL_SUCCESS'
