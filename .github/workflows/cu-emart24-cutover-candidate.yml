@@ -1,0 +1,65 @@
+name: CU Emart24 Cutover Candidate Isolated E2E
+on:
+  push:
+    branches:
+      - validation/cu-emart24-cutover-candidate-20261016
+    paths:
+      - .github/workflows/cu-emart24-cutover-candidate.yml
+permissions:
+  contents: write
+concurrency:
+  group: cu-emart24-cutover-candidate-isolated
+  cancel-in-progress: false
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/cu-emart24-cutover-candidate-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Synthetic-only candidate integration
+        shell: bash
+        env:
+          PYTHONSAFEPATH: '1'
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/cu-emart24-cutover-candidate-20261016'
+          export CODE_ROOT="$GITHUB_WORKSPACE"
+          export PYTHONPATH="$CODE_ROOT"
+          export RUNKEY="candidate-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git fetch origin validation/cu-emart24-cutover-state-20261016
+          git worktree add --detach "$RUNNER_TEMP/cutover-synthetic" FETCH_HEAD
+          cd "$RUNNER_TEMP/cutover-synthetic"
+          python3 - <<'PY'
+          import copy,os
+          from cutover_candidate import fetch_bundle,prepare_backup,claim_bundle,audit_bundle
+          from cutover_candidate_runner import scanner,cycle
+          w=os.getcwd()
+          for chain,qty in (("cu",3),("emart24",4)):
+              sha,baseline=fetch_bundle(w,chain)
+              before=copy.deepcopy(baseline)
+              snapshot=prepare_backup(baseline,chain)
+              assert all(len(x["sha256"])==64 for x in snapshot.values())
+              result=scanner(chain,baseline)
+              if chain=="cu":
+                  assert result["experiments/cutover_cu_synthetic.json"]["stores"]["FAKE-CU-01"]["stock"]==qty
+              else:
+                  assert result["experiments/cutover_em_synthetic.json"]["이마트24|FAKE-EM-01|8800286275732"]==qty
+              assert baseline==before
+              print("CANDIDATE_COUNT_AND_BACKUP_OK",chain)
+              # Cycle uses exact chain state on dedicated synthetic-only branch.
+              issues=cycle(w,chain,os.environ["RUNKEY"]+"-"+chain,"2026-10-16T00:00:00+00:00",lambda message:None)
+              assert issues==[]
+              _,latest=fetch_bundle(w,chain)
+              again=scanner(chain,latest)
+              assert again==latest
+              issues=cycle(w,chain,os.environ["RUNKEY"]+"-repeat-"+chain,"2026-10-16T01:00:00+00:00",lambda message:(_ for _ in ()).throw(AssertionError("duplicate")))
+              assert issues==[]
+              print("CANDIDATE_NO_DUPLICATE_AND_AUDIT_OK",chain)
+          print("CUTOVER_CANDIDATE_ISOLATED_E2E_SUCCESS")
+          PY
