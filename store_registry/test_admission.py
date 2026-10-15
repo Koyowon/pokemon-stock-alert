@@ -1,13 +1,13 @@
 """Offline production-admission regression tests."""
 import unittest
-from store_registry.test_candidates import CandidateReviewTests
+from store_registry import test_candidates as fixtures
 
 # Reuse only the fixture setup, not inherited test methods.
 from store_registry.admission import plan
 
 
 class AdmissionTests(unittest.TestCase):
-    setUp = CandidateReviewTests.setUp
+    setUp = fixtures.CandidateReviewTests.setUp
     def candidate(self, chain="cu"):
         return {"chain": chain, "store_id": "NEW1", "name": "신규점",
                 "address": "남원시 도통동 2", "region": "namwon"}
