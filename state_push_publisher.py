@@ -68,7 +68,11 @@ def publish_bundle(repo, artifacts, base_sha, max_attempts=3,
     if os.environ.get('GITHUB_REF') != 'refs/heads/main':
         raise RuntimeError('publisher only supports main runs')
     remote_url = git(repo, 'remote', 'get-url', 'origin').stdout.strip()
-    if remote_url not in ('https://github.com/Koyowon/pokemon-stock-alert', 'https://github.com/Koyowon/pokemon-stock-alert.git'):
+    # Offline tests may use only a disposable file:// remote with an explicit gate.
+    local_test = (os.environ.get('STATE_PUBLISH_OFFLINE_TEST') == '1' and
+                  os.environ.get('GIT_ALLOW_PROTOCOL') == 'file' and
+                  remote_url.startswith('file://'))
+    if not local_test and remote_url not in ('https://github.com/Koyowon/pokemon-stock-alert', 'https://github.com/Koyowon/pokemon-stock-alert.git'):
         raise RuntimeError('untrusted Git origin')
     paths = set(artifacts)
     if not paths or not (paths <= ALLOWED):
