@@ -38,7 +38,16 @@
       "stores": {}
     }
   },
-  "outcomes": {},
+  "outcomes": {
+    "cu:cu-1-8990be00fb2fbc29": {
+      "claim_run": "stage12-38823884210-1",
+      "status": "mock_sent"
+    },
+    "emart24:emart24-1-95708e8bb342fef8": {
+      "claim_run": "stage12-38823884210-1",
+      "status": "mock_sent"
+    }
+  },
   "schema": 12,
   "synthetic": true,
   "telegram_calls": 0
