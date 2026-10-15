@@ -19,7 +19,7 @@ def scanner(chain,bundle,mock_only=True):
         if chain=="cu":
             item={"code":"FAKE-CU-01","name":"테스트점","address":"충청남도 아산시 테스트로 12",
                   "city":"아산","stock":3}
-            with patch.object(cu,"STATE_FILE",root/"cu_stock_state.json"), \
+            with patch.object(cu,"STATE_FILE",root/FILES["cu"][0]), \
                  patch.object(cu,"POINTS",{"아산":[(36.79,127.0)]}), \
                  patch.object(cu,"query",return_value=[item]), \
                  patch.object(cu,"telegram",side_effect=AssertionError("blocked")), \
@@ -28,8 +28,8 @@ def scanner(chain,bundle,mock_only=True):
                 cu.main()
         elif chain=="emart24":
             stores={"FAKE-EM-01":{"name":"가상점","address":"충청남도 아산시 테스트로 20"}}
-            with patch.object(em,"STATE_FILE",root/"state.json"), \
-                 patch.object(em,"STORES_FILE",root/"stores.json"), \
+            with patch.object(em,"STATE_FILE",root/FILES["emart24"][0]), \
+                 patch.object(em,"STORES_FILE",root/FILES["emart24"][1]), \
                  patch.object(em,"get_stores",return_value=stores), \
                  patch.object(em,"stock",return_value=({"FAKE-EM-01":4},{"FAKE-EM-01":"OK"})), \
                  patch.object(em,"notify",side_effect=AssertionError("blocked")), \
