@@ -192,7 +192,7 @@ def main():
         # Publish valid complete regions even when other regions failed.
         # This advances baselines for successfully sent alerts, reducing repeats.
         tmp = STATE.with_suffix('.tmp')
-        tmp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\\n', encoding='utf-8')
+        tmp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
         tmp.replace(STATE)
         print('STATE_WRITTEN', flush=True)
     print(f'FINAL errors={failures} alerts={alerts} state={STATE.name}', flush=True)
