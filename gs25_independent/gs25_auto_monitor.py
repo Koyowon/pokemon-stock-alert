@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """GS25 four-region third-party inventory watcher. Baseline first; Telegram on new positives."""
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -99,6 +100,7 @@ def main():
     new_state = {'version': 2, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     failures = 0
     alerts = 0
+    pending = dict(previous.get('pending_alerts', {}))
     for region in enabled:
         rid = region['id']
         seen = {}
@@ -169,25 +171,18 @@ def main():
                        f'조회 코드: {code}\n{detail}\n'
                        f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
                        '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
-                try:
-                    telegram(msg)
-                except (OSError, ValueError, RuntimeError) as exc:
-                    print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
-                    # Avoid advancing this store's baseline if the alert was not sent.
-                    former = old.get(sid)
-                    if former is None:
-                        seen.pop(sid, None)
-                    else:
-                        seen[sid] = former
-                    continue
+                key = hashlib.sha256(json.dumps([code, rid, sid, prev_q, q], ensure_ascii=False).encode()).hexdigest()
+                pending.setdefault(key, {'message': msg, 'status': 'pending'})
                 alerts += 1
-                print(f'ALERT_SENT region={rid} store={sid} old={prev_q} new={q}', flush=True)
+                print(f'ALERT_QUEUED region={rid} store={sid} key={key[:12]}', flush=True)
         # Keep prior observations for stores absent from this scan, but never infer zero.
         prior_stores = prior.get('stores', prior.get('positive', {})) if prior else {}
         merged = dict(prior_stores)
         merged.update(seen)
         new_state['regions'][rid] = {'stores': merged, 'checked_at_utc': new_state['checked_at_utc']}
-    changed = new_state['regions'] != previous.get('regions', {})
+    new_state['pending_alerts'] = pending
+    changed = (new_state['regions'] != previous.get('regions', {}) or
+               pending != previous.get('pending_alerts', {}))
     if changed:
         # Publish valid complete regions even when other regions failed.
         # This advances baselines for successfully sent alerts, reducing repeats.
