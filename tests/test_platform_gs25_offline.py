@@ -112,6 +112,18 @@ class GS25PartialTests(unittest.TestCase):
                 self.assertEqual(module.main(), 0)
             self.assertEqual(len(alerts), 0)
             self.assertEqual(len(json.loads(state.read_text())['pending_alerts']), 1)
+            # A legitimate return to the same quantity transition must get a new event ID.
+            for qty in (1, 3):
+                with patch.dict(sys.modules, {"unified_settings": fake_settings}), \
+                     patch.object(module, "api_query", side_effect=lambda code, term: [
+                         {"storeCode": "N1", "storeName": "Old", "realStockQuantity": qty}]
+                         if term == "ok" else []), \
+                     patch.object(module, "telegram", side_effect=alerts.append):
+                    self.assertEqual(module.main(), 0)
+            final = json.loads(state.read_text())
+            self.assertEqual(len(final['pending_alerts']), 3)
+            self.assertEqual(final['alert_sequence'], 3)
+            self.assertEqual(len(alerts), 0)
 
 
 if __name__ == "__main__":
