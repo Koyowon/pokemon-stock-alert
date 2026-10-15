@@ -1,0 +1,106 @@
+name: Isolated Split-Branch CU emart24 E2E
+on:
+  push:
+    branches:
+      - validation/pr2-code-separated-20261016
+    paths:
+      - .github/workflows/isolated-split-branch-e2e.yml
+permissions:
+  contents: write
+concurrency:
+  group: isolated-split-branch-e2e-20261016
+  cancel-in-progress: false
+jobs:
+  split-branch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-code-separated-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Run synthetic inventory and publish to separate state branch
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-code-separated-20261016'
+          CODE_SHA="$(git rev-parse HEAD)"
+          STATE_BRANCH='validation/pr2-state-only-20261016'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "$STATE_BRANCH"
+          mkdir -p "$RUNNER_TEMP/state-work"
+          git worktree add --detach "$RUNNER_TEMP/state-work" FETCH_HEAD
+          git worktree add --detach "$RUNNER_TEMP/stale-writer" FETCH_HEAD
+          cd "$RUNNER_TEMP/state-work"
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+          export PROBE='experiments/isolated_split_state_20261016.json'
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import queue_transition
+          p=Path(os.environ['PROBE'])
+          data={'synthetic':True,'telegram_calls':0,'chains':{}}
+          for chain in ('cu','emart24'):
+              s,eid=queue_transition({'stock':{'mock-store':2}},chain,chain+' synthetic inventory 0 to 2')
+              data['chains'][chain]={'state':s,'eid':eid}
+          p.write_text(json.dumps(data,sort_keys=True,indent=2)+'\n')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: separated state branch pending mock CU and emart24 [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'SPLIT_STATE_PENDING_PUBLISHED'
+          cd "$RUNNER_TEMP/stale-writer"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          echo 'isolated stale test' > experiments/isolated_split_stale.txt
+          git add experiments/isolated_split_stale.txt
+          git commit -m 'test: intentionally stale split branch writer [skip ci]'
+          if git push origin "HEAD:refs/heads/$STATE_BRANCH"; then
+              echo 'UNEXPECTED_STALE_PUSH'; exit 1
+          fi
+          echo 'SPLIT_STALE_PUSH_REJECTED'
+          git fetch origin "$STATE_BRANCH"
+          git reset --hard FETCH_HEAD
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import claim_event
+          p=Path(os.environ['PROBE'])
+          d=json.loads(p.read_text())
+          assert d['synthetic'] is True and d['telegram_calls']==0
+          for chain in ('cu','emart24'):
+              v=d['chains'][chain]
+              v['state']=claim_event(v['state'],v['eid'])
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+'\n')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: split branch durable claimed events [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'SPLIT_CLAIMS_PUBLISHED_BEFORE_MOCK_SEND'
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          from experiments.isolated_state_outbox import claim_event
+          d=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['PROBE']]))
+          mock=[]
+          for chain in ('cu','emart24'):
+              v=d['chains'][chain]
+              assert v['state']['pending_alerts'][v['eid']]['status']=='claimed'
+              mock.append(v['state']['pending_alerts'][v['eid']]['message'])
+              try: claim_event(v['state'],v['eid'])
+              except ValueError: pass
+              else: raise AssertionError('duplicate claim')
+          assert len(mock)==2 and all('synthetic' in x for x in mock)
+          assert d['telegram_calls']==0
+          print('SPLIT_MOCK_SEND_ONLY_NO_TELEGRAM')
+          print('SPLIT_DUPLICATE_CLAIM_BLOCKED')
+          PY
+          test "$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)" = "$CODE_SHA"
+          echo 'CODE_BRANCH_UNCHANGED_BY_STATE_WRITES'
+          echo 'SPLIT_BRANCH_E2E_SUCCESS'
