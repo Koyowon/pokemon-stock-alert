@@ -67,7 +67,7 @@ class P0BundleTests(CandidatePatchTests):
 
     def test_10_reject_incomplete_emart24_bundle(self):
         client = self.clone("partial_em")
-        with self.assertRaisesRegex(ValueError, "requires stores.json"):
+        with self.assertRaisesRegex(ValueError, "requires state.json and stores.json"):
             publish(client, "state.json", self.artifact("em", {"qty": 1}), self.base)
         with self.assertRaises(ValueError):
             publish_bundle(client, {"stores.json": self.artifact("cache", {"stores": {}})}, self.base)
