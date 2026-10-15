@@ -1,0 +1,58 @@
+name: Emart24 P0 Offline Isolation Tests
+
+on:
+  push:
+    branches:
+      - emart24-p0-isolated-test
+    paths:
+      - '.github/workflows/emart24-p0-offline-test.yml'
+      - 'tests/test_emart24_p0_isolated.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: emart24-p0-offline-only
+  cancel-in-progress: false
+
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      TELEGRAM_BOT_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout isolated branch without push credentials
+        uses: actions/checkout@v4
+        with:
+          ref: emart24-p0-isolated-test
+          persist-credentials: false
+      - name: Reject wrong branch
+        run: test "$(git branch --show-current)" = "emart24-p0-isolated-test"
+      - name: Run six offline tests with outbound sockets disabled
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import socket
+          import sys
+          import unittest
+          from unittest.mock import patch
+          def blocked(*args, **kwargs):
+              raise AssertionError("OFFLINE_NETWORK_BLOCKED")
+          with patch.object(socket.socket, "connect", blocked), \
+               patch.object(socket.socket, "connect_ex", blocked), \
+               patch.object(socket, "create_connection", blocked):
+              suite = unittest.defaultTestLoader.discover(
+                  start_dir="tests", pattern="test_emart24_p0_isolated.py"
+              )
+              result = unittest.TextTestRunner(verbosity=2).run(suite)
+              sys.exit(0 if result.wasSuccessful() else 1)
+          PY
+      - name: Verify no operational state files changed
+        if: always()
+        run: |
+          git diff --exit-code -- state.json stores.json cu_stock_state.json gs25_independent/gs25_stock_state.json
+          test -z "$(git ls-files --others --exclude-standard)"
