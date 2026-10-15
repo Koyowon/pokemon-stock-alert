@@ -1,1 +1,18 @@
-{"stores":{},"pending_alerts":{},"alert_sequence":0}
+{
+  "alert_sequence": 1,
+  "pending_alerts": {
+    "cu-1-8990be00fb2fbc29": {
+      "message": "🟢 CU 포켓몬카드 첫 재고 확인!\n상품: 포켓몬)30주년기념카드\n바코드: 8800286275732\n지역: 아산\n매장: 테스트점\n주소: 충청남도 아산시 테스트로 12\n현재 재고: 3개\n🗺 네이버지도: https://map.naver.com/p/search/%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84%20%EC%95%84%EC%82%B0%EC%8B%9C%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A1%9C%2012\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요.",
+      "status": "pending"
+    }
+  },
+  "stores": {
+    "FAKE-CU-01": {
+      "address": "충청남도 아산시 테스트로 12",
+      "alerted": true,
+      "city": "아산",
+      "name": "테스트점",
+      "stock": 3
+    }
+  }
+}
