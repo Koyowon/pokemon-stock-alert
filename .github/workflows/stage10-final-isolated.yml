@@ -35,7 +35,7 @@ jobs:
           export CODE_ROOT="$GITHUB_WORKSPACE"
           CODE_SHA="$(git rev-parse HEAD)"
           STATE_BRANCH='validation/pr2-stage10-state-20261016'
-          export PROBE='experiments/stage10_integrated_probe.json'
+          export PROBE="experiments/stage10_integrated_probe_${GITHUB_RUN_ID}.json"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin "$STATE_BRANCH"
