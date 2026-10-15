@@ -108,8 +108,18 @@ jobs:
           # prior events; this rehearsal never overwrites the remote state.
           new=scan_synthetic()
           for chain in ('cu','emart24'):
-            merged=preserve_alerts(old['chains'][chain]['state'],new['chains'][chain]['state'])
             eid=old['chains'][chain]['eid']
+            # Re-scanning from a stale empty baseline must fail closed:
+            # the same event id is now claimed on the remote branch.
+            try:
+              preserve_alerts(old['chains'][chain]['state'],new['chains'][chain]['state'])
+            except ValueError:
+              pass
+            else:
+              raise AssertionError('stale scanner silently overwrote claim')
+            # A correctly refreshed scanner starts from remote state.
+            refreshed={'stock':new['chains'][chain]['state'].get('stock',{})}
+            merged=preserve_alerts(old['chains'][chain]['state'],refreshed)
             assert merged['pending_alerts'][eid]['status']=='claimed'
           print('STAGE10_RESCAN_PRESERVES_CLAIMS')
           # Rollback is deliberately read-only; verify previous Git snapshot.
