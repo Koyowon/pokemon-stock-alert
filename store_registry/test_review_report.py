@@ -24,7 +24,7 @@ class ReportTests(unittest.TestCase):
         self.assertFalse(item["evidence_independently_verified"])
 
     def test_markdown_reports_quarantine_and_next_steps(self):
-        report = build_report(self.root, self.captures(), now=NOW)
+        report = build_report(self.root, self.captures(), now=queue_fixtures.NOW)
         markdown = render_markdown(report)
         self.assertIn("987654", markdown)
         self.assertIn("independent_evidence_missing", markdown)
