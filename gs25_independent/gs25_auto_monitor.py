@@ -101,6 +101,9 @@ def main():
     failures = 0
     alerts = 0
     pending = dict(previous.get('pending_alerts', {}))
+    sequence = int(previous.get('alert_sequence', 0))
+    if sequence < 0 or not isinstance(previous.get('pending_alerts', {}), dict):
+        raise ValueError('invalid alert outbox metadata')
     for region in enabled:
         rid = region['id']
         seen = {}
@@ -171,7 +174,8 @@ def main():
                        f'조회 코드: {code}\n{detail}\n'
                        f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
                        '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
-                key = hashlib.sha256(json.dumps([code, rid, sid, prev_q, q], ensure_ascii=False).encode()).hexdigest()
+                sequence += 1
+                key = hashlib.sha256(json.dumps([code, sequence, rid, sid, prev_q, q], ensure_ascii=False).encode()).hexdigest()
                 pending.setdefault(key, {'message': msg, 'status': 'pending'})
                 alerts += 1
                 print(f'ALERT_QUEUED region={rid} store={sid} key={key[:12]}', flush=True)
@@ -180,9 +184,17 @@ def main():
         merged = dict(prior_stores)
         merged.update(seen)
         new_state['regions'][rid] = {'stores': merged, 'checked_at_utc': new_state['checked_at_utc']}
+    # Retain all pending events, but bound historical claimed entries.
+    claimed = [key for key, value in pending.items() if value.get('status') == 'claimed']
+    for key in claimed[:-1000]:
+        del pending[key]
+    if sum(value.get('status') == 'pending' for value in pending.values()) > 1000:
+        raise RuntimeError('GS25_OUTBOX_CAPACITY: refusing to discard pending alerts')
     new_state['pending_alerts'] = pending
+    new_state['alert_sequence'] = sequence
     changed = (new_state['regions'] != previous.get('regions', {}) or
-               pending != previous.get('pending_alerts', {}))
+               pending != previous.get('pending_alerts', {}) or
+               sequence != previous.get('alert_sequence', 0))
     if changed:
         # Publish valid complete regions even when other regions failed.
         # This advances baselines for successfully sent alerts, reducing repeats.
