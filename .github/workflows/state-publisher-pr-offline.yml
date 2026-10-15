@@ -14,7 +14,7 @@ permissions:
   contents: read
 jobs:
   offline-only:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/state-push-rollout-pr'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/state-push-rollout-pr') || (github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'state-push-rollout-pr')
     runs-on: ubuntu-latest
     timeout-minutes: 3
     env:
@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: state-push-rollout-pr
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Run review-only tests with sockets disabled
         env:
