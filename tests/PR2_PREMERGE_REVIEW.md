@@ -67,3 +67,8 @@ Implemented on this PR branch only:
 6. Confirm repository owner approves at-most-once semantics and operational handling of `claimed` alerts with uncertain delivery.
 
 **Decision remains NO-GO.** No main merge, production API, Telegram, or production Git push was performed.
+
+### Event lifecycle follow-up
+The scan now uses a monotonic `alert_sequence` in its state to distinguish repeated legitimate transitions. It retains at most 1,000 historical `claimed` entries, never discards a pending event silently, and fails closed if more than 1,000 events are pending. An offline regression test exercises a 1→3→1→3 stock sequence. These changes address the earlier event-key reuse and unbounded claimed-history findings. Pending capacity still requires operational monitoring.
+
+The at-most-once choice remains deliberate: ambiguous delivery and post-claim crashes can cause missed notifications. `main` protection is still unverified (403). These are explicit sign-off blockers, not a green-light to merge.
