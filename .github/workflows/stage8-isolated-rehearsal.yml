@@ -43,6 +43,8 @@ jobs:
           python3 - <<'PY'
           import json,os
           from pathlib import Path
+          import sys
+          sys.path.insert(0, os.environ['CODE_ROOT'])
           from experiments.stage7_scanner_harness import scan_synthetic
           p=Path(os.environ['STAGE7_PROBE'])
           assert not p.exists(), 'test must not overwrite pre-existing state'
