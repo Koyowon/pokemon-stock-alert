@@ -1,0 +1,36 @@
+{
+  "chains": {
+    "cu": {
+      "eid": "cu-1-cbe0a74f721156e1",
+      "state": {
+        "alert_sequence": 1,
+        "pending_alerts": {
+          "cu-1-cbe0a74f721156e1": {
+            "message": "stage9 cu synthetic",
+            "status": "pending"
+          }
+        },
+        "stock": {
+          "fake": 2
+        }
+      }
+    },
+    "emart24": {
+      "eid": "emart24-1-c5d38e4aa001564d",
+      "state": {
+        "alert_sequence": 1,
+        "pending_alerts": {
+          "emart24-1-c5d38e4aa001564d": {
+            "message": "stage9 emart24 synthetic",
+            "status": "pending"
+          }
+        },
+        "stock": {
+          "fake": 2
+        }
+      }
+    }
+  },
+  "synthetic": true,
+  "telegram_calls": 0
+}
