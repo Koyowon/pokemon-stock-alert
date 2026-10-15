@@ -1,0 +1,20 @@
+name: CU Emart24 Minimal Final Readiness
+on:
+  push:
+    branches:
+      - validation/cu-emart24-final-readiness-20261016
+    paths:
+      - .github/workflows/cu-emart24-final-readiness.yml
+permissions:
+  contents: read
+jobs:
+  final-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/cu-emart24-final-readiness-20261016
+          persist-credentials: false
+      - name: Three mandatory offline checks
+        run: python -m unittest discover -s tests -p test_final_readiness.py -v
