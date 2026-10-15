@@ -1,0 +1,6 @@
+{
+  "purpose": "isolated GitHub write and concurrency test",
+  "chain": "none",
+  "sequence": 0,
+  "alerts": false
+}
