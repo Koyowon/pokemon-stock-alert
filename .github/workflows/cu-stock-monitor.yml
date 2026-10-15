@@ -81,7 +81,7 @@ jobs:
       - name: Download same-run artifact
         uses: actions/download-artifact@v4
         with:
-          name: chain-cu-${{ github.run_id }}-${{ github.run_attempt }}
+          artifact-ids: ${{ needs.scan.outputs.artifact_id }}
           path: ${{ runner.temp }}/downloaded
       - name: Validate producer identity and publish only chain state
         env:
