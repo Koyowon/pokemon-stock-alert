@@ -29,6 +29,10 @@ class RolloutReviewTests(unittest.TestCase):
             self.assertIn("actions/download-artifact@v4", text)
             self.assertIn("TRUSTED_MANIFEST_SHA256", text)
             self.assertIn("TRUSTED_ARTIFACT_ID", text)
+            self.assertIn("artifact-ids: ${{ needs.scan.outputs.artifact_id }}", text)
+            self.assertIn("if: success()", text)
+            self.assertIn("if: always() && needs.scan.outputs.artifact_ok == 'success'", text)
+            self.assertIn("group: state-publisher-main", text)
             self.assertIn("state-publisher-main", text)
             self.assertIn("--chain '" + chain + "'", text)
 
@@ -72,6 +76,43 @@ class RolloutReviewTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "not authorized"):
                 publish_bundle("/tmp/nonexistent", {"cu_stock_state.json": "/tmp/no"},
                                "a" * 40)
+
+    def test_missing_or_wrong_artifact_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            with self.assertRaisesRegex(ValueError, "missing download artifact"):
+                verify(root / "missing", "cu", 100, 1, "a" * 40, "0" * 64)
+            src = root / "source"
+            src.mkdir()
+            (src / "cu_stock_state.json").write_text('{"stock":1}')
+            dest = root / "artifact"
+            prepare(src, dest, "cu", 100, 1, "a" * 40)
+            digest = hashlib.sha256((dest / "manifest.json").read_bytes()).hexdigest()
+            for chain, run, attempt in [("gs25", 100, 1), ("cu", 101, 1), ("cu", 100, 2)]:
+                with self.assertRaisesRegex(ValueError, "metadata mismatch"):
+                    verify(dest, chain, run, attempt, "a" * 40, digest)
+
+    def test_monitor_all_unknown_fails_before_state_save(self):
+        text = (ROOT / "monitor.py").read_text()
+        error = 'raise RuntimeError("EMART24_ALL_INVENTORY_UNKNOWN: state unchanged")'
+        self.assertIn(error, text)
+        self.assertLess(text.index(error), text.index("save_json(STATE_FILE, updated)"))
+
+    def test_publisher_blocks_wrong_ref_and_repo(self):
+        with patch.dict(os.environ, {"STATE_PUBLISH_APPROVED": "1", "GITHUB_REPOSITORY": "attacker/repo", "GITHUB_REF": "refs/heads/main"}):
+            with self.assertRaisesRegex(RuntimeError, "not authorized"):
+                publish_bundle("/tmp/nonexistent", {"cu_stock_state.json": "/tmp/no"}, "a" * 40)
+        with patch.dict(os.environ, {"STATE_PUBLISH_APPROVED": "1", "GITHUB_REPOSITORY": "Koyowon/pokemon-stock-alert", "GITHUB_REF": "refs/heads/evil"}):
+            with self.assertRaisesRegex(RuntimeError, "only supports main"):
+                publish_bundle("/tmp/nonexistent", {"cu_stock_state.json": "/tmp/no"}, "a" * 40)
+
+    def test_rollback_and_stale_write_controls_exist(self):
+        text = (ROOT / "state_push_publisher.py").read_text()
+        self.assertIn("same-chain state changed remotely; refusing stale overwrite", text)
+        self.assertIn("push retry exhausted", text)
+        self.assertIn('"push", "origin", "HEAD:refs/heads/main"', text)
+        self.assertNotIn("push --force", text)
+        self.assertIn("'merge-base', '--is-ancestor'", text)
 
 if __name__ == "__main__":
     unittest.main()
