@@ -64,3 +64,48 @@ class GS25OutboxRecoveryTests(BareGitPublisherTests):
                 dispatch(self.clone(), sent.append)
             self.assertEqual(sent, [])
             self.assertEqual(self.remote_json(STATE)["pending_alerts"]["event-1"]["status"], "pending")
+
+    def test_claim_races_with_next_scan_publish(self):
+        """Scan begins at old SHA; dispatcher claims existing alert before publish."""
+        self.seed_pending()
+        baseline = git(self.clone(), "rev-parse", "HEAD").stdout.strip()
+        scan = self.clone()
+        source = self.artifacts("gs25", 9)
+        candidate = json.loads(source[STATE].read_text())
+        candidate.update({"version": 2, "item_code": "12345678",
+                          "regions": {"namwon": {"stores": {"N1": {"quantity": 9, "name": "N"}}}},
+                          "pending_alerts": {"event-1": {"message": "fake GS25 stock", "status": "pending"},
+                                             "event-2": {"message": "next change", "status": "pending"}},
+                          "alert_sequence": 2})
+        source[STATE].write_text(json.dumps(candidate))
+        dispatched = []
+        self.assertEqual(dispatch(self.clone(), dispatched.append), 1)
+        from state_push_publisher import publish_bundle
+        publish_bundle(scan, source, baseline)
+        remote = self.remote_json(STATE)
+        self.assertEqual(remote["pending_alerts"]["event-1"]["status"], "claimed")
+        self.assertEqual(remote["pending_alerts"]["event-2"]["status"], "pending")
+        self.assertEqual(dispatch(self.clone(), dispatched.append), 1)
+        self.assertEqual(dispatch(self.clone(), dispatched.append), 0)
+        self.assertEqual(dispatched, ["fake GS25 stock", "next change"])
+
+    def test_claim_races_with_same_scan_push_retry(self):
+        self.seed_pending()
+        baseline = git(self.clone(), "rev-parse", "HEAD").stdout.strip()
+        source = self.artifacts("gs25", 10)
+        candidate = json.loads(source[STATE].read_text())
+        candidate.update({"version": 2, "item_code": "12345678",
+                          "regions": {"namwon": {"stores": {"N1": {"quantity": 10, "name": "N"}}}},
+                          "pending_alerts": {"event-1": {"message": "fake GS25 stock", "status": "pending"},
+                                             "event-2": {"message": "next change", "status": "pending"}},
+                          "alert_sequence": 2})
+        source[STATE].write_text(json.dumps(candidate))
+        from state_push_publisher import publish_bundle
+        calls = []
+        def collision(attempt):
+            if attempt == 1:
+                dispatch(self.clone(), calls.append)
+        self.assertEqual(publish_bundle(self.clone(), source, baseline, before_push=collision), 2)
+        self.assertEqual(self.remote_json(STATE)["pending_alerts"]["event-1"]["status"], "claimed")
+        self.assertEqual(dispatch(self.clone(), calls.append), 1)
+        self.assertEqual(calls, ["fake GS25 stock", "next change"])
