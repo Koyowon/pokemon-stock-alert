@@ -33,5 +33,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m unittest -v store_registry.test_registry store_registry.test_candidates store_registry.test_admission store_registry.test_discovery_adapters
+          python3 -m unittest -v store_registry.test_registry store_registry.test_candidates store_registry.test_admission store_registry.test_discovery_adapters store_registry.test_saved_audit
           python3 -m store_registry.verify_main_snapshot --root /tmp/store-registry-main
+          python3 -m store_registry.audit_saved_discovery --root /tmp/store-registry-main
