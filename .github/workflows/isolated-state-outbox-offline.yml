@@ -1,0 +1,25 @@
+name: Isolated CU emart24 Outbox Offline Tests
+on:
+  push:
+    branches:
+      - validation/pr2-state-outbox-20261016
+    paths:
+      - experiments/isolated_state_outbox.py
+      - tests/test_isolated_state_outbox.py
+      - .github/workflows/isolated-state-outbox-offline.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run isolated tests without network or Telegram
+        run: python -m unittest discover -s tests -p test_isolated_state_outbox.py -v
