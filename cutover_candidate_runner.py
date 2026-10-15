@@ -15,6 +15,7 @@ def scanner(chain,bundle,mock_only=True):
     with tempfile.TemporaryDirectory() as d:
         root=Path(d)
         for path,obj in bundle.items():
+            (root/path).parent.mkdir(parents=True,exist_ok=True)
             (root/path).write_text(json.dumps(obj,ensure_ascii=False))
         if chain=="cu":
             item={"code":"FAKE-CU-01","name":"테스트점","address":"충청남도 아산시 테스트로 12",
