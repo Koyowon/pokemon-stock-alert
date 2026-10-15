@@ -1,0 +1,102 @@
+name: Isolated CU emart24 Git State E2E
+on:
+  push:
+    branches:
+      - validation/pr2-state-git-e2e-20261016
+    paths:
+      - .github/workflows/isolated-state-git-e2e.yml
+permissions:
+  contents: write
+concurrency:
+  group: isolated-state-git-e2e-20261016
+  cancel-in-progress: false
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-state-git-e2e-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Verify isolated real Git push and outbox claim order
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-state-git-e2e-20261016'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git worktree add --detach "$RUNNER_TEMP/second-writer" HEAD
+          export TEST_PROBE_FILE='experiments/e2e_isolated_state_probe.json'
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import queue_transition
+          p = Path(os.environ['TEST_PROBE_FILE'])
+          p.parent.mkdir(parents=True,exist_ok=True)
+          data = {'kind':'synthetic-only','alerts':False,'chains':{}}
+          for chain in ('cu','emart24'):
+              state, eid = queue_transition({'stock':{'synthetic-store':1}},chain,chain+' synthetic stock 0 to 1')
+              data['chains'][chain] = {'state':state,'eid':eid,'attempts':0}
+          p.write_text(json.dumps(data,indent=2,sort_keys=True)+'\n')
+          PY
+          git add -- "$TEST_PROBE_FILE"
+          git commit -m 'test: isolated synthetic CU and emart24 pending state [skip ci]'
+          git push origin HEAD:refs/heads/validation/pr2-state-git-e2e-20261016
+          echo 'PENDING_PUBLISHED_BEFORE_SEND'
+          cd "$RUNNER_TEMP/second-writer"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # This checkout is intentionally stale. A competing write must be rejected.
+          echo 'stale writer synthetic' > experiments/e2e_isolated_stale_probe.txt
+          git add experiments/e2e_isolated_stale_probe.txt
+          git commit -m 'test: stale writer should be rejected [skip ci]'
+          if git push origin HEAD:refs/heads/validation/pr2-state-git-e2e-20261016; then
+              echo 'UNEXPECTED_STALE_PUSH_SUCCESS'; exit 1
+          fi
+          echo 'STALE_PUSH_REJECTED'
+          git fetch origin validation/pr2-state-git-e2e-20261016
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import claim_event
+          p=Path(os.environ['TEST_PROBE_FILE'])
+          d=json.loads(p.read_text())
+          assert d['kind']=='synthetic-only' and d['alerts'] is False
+          for chain in ('cu','emart24'):
+              entry=d['chains'][chain]
+              assert entry['state']['pending_alerts'][entry['eid']]['status']=='pending'
+              entry['state']=claim_event(entry['state'],entry['eid'])
+          p.write_text(json.dumps(d,indent=2,sort_keys=True)+'\n')
+          PY
+          git add -- "$TEST_PROBE_FILE"
+          git commit -m 'test: durable synthetic claim before any send [skip ci]'
+          git push origin HEAD:refs/heads/validation/pr2-state-git-e2e-20261016
+          echo 'CLAIMS_DURABLY_PUBLISHED'
+          git fetch origin validation/pr2-state-git-e2e-20261016
+          python3 - <<'PY'
+          import json,subprocess,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import claim_event
+          d=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['TEST_PROBE_FILE']]))
+          sent=[]
+          for chain in ('cu','emart24'):
+              entry=d['chains'][chain]
+              assert entry['state']['pending_alerts'][entry['eid']]['status']=='claimed'
+              sent.append(entry['state']['pending_alerts'][entry['eid']]['message'])
+              try:
+                  claim_event(entry['state'],entry['eid'])
+              except ValueError:
+                  pass
+              else:
+                  raise AssertionError('duplicate claim accepted')
+          assert len(sent)==2 and all('synthetic' in x for x in sent)
+          print('MOCK_SEND_AFTER_DURABLE_CLAIM_ONLY')
+          print('NO_DUPLICATE_CLAIMS')
+          PY
+          echo 'ISOLATED_E2E_SUCCESS'
