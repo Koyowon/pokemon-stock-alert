@@ -52,7 +52,7 @@ class RegistryTests(unittest.TestCase):
     def test_geographic_review_candidates_are_not_auto_corrected(self):
         gs_path = "gs25_independent/gs25_stock_state.json"
         gs = json.loads((self.root / gs_path).read_text(encoding="utf-8"))
-        gs["regions"]["namwon"]["stores"]["J"] = {"name": "진해중앙점"}
+        gs["regions"].setdefault("namwon", {"stores": {}})["stores"]["J"] = {"name": "진해중앙점"}
         gs["regions"]["jeonju"]["stores"]["S"] = {"name": "종로도렴점"}
         self.put(gs_path, gs)
         result = build(self.root)
