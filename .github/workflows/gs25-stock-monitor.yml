@@ -117,8 +117,9 @@ jobs:
           python3 state_push_publisher.py --repo "$GITHUB_WORKSPACE" --chain 'gs25' --run-id "$RUN_ID" --run-attempt "$RUN_ATTEMPT" --base-sha "$BASE_SHA" --manifest "$RUNNER_TEMP/downloaded/manifest.json" --trusted-manifest-sha256 "$TRUSTED_MANIFEST_SHA256" --state-file gs25_independent/gs25_stock_state.json --artifact "$RUNNER_TEMP/downloaded/gs25_independent/gs25_stock_state.json"
 
   notify:
-    needs: publish
-    if: needs.publish.result == 'success' && github.ref == 'refs/heads/main'
+    needs: [scan, publish]
+    # Drain previously committed pending alerts even when this scan/publish fails.
+    if: always() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
