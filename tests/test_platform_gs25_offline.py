@@ -100,8 +100,9 @@ class GS25PartialTests(unittest.TestCase):
             saved = json.loads(state.read_text())
             self.assertEqual(saved["regions"]["namwon"]["stores"]["N1"]["quantity"], 3)
             self.assertEqual(saved["regions"]["jeonju"]["stores"]["J1"]["quantity"], 1)
-            self.assertEqual(len(alerts), 1)
-            # Repeated successful observation should not notify again.
+            self.assertEqual(len(alerts), 0)
+            self.assertEqual(len(saved['pending_alerts']), 1)
+            # Repeated successful observation should not enqueue a duplicate.
             module.KEYWORDS = {"namwon": ["ok"], "jeonju": ["ok2"]}
             with patch.dict(sys.modules, {"unified_settings": fake_settings}), \
                  patch.object(module, "api_query", side_effect=lambda code, term: [
@@ -109,7 +110,8 @@ class GS25PartialTests(unittest.TestCase):
                     if term == "ok" else []), \
                  patch.object(module, "telegram", side_effect=alerts.append):
                 self.assertEqual(module.main(), 0)
-            self.assertEqual(len(alerts), 1)
+            self.assertEqual(len(alerts), 0)
+            self.assertEqual(len(json.loads(state.read_text())['pending_alerts']), 1)
 
 
 if __name__ == "__main__":
