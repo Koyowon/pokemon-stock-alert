@@ -93,6 +93,28 @@ def build(root):
     for code, item in seed.get("stores", {}).items():
         add("emart24", code, item, "jeonju", SEED)
 
+    # Name-based geographic anomalies are review candidates, not proven errors.
+    # Never reassign a store or modify operational state from these hints.
+    region_review_candidates = []
+    for record in registry.values():
+        if record["chain"] != "gs25":
+            continue
+        name, region = record["name"], record["region"]
+        reason = None
+        if region == "namwon" and "진해" in name:
+            reason = "jin hae name in namwon region"
+        elif region == "jeonju" and (
+            "종로" in name or name in {"세종마을점", "수성동계곡점"}
+        ):
+            reason = "non-jeonju place name in jeonju region"
+        if reason:
+            region_review_candidates.append({
+                "chain": "gs25", "store_id": record["store_id"],
+                "name": name, "assigned_region": region,
+                "reason": reason, "status": "needs_manual_review",
+            })
+    region_review_candidates.sort(key=lambda x: (x["assigned_region"], x["store_id"]))
+
     records = sorted(registry.values(), key=lambda x: (x["chain"], x["store_id"]))
     counts = dict(sorted(Counter(x["chain"] for x in records).items()))
     by_region = {chain: dict(sorted(Counter(x["region"] or "unknown" for x in records if x["chain"] == chain).items())) for chain in INPUTS}
@@ -100,7 +122,7 @@ def build(root):
         "schema_version": 1, "read_only": True, "records": records,
         "report": {"total_unique": len(records), "by_chain": counts,
                    "by_region": by_region, "source_rows": dict(sources),
-                   "conflicts": conflicts, "issues": issues},
+                   "conflicts": conflicts, "issues": issues,\n                   "region_review_candidates": region_review_candidates},
     }
 
 
