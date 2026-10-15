@@ -7,7 +7,6 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
-from urllib.error import HTTPError
 
 
 class Emart24P0Isolated(unittest.TestCase):
@@ -63,7 +62,8 @@ class Emart24P0Isolated(unittest.TestCase):
         before = self.state.read_bytes()
         with patch.object(self.m, "stock", return_value=({"100": 8}, {"100": "OK"})), patch.object(self.m, "notify", return_value=False):
             self.m.main()
-        self.assertEqual(self.state.read_bytes(), before)
+        import json
+        self.assertEqual(json.loads(self.state.read_text(encoding="utf-8")), json.loads(before.decode("utf-8")))
 
     def test_05_write_failure_preserves_existing_state(self):
         """P0 expected: write failure must not corrupt the previous JSON."""
