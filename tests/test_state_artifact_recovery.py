@@ -77,7 +77,8 @@ class ArtifactRecoveryTests(CandidatePatchTests):
         self.assertEqual(self.snapshot()["cu"], {"initial": 1})
         # Fresh disposable checkout and identical run artifact; no API or Telegram.
         self.assertLessEqual(recover(self.clone("recovered"), folder, "cu", 1234, 1, self.base), 3)
-        self.assertEqual(self.snapshot()["cu"], {"cu": 11})
+        verifier = self.clone("recovery_verifier")
+        self.assertEqual(json.loads((verifier / "cu_stock_state.json").read_text()), {"cu": 11})
 
     def test_10_rollback_never_overwrites_newer_valid_state(self):
         folder = self.package()
