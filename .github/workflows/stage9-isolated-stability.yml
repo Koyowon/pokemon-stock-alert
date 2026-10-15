@@ -1,0 +1,97 @@
+name: Stage9 Isolated Stability and Git State Sync
+on:
+  push:
+    branches:
+      - validation/pr2-stage9-code-20261016
+    paths:
+      - .github/workflows/stage9-isolated-stability.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage9-isolated-stability
+  cancel-in-progress: false
+jobs:
+  stability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-stage9-code-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Run offline scanner and state safety tests
+        run: python -m unittest discover -s tests -p test_stage9_stability.py -v
+      - name: Validate isolated latest-state branch and real Git CAS conflict
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-stage9-code-20261016'
+          STATE_BRANCH='validation/pr2-stage9-state-20261016'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "$STATE_BRANCH"
+          git worktree add --detach "$RUNNER_TEMP/stage9-state" FETCH_HEAD
+          git worktree add --detach "$RUNNER_TEMP/stage9-stale" FETCH_HEAD
+          cd "$RUNNER_TEMP/stage9-state"
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+          export PROBE='experiments/stage9_stability_probe.json'
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import queue_transition,claim_event
+          p=Path(os.environ['PROBE'])
+          assert not p.exists()
+          d={'synthetic':True,'telegram_calls':0,'chains':{}}
+          for chain in ('cu','emart24'):
+              s,e=queue_transition({'stock':{'fake':2}},chain,'stage9 '+chain+' synthetic')
+              d['chains'][chain]={'state':s,'eid':e}
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+'\n')
+          PY
+          git add "$PROBE"
+          git commit -m 'test: stage9 synthetic pending state [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE9_PENDING_PUBLISHED'
+          cd "$RUNNER_TEMP/stage9-stale"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          echo stale > experiments/stage9_stale.txt
+          git add experiments/stage9_stale.txt
+          git commit -m 'test: stage9 stale writer [skip ci]'
+          if git push origin "HEAD:refs/heads/$STATE_BRANCH"; then echo 'UNEXPECTED_STALE_PUSH'; exit 1; fi
+          echo 'STAGE9_STALE_REJECTED'
+          git fetch origin "$STATE_BRANCH"
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import claim_event
+          from experiments.stage9_stability import preserve_alerts,claimed_audit
+          p=Path(os.environ['PROBE'])
+          d=json.loads(p.read_text())
+          for chain in ('cu','emart24'):
+              v=d['chains'][chain]
+              claimed=claim_event(v['state'],v['eid'])
+              v['state']=preserve_alerts(claimed,{'stock':{'fake':3}})
+              assert v['state']['pending_alerts'][v['eid']]['status']=='claimed'
+              assert claimed_audit(v['state'])==[v['eid']]
+          p.write_text(json.dumps(d,sort_keys=True,indent=2)+'\n')
+          PY
+          git add "$PROBE"
+          git commit -m 'test: stage9 reconcile claimed events after conflict [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE9_CLAIMED_PRESERVED'
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          d=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['PROBE']]))
+          assert d['telegram_calls']==0
+          for chain in ('cu','emart24'):
+              v=d['chains'][chain]
+              assert v['state']['pending_alerts'][v['eid']]['status']=='claimed'
+              assert v['state']['stock']['fake']==3
+          print('STAGE9_REMOTE_LATEST_STATE_VERIFIED')
+          PY
+          echo 'STAGE9_STABILITY_SUCCESS'
