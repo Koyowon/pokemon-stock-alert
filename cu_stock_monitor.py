@@ -8,6 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 from region_config import load_enabled_regions
+from experiments.isolated_state_outbox import queue_transition
 from urllib.parse import quote
 
 URL = "https://mcp.aka.page/api/cu/inventory"
@@ -393,12 +394,9 @@ def main():
                 + "🗺 네이버지도: " + naver_map(item["name"], item["address"]) + "\n"
                 + "※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
             )
-            if telegram(body):
-                alerted = quantity > 0
-                print("ALERT_SENT:", code, previous, quantity, flush=True)
-            else:
-                print("ALERT_PENDING:", code, flush=True)
-                continue
+            state, event_key = queue_transition(state, "cu", body)
+            alerted = quantity > 0
+            print("ALERT_PENDING:", code, event_key, flush=True)
 
         state["stores"][code] = {
             "name": item["name"],
