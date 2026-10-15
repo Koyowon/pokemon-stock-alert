@@ -51,6 +51,47 @@ class SourceAuditTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             assess(self.root, manifest)
 
+
+    def test_partial_capture_never_confirms_closure(self):
+        first = assess(self.root, self.manifest())
+        partial = self.manifest()
+        partial["payload"]["stores"] = []
+        result = assess(self.root, partial, first["current"])
+        self.assertEqual(result["removal_review_required"], ["123"])
+        self.assertFalse(result["safe_to_infer_closure"])
+
+    def test_complete_capture_still_needs_independent_evidence(self):
+        first = assess(self.root, self.manifest())
+        complete = self.manifest()
+        complete["payload"]["stores"] = []
+        complete["coverage"] = {"scope": "complete",
+            "regions": ["namwon", "asan", "jeonju", "jeju"],
+            "evidence": "operator-report"}
+        result = assess(self.root, complete, first["current"])
+        self.assertEqual(result["removal_observed_in_complete_scan"], ["123"])
+        self.assertFalse(result["safe_to_infer_closure"])
+        self.assertFalse(result["coverage"]["independently_verified"])
+
+    def test_incomplete_complete_scope_rejected(self):
+        manifest = self.manifest()
+        manifest["coverage"] = {"scope": "complete",
+            "regions": ["namwon"], "evidence": "operator-report"}
+        with self.assertRaises(ValueError):
+            assess(self.root, manifest)
+
+    def test_data_outside_coverage_rejected(self):
+        manifest = self.manifest()
+        manifest["coverage"] = {"scope": "partial",
+            "regions": ["asan"], "evidence": "operator-report"}
+        with self.assertRaises(ValueError):
+            assess(self.root, manifest)
+
+    def test_capture_freshness_reported(self):
+        result = assess(self.root, self.manifest())
+        self.assertTrue(result["freshness"]["stale"])
+        self.assertTrue(result["repeated_capture_confirmation_required"])
+        self.assertEqual(result["new_store_verification_required"], ["123"])
+
     def test_manifest_cannot_claim_approval(self):
         manifest = self.manifest()
         manifest["approved_for_production"] = True
