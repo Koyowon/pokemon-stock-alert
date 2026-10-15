@@ -115,3 +115,30 @@ jobs:
           )
           PY
           python3 state_push_publisher.py --repo "$GITHUB_WORKSPACE" --chain 'gs25' --run-id "$RUN_ID" --run-attempt "$RUN_ATTEMPT" --base-sha "$BASE_SHA" --manifest "$RUNNER_TEMP/downloaded/manifest.json" --trusted-manifest-sha256 "$TRUSTED_MANIFEST_SHA256" --state-file gs25_independent/gs25_stock_state.json --artifact "$RUNNER_TEMP/downloaded/gs25_independent/gs25_stock_state.json"
+
+  notify:
+    needs: publish
+    if: needs.publish.result == 'success' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: state-publisher-main
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Claim durable outbox before sending
+        env:
+          STATE_PUBLISH_APPROVED: '1'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIT_TERMINAL_PROMPT: '0'
+        run: python3 gs25_alert_dispatcher.py
