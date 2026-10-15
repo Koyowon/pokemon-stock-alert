@@ -104,7 +104,7 @@ def merge_gs25_claim_only(base_raw, remote_raw, candidate_raw):
         candidate["pending_alerts"] = merged
         return (json.dumps(candidate, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
     except (TypeError, ValueError, KeyError, AttributeError) as exc:
-        raise RuntimeError("GS25 claim-only rebase rejected") from exc
+        raise RuntimeError("same-chain state changed remotely; refusing stale overwrite (GS25 claim-only rebase rejected)") from exc
 
 
 def publish_bundle(repo, artifacts, base_sha, max_attempts=3,
