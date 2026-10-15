@@ -10,7 +10,7 @@ from pathlib import Path
 from experiments.stage13_state_publisher import git, PublishConflict
 
 BRANCH="validation/cu-emart24-cutover-state-20261016"
-FILES={"cu":("cu_stock_state.json",),"emart24":("state.json","stores.json")}
+FILES={"cu":("experiments/cutover_cu_synthetic.json",),"emart24":("experiments/cutover_em_synthetic.json","experiments/cutover_stores_synthetic.json")}
 BASELINES={"cu":{"stores":{}},"emart24":{}}
 
 
