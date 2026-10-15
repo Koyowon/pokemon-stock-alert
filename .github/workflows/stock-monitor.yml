@@ -4,18 +4,25 @@ on:
     - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: pokemon-stock-monitor
   cancel-in-progress: false
 jobs:
-  monitor:
+  scan:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      artifact_ok: ${{ steps.upload.outcome }}
+      manifest_digest: ${{ steps.manifest.outputs.sha256 }}
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
+      artifact_digest: ${{ steps.upload.outputs.artifact-digest }}
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -24,14 +31,75 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python monitor.py
-      - name: Save stock and store cache
+      - name: Stage chain state and generate manifest
+        id: manifest
         if: always()
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+        shell: bash
         run: |
-          git add state.json stores.json
-          if ! git diff --cached --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Update stock/store cache [skip ci]'
-            git pull --rebase
-            git push
-          fi
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/state-source/$(dirname 'state.json')"
+          test -f 'state.json' && cp 'state.json' "$RUNNER_TEMP/state-source/state.json"
+          mkdir -p "$RUNNER_TEMP/state-source/$(dirname 'stores.json')"
+          test -f 'stores.json' && cp 'stores.json' "$RUNNER_TEMP/state-source/stores.json"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from state_artifact_contract import prepare
+          prepare(Path(os.environ["RUNNER_TEMP"]) / "state-source",
+                  Path(os.environ["RUNNER_TEMP"]) / "state-upload",
+                  "emart24", os.environ["RUN_ID"],
+                  int(os.environ["RUN_ATTEMPT"]), os.environ["BASE_SHA"])
+          PY
+          echo "sha256=$(sha256sum "$RUNNER_TEMP/state-upload/manifest.json" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Upload state bundle
+        id: upload
+        if: steps.manifest.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: chain-emart24-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/state-upload/
+          if-no-files-found: error
+          retention-days: 1
+  publish:
+    needs: scan
+    if: always() && needs.scan.outputs.artifact_ok == 'success' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: state-publisher-main
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Download same-run artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: chain-emart24-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/downloaded
+      - name: Validate producer identity and publish only chain state
+        env:
+          STATE_PUBLISH_APPROVED: '1'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+          TRUSTED_MANIFEST_SHA256: ${{ needs.scan.outputs.manifest_digest }}
+          TRUSTED_ARTIFACT_ID: ${{ needs.scan.outputs.artifact_id }}
+          TRUSTED_ARTIFACT_DIGEST: ${{ needs.scan.outputs.artifact_digest }}
+          GIT_TERMINAL_PROMPT: '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$TRUSTED_ARTIFACT_ID"
+          [[ "$TRUSTED_ARTIFACT_DIGEST" == sha256:* ]]
+          python3 state_push_publisher.py --repo "$GITHUB_WORKSPACE" --chain 'emart24' --run-id "$RUN_ID" --run-attempt "$RUN_ATTEMPT" --base-sha "$BASE_SHA" --manifest "$RUNNER_TEMP/downloaded/manifest.json" --trusted-manifest-sha256 "$TRUSTED_MANIFEST_SHA256" --state-file state.json --artifact "$RUNNER_TEMP/downloaded/state.json" --stores-artifact "$RUNNER_TEMP/downloaded/stores.json"
