@@ -7,11 +7,11 @@
         "pending_alerts": {
           "cu-1-cbe0a74f721156e1": {
             "message": "stage9 cu synthetic",
-            "status": "pending"
+            "status": "claimed"
           }
         },
         "stock": {
-          "fake": 2
+          "fake": 3
         }
       }
     },
@@ -22,11 +22,11 @@
         "pending_alerts": {
           "emart24-1-c5d38e4aa001564d": {
             "message": "stage9 emart24 synthetic",
-            "status": "pending"
+            "status": "claimed"
           }
         },
         "stock": {
-          "fake": 2
+          "fake": 3
         }
       }
     }
