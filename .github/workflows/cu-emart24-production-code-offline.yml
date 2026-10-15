@@ -1,0 +1,22 @@
+name: CU Emart24 Production Code Candidate Offline
+on:
+  push:
+    branches:
+      - validation/cu-emart24-production-code-20261016
+    paths:
+      - .github/workflows/cu-emart24-production-code-offline.yml
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/cu-emart24-production-code-20261016
+          persist-credentials: false
+      - name: Strictly offline candidate checks
+        run: |
+          python -m unittest discover -s tests -p test_production_state_candidate.py -v
+          python -m unittest discover -s tests -p test_final_readiness.py -v
