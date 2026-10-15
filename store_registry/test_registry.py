@@ -48,6 +48,22 @@ class RegistryTests(unittest.TestCase):
         self.assertTrue(any(x["reason"] == "missing_address" and x["source"].startswith("gs25")
                             for x in result["report"]["issues"]))
 
+
+    def test_geographic_review_candidates_are_not_auto_corrected(self):
+        gs_path = "gs25_independent/gs25_stock_state.json"
+        gs = json.loads((self.root / gs_path).read_text(encoding="utf-8"))
+        gs["regions"]["namwon"]["stores"]["J"] = {"name": "진해중앙점"}
+        gs["regions"]["jeonju"]["stores"]["S"] = {"name": "종로도렴점"}
+        self.put(gs_path, gs)
+        result = build(self.root)
+        flagged = result["report"]["region_review_candidates"]
+        self.assertEqual({x["store_id"] for x in flagged}, {"J", "S"})
+        self.assertTrue(all(x["status"] == "needs_manual_review" for x in flagged))
+        self.assertEqual(next(x for x in result["records"] if x["store_id"] == "J")["region"], "namwon")
+
+    def test_unrelated_names_are_not_flagged(self):
+        self.assertEqual(build(self.root)["report"]["region_review_candidates"], [])
+
     def test_no_network_or_mutation_of_input(self):
         paths = list(self.root.rglob("*.json"))
         before = {str(p): p.read_bytes() for p in paths}
