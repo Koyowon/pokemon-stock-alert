@@ -1,43 +1,103 @@
 name: GS25 Pokemon 30th Stock Monitor
-
 on:
   schedule:
     - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
   workflow_dispatch:
-
 permissions:
-  contents: write
-
+  contents: read
 concurrency:
   group: gs25-stock-monitor
   cancel-in-progress: false
-
 jobs:
-  monitor:
+  scan:
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    permissions:
+      contents: read
+    outputs:
+      artifact_ok: ${{ steps.upload.outcome }}
+      manifest_digest: ${{ steps.manifest.outputs.sha256 }}
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
+      artifact_digest: ${{ steps.upload.outputs.artifact-digest }}
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check GS25 stock and send Telegram alerts for new positives
+      - name: Check gs25 stock
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 gs25_independent/gs25_auto_monitor.py
-      - name: Save GS25 state
+      - name: Stage chain state and generate manifest
+        id: manifest
         if: always()
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+        shell: bash
         run: |
-          if [ -f gs25_independent/gs25_stock_state.json ]; then
-            git add gs25_independent/gs25_stock_state.json
-            if ! git diff --cached --quiet; then
-              git config user.name 'github-actions[bot]'
-              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-              git commit -m 'Update GS25 stock state [skip ci]'
-              git pull --rebase origin main
-              git push origin HEAD:main
-            fi
-          fi
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/state-source/$(dirname 'gs25_independent/gs25_stock_state.json')"
+          test -f 'gs25_independent/gs25_stock_state.json' && cp 'gs25_independent/gs25_stock_state.json' "$RUNNER_TEMP/state-source/gs25_independent/gs25_stock_state.json"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from state_artifact_contract import prepare
+          prepare(Path(os.environ["RUNNER_TEMP"]) / "state-source",
+                  Path(os.environ["RUNNER_TEMP"]) / "state-upload",
+                  "gs25", os.environ["RUN_ID"],
+                  int(os.environ["RUN_ATTEMPT"]), os.environ["BASE_SHA"])
+          PY
+          echo "sha256=$(sha256sum "$RUNNER_TEMP/state-upload/manifest.json" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - name: Upload state bundle
+        id: upload
+        if: steps.manifest.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: chain-gs25-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/state-upload/
+          if-no-files-found: error
+          retention-days: 1
+  publish:
+    needs: scan
+    if: always() && needs.scan.outputs.artifact_ok == 'success' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: state-publisher-main
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Download same-run artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: chain-gs25-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/downloaded
+      - name: Validate producer identity and publish only chain state
+        env:
+          STATE_PUBLISH_APPROVED: '1'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+          TRUSTED_MANIFEST_SHA256: ${{ needs.scan.outputs.manifest_digest }}
+          TRUSTED_ARTIFACT_ID: ${{ needs.scan.outputs.artifact_id }}
+          TRUSTED_ARTIFACT_DIGEST: ${{ needs.scan.outputs.artifact_digest }}
+          GIT_TERMINAL_PROMPT: '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$TRUSTED_ARTIFACT_ID"
+          [[ "$TRUSTED_ARTIFACT_DIGEST" == sha256:* ]]
+          python3 state_push_publisher.py --repo "$GITHUB_WORKSPACE" --chain 'gs25' --run-id "$RUN_ID" --run-attempt "$RUN_ATTEMPT" --base-sha "$BASE_SHA" --manifest "$RUNNER_TEMP/downloaded/manifest.json" --trusted-manifest-sha256 "$TRUSTED_MANIFEST_SHA256" --state-file gs25_independent/gs25_stock_state.json --artifact "$RUNNER_TEMP/downloaded/gs25_independent/gs25_stock_state.json"
