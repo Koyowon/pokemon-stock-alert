@@ -5,13 +5,13 @@ Reject incomplete rows instead of silently losing them. No network or writes.
 import argparse
 import json
 import re
-from collections import Counter
-from datetime import datetime
+from collections import defaultdict
 from pathlib import Path
 
 from store_registry.discovery_adapters import normalize_saved
 from store_registry.intake import validate_document
 from store_registry.review_candidates import review
+from store_registry.build_registry import build
 
 REGIONS = ("namwon", "asan", "jeonju", "jeju")
 REGION_MARKERS = {
@@ -39,8 +39,10 @@ def convert(root, chain, captured_at, payload):
         else:
             source_rows.append((str(code), dict(item, storeCode=code)
                                 if isinstance(entries, dict) else item))
-    partitions = {region: [] for region in REGIONS}
-    rejected = []
+    # Audit every original row; quarantine every identity involved in a collision.
+    existing = {(r["chain"], r["store_id"]): r for r in build(root)["records"]}
+    groups = defaultdict(list)
+    examined = []
     for index, (key, item) in enumerate(source_rows):
         code = str(item.get("storeCode") or item.get("code") or "").strip()
         name = str(item.get("storeName") or item.get("name") or "").strip()
@@ -52,11 +54,37 @@ def convert(root, chain, captured_at, payload):
         if not name: reasons.append("missing_name")
         if not address: reasons.append("missing_address")
         if len(regions) != 1: reasons.append("ambiguous_or_outside_region")
-        if reasons:
-            rejected.append({"index": index, "source_key": key, "code": code,
-                             "reasons": reasons})
+        # CU normalization only supports addresses with an explicit accepted prefix.
+        region = regions[0] if len(regions) == 1 else None
+        if region and chain == "cu":
+            from store_registry.discovery_adapters import CU_PREFIXES
+            if not address.startswith(CU_PREFIXES[region]):
+                reasons.append("adapter_region_prefix_mismatch")
+        old = existing.get((chain, code))
+        if old and any(old.get(field) and old[field] != value for field, value in (
+                ("name", name), ("address", address), ("region", region))):
+            reasons.append("existing_identity_conflict")
+        entry = {"index": index, "source_key": key, "code": code,
+                 "name": name, "address": address, "region": region,
+                 "reasons": reasons, "row": item}
+        examined.append(entry)
+        if re.fullmatch(r"[0-9]+", code):
+            groups[code].append(entry)
+    for entries in groups.values():
+        if len(entries) > 1:
+            identities = {(e["name"], e["address"], e["region"]) for e in entries}
+            reason = ("submission_identity_conflict" if len(identities) > 1
+                      else "duplicate_store_code")
+            for entry in entries:
+                entry["reasons"].append(reason)
+
+    partitions = {region: [] for region in REGIONS}
+    rejected = []
+    for entry in examined:
+        if entry["reasons"]:
+            rejected.append({k: entry[k] for k in ("index", "source_key", "code", "reasons")})
         else:
-            partitions[regions[0]].append(item)
+            partitions[entry["region"]].append(entry["row"])
     snapshots = [{"chain": chain, "region": region, "source": SOURCES[chain],
                   "captured_at": captured_at, "payload": {"stores": rows}}
                  for region, rows in partitions.items() if rows]
@@ -64,14 +92,16 @@ def convert(root, chain, captured_at, payload):
     validate_document(doc)
     normalized = []
     for snap in snapshots:
+        rows = snap["payload"]["stores"]
         accepted = normalize_saved(chain, snap["region"], snap["payload"])
-        accepted_ids = [row["store_id"] for row in accepted]
-        for row in snap["payload"]["stores"]:
-            code = str(row.get("storeCode") or row.get("code") or "").strip()
-            if code not in accepted_ids:
-                rejected.append({"code": code, "reasons": ["adapter_rejected"]})
+        if len(accepted) != len(rows):
+            raise ValueError("adapter silently dropped rows; refusing partial conversion")
         normalized.extend(accepted)
     statuses = review(root, normalized)["counts"]
+    if sum(statuses.values()) != len(normalized):
+        raise ValueError("review row accounting mismatch")
+    if len(normalized) + len(rejected) != len(source_rows):
+        raise ValueError("conversion row accounting mismatch")
     return {"document": doc, "report": {
         "source_rows": len(source_rows), "accepted_rows": len(normalized),
         "rejected_rows": len(rejected), "rejected": rejected,
