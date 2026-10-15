@@ -8,6 +8,8 @@ on:
       - '.github/workflows/emart24-p0-offline-test.yml'
       - 'tests/test_emart24_p0_isolated.py'
       - 'tests/test_emart24_git_collision_offline.py'
+      - 'tests/test_state_push_retry_candidate.py'
+      - 'tests/state_push_retry_candidate.py'
   workflow_dispatch:
 
 permissions:
@@ -57,6 +59,12 @@ jobs:
         shell: bash
         run: |
           python3 -m unittest discover -s tests -p "test_emart24_git_collision_offline.py" -v
+      - name: Validate candidate patch against local bare Git remote
+        if: always() && github.ref == 'refs/heads/emart24-p0-isolated-test'
+        env:
+          GIT_ALLOW_PROTOCOL: file
+          GIT_TERMINAL_PROMPT: '0'
+        run: python3 -m unittest discover -s tests -p "test_state_push_retry_candidate.py" -v
       - name: Verify no operational state files changed
         if: always()
         run: |
