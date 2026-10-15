@@ -34,3 +34,13 @@ PR #2 proposes `monitor.py`, `state_push_publisher.py`, `state_artifact_contract
 - [ ] Explicit user approval after these gates; only then mark PR ready and merge.
 
 **Current decision: DO NOT MERGE.** Passing a small offline contract suite does not substitute for end-to-end publisher tests or live operational permission verification.
+
+## Follow-up remediation (2026-10-16)
+
+- Added `tests/test_publisher_bare_git_offline.py`: CU/GS25/emart24 real candidate publisher against **disposable file:// bare Git remotes only**, including same-chain races, unrelated-chain preservation, non-fast-forward retry, no-op, and stale rollback. A special offline-only origin exception requires both `STATE_PUBLISH_OFFLINE_TEST=1` and `GIT_ALLOW_PROTOCOL=file`; the production GitHub origin allowlist remains.
+- Added `state_artifact_platform.py`: uses GitHub Actions artifact REST metadata to check producer artifact ID, archive `sha256:` digest, workflow run ID, artifact name and expiry. Publisher downloads by artifact ID, flattens the bundle, and checks independently provided manifest digest and each JSON file hash. The GitHub metadata digest validates platform provenance; it is not an independent recomputation of the compressed archive bytes. Requires publisher `actions: read`.
+- Updated GS25 partial-success logic: successfully completed regions can be persisted and published even if another region failed, while incomplete regions retain their prior baseline. Added a fake API/Telegram test verifying that an already-persisted alert is not resent on the next successful scan.
+- **Residual GS25 limitation:** Telegram delivery happens before the Git push transaction. If Telegram succeeds but the later artifact upload or Git push fails, the next run may resend the alert. Exactly-once external notifications are **not guaranteed**. A durable outbox with idempotency keys or equivalent architecture is required to eliminate this failure window; do not claim duplicate-alert prevention is complete.
+- **Main protection is unverified:** `GET /repos/Koyowon/pokemon-stock-alert/branches/main/protection` returned HTTP 403 (integration permission denied). Repository rulesets list was empty, but that does not prove the branch is unprotected. Owner verification remains mandatory.
+- **Rollback drill:** local bare Git simulation proves stale emart24 state/cache cannot overwrite a newer remote update; this is not a production rollback exercise. Never force-push or restore old JSON automatically.
+- **Approval status remains NO-GO** pending owner verification of branch protection and GS25 notification idempotency/failure-window policy, plus an explicit user sign-off. No production actions performed.
