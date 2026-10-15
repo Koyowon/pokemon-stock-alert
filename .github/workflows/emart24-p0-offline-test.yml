@@ -85,3 +85,117 @@ jobs:
         run: |
           git diff --exit-code -- state.json stores.json cu_stock_state.json gs25_independent/gs25_stock_state.json
           test -z "$(git ls-files --others --exclude-standard)"
+
+  artifact-producer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+    env:
+      TELEGRAM_BOT_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout isolated test branch
+        uses: actions/checkout@v4
+        with:
+          ref: emart24-p0-isolated-test
+          persist-credentials: false
+      - name: Create fake stock files and signed manifest
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import json, os, tempfile
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, "tests")
+          from state_artifact_recovery_candidate import prepare
+          source = Path(tempfile.mkdtemp(prefix="fake-emart24-source-"))
+          (source / "state.json").write_text(json.dumps({"fake_store": 3}), encoding="utf-8")
+          (source / "stores.json").write_text(json.dumps({"fake_store": {"name": "OFFLINE_TEST_ONLY"}}), encoding="utf-8")
+          manifest = prepare(source, Path(os.environ["RUNNER_TEMP"]) / "offline-handoff",
+                             "emart24", os.environ["RUN_ID"], int(os.environ["RUN_ATTEMPT"]), os.environ["BASE_SHA"])
+          print("Prepared fake state and cache with checksums:", sorted(manifest["files"]))
+          PY
+      - name: Upload fake state artifact across jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-fake-state-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/offline-handoff/
+          if-no-files-found: error
+          retention-days: 1
+
+  artifact-consumer:
+    needs: artifact-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+    env:
+      TELEGRAM_BOT_TOKEN: ''
+      TELEGRAM_CHAT_ID: ''
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout isolated test branch
+        uses: actions/checkout@v4
+        with:
+          ref: emart24-p0-isolated-test
+          persist-credentials: false
+      - name: Download actual uploaded artifact in separate job
+        uses: actions/download-artifact@v4
+        with:
+          name: offline-fake-state-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/downloaded-handoff
+      - name: Verify metadata, SHA256, tampering and missing artifact rejection
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          BASE_SHA: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import os, sys, shutil, tempfile
+          from pathlib import Path
+          sys.path.insert(0, "tests")
+          from state_artifact_recovery_candidate import verify
+          source = Path(os.environ["RUNNER_TEMP"]) / "downloaded-handoff"
+          kwargs = ("emart24", os.environ["RUN_ID"], int(os.environ["RUN_ATTEMPT"]), os.environ["BASE_SHA"])
+          files, checksums = verify(source, *kwargs)
+          assert set(files) == {"state.json", "stores.json"}
+          print("PASS: real upload/download across separate GitHub Actions jobs")
+          for wrong in [
+              ("cu", *kwargs[1:]),
+              ("emart24", "0", kwargs[2], kwargs[3]),
+              ("emart24", kwargs[1], kwargs[2] + 1, kwargs[3]),
+              ("emart24", kwargs[1], kwargs[2], "0" * 40),
+          ]:
+              try:
+                  verify(source, *wrong)
+              except ValueError:
+                  pass
+              else:
+                  raise AssertionError(f"Invalid metadata accepted: {wrong}")
+          print("PASS: chain, run ID, attempt, base SHA mismatches rejected")
+          try:
+              verify(source.parent / "nonexistent-artifact", *kwargs)
+          except ValueError:
+              print("PASS: missing artifact rejected")
+          else:
+              raise AssertionError("Missing artifact accepted")
+          copied = Path(tempfile.mkdtemp(prefix="tampered-artifact-")) / "bundle"
+          shutil.copytree(source, copied)
+          (copied / "state.json").write_text('{"fake_store":999}', encoding="utf-8")
+          try:
+              verify(copied, *kwargs)
+          except ValueError as exc:
+              assert "checksum" in str(exc)
+              print("PASS: tampered downloaded artifact rejected")
+          else:
+              raise AssertionError("Checksum tampering accepted")
+          PY
+      - name: Ensure operational state files were not modified
+        run: |
+          git diff --exit-code -- state.json stores.json cu_stock_state.json gs25_independent/gs25_stock_state.json
+          test -z "$(git ls-files --others --exclude-standard)"
