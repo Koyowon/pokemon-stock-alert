@@ -1,0 +1,112 @@
+name: Stage7 Isolated Scanner Migration Recovery
+on:
+  push:
+    branches:
+      - validation/pr2-stage7-code-20261016
+    paths:
+      - .github/workflows/stage7-isolated-rehearsal.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage7-isolated-rehearsal
+  cancel-in-progress: false
+jobs:
+  rehearsal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-stage7-code-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Mock scanner and test state-branch migration, conflict, rollback
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-stage7-code-20261016'
+          export CODE_ROOT="$GITHUB_WORKSPACE"
+          CODE_SHA="$(git rev-parse HEAD)"
+          STATE_BRANCH='validation/pr2-stage7-state-20261016'
+          PROBE='experiments/stage7_synthetic_state.json'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "$STATE_BRANCH"
+          git worktree add --detach "$RUNNER_TEMP/stage7-state" FETCH_HEAD
+          git worktree add --detach "$RUNNER_TEMP/stage7-stale" FETCH_HEAD
+          cd "$RUNNER_TEMP/stage7-state"
+          export PYTHONPATH="$CODE_ROOT"
+          export STAGE7_PROBE="$PROBE"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.stage7_scanner_harness import scan_synthetic
+          p=Path(os.environ['STAGE7_PROBE'])
+          assert not p.exists(), 'test must not overwrite pre-existing state'
+          d=scan_synthetic()
+          d['migration']={'source':'synthetic scanner output only','version':1}
+          p.write_text(json.dumps(d,sort_keys=True,ensure_ascii=False,indent=2)+'\n')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: migrate fake scanner state into isolated branch [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE7_SYNTHETIC_MIGRATION_PUBLISHED'
+          cd "$RUNNER_TEMP/stage7-stale"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          echo 'stale synthetic writer' > experiments/stage7_stale_writer.txt
+          git add experiments/stage7_stale_writer.txt
+          git commit -m 'test: intentionally stale migration attempt [skip ci]'
+          if git push origin "HEAD:refs/heads/$STATE_BRANCH"; then
+            echo 'STAGE7_UNEXPECTED_STALE_PUSH'; exit 1
+          fi
+          echo 'STAGE7_STALE_PUSH_REJECTED'
+          git fetch origin "$STATE_BRANCH"
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.isolated_state_outbox import claim_event
+          p=Path(os.environ['STAGE7_PROBE'])
+          d=json.loads(p.read_text())
+          assert d['synthetic'] is True and d['telegram_calls']==0
+          for chain in ('cu','emart24'):
+            item=d['chains'][chain]
+            assert item['state']['pending_alerts'][item['eid']]['status']=='pending'
+            item['state']=claim_event(item['state'],item['eid'])
+          p.write_text(json.dumps(d,sort_keys=True,ensure_ascii=False,indent=2)+'\n')
+          PY
+          git add -- "$PROBE"
+          git commit -m 'test: recover and claim CU/emart24 before mock send [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE7_CLAIM_DURABLE'
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          from experiments.isolated_state_outbox import claim_event
+          d=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['STAGE7_PROBE']]))
+          mock=[]
+          for chain in ('cu','emart24'):
+            v=d['chains'][chain]
+            assert v['state']['pending_alerts'][v['eid']]['status']=='claimed'
+            mock.append(v['state']['pending_alerts'][v['eid']]['message'])
+            try: claim_event(v['state'],v['eid'])
+            except ValueError: pass
+            else: raise AssertionError('duplicate')
+          assert len(mock)==2 and d['telegram_calls']==0
+          print('STAGE7_MOCK_DISPATCH_ONLY')
+          print('STAGE7_NO_DUPLICATE_CLAIM')
+          # Rollback drill is read-only: verify baseline and reject stale
+          # state replacement; never force-push or revert state branch.
+          baseline=subprocess.check_output(['git','show','HEAD~1:'+os.environ['STAGE7_PROBE']])
+          old=json.loads(baseline)
+          assert all(old['chains'][c]['state']['pending_alerts'][old['chains'][c]['eid']]['status']=='pending' for c in ('cu','emart24'))
+          assert all(d['chains'][c]['state']['pending_alerts'][d['chains'][c]['eid']]['status']=='claimed' for c in ('cu','emart24'))
+          print('STAGE7_ROLLBACK_READONLY_REHEARSAL_OK')
+          PY
+          test "$(git -C "$CODE_ROOT" rev-parse HEAD)" = "$CODE_SHA"
+          echo 'STAGE7_CODE_BRANCH_UNCHANGED'
+          echo 'STAGE7_REHEARSAL_SUCCESS'
