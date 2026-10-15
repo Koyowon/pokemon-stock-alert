@@ -42,6 +42,7 @@ jobs:
           git worktree add --detach "$RUNNER_TEMP/stage13-state" FETCH_HEAD
           cd "$RUNNER_TEMP/stage13-state"
           export PYTHONPATH="$CODE_ROOT"
+          export PYTHONSAFEPATH=1
           python3 - <<'PY'
           import os
           from experiments.stage12_candidate import blank,scan_from_latest
