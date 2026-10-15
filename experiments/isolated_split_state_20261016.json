@@ -7,7 +7,7 @@
         "pending_alerts": {
           "cu-1-6fb32ae2ff51667b": {
             "message": "cu synthetic inventory 0 to 2",
-            "status": "pending"
+            "status": "claimed"
           }
         },
         "stock": {
@@ -22,7 +22,7 @@
         "pending_alerts": {
           "emart24-1-b1283800f0ce89e9": {
             "message": "emart24 synthetic inventory 0 to 2",
-            "status": "pending"
+            "status": "claimed"
           }
         },
         "stock": {
