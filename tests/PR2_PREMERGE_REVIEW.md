@@ -44,3 +44,26 @@ PR #2 proposes `monitor.py`, `state_push_publisher.py`, `state_artifact_contract
 - **Main protection is unverified:** `GET /repos/Koyowon/pokemon-stock-alert/branches/main/protection` returned HTTP 403 (integration permission denied). Repository rulesets list was empty, but that does not prove the branch is unprotected. Owner verification remains mandatory.
 - **Rollback drill:** local bare Git simulation proves stale emart24 state/cache cannot overwrite a newer remote update; this is not a production rollback exercise. Never force-push or restore old JSON automatically.
 - **Approval status remains NO-GO** pending owner verification of branch protection and GS25 notification idempotency/failure-window policy, plus an explicit user sign-off. No production actions performed.
+
+## GS25 durable notification outbox (2026-10-16)
+
+Implemented on this PR branch only:
+- `gs25_independent/gs25_auto_monitor.py` now records deterministic pending alert events in the GS25 state JSON, and does not call Telegram during scan. Completed regions advance while failed regions retain the previous baseline.
+- The GS25 workflow publishes the validated state artifact first; a new `notify` job then calls `gs25_alert_dispatcher.py`.
+- The dispatcher fetches current main, atomically changes pending events to `claimed` via a normal non-force Git commit/push, and only then calls Telegram. Git push failure causes zero sends. Claims are not automatically retried after crashes or ambiguous Telegram timeouts.
+- `tests/test_gs25_outbox_offline.py` covers durable claim before delivery, crash after claim, ambiguous Telegram result, and blocked Git push, all using fake messages and local disposable bare Git.
+- **Important delivery semantics:** at-most-once automatic send *attempts*, not exactly-once delivery. If the process crashes after the claim or Telegram times out, the alert may be lost. Operators must inspect claimed entries before any manual replay.
+- **Further risk:** the event key hashes product, region, store, old and new quantities. A later legitimate return to the same transition may reuse an old key and be suppressed. Event lifecycle and retention/rotation need a dedicated test and policy before merge.
+- **Further risk:** the outbox lives inside the same state file and can grow indefinitely. Add bounded retention with a safe event lifecycle before production.
+- **Further risk:** GitHub branch protection could prevent the dispatcher from committing claims; this is intentionally fail-closed (no Telegram send), but needs repository-owner verification.
+- **Test status:** GitHub Actions run 38817324918 completed successfully with 37/37 unittest invocations. Inherited base test cases are repeated in the GS25 outbox subclass, so 37 is the invocation count, not 37 unique scenarios.
+
+### Owner checklist for main branch protection (unverified: API HTTP 403)
+1. Open repository Settings → Branches and Settings → Rules → Rulesets; identify every rule targeting `main`.
+2. Check whether `GITHUB_TOKEN` can push normal commits to `main`, whether pull-request-only changes are enforced, and whether Actions bypass is permitted.
+3. Check Actions → General → Workflow permissions and organization policy: `contents: write` and `actions: read` for the publisher/notify jobs.
+4. Verify required status checks, signed commits, allowed actors, linear history, and push restrictions; do not weaken protection just to make state publication work.
+5. If token pushes are blocked, redesign persistence outside protected `main` (e.g., dedicated state branch/storage) before merging.
+6. Confirm repository owner approves at-most-once semantics and operational handling of `claimed` alerts with uncertain delivery.
+
+**Decision remains NO-GO.** No main merge, production API, Telegram, or production Git push was performed.
