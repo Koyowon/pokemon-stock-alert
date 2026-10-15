@@ -68,18 +68,12 @@ class Emart24P0Isolated(unittest.TestCase):
     def test_05_write_failure_preserves_existing_state(self):
         """P0 expected: write failure must not corrupt the previous JSON."""
         before = self.state.read_bytes()
-        original = Path.write_text
-        def fail_target(path, *args, **kwargs):
-            if path == self.state:
-                # Simulate interruption during a non-atomic direct write.
-                with path.open("w", encoding="utf-8") as f:
-                    f.write('{"incomplete":')
-                raise OSError("disk interrupted")
-            return original(path, *args, **kwargs)
-        with patch.object(self.m, "stock", return_value=({"100": 7}, {"100": "OK"})), patch.object(Path, "write_text", fail_target):
+        with patch.object(self.m, "stock", return_value=({"100": 7}, {"100": "OK"})), \
+             patch.object(self.m.os, "replace", side_effect=OSError("disk interrupted")):
             with self.assertRaises(OSError):
                 self.m.main()
         self.assertEqual(self.state.read_bytes(), before)
+        self.assertEqual(list(self.state.parent.glob(".state.json.*.tmp")), [])
 
     def test_06_workflow_push_collision_policy(self):
         """Static workflow guard: detect non-isolated cross-chain pushes to main."""
