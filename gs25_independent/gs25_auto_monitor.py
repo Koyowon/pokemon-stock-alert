@@ -187,10 +187,18 @@ def main():
         merged = dict(prior_stores)
         merged.update(seen)
         new_state['regions'][rid] = {'stores': merged, 'checked_at_utc': new_state['checked_at_utc']}
-    if new_state['regions'] != previous.get('regions', {}):
-        STATE.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+    changed = new_state['regions'] != previous.get('regions', {})
+    if changed:
+        # Publish valid complete regions even when other regions failed.
+        # This advances baselines for successfully sent alerts, reducing repeats.
+        tmp = STATE.with_suffix('.tmp')
+        tmp.write_text(json.dumps(new_state, ensure_ascii=False, indent=2, sort_keys=True) + '\\n', encoding='utf-8')
+        tmp.replace(STATE)
         print('STATE_WRITTEN', flush=True)
     print(f'FINAL errors={failures} alerts={alerts} state={STATE.name}', flush=True)
+    if failures and changed:
+        print('GS25_PARTIAL_SUCCESS: completed regions saved; failed regions preserved', flush=True)
+        return 0
     return 1 if failures else 0
 
 
