@@ -35,9 +35,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           mkdir -p "$RUNNER_TEMP/isolated-second-writer"
-          git -c protocol.file.allow=never clone --no-local . "$RUNNER_TEMP/isolated-second-writer"
+          git worktree add --detach "$RUNNER_TEMP/isolated-second-writer" HEAD
           # Use the same authenticated origin as checkout, never a local remote.
-          git -C "$RUNNER_TEMP/isolated-second-writer" remote set-url origin "$(git remote get-url origin)"
+          
           git -C "$RUNNER_TEMP/isolated-second-writer" config user.name 'github-actions[bot]'
           git -C "$RUNNER_TEMP/isolated-second-writer" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           python3 - <<'PY'
@@ -55,7 +55,7 @@ jobs:
           git push origin "HEAD:refs/heads/$branch"
           echo 'FIRST_ACTIONS_TOKEN_PUSH_OK'
           cd "$RUNNER_TEMP/isolated-second-writer"
-          git checkout "$branch"
+          git checkout --detach
           python3 - <<'PY'
           import json
           from pathlib import Path
