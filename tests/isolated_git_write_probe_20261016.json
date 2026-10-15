@@ -1,1 +1,1 @@
-{"purpose":"isolated GitHub concurrency","sequence":1,"writer":"A","alerts":false}
+{"purpose":"isolated GitHub concurrency","sequence":2,"writers":["A","B"],"alerts":false,"recovered_from_non_fast_forward":true}
