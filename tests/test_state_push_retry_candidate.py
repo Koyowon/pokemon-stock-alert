@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from state_push_retry_candidate import publish
+from state_push_retry_candidate import publish, publish_bundle
 
 FILES = {
     "cu": "cu_stock_state.json",
@@ -27,7 +27,7 @@ class CandidatePatchTests(unittest.TestCase):
         self.g(self.root, "init", "--bare", str(self.remote))
         self.seed = self.root / "seed"
         self.g(self.root, "init", "-b", "main", str(self.seed))
-        for path in FILES.values():
+        for path in (*FILES.values(), "stores.json"):
             p = self.seed / path
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text('{"initial": 1}', encoding="utf-8")
@@ -74,8 +74,10 @@ class CandidatePatchTests(unittest.TestCase):
     def test_01_three_chain_updates_preserved(self):
         clients = {name: self.clone("client_" + name) for name in FILES}
         for name, value in (("cu", 10), ("emart24", 20), ("gs25", 30)):
-            publish(clients[name], FILES[name],
-                    self.artifact(name, {name: value}), self.base)
+            if name == "emart24":
+                publish_bundle(clients[name], {"state.json": self.artifact(name, {name: value}), "stores.json": self.artifact("cache", {"stores": {}})}, self.base)
+            else:
+                publish(clients[name], FILES[name], self.artifact(name, {name: value}), self.base)
         self.assertEqual(self.snapshot(), {
             "cu": {"cu": 10}, "emart24": {"emart24": 20}, "gs25": {"gs25": 30}
         })
@@ -85,9 +87,8 @@ class CandidatePatchTests(unittest.TestCase):
         def competitor(attempt):
             if attempt == 1:
                 self.push_chain("cu", 99)
-        count = publish(client, FILES["emart24"],
-                        self.artifact("emart24", {"emart24": 25}),
-                        self.base, before_push=competitor)
+        count = publish_bundle(client, {"state.json": self.artifact("emart24", {"emart24": 25}), "stores.json": self.artifact("cache", {"stores": {}})},
+                               self.base, before_push=competitor)
         self.assertEqual(count, 2)
         result = self.snapshot()
         self.assertEqual(result["cu"], {"cu": 99})
@@ -98,8 +99,7 @@ class CandidatePatchTests(unittest.TestCase):
         client = self.clone("stale_client")
         self.push_chain("emart24", 99)
         with self.assertRaisesRegex(RuntimeError, "stale overwrite"):
-            publish(client, FILES["emart24"],
-                    self.artifact("emart24", {"emart24": 20}), self.base)
+            publish_bundle(client, {"state.json": self.artifact("emart24", {"emart24": 20}), "stores.json": self.artifact("cache", {"stores": {}})}, self.base)
         self.assertEqual(self.snapshot()["emart24"], {"emart24": 99})
 
     def test_04_retry_exhaustion_preserves_remote(self):
