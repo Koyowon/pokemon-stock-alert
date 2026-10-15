@@ -12,6 +12,8 @@ on:
       - 'tests/test_rollout_pr_offline.py'
       - 'tests/test_publisher_bare_git_offline.py'
       - 'tests/test_platform_gs25_offline.py'
+      - 'tests/test_gs25_outbox_offline.py'
+      - 'gs25_alert_dispatcher.py'
       - 'state_artifact_platform.py'
       - 'gs25_independent/gs25_auto_monitor.py'
 permissions:
@@ -43,7 +45,7 @@ jobs:
               raise AssertionError('NETWORK_DISABLED_IN_REVIEW')
           with patch.object(socket.socket, 'connect', deny), patch.object(socket.socket, 'connect_ex', deny), patch.object(socket, 'create_connection', deny):
               suite = unittest.TestSuite()
-              for pattern in ('test_rollout_pr_offline.py', 'test_publisher_bare_git_offline.py', 'test_platform_gs25_offline.py'):
+              for pattern in ('test_rollout_pr_offline.py', 'test_publisher_bare_git_offline.py', 'test_platform_gs25_offline.py', 'test_gs25_outbox_offline.py'):
                   suite.addTests(unittest.defaultTestLoader.discover('tests', pattern=pattern))
               result = unittest.TextTestRunner(verbosity=2).run(suite)
               sys.exit(0 if result.wasSuccessful() else 1)
