@@ -1,0 +1,122 @@
+name: Stage10 Final Isolated CU Emart24 Pipeline
+on:
+  push:
+    branches:
+      - validation/pr2-stage10-code-20261016
+    paths:
+      - .github/workflows/stage10-final-isolated.yml
+permissions:
+  contents: write
+concurrency:
+  group: stage10-final-isolated-pipeline
+  cancel-in-progress: false
+jobs:
+  isolated-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/pr2-stage10-code-20261016
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Offline regression suite
+        run: |
+          python -m unittest discover -s tests -p test_stage9_stability.py -v
+          python -m unittest discover -s tests -p test_isolated_state_outbox.py -v
+      - name: Scanner to Git publisher to claimed dispatcher and audit
+        shell: bash
+        env:
+          GIT_TERMINAL_PROMPT: '0'
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'Koyowon/pokemon-stock-alert'
+          test "$GITHUB_REF" = 'refs/heads/validation/pr2-stage10-code-20261016'
+          export CODE_ROOT="$GITHUB_WORKSPACE"
+          CODE_SHA="$(git rev-parse HEAD)"
+          STATE_BRANCH='validation/pr2-stage10-state-20261016'
+          export PROBE='experiments/stage10_integrated_probe.json'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin "$STATE_BRANCH"
+          git worktree add --detach "$RUNNER_TEMP/stage10-state" FETCH_HEAD
+          git worktree add --detach "$RUNNER_TEMP/stage10-stale" FETCH_HEAD
+          cd "$RUNNER_TEMP/stage10-state"
+          export PYTHONPATH="$CODE_ROOT"
+          python3 - <<'PY'
+          import json,os,sys
+          sys.path.insert(0,os.environ['CODE_ROOT'])
+          from experiments.stage7_scanner_harness import scan_synthetic
+          from experiments.stage10_integrated import publish_scanner_output
+          from pathlib import Path
+          p=Path(os.environ['PROBE'])
+          assert not p.exists()
+          publish_scanner_output(p,scan_synthetic())
+          PY
+          git add "$PROBE"
+          git commit -m 'test: stage10 synthetic scanner pending state [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE10_PENDING_DURABLE'
+          cd "$RUNNER_TEMP/stage10-stale"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          echo stale > experiments/stage10_stale.txt
+          git add experiments/stage10_stale.txt
+          git commit -m 'test: stage10 stale writer [skip ci]'
+          if git push origin "HEAD:refs/heads/$STATE_BRANCH"; then echo 'UNEXPECTED_STALE_SUCCESS'; exit 1; fi
+          echo 'STAGE10_STALE_REJECTED'
+          git fetch origin "$STATE_BRANCH"
+          git reset --hard FETCH_HEAD
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from experiments.stage10_integrated import claim_pending
+          from experiments.isolated_state_outbox import dispatch_once
+          p=Path(os.environ['PROBE'])
+          d=json.loads(p.read_text())
+          calls=[]
+          v=d['chains']['cu']
+          assert dispatch_once(lambda:(1,v['state']),lambda *_:False,calls.append,v['eid']) is False
+          assert calls==[]
+          print('STAGE10_FAILED_CLAIM_NO_SEND')
+          claimed=claim_pending(p)
+          assert len(claimed)==2
+          PY
+          git add "$PROBE"
+          git commit -m 'test: stage10 durable claims before mock dispatch [skip ci]'
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+          echo 'STAGE10_CLAIMS_DURABLE'
+          git fetch origin "$STATE_BRANCH"
+          python3 - <<'PY'
+          import json,os,subprocess
+          from experiments.stage10_integrated import mock_dispatch_from_committed,audit,claim_pending
+          d=json.loads(subprocess.check_output(['git','show','FETCH_HEAD:'+os.environ['PROBE']]))
+          assert len(mock_dispatch_from_committed(d))==2
+          assert d['telegram_calls']==0
+          assert all(len(x)==1 for x in audit(d).values())
+          print('STAGE10_MOCK_DISPATCH_AND_MISSING_ALERT_AUDIT_OK')
+          PY
+          python3 - <<'PY'
+          import json,os,sys
+          sys.path.insert(0,os.environ['CODE_ROOT'])
+          from experiments.stage7_scanner_harness import scan_synthetic
+          from experiments.stage10_integrated import preserve_alerts
+          from pathlib import Path
+          p=Path(os.environ['PROBE'])
+          old=json.loads(p.read_text())
+          # A repeated scan against the latest claimed baseline must retain
+          # prior events; this rehearsal never overwrites the remote state.
+          new=scan_synthetic()
+          for chain in ('cu','emart24'):
+            merged=preserve_alerts(old['chains'][chain]['state'],new['chains'][chain]['state'])
+            eid=old['chains'][chain]['eid']
+            assert merged['pending_alerts'][eid]['status']=='claimed'
+          print('STAGE10_RESCAN_PRESERVES_CLAIMS')
+          # Rollback is deliberately read-only; verify previous Git snapshot.
+          baseline=json.loads(__import__('subprocess').check_output(['git','show','HEAD~1:'+os.environ['PROBE']]))
+          assert all(baseline['chains'][x]['state']['pending_alerts'][baseline['chains'][x]['eid']]['status']=='pending' for x in ('cu','emart24'))
+          print('STAGE10_ROLLBACK_SNAPSHOT_VERIFIED')
+          PY
+          test "$(git -C "$CODE_ROOT" rev-parse HEAD)" = "$CODE_SHA"
+          echo 'STAGE10_CODE_BRANCH_UNCHANGED'
+          echo 'STAGE10_ISOLATED_PIPELINE_SUCCESS'
