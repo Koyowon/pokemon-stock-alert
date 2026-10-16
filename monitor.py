@@ -8,7 +8,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from region_config import load_enabled_regions
-from emart24_recovery import request_inventory, InventoryUnavailable
+from emart24_recovery import request_inventory, InventoryUnavailable, InventoryAccessBlocked
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
@@ -188,6 +188,9 @@ def stock(plu, codes):
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 6
+    halted = False
+    global_failures = 0
+    isolated_failures = 0
 
     def collect(data, expected):
         rows = data.get("stores")
@@ -224,8 +227,16 @@ def stock(plu, codes):
             data = request_inventory({"pluCd": plu, "bizNoArr": ",".join(batch)}, attempts=2)
             collect(data, batch)
             consecutive_failures = 0
+        except InventoryAccessBlocked as exc:
+            halted = True
+            for code in batch:
+                if statuses[code] != "CONFLICTING_QTY":
+                    statuses[code] = "ACCESS_BLOCKED"
+            print(f"WARNING: inventory access blocked; stopping all batches: {exc}")
+            break
         except (RuntimeError, ValueError, InventoryUnavailable) as exc:
             consecutive_failures += 1
+            recovered = 0
             for code in batch:
                 if statuses[code] != "CONFLICTING_QTY":
                     statuses[code] = "BATCH_ERROR"
@@ -239,15 +250,34 @@ def stock(plu, codes):
                     try:
                         data = request_inventory({"pluCd": plu, "bizNoArr": code}, attempts=1)
                         collect(data, [code])
+                        if statuses[code] == "OK":
+                            recovered += 1
+                    except InventoryAccessBlocked as single_exc:
+                        halted = True
+                        if statuses[code] != "CONFLICTING_QTY":
+                            statuses[code] = "ACCESS_BLOCKED"
+                        print(f"WARNING: access blocked during single-store probe: {single_exc}")
+                        break
                     except (RuntimeError, ValueError, InventoryUnavailable) as single_exc:
                         if statuses[code] != "CONFLICTING_QTY":
                             statuses[code] = "SINGLE_ERROR"
                         print(f"WARNING: single-store lookup failed ({code}): {single_exc}")
+            if halted:
+                break
+            if recovered:
+                isolated_failures += 1
+                consecutive_failures = 0
+                print(f"WARNING: isolated batch failure; {recovered} single-store lookups recovered")
+            else:
+                global_failures += 1
             if consecutive_failures >= 3:
-                print("WARNING: 3 consecutive failed batches; stopping this product to protect API")
+                print("WARNING: 3 consecutive unrecovered failed batches; stopping to protect API")
                 break
         time.sleep(1.5)
-    print(f"Inventory diagnostics: {fallback_calls} bounded single-store probes")
+    unchecked = sum(status == "NOT_CHECKED" for status in statuses.values())
+    print(f"Inventory diagnostics: {fallback_calls} bounded single-store probes; "
+          f"isolated failures={isolated_failures}, unrecovered batches={global_failures}, "
+          f"unqueried stores={unchecked}, access blocked={halted}")
     return values, statuses
 
 def main():
