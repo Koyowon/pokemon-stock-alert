@@ -9,6 +9,7 @@ import os
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from datetime import datetime, timezone
 from cu_emart24_state_store import fetch,publish,claim,record_attempts,unresolved
 from cu_emart24_scan_adapter import scan_with_snapshot
 
@@ -47,7 +48,7 @@ def scan(repo,chain):
 def claim_and_send(repo,chain,run_id):
     gate()
     sha,remote=fetch(repo,chain)
-    claimed,ids=claim(remote,chain,run_id,os.environ.get("GITHUB_RUN_ID",run_id))
+    claimed,ids=claim(remote,chain,run_id,datetime.now(timezone.utc).isoformat())
     committed=publish(repo,chain,sha,claimed)
     verified,latest=fetch(repo,chain)
     if committed!=verified:
