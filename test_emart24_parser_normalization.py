@@ -106,5 +106,51 @@ class InventoryNormalizationTests(unittest.TestCase):
         self.assertEqual(statuses["01073"], "NULL_OR_INVALID_QTY")
 
 
+    def test_conflict_preserved_when_later_batch_fails(self):
+        # First batch conflicts; second batch API fails, with no real network.
+        def fake_api(_path, params, attempts=2):
+            if "01073" in params["bizNoArr"]:
+                return {"stores": [{"bizNo": "01073", "bizQty": 3},
+                                   {"bizNo": "01073", "bizQty": 7}]}
+            raise RuntimeError("offline simulated API failure")
+        codes = ["01073", "22906", "21475", "21598"]
+        with patch.object(monitor, "api", side_effect=fake_api), patch.object(monitor.time, "sleep"):
+            values, statuses = monitor.stock("fake-product", codes)
+        self.assertNotIn("01073", values)
+        self.assertEqual(statuses["01073"], "CONFLICTING_QTY")
+
+    def test_conflict_preserved_across_batch_failure_and_fallback_failure(self):
+        # A partial batch response conflicts, then raises ValueError during parsing.
+        # The fallback for the conflicted store also fails.
+        class Rows(list):
+            def __iter__(self):
+                yield {"bizNo": "01073", "bizQty": 3}
+                yield {"bizNo": "01073", "bizQty": 7}
+                raise ValueError("offline simulated interrupted response")
+        def fake_api(_path, params, attempts=2):
+            if attempts == 2:
+                return {"stores": Rows()}
+            raise RuntimeError("offline simulated single-store failure")
+        with patch.object(monitor, "api", side_effect=fake_api), patch.object(monitor.time, "sleep"):
+            values, statuses = monitor.stock("fake-product", ["01073"])
+        self.assertEqual(values, {})
+        self.assertEqual(statuses["01073"], "CONFLICTING_QTY")
+
+    def test_conflict_preserved_across_batch_failure_and_fallback_success(self):
+        class Rows(list):
+            def __iter__(self):
+                yield {"bizNo": "01073", "bizQty": 3}
+                yield {"bizNo": "01073", "bizQty": 7}
+                raise ValueError("offline simulated interrupted response")
+        def fake_api(_path, params, attempts=2):
+            if attempts == 2:
+                return {"stores": Rows()}
+            return {"stores": [{"bizNo": "01073", "bizQty": 3}]}
+        with patch.object(monitor, "api", side_effect=fake_api), patch.object(monitor.time, "sleep"):
+            values, statuses = monitor.stock("fake-product", ["01073"])
+        self.assertEqual(values, {})
+        self.assertEqual(statuses["01073"], "CONFLICTING_QTY")
+
+
 if __name__ == "__main__":
     unittest.main()
