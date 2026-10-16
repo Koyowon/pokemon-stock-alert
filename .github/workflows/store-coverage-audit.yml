@@ -63,7 +63,28 @@ jobs:
           raw="$RUNNER_TEMP/cu-emart24-backup"
           encrypted="$RUNNER_TEMP/cu-emart24-backup.tar.gz.enc"
           # Remove plaintext even when tar, encryption, or decryption fails.
-          trap 'rm -f "$plain" "$roundtrip"; rm -rf "$raw"' EXIT
+          cleanup_on_exit() {
+            original_status=$?
+            trap - EXIT
+            cleanup_failed=0
+            rm -f -- "$plain" || cleanup_failed=1
+            rm -f -- "$roundtrip" || cleanup_failed=1
+            rm -rf -- "$raw" || cleanup_failed=1
+            for target in "$plain" "$roundtrip" "$raw"; do
+              if test -e "$target" || test -L "$target"; then
+                echo 'Plaintext cleanup verification failed' >&2
+                cleanup_failed=1
+              fi
+            done
+            if test "$cleanup_failed" -ne 0; then
+              echo 'Plaintext cleanup failed; encrypted artifact must not be uploaded' >&2
+              if test "$original_status" -eq 0; then
+                original_status=1
+              fi
+            fi
+            exit "$original_status"
+          }
+          trap cleanup_on_exit EXIT
           cd "$raw"
           tar -czf "$plain" manifest.json raw
           openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$plain" -out "$encrypted" -pass env:KEY
@@ -79,9 +100,9 @@ jobs:
           set -euo pipefail
           rm -f -- "$RUNNER_TEMP/plain.tar.gz" "$RUNNER_TEMP/roundtrip.tar.gz"
           rm -rf -- "$RUNNER_TEMP/cu-emart24-backup"
-          test ! -e "$RUNNER_TEMP/plain.tar.gz"
-          test ! -e "$RUNNER_TEMP/roundtrip.tar.gz"
-          test ! -e "$RUNNER_TEMP/cu-emart24-backup"
+          test ! -e "$RUNNER_TEMP/plain.tar.gz" && test ! -L "$RUNNER_TEMP/plain.tar.gz"
+          test ! -e "$RUNNER_TEMP/roundtrip.tar.gz" && test ! -L "$RUNNER_TEMP/roundtrip.tar.gz"
+          test ! -e "$RUNNER_TEMP/cu-emart24-backup" && test ! -L "$RUNNER_TEMP/cu-emart24-backup"
       - name: Upload encrypted artifact only after verified cleanup
         if: ${{ success() && steps.encrypt.outcome == 'success' && steps.cleanup.outcome == 'success' }}
         shell: bash
