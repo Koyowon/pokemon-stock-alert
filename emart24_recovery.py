@@ -29,6 +29,13 @@ class InventoryUnavailable(RuntimeError):
     """An upstream failure; never interpret as zero inventory."""
 
 
+class InventoryAccessBlocked(InventoryUnavailable):
+    """Authorization or rate-limit failure; halt all subsequent lookups."""
+    def __init__(self, status):
+        self.status = status
+        super().__init__(f"Inventory access blocked (HTTP {status}); quantity UNKNOWN")
+
+
 def configured_route(environ=None):
     env = os.environ if environ is None else environ
     name = env.get("EMART24_INVENTORY_ROUTE", "primary").strip()
@@ -69,6 +76,8 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
                 if not isinstance(payload, dict) or not isinstance(payload.get("storeGoodsQty"), list):
                     raise InventoryUnavailable("Invalid official inventory response")
                 expected = set(params["bizNoArr"].split(","))
+                if not expected or any(not code.isascii() or not code.isdecimal() for code in expected):
+                    raise InventoryUnavailable("Invalid requested store codes")
                 quantities = {}
                 for row in payload["storeGoodsQty"]:
                     if not isinstance(row, dict):
@@ -80,7 +89,9 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
                             code = candidates[0]
                     if code not in expected:
                         continue
-                    qty = normalize_quantity(row.get("BIZQTY"))
+                    if "BIZQTY" not in row:
+                        raise InventoryUnavailable("Official quantity field missing")
+                    qty = normalize_quantity(row["BIZQTY"])
                     if code in quantities and quantities[code] != qty:
                         raise InventoryUnavailable("Conflicting store quantity: " + code)
                     quantities[code] = qty
@@ -102,7 +113,9 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
             return data
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError,
                 OSError, ValueError, InventoryUnavailable) as exc:
-            if isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404, 429):
+            if isinstance(exc, urllib.error.HTTPError) and exc.code in (401, 403, 429):
+                raise InventoryAccessBlocked(exc.code) from None
+            if isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 404):
                 break
             if attempt + 1 < attempts:
                 sleep(3 * (attempt + 1))
