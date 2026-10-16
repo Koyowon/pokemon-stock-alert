@@ -1,0 +1,31 @@
+name: CU Emart24 Live Drift Readonly Offline Tests
+on:
+  push:
+    branches:
+      - validation/cu-emart24-live-drift-audit-20261016
+    paths:
+      - .github/workflows/cu-emart24-live-drift-offline.yml
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/cu-emart24-live-drift-audit-20261016
+          persist-credentials: false
+      - name: Run offline drift, backup and migration checks
+        run: |
+          python -m unittest discover -s tests -p test_live_drift_gate.py -v
+          python -m unittest discover -s tests -p test_raw_backup.py -v
+          python -m unittest discover -s tests -p test_cutover_readonly_plan.py -v
+          python -m unittest discover -s tests -p test_approval_policy.py -v
+          python -m unittest discover -s tests -p test_legacy_migration.py -v
+          python -m unittest discover -s tests -p test_release_preflight.py -v
+          python -m unittest discover -s tests -p test_executable_workflow.py -v
+          python -m unittest discover -s tests -p test_predeploy_acceptance.py -v
+          python -m unittest discover -s tests -p test_cutover_wiring.py -v
+          python -m unittest discover -s tests -p test_production_state_candidate.py -v
+          python -m unittest discover -s tests -p test_final_readiness.py -v
