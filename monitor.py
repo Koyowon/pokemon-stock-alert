@@ -184,6 +184,7 @@ def stock(plu, codes):
     """Return quantities and per-store diagnostics."""
     values = {}
     statuses = {code: "NOT_CHECKED" for code in codes}
+    observed = {}
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 6
@@ -201,13 +202,20 @@ def stock(plu, codes):
                 continue
             returned.add(code)
             qty = row.get("bizQty")
+            if statuses[code] == "CONFLICTING_QTY":
+                continue
+            if code in observed and observed[code] != qty:
+                values.pop(code, None)
+                statuses[code] = "CONFLICTING_QTY"
+                continue
+            observed[code] = qty
             if type(qty) is int and qty >= 0:
                 values[code] = qty
                 statuses[code] = "OK"
             elif statuses[code] != "OK":
                 statuses[code] = "NULL_OR_INVALID_QTY"
         for code in expected:
-            if code not in returned and statuses[code] != "OK":
+            if code not in returned and statuses[code] not in ("OK", "CONFLICTING_QTY"):
                 statuses[code] = "MISSING_IN_RESPONSE"
 
     for start in range(0, len(codes), 3):
@@ -219,7 +227,8 @@ def stock(plu, codes):
         except (RuntimeError, ValueError, InventoryUnavailable) as exc:
             consecutive_failures += 1
             for code in batch:
-                statuses[code] = "BATCH_ERROR"
+                if statuses[code] != "CONFLICTING_QTY":
+                    statuses[code] = "BATCH_ERROR"
             print(f"WARNING: inventory batch failed ({len(batch)} stores): {exc}")
             if fallback_calls < max_fallback_calls:
                 for code in batch:
@@ -231,7 +240,8 @@ def stock(plu, codes):
                         data = request_inventory({"pluCd": plu, "bizNoArr": code}, attempts=1)
                         collect(data, [code])
                     except (RuntimeError, ValueError, InventoryUnavailable) as single_exc:
-                        statuses[code] = "SINGLE_ERROR"
+                        if statuses[code] != "CONFLICTING_QTY":
+                            statuses[code] = "SINGLE_ERROR"
                         print(f"WARNING: single-store lookup failed ({code}): {single_exc}")
             if consecutive_failures >= 3:
                 print("WARNING: 3 consecutive failed batches; stopping this product to protect API")
