@@ -2,9 +2,12 @@
 import io
 import json
 import unittest
+import sys
+import types
+from unittest.mock import patch
 import urllib.error
 from emart24_recovery import (
-    InventoryUnavailable, configured_route, request_inventory, OFFICIAL_V3,
+    InventoryUnavailable, InventoryAccessBlocked, configured_route, request_inventory, OFFICIAL_V3,
 )
 
 
@@ -138,6 +141,128 @@ class OfficialV3Tests(unittest.TestCase):
         for payload in [{}, {"storeGoodsQty": None}, {"storeGoodsQty": "bad"}]:
             with self.subTest(payload=payload), self.assertRaises(InventoryUnavailable):
                 self.check(payload)
+
+
+class OperationalSafetyTests(unittest.TestCase):
+    def test_access_blocking_codes(self):
+        for status in (401, 403, 429):
+            calls = []
+            def opener(req, timeout):
+                calls.append(1)
+                raise urllib.error.HTTPError("mock", status, "blocked", {}, None)
+            with self.subTest(status=status), self.assertRaises(InventoryAccessBlocked) as ctx:
+                request_inventory({"pluCd": "1", "bizNoArr": "00001"},
+                                  environ={"EMART24_INVENTORY_ROUTE": "official_v3"},
+                                  opener=opener, sleeper=lambda _: None)
+            self.assertEqual(ctx.exception.status, status)
+            self.assertEqual(len(calls), 1)
+
+    def test_missing_quantity_field_is_unknown(self):
+        with self.assertRaises(InventoryUnavailable):
+            request_inventory({"pluCd": "1", "bizNoArr": "00001"},
+                              environ={"EMART24_INVENTORY_ROUTE": "official_v3"},
+                              opener=lambda req, timeout: response({"storeGoodsQty": [{"BIZNO": "00001"}]}),
+                              sleeper=lambda _: None)
+
+    def test_primary_remains_default(self):
+        self.assertEqual(configured_route({}), "https://mcp.aka.page/api/emart24")
+
+
+class MonitorIntegrationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        if "region_config" not in sys.modules:
+            stub = types.ModuleType("region_config")
+            stub.load_enabled_regions = lambda: {"namwon", "asan"}
+            sys.modules["region_config"] = stub
+        import monitor
+        cls.monitor = monitor
+
+    def codes(self):
+        return [f"{i:05d}" for i in range(1, 115)]
+
+    def run_stock(self, handler):
+        with patch.object(self.monitor, "request_inventory", side_effect=handler), patch.object(self.monitor.time, "sleep", return_value=None):
+            return self.monitor.stock("1", self.codes())
+
+    def test_114_stores_38_batches(self):
+        calls = []
+        def handler(params, **kwargs):
+            batch = params["bizNoArr"].split(",")
+            calls.append(batch)
+            return {"stores": [{"bizNo": c, "bizQty": 0 if i == 0 else 4} for i, c in enumerate(batch)]}
+        values, statuses = self.run_stock(handler)
+        self.assertEqual(len(calls), 38)
+        self.assertEqual(len(values), 114)
+        self.assertEqual(values["00001"], 0)
+        self.assertTrue(all(v == "OK" for v in statuses.values()))
+
+    def test_access_denied_halts_all_batches(self):
+        for code in (401, 403, 429):
+            calls = []
+            def handler(params, **kwargs):
+                calls.append(params)
+                raise InventoryAccessBlocked(code)
+            with self.subTest(code=code):
+                values, statuses = self.run_stock(handler)
+                self.assertEqual(len(calls), 1)
+                self.assertFalse(values)
+                self.assertEqual(sum(v == "NOT_CHECKED" for v in statuses.values()), 111)
+                self.assertEqual(sum(v == "ACCESS_BLOCKED" for v in statuses.values()), 3)
+
+    def test_isolated_batch_failure_continues(self):
+        calls = []
+        def handler(params, **kwargs):
+            codes = params["bizNoArr"].split(",")
+            calls.append(codes)
+            if len(codes) == 3 and codes[0] in ("00001", "00004", "00007"):
+                raise InventoryUnavailable("bad batch")
+            return {"stores": [{"bizNo": c, "bizQty": 1} for c in codes]}
+        values, statuses = self.run_stock(handler)
+        self.assertEqual(len(values), 111)
+        self.assertEqual(sum(len(c) == 3 for c in calls), 38)
+        self.assertEqual(sum(len(c) == 1 for c in calls), 6)
+        self.assertEqual(sum(v == "NOT_CHECKED" for v in statuses.values()), 0)
+        self.assertEqual(sum(v == "BATCH_ERROR" for v in statuses.values()), 3)
+
+    def test_global_failure_stops_after_three_batches(self):
+        calls = []
+        def handler(params, **kwargs):
+            calls.append(params)
+            raise InventoryUnavailable("HTTP 502")
+        values, statuses = self.run_stock(handler)
+        self.assertFalse(values)
+        self.assertEqual(len(calls), 9)
+        self.assertEqual(sum(v == "NOT_CHECKED" for v in statuses.values()), 105)
+
+    def test_missing_and_conflicting_quantities(self):
+        def handler(params, **kwargs):
+            codes = params["bizNoArr"].split(",")
+            if codes[0] == "00001":
+                return {"stores": [{"bizNo": "00001", "bizQty": 2}]}
+            return {"stores": [{"bizNo": c, "bizQty": 0} for c in codes]}
+        values, statuses = self.run_stock(handler)
+        self.assertEqual(statuses["00002"], "MISSING_IN_RESPONSE")
+        self.assertEqual(values["00004"], 0)
+        self.assertNotIn("00002", values)
+
+    def test_main_preserves_state_on_unknown_and_failed_alert(self):
+        import contextlib
+        import io as _io
+        monitor = self.monitor
+        stores = {"00001": {"name": "test", "address": "남원시"}}
+        key = "이마트24|00001|8800286275732"
+        saved = []
+        def save(path, data):
+            saved.append(dict(data))
+        settings = types.ModuleType("unified_settings")
+        settings.enabled = lambda service, regions: {"namwon"}
+        with patch.dict(sys.modules, {"unified_settings": settings}), patch.object(monitor, "get_stores", return_value=stores), patch.object(monitor, "read_json", return_value={key: 1}), patch.object(monitor, "save_json", side_effect=save), patch.object(monitor, "notify", return_value=False), patch.object(monitor, "stock", return_value=({}, {"00001": "NOT_CHECKED"})), contextlib.redirect_stdout(_io.StringIO()):
+            monitor.main()
+        self.assertFalse(saved)
+        with patch.dict(sys.modules, {"unified_settings": settings}), patch.object(monitor, "get_stores", return_value=stores), patch.object(monitor, "read_json", return_value={key: 1}), patch.object(monitor, "save_json", side_effect=save), patch.object(monitor, "notify", return_value=False), patch.object(monitor, "stock", return_value=({"00001": 3}, {"00001": "OK"})), contextlib.redirect_stdout(_io.StringIO()):
+            monitor.main()
+        self.assertEqual(saved[-1][key], 1)
 
 if __name__ == "__main__":
     unittest.main()
