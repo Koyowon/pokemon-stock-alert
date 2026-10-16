@@ -1,33 +1,73 @@
-name: Store Coverage Audit
-
+name: CU Emart24 Encrypted Raw Backup
 on:
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
-  audit:
+  backup:
+    if: github.ref == 'refs/heads/validation/cu-emart24-freeze-backup-approval-20261016'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - name: Checkout repository
+      - name: Check encryption key
+        env:
+          KEY: ${{ secrets.CU_EMART24_BACKUP_ENCRYPTION_KEY }}
+        run: |
+          test "${#KEY}" -ge 24 || { echo 'Missing encryption secret (24+ characters)' >&2; exit 1; }
+      - name: Checkout isolated branch
         uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-
-      - name: Generate coverage reports
-        run: python3 store_coverage_audit.py
-
-      - name: Upload CSV reports
+          persist-credentials: false
+      - name: Pin main, back up raw bytes, and verify disposable restore
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+          export PINNED_MAIN="$(git rev-parse refs/remotes/origin/main)"
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,tempfile,shutil
+          files=('cu_stock_state.json','state.json','stores.json','.github/workflows/cu-stock-monitor.yml','.github/workflows/stock-monitor.yml')
+          sha=os.environ['PINNED_MAIN']
+          if len(sha)!=40 or any(c not in '0123456789abcdef' for c in sha): raise RuntimeError('Invalid main SHA')
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])/'cu-emart24-backup'
+          root.mkdir(mode=0o700,exist_ok=False)
+          manifest={'main_sha':sha,'files':{}}
+          with tempfile.TemporaryDirectory(prefix='cu-emart24-restore-') as temp:
+              for path in files:
+                  data=subprocess.check_output(['git','show',f'{sha}:{path}'])
+                  blob=subprocess.check_output(['git','hash-object','--stdin'],input=data).decode().strip()
+                  expected=subprocess.check_output(['git','rev-parse',f'{sha}:{path}']).decode().strip()
+                  if blob!=expected: raise RuntimeError('Git blob mismatch: '+path)
+                  original=root/'raw'/path
+                  original.parent.mkdir(parents=True,exist_ok=True)
+                  original.write_bytes(data)
+                  restored=pathlib.Path(temp)/path
+                  restored.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copyfile(original,restored)
+                  digest=hashlib.sha256(data).hexdigest()
+                  if restored.read_bytes()!=data or hashlib.sha256(restored.read_bytes()).hexdigest()!=digest: raise RuntimeError('Restore failed: '+path)
+                  manifest['files'][path]={'sha256':digest,'git_blob_sha':blob,'bytes':len(data)}
+          if set(manifest['files'])!=set(files): raise RuntimeError('File set mismatch')
+          (root/'manifest.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          print('Verified exactly 5 raw files, SHA-256, Git blobs, and disposable restore')
+          PY
+      - name: Encrypt and verify encrypted backup
+        shell: bash
+        env:
+          KEY: ${{ secrets.CU_EMART24_BACKUP_ENCRYPTION_KEY }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/cu-emart24-backup"
+          tar -czf "$RUNNER_TEMP/plain.tar.gz" manifest.json raw
+          openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt -in "$RUNNER_TEMP/plain.tar.gz" -out "$RUNNER_TEMP/cu-emart24-backup.tar.gz.enc" -pass env:KEY
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$RUNNER_TEMP/cu-emart24-backup.tar.gz.enc" -out "$RUNNER_TEMP/roundtrip.tar.gz" -pass env:KEY
+          cmp "$RUNNER_TEMP/plain.tar.gz" "$RUNNER_TEMP/roundtrip.tar.gz"
+          rm -f "$RUNNER_TEMP/plain.tar.gz" "$RUNNER_TEMP/roundtrip.tar.gz"
+          rm -rf "$RUNNER_TEMP/cu-emart24-backup"
+      - name: Upload encrypted artifact only
         uses: actions/upload-artifact@v4
         with:
-          name: store-coverage-reports
-          path: |
-            store_coverage_inventory.csv
-            store_coverage_summary.csv
+          name: cu-emart24-encrypted-backup
+          path: ${{ runner.temp }}/cu-emart24-backup.tar.gz.enc
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 7
