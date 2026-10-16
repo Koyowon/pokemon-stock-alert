@@ -1,0 +1,26 @@
+name: CU Emart24 Final Read Only Audit Gate
+on:
+  push:
+    branches:
+      - validation/cu-emart24-final-readonly-audit-20261016
+    paths:
+      - .github/workflows/cu-emart24-readonly-final.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: validation/cu-emart24-final-readonly-audit-20261016
+          persist-credentials: false
+      - name: Read only offline final acceptance
+        run: |
+          python -m unittest discover -s tests -p test_release_preflight.py -v
+          python -m unittest discover -s tests -p test_executable_workflow.py -v
+          python -m unittest discover -s tests -p test_predeploy_acceptance.py -v
+          python -m unittest discover -s tests -p test_cutover_wiring.py -v
+          python -m unittest discover -s tests -p test_production_state_candidate.py -v
+          python -m unittest discover -s tests -p test_final_readiness.py -v
