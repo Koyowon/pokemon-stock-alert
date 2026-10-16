@@ -179,6 +179,36 @@ def notify(message):
         print(f"WARNING: Telegram send failed: {type(exc).__name__}")
         return False
 
+def normalize_inventory_code(raw, known_codes):
+    """Resolve a numeric store ID only when its canonical form is unambiguous."""
+    if type(raw) is int:
+        if raw < 0:
+            return None
+        candidate = str(raw)
+    elif isinstance(raw, str) and raw.isascii() and raw.isdecimal():
+        candidate = raw
+    else:
+        return None
+    canonical = candidate.lstrip("0") or "0"
+    matches = [
+        code for code in known_codes
+        if isinstance(code, str) and code.isascii() and code.isdecimal()
+        and (code.lstrip("0") or "0") == canonical
+    ]
+    return matches[0] if len(matches) == 1 else None
+
+
+def normalize_inventory_quantity(raw):
+    """Only accept nonnegative integer counts or ASCII decimal strings."""
+    if type(raw) is int:
+        return raw if raw >= 0 else None
+    if isinstance(raw, str):
+        clean = raw.strip()
+        if clean and clean.isascii() and clean.isdecimal():
+            return int(clean)
+    return None
+
+
 def stock(plu, codes):
     """Return quantities and per-store diagnostics."""
     values = {}
@@ -195,12 +225,12 @@ def stock(plu, codes):
         for row in rows:
             if not isinstance(row, dict):
                 continue
-            code = str(row.get("bizNo") or "").strip()
+            code = normalize_inventory_code(row.get("bizNo"), codes)
             if code not in expected:
                 continue
             returned.add(code)
-            qty = row.get("bizQty")
-            if type(qty) is int and qty >= 0:
+            qty = normalize_inventory_quantity(row.get("bizQty"))
+            if qty is not None:
                 values[code] = qty
                 statuses[code] = "OK"
             elif statuses[code] != "OK":
