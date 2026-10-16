@@ -11,7 +11,18 @@ import json
 import time
 
 PRIMARY = "https://mcp.aka.page/api/emart24"
-ALLOWED_ROUTES = {"primary": PRIMARY}
+OFFICIAL_V3 = "https://everse.emart24.co.kr/api/stock/v3/stock-search/store"
+ALLOWED_ROUTES = {"primary": PRIMARY, "official_v3": OFFICIAL_V3}
+
+
+def normalize_quantity(raw):
+    if raw is None or raw == "":
+        return None
+    if type(raw) is int and raw >= 0:
+        return raw
+    if isinstance(raw, str) and raw.isascii() and raw.isdecimal():
+        return int(raw)
+    raise InventoryUnavailable("Invalid official quantity")
 
 
 class InventoryUnavailable(RuntimeError):
@@ -37,7 +48,12 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
         raise ValueError("attempts must be 1 or 2")
     if set(params) != {"pluCd", "bizNoArr"} or not params["pluCd"] or not params["bizNoArr"]:
         raise ValueError("Missing or unexpected inventory query parameters")
-    url = base + "/inventory?" + urllib.parse.urlencode(params)
+    if base == OFFICIAL_V3:
+        url = base + "?" + urllib.parse.urlencode({
+            "searchPluCode": params["pluCd"], "bizNoArr": params["bizNoArr"]
+        })
+    else:
+        url = base + "/inventory?" + urllib.parse.urlencode(params)
     open_request = urllib.request.urlopen if opener is None else opener
     sleep = time.sleep if sleeper is None else sleeper
     for attempt in range(attempts):
@@ -45,9 +61,29 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
             req = urllib.request.Request(url, headers={
                 "User-Agent": "PokemonStockMonitor/1.1",
                 "Accept": "application/json",
+                "X-Requested-With": "XMLHttpRequest",
             })
             with open_request(req, timeout=timeout) as response:
                 payload = json.load(response)
+            if base == OFFICIAL_V3:
+                if not isinstance(payload, dict) or not isinstance(payload.get("storeGoodsQty"), list):
+                    raise InventoryUnavailable("Invalid official inventory response")
+                expected = set(params["bizNoArr"].split(","))
+                quantities = {}
+                for row in payload["storeGoodsQty"]:
+                    if not isinstance(row, dict):
+                        raise InventoryUnavailable("Invalid official store row")
+                    code = str(row.get("BIZNO") or "").strip()
+                    if code not in expected:
+                        continue
+                    qty = normalize_quantity(row.get("BIZQTY"))
+                    if code in quantities and quantities[code] != qty:
+                        raise InventoryUnavailable("Conflicting store quantity: " + code)
+                    quantities[code] = qty
+                return {"stores": [
+                    {"bizNo": code, "bizQty": qty}
+                    for code, qty in quantities.items()
+                ]}
             if not isinstance(payload, dict) or payload.get("success") is not True:
                 raise InventoryUnavailable("Proxy returned unsuccessful response")
             data = payload.get("data")
