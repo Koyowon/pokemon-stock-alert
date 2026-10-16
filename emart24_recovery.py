@@ -74,6 +74,10 @@ def request_inventory(params, *, environ=None, opener=None, sleeper=None,
                     if not isinstance(row, dict):
                         raise InventoryUnavailable("Invalid official store row")
                     code = str(row.get("BIZNO") or "").strip()
+                    if code not in expected and code.isascii() and code.isdecimal():
+                        candidates = [item for item in expected if item.isdecimal() and int(item) == int(code)]
+                        if len(candidates) == 1:
+                            code = candidates[0]
                     if code not in expected:
                         continue
                     qty = normalize_quantity(row.get("BIZQTY"))
