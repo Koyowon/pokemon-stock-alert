@@ -1147,6 +1147,13 @@
       "city": "제주",
       "stock": 0,
       "alerted": false
+    },
+    "56069": {
+      "name": "전주팔달로점",
+      "address": "전라북도 전주시 완산구 팔달로 192 (경원동3가)",
+      "city": "전주",
+      "stock": 0,
+      "alerted": false
     }
   }
 }
