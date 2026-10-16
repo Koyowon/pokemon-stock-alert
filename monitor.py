@@ -213,6 +213,8 @@ def stock(plu, codes):
     """Return quantities and per-store diagnostics."""
     values = {}
     statuses = {code: "NOT_CHECKED" for code in codes}
+    # Keep a conflict sticky across duplicate rows and retry/fallback responses.
+    observed_quantities = {}
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 6
@@ -230,6 +232,13 @@ def stock(plu, codes):
                 continue
             returned.add(code)
             qty = normalize_inventory_quantity(row.get("bizQty"))
+            if statuses[code] == "CONFLICTING_QTY":
+                continue
+            if code in observed_quantities and observed_quantities[code] != qty:
+                values.pop(code, None)
+                statuses[code] = "CONFLICTING_QTY"
+                continue
+            observed_quantities[code] = qty
             if qty is not None:
                 values[code] = qty
                 statuses[code] = "OK"
