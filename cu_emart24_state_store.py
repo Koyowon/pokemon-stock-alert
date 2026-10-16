@@ -63,6 +63,10 @@ def publish(repo, chain, baseline, bundle, branch=PROPOSED_BRANCH):
     latest, remote = fetch(repo, chain, branch)
     if latest != baseline:
         raise Conflict("stale branch; scanner must refresh and rescan")
+    # The publisher is allowed to run only in a clean disposable checkout.
+    # A reset in an arbitrary workspace could destroy unrelated local changes.
+    if git(repo, "status", "--porcelain").stdout.strip():
+        raise RuntimeError("publisher requires a clean disposable checkout")
     # No force push, no silent retry; never merge a stale scanner result.
     git(repo, "reset", "--hard", latest)
     for path, value in bundle.items():
