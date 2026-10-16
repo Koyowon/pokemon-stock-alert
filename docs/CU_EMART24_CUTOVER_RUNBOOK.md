@@ -39,10 +39,12 @@ test "$CURRENT" = "$EXPECTED" || { echo "STOP: main drift"; exit 1; }
 git clone --filter=blob:none "https://github.com/$REPO.git" /tmp/pokemon-stock-cutover-readonly
 cd /tmp/pokemon-stock-cutover-readonly
 git fetch origin "$EXPECTED"
-python cu_emart24_raw_backup.py backup --repo . --commit "$EXPECTED" --out "$HOME/cu-emart24-backup-$EXPECTED"
-python cu_emart24_raw_backup.py verify --repo . --out "$HOME/cu-emart24-backup-$EXPECTED"
+git fetch origin validation/cu-emart24-cutover-runbook-20261016
+git show FETCH_HEAD:cu_emart24_raw_backup.py > /tmp/cu_emart24_raw_backup_verified.py
+python /tmp/cu_emart24_raw_backup_verified.py backup --repo . --commit "$EXPECTED" --out "$HOME/cu-emart24-backup-$EXPECTED"
+python /tmp/cu_emart24_raw_backup_verified.py verify --repo . --out "$HOME/cu-emart24-backup-$EXPECTED"
 ```
-**주의:** `cu_emart24_raw_backup.py`는 격리 브랜치의 파일이다. 위 clone은 기본 main만 checkout하므로 실행 전에 별도로 검증된 격리 브랜치의 스크립트를 로컬 경로로 확보하거나 `git show validation/...:cu_emart24_raw_backup.py`로 안전하게 추출해야 한다. GitHub에 직접 푸시하거나 원본 파일을 덮어쓰지 않는다. 원본 복구 검증은 disposable clone에서 백업 파일과 pinned commit의 원본을 바이트 단위로 비교한다.
+**주의:** `cu_emart24_raw_backup.py`는 격리 브랜치의 파일이다. 위 명령은 fetch한 격리 브랜치의 스크립트를 임시 파일로 추출한다. 실행 전 이 스크립트의 commit SHA를 검증하고 검토해야 한다. GitHub에 직접 푸시하거나 원본 파일을 덮어쓰지 않는다. 원본 복구 검증은 disposable clone에서 백업 파일과 pinned commit의 원본을 바이트 단위로 비교한다.
 
 ## 3. 최초 알림 억제·중복 방지
 - CU `alerted` 및 `stock`, 이마트24 모든 flat stock key/value, stores cache를 그대로 유지한다. 기존 outbox가 없을 때만 빈 `pending_alerts`와 `alert_sequence=0`을 생성한다.
