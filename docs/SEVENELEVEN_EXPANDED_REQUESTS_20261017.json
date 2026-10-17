@@ -1,0 +1,104 @@
+[
+  {
+    "city": "남원시",
+    "kind": "stores",
+    "http_status": 200,
+    "seconds": 6.85,
+    "params": {
+      "keyword": "남원시",
+      "limit": 100
+    },
+    "fields": [
+      "success",
+      "data",
+      "meta"
+    ],
+    "data_fields": [
+      "keyword",
+      "count",
+      "totalCount",
+      "stores"
+    ],
+    "meta": {
+      "total": 20,
+      "page": 1,
+      "pageSize": 100
+    },
+    "checked_at": "2026-10-17T11:14:12.676566+00:00"
+  },
+  {
+    "city": "남원시",
+    "kind": "inventory",
+    "http_status": 200,
+    "seconds": 12.24,
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "남원시",
+      "storeLimit": 100
+    },
+    "fields": [
+      "success",
+      "data",
+      "meta"
+    ],
+    "data_fields": [
+      "keyword",
+      "storeKeyword",
+      "product",
+      "stockAvailable",
+      "stockError",
+      "note",
+      "inventory"
+    ],
+    "meta": {
+      "total": 17,
+      "pageSize": 100
+    },
+    "checked_at": "2026-10-17T11:14:26.912272+00:00"
+  },
+  {
+    "city": "아산시",
+    "kind": "stores",
+    "http_status": 200,
+    "seconds": 7.16,
+    "params": {
+      "keyword": "아산시",
+      "limit": 100
+    },
+    "fields": [
+      "success",
+      "data",
+      "meta"
+    ],
+    "data_fields": [
+      "keyword",
+      "count",
+      "totalCount",
+      "stores"
+    ],
+    "meta": {
+      "total": 101,
+      "page": 1,
+      "pageSize": 100
+    },
+    "checked_at": "2026-10-17T11:14:36.073118+00:00"
+  },
+  {
+    "city": "아산시",
+    "kind": "inventory",
+    "error": "TimeoutError",
+    "status": null
+  },
+  {
+    "city": "아산시",
+    "kind": "inventory",
+    "error": "HTTPError",
+    "status": 502
+  },
+  {
+    "city": "전주시",
+    "kind": "stores",
+    "error": "HTTPError",
+    "status": 502
+  }
+]
