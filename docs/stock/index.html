@@ -24,7 +24,7 @@ const BASE='https://raw.githubusercontent.com/Koyowon/pokemon-stock-alert/main/'
 const BARCODE='8800286275732';
 const $=id=>document.getElementById(id);
 const region=s=>/남원/.test(s)?'남원':/아산/.test(s)?'아산':/전주/.test(s)?'전주':/제주|서귀포/.test(s)?'제주':null;
-const number=n=>typeof n==='number'&&Number.isInteger(n)&&n>=0?n:null;
+const number=n=>(typeof n==='number'&&Number.isInteger(n)&&n>=0)?n:(typeof n==='string'&&/^\\d+$/.test(n)?Number(n):null);
 const mapLink=(name,address)=>'https://map.naver.com/p/search/'+encodeURIComponent((address||name).trim());
 const product='포켓몬 30주년 기념카드';
 const map=L.map('map').setView([36.2,127.5],7);
@@ -74,7 +74,7 @@ function showPopup(row,marker){
  wrap.append(element('strong',row.chain+' '+row.name));
  wrap.append(element('div','주소: '+(row.address||'저장된 주소 없음')));
  wrap.append(element('div','상품: '+row.product));
- wrap.append(element('div','마지막 확인 재고: '+(row.qty===null?'미확인':row.qty+'개')));
+ wrap.append(element('div','마지막 확인 재고: '+(row.qty===null?'미확인':row.qty===0?'0개 (재고 없음)':row.qty+'개')));
  wrap.append(element('div','조회 시각: '+(row.checked?new Date(row.checked).toLocaleString('ko-KR'):'기록 없음')));
  const a=element('a','🗺 네이버지도에서 매장 보기');a.href=mapLink(row.chain+' '+row.name,row.address);a.target='_blank';a.rel='noopener noreferrer';wrap.append(a);
  marker.bindPopup(wrap).openPopup();
@@ -95,7 +95,7 @@ function render(){
   const title=element('button',r.chain+' '+r.name);
   title.addEventListener('click',()=>{const marker=markers.get(r.chain+'|'+r.id);if(marker){map.setView(r.coords,Math.max(map.getZoom(),14));showPopup(r,marker);document.getElementById('map').scrollIntoView({behavior:'smooth',block:'center'});}else{alert('검증된 위치 좌표가 없습니다. 매장 정보는 목록에서 확인할 수 있습니다.');}});
   box.append(title);
-  box.append(element('div','재고: '+(r.qty===null?'미확인':r.qty+'개'),r.qty>0?'qty positive':r.qty===null?'qty unknown':'qty'));
+  box.append(element('div','재고: '+(r.qty===null?'미확인':r.qty===0?'0개 (재고 없음)':r.qty+'개'),r.qty>0?'qty positive':r.qty===null?'qty unknown':'qty'));
   box.append(element('small',r.city+' · '+(r.address||'주소 미등록')));
   box.append(element('small','상품: '+r.product+' · 조회 시각: '+(r.checked?new Date(r.checked).toLocaleString('ko-KR'):'기록 없음')));
   const actions=element('div',undefined,'actions');const a=element('a','네이버지도 검색');a.href=mapLink(r.chain+' '+r.name,r.address);a.target='_blank';a.rel='noopener noreferrer';actions.append(a);box.append(actions);list.append(box);
