@@ -133,11 +133,11 @@ def extract_stores(tokens):
     return result
 
 
-def query(city, lat, lng):
+def query(city, lat, lng, offset=0):
     params = {
         "keyword": PRODUCT,
         "size": 100,
-        "offset": 0,
+        "offset": offset,
         "storeCheck": "true",
         "lat": lat,
         "lng": lng,
@@ -314,6 +314,8 @@ def main():
 
         for lat, lng in points:
             try:
+                # A second bounded page expands coverage without assuming that
+                # CU supports querying inventory directly by store code.
                 stores = query(city, lat, lng)
                 successful_queries += 1
                 if city == "아산":
@@ -375,6 +377,9 @@ def main():
             asan_observed,
             query_succeeded=asan_successful_queries > 0,
         )
+
+    if failed_queries and successful_queries:
+        print("PARTIAL_QUERY_FAILURE: missing stores remain UNKNOWN", flush=True)
 
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
