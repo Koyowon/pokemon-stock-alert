@@ -162,15 +162,20 @@ def get_stores(active_regions):
 def naver_map(name, address=''):
     return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
 
-def notify(message):
+def notify(message, map_url=None):
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
         print("WARNING: Telegram secrets missing")
         return False
+    payload = {"chat_id": chat_id, "text": message}
+    if map_url:
+        payload["reply_markup"] = json.dumps({"inline_keyboard": [[
+            {"text": "🗺 네이버지도에서 매장 보기", "url": map_url}
+        ]]}, ensure_ascii=False)
     request = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/sendMessage",
-        data=urllib.parse.urlencode({"chat_id": chat_id, "text": message}).encode(),
+        data=urllib.parse.urlencode(payload).encode(),
     )
     try:
         with urllib.request.urlopen(request, timeout=15) as response:
@@ -314,9 +319,8 @@ def main():
                     print(f"WARNING: alert held for unknown region: {key}")
                     continue
                 message += "\n지역: " + region_label
-                message += "\n🗺 네이버지도: " + naver_map(store["name"], store["address"])
                 message += "\n※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
-                if not notify(message):
+                if not notify(message, map_url=naver_map(store["name"], store["address"])):
                     print(f"WARNING: alert failed, state not advanced: {key}")
                     continue
             updated[key] = qty
