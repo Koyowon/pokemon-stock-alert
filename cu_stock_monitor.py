@@ -349,10 +349,16 @@ def main():
     print("SUCCESSFUL_QUERIES:", successful_queries, flush=True)
     print("FAILED_QUERIES:", failed_queries, flush=True)
     print("UNIQUE_STORES:", len(observed), flush=True)
-    covered = set(observed) & set(official_directory)
+    from cu_coverage import coverage_summary, directory_identity_status
+    enabled_cities = [city for city, region in REGION_IDS.items()
+                      if region in enabled_regions]
+    coverage = coverage_summary(official_directory, observed, enabled_cities)
     print("OFFICIAL_DIRECTORY_VERIFIED:", len(official_directory), flush=True)
-    print("OFFICIAL_DIRECTORY_OBSERVED:", len(covered), flush=True)
-    print("OFFICIAL_DIRECTORY_NOT_OBSERVED:", len(official_directory) - len(covered), flush=True)
+    print("OFFICIAL_DIRECTORY_ENABLED:", coverage["eligible"], flush=True)
+    print("OFFICIAL_DIRECTORY_OBSERVED:", coverage["observed"], flush=True)
+    print("OFFICIAL_DIRECTORY_NOT_OBSERVED:", coverage["missing"], flush=True)
+    print("OFFICIAL_DIRECTORY_MISSING_CODES:",
+          ",".join(coverage["missing_codes"]), flush=True)
     print("DIRECTORY_IS_A_COVERAGE_AUDIT_NOT_AN_INVENTORY_SOURCE", flush=True)
     print("CONFLICT_STORES:", len(conflicts), flush=True)
 
@@ -377,6 +383,12 @@ def main():
         raise RuntimeError("All CU queries failed; state unchanged")
 
     for code, item in sorted(observed.items()):
+        official = official_directory.get(code)
+        if official is not None:
+            official_identity = directory_identity_status(official, item)
+            if official_identity != "MATCH":
+                print("OFFICIAL_IDENTITY_HOLD:", code, official_identity, flush=True)
+                continue
         quantity = item["stock"]
         old = state["stores"].get(code, {})
         identity = store_identity_status(old, item)
