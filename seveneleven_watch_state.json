@@ -1,7 +1,7 @@
 {
   "version": 1,
   "product": "8800286275732",
-  "cursor": 0,
+  "cursor": 1,
   "stores": {
     "68604": {
       "region": "namwon",
@@ -10,7 +10,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "NO_QUANTITY",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -22,7 +22,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "NO_QUANTITY",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
       "next_direct_at": 1792250356
@@ -34,11 +34,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "68502": {
       "region": "namwon",
@@ -47,11 +47,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "68160": {
       "region": "namwon",
@@ -60,11 +60,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "68062": {
       "region": "namwon",
@@ -73,11 +73,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "67808": {
       "region": "namwon",
@@ -86,11 +86,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "59696": {
       "region": "namwon",
@@ -99,7 +99,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "NO_QUANTITY",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792248254,
       "direct_failures": 1,
       "next_direct_at": 1792249154
@@ -111,11 +111,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "59258": {
       "region": "namwon",
@@ -124,7 +124,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "NO_QUANTITY",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -136,11 +136,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "57132": {
       "region": "namwon",
@@ -149,11 +149,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "55458": {
       "region": "namwon",
@@ -162,11 +162,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "55093": {
       "region": "namwon",
@@ -175,11 +175,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "54276": {
       "region": "namwon",
@@ -188,10 +188,10 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "NO_QUANTITY",
-      "checked_at": 1792252384,
-      "last_direct_at": 1792240263,
-      "direct_failures": 1,
-      "next_direct_at": 1792241163
+      "checked_at": 1792253349,
+      "last_direct_at": 1792253349,
+      "direct_failures": 2,
+      "next_direct_at": 1792255149
     },
     "54131": {
       "region": "namwon",
@@ -200,11 +200,11 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384,
+      "last_success_at": 1792253349,
       "direct_failures": 0,
-      "next_direct_at": 1792253284
+      "next_direct_at": 1792254249
     },
     "53436": {
       "region": "namwon",
@@ -213,12 +213,12 @@
       "status": "OK",
       "quantity": 0,
       "reason": "OBSERVED",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792238523,
       "direct_failures": 0,
-      "next_direct_at": 1792253284,
+      "next_direct_at": 1792254249,
       "last_known_quantity": 0,
-      "last_success_at": 1792252384
+      "last_success_at": 1792253349
     },
     "64812": {
       "region": "asan",
@@ -227,7 +227,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64767": {
       "region": "asan",
@@ -236,7 +236,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -249,7 +249,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64685": {
       "region": "asan",
@@ -258,7 +258,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64551": {
       "region": "asan",
@@ -267,7 +267,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64552": {
       "region": "asan",
@@ -276,7 +276,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64484": {
       "region": "asan",
@@ -285,7 +285,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64473": {
       "region": "asan",
@@ -294,7 +294,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64416": {
       "region": "asan",
@@ -303,7 +303,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64335": {
       "region": "asan",
@@ -312,7 +312,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64302": {
       "region": "asan",
@@ -321,7 +321,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -334,7 +334,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "64012": {
       "region": "asan",
@@ -343,7 +343,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "63889": {
       "region": "asan",
@@ -352,7 +352,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -365,7 +365,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68882": {
       "region": "asan",
@@ -374,7 +374,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68595": {
       "region": "asan",
@@ -383,7 +383,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68588": {
       "region": "asan",
@@ -392,7 +392,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68661": {
       "region": "asan",
@@ -401,7 +401,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68434": {
       "region": "asan",
@@ -410,7 +410,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -423,7 +423,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68342": {
       "region": "asan",
@@ -432,7 +432,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "68291": {
       "region": "asan",
@@ -441,7 +441,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "63437": {
       "region": "asan",
@@ -450,7 +450,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67978": {
       "region": "asan",
@@ -459,7 +459,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67964": {
       "region": "asan",
@@ -468,7 +468,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -481,7 +481,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -494,7 +494,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67769": {
       "region": "asan",
@@ -503,7 +503,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -516,7 +516,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59641": {
       "region": "asan",
@@ -525,7 +525,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59761": {
       "region": "asan",
@@ -534,7 +534,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59802": {
       "region": "asan",
@@ -543,7 +543,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59745": {
       "region": "asan",
@@ -552,7 +552,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67435": {
       "region": "asan",
@@ -561,7 +561,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67428": {
       "region": "asan",
@@ -570,7 +570,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67347": {
       "region": "asan",
@@ -579,7 +579,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67322": {
       "region": "asan",
@@ -588,7 +588,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59259": {
       "region": "asan",
@@ -597,7 +597,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67221": {
       "region": "asan",
@@ -606,7 +606,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59279": {
       "region": "asan",
@@ -615,7 +615,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "67150": {
       "region": "asan",
@@ -624,7 +624,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59099": {
       "region": "asan",
@@ -633,7 +633,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "59018": {
       "region": "asan",
@@ -642,7 +642,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -655,7 +655,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -668,7 +668,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57519": {
       "region": "asan",
@@ -677,7 +677,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57562": {
       "region": "asan",
@@ -686,7 +686,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57553": {
       "region": "asan",
@@ -695,7 +695,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57419": {
       "region": "asan",
@@ -704,7 +704,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57387": {
       "region": "asan",
@@ -713,7 +713,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "57045": {
       "region": "asan",
@@ -722,7 +722,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -735,7 +735,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "56274": {
       "region": "asan",
@@ -744,7 +744,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "56276": {
       "region": "asan",
@@ -753,7 +753,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "56152": {
       "region": "asan",
@@ -762,7 +762,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "56134": {
       "region": "asan",
@@ -771,7 +771,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "56061": {
       "region": "asan",
@@ -780,7 +780,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55567": {
       "region": "asan",
@@ -789,7 +789,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55568": {
       "region": "asan",
@@ -798,7 +798,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55554": {
       "region": "asan",
@@ -807,7 +807,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55340": {
       "region": "asan",
@@ -816,7 +816,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -829,7 +829,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55210": {
       "region": "asan",
@@ -838,7 +838,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "55131": {
       "region": "asan",
@@ -847,7 +847,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "54970": {
       "region": "asan",
@@ -856,7 +856,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "54499": {
       "region": "asan",
@@ -865,7 +865,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53876": {
       "region": "asan",
@@ -874,7 +874,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -887,7 +887,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53631": {
       "region": "asan",
@@ -896,7 +896,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53585": {
       "region": "asan",
@@ -905,7 +905,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53528": {
       "region": "asan",
@@ -914,7 +914,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53249": {
       "region": "asan",
@@ -923,7 +923,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "53220": {
       "region": "asan",
@@ -932,7 +932,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -945,7 +945,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "52911": {
       "region": "asan",
@@ -954,7 +954,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "52336": {
       "region": "asan",
@@ -963,7 +963,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "52214": {
       "region": "asan",
@@ -972,7 +972,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "17644": {
       "region": "asan",
@@ -981,7 +981,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "51369": {
       "region": "asan",
@@ -990,7 +990,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "51064": {
       "region": "asan",
@@ -999,7 +999,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "18945": {
       "region": "asan",
@@ -1008,7 +1008,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "18778": {
       "region": "asan",
@@ -1017,7 +1017,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "18801": {
       "region": "asan",
@@ -1026,7 +1026,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "19853": {
       "region": "asan",
@@ -1035,7 +1035,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "51230": {
       "region": "asan",
@@ -1044,7 +1044,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "17981": {
       "region": "asan",
@@ -1053,7 +1053,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "16310": {
       "region": "asan",
@@ -1062,7 +1062,10 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349,
+      "last_direct_at": 1792253349,
+      "direct_failures": 1,
+      "next_direct_at": 1792254249
     },
     "13167": {
       "region": "asan",
@@ -1071,7 +1074,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 1,
@@ -1085,7 +1088,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
       "next_direct_at": 1792250356
@@ -1097,7 +1100,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792250904,
       "direct_failures": 1,
       "next_direct_at": 1792251804
@@ -1109,7 +1112,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -1121,7 +1124,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792238672,
       "direct_failures": 1,
       "next_direct_at": 1792239572
@@ -1133,7 +1136,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792242284,
       "direct_failures": 1,
       "next_direct_at": 1792243184
@@ -1145,7 +1148,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -1157,7 +1160,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -1169,7 +1172,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384
+      "checked_at": 1792253349
     },
     "12538": {
       "region": "asan",
@@ -1178,7 +1181,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -1190,7 +1193,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792252384,
+      "checked_at": 1792253349,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -1202,7 +1205,7 @@
       "address": "전북특별자치도 전주시 완산구 천잠로 333 1층효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64725": {
@@ -1211,7 +1214,7 @@
       "address": "전북특별자치도 전주시 완산구 우전로 249 1층효자동2가, 전일고등학교",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64704": {
@@ -1220,16 +1223,16 @@
       "address": "전북특별자치도 전주시 완산구 우전2길 59 1층 101호효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64669": {
       "region": "jeonju",
       "name": "전주팔복프라임점",
       "address": "전북특별자치도 전주시 덕진구 추천4길 44 1층팔복동2가",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1242,7 +1245,7 @@
       "address": "전북특별자치도 전주시 덕진구 삼송1길 34 1층금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64610": {
@@ -1251,7 +1254,7 @@
       "address": "전북특별자치도 전주시 완산구 서원로 145 102동 101호, 102호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64596": {
@@ -1260,7 +1263,7 @@
       "address": "전북특별자치도 전주시 덕진구 솔내8길 23-6 상가동 1층 1,2호송천동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64558": {
@@ -1269,7 +1272,7 @@
       "address": "전북특별자치도 전주시 완산구 마전들로 29 1층 효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64486": {
@@ -1278,7 +1281,7 @@
       "address": "전북특별자치도 전주시 완산구 백제대로 20 1충평화동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64384": {
@@ -1287,7 +1290,7 @@
       "address": "전북특별자치도 전주시 덕진구 쪽구름로 119 1층 일부호 반월동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64344": {
@@ -1296,7 +1299,7 @@
       "address": "전북특별자치도 전주시 덕진구 기린대로 400-29 1층 일부 금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64318": {
@@ -1305,7 +1308,7 @@
       "address": "전북특별자치도 전주시 완산구 삼천천변2길 23-4 1층 삼천동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64269": {
@@ -1314,7 +1317,7 @@
       "address": "전북특별자치도 전주시 완산구 당산로 46 1층서신동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64215": {
@@ -1323,7 +1326,7 @@
       "address": "전북특별자치도 전주시 완산구 노송광장로 59 1층서노송동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "64083": {
@@ -1332,7 +1335,7 @@
       "address": "전북특별자치도 전주시 덕진구 정언신로 62-2 1층인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63973": {
@@ -1341,7 +1344,7 @@
       "address": "전북특별자치도 전주시 덕진구 팽나무5길 8 1층 인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "69123": {
@@ -1350,7 +1353,7 @@
       "address": "전북특별자치도 전주시 덕진구 견훤로 199-1 (인후동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "69096": {
@@ -1359,7 +1362,7 @@
       "address": "전북특별자치도 전주시 덕진구 솔내7길 10 1층(송천동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "69045": {
@@ -1368,7 +1371,7 @@
       "address": "전라북도 전주시 완산구 경기전길 120",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "69025": {
@@ -1377,7 +1380,7 @@
       "address": "전북특별자치도 전주시 덕진구 상리로 1 1층팔복동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68631": {
@@ -1386,7 +1389,7 @@
       "address": "전라북도 전주시 덕진구 쪽구름로 23 상가3동 101호(여의동, 제일아파트)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63792": {
@@ -1395,7 +1398,7 @@
       "address": "전북특별자치도 전주시 완산구 구룡1길 15 1층 효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63814": {
@@ -1404,7 +1407,7 @@
       "address": "전라북도 전주시 덕진구 우아1길 23 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68765": {
@@ -1413,7 +1416,7 @@
       "address": "전라북도 전주시 덕진구 오송1길 13 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68703": {
@@ -1422,7 +1425,7 @@
       "address": "전라북도 전주시 완산구 문학대4길 23 101,102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68668": {
@@ -1431,7 +1434,7 @@
       "address": "전라북도 전주시 완산구 홍산중앙로 45 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68634": {
@@ -1440,7 +1443,7 @@
       "address": "전북특별자치도 전주시 완산구 홍산남로 69-7 전북특별자치도 전주시 완산구 홍산남로 69-7, 1층 101호(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68592": {
@@ -1449,7 +1452,7 @@
       "address": "전북특별자치도 전주시 완산구 전라감영로 41 1층 중앙동4가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63728": {
@@ -1458,7 +1461,7 @@
       "address": "전라북도 전주시 덕진구 팔복로 140, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68412": {
@@ -1467,7 +1470,7 @@
       "address": "전북특별자치도 전주시 완산구 홍산중앙로 46 1층 4호(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68363": {
@@ -1476,16 +1479,16 @@
       "address": "전북특별자치도 전주시 덕진구 기린대로 465 1층 101,102호덕진동1가, 전북대세움펠리피아상가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68349": {
       "region": "jeonju",
       "name": "전주화산지구점",
       "address": "전북특별자치도 전주시 완산구 신촌4길 10-10 1층중화산동2가",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1498,7 +1501,7 @@
       "address": "전라북도 전주시 덕진구 석소2길 31, 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68241": {
@@ -1507,7 +1510,7 @@
       "address": "전라북도 전주시 덕진구 중상보로 30, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68223": {
@@ -1516,7 +1519,7 @@
       "address": "전라북도 전주시 덕진구 호성1길 25",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63515": {
@@ -1525,7 +1528,7 @@
       "address": "전라북도 전주시 완산구 서학로 47, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68108": {
@@ -1534,7 +1537,7 @@
       "address": "전북특별자치도 전주시 덕진구 경동로 18 제상가동 1층 101호 덕진동2가, 사랑으로부영아파트",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68090": {
@@ -1543,7 +1546,7 @@
       "address": "전라북도 전주시 완산구 메너머3길 29 중화산동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "68022": {
@@ -1552,7 +1555,7 @@
       "address": "전라북도 전주시 덕진구 운암로 42",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63451": {
@@ -1561,7 +1564,7 @@
       "address": "전북특별자치도 전주시 완산구 백마산길 112 101동 상가101호, 상가102호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67962": {
@@ -1570,7 +1573,7 @@
       "address": "전라북도 전주시 완산구 서곡4길 46-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67982": {
@@ -1579,7 +1582,7 @@
       "address": "전북특별자치도 전주시 덕진구 명륜3길 9 (덕진동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67861": {
@@ -1588,7 +1591,7 @@
       "address": "전라북도 전주시 덕진구 조경단로 92, 1층 104호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67839": {
@@ -1597,7 +1600,7 @@
       "address": "전라북도 전주시 완산구 고사평4길 9, 1층 일부",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "63103": {
@@ -1606,7 +1609,7 @@
       "address": "전라북도 전주시 덕진구 팔과정로 168, 전주1산단 S001동, 104, 105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59985": {
@@ -1615,7 +1618,7 @@
       "address": "전라북도 전주시 완산구 거마평로 127, 제상가1동 1층 107, 108호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59883": {
@@ -1624,7 +1627,7 @@
       "address": "전라북도 전주시 덕진구 백제대로 838, 1층 101, 102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67682": {
@@ -1633,7 +1636,7 @@
       "address": "전라북도 전주시 덕진구 인교로 61 스카이 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67669": {
@@ -1642,7 +1645,7 @@
       "address": "전북특별자치도 전주시 완산구 화산천변로 15 1층 중화산동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67670": {
@@ -1651,7 +1654,7 @@
       "address": "전라북도 전주시 완산구 효동2길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67657": {
@@ -1660,7 +1663,7 @@
       "address": "전라북도 전주시 완산구 메너머1길 9",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59764": {
@@ -1669,7 +1672,7 @@
       "address": "전라북도 전주시 완산구 전주천서로 267",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67507": {
@@ -1678,7 +1681,7 @@
       "address": "전라북도 전주시 완산구 평화19길 23, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67508": {
@@ -1687,7 +1690,7 @@
       "address": "전라북도 전주시 덕진구 아중1길 15 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67458": {
@@ -1696,7 +1699,7 @@
       "address": "전라북도 전주시 완산구 효자천변2길 10, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67365": {
@@ -1705,7 +1708,7 @@
       "address": "전라북도 전주시 완산구 용리로 16",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67364": {
@@ -1714,7 +1717,7 @@
       "address": "전북특별자치도 전주시 완산구 소대배기로 10 평화동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59592": {
@@ -1723,7 +1726,7 @@
       "address": "전라북도 전주시 덕진구 심방죽로 22, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67344": {
@@ -1732,7 +1735,7 @@
       "address": "전라북도 전주시 완산구 당산로 11-3, 상가1동 1층 1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59559": {
@@ -1741,7 +1744,7 @@
       "address": "전라북도 전주시 완산구 홍산북로 25, 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67235": {
@@ -1750,7 +1753,7 @@
       "address": "전라북도 전주시 덕진구 가재미로 5",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59389": {
@@ -1759,7 +1762,7 @@
       "address": "전북특별자치도 전주시 완산구 태평4길 11 1층 103호 104호태평동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59377": {
@@ -1768,7 +1771,7 @@
       "address": "전라북도 전주시 완산구 공수내로 19, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "67151": {
@@ -1777,7 +1780,7 @@
       "address": "전라북도 전주시 완산구 메너머2길 14, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59239": {
@@ -1786,16 +1789,16 @@
       "address": "전라북도 전주시 완산구 문학로 8, 1층 105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "59164": {
       "region": "jeonju",
       "name": "전주뉴프론티어점",
       "address": "전라북도 전주시 덕진구 떡전3길 15-1, 1층 101호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1808,7 +1811,7 @@
       "address": "전북특별자치도 전주시 완산구 봉곡2길 23 101호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "57407": {
@@ -1817,7 +1820,7 @@
       "address": "전라북도 전주시 덕진구 우아4길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "57726": {
@@ -1826,7 +1829,7 @@
       "address": "전라북도 전주시 덕진구 건산로 159, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "57632": {
@@ -1835,16 +1838,16 @@
       "address": "전라북도 전주시 완산구 마당재4길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "57206": {
       "region": "jeonju",
       "name": "전주그랑블점",
       "address": "전라북도 전주시 완산구 견훤왕궁1길 27",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1857,16 +1860,16 @@
       "address": "전라북도 전주시 완산구 덕적골2길 43",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "57038": {
       "region": "jeonju",
       "name": "전주에코시티점",
       "address": "전라북도 전주시 덕진구 세병1길 10 103호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1879,7 +1882,7 @@
       "address": "전라북도 전주시 완산구 평화로 219, 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "56325": {
@@ -1888,16 +1891,16 @@
       "address": "전라북도 전주시 완산구 봉곡1길 26",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "56327": {
       "region": "jeonju",
       "name": "전주도당산점",
       "address": "전라북도 전주시 덕진구 도당산로 18 1층",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_known_quantity": 0,
       "last_success_at": 1792252384,
@@ -1910,7 +1913,7 @@
       "address": "전라북도 전주시 덕진구 석소로 5-16",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "56007": {
@@ -1919,7 +1922,7 @@
       "address": "전라북도 전주시 완산구 서원로 388",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "55815": {
@@ -1928,7 +1931,7 @@
       "address": "전라북도 전주시 완산구 장승배기4길 5",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "55760": {
@@ -1937,7 +1940,7 @@
       "address": "전라북도 전주시 덕진구 건지3길 10",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "55640": {
@@ -1946,7 +1949,7 @@
       "address": "전북특별자치도 전주시 완산구 전주객사1길 45 1층다가동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "54890": {
@@ -1955,7 +1958,7 @@
       "address": "전라북도 전주시 덕진구 만성북4길 7",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "54815": {
@@ -1964,7 +1967,7 @@
       "address": "전북특별자치도 전주시 덕진구 추탄로 64",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53999": {
@@ -1973,7 +1976,7 @@
       "address": "전라북도 전주시 덕진구 들사평로 39, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53895": {
@@ -1982,7 +1985,7 @@
       "address": "전라북도 전주시 덕진구 우아10길 17-20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "58108": {
@@ -1991,7 +1994,7 @@
       "address": "전라북도 전주시 덕진구 권삼득로 303 1층(금암동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53709": {
@@ -2000,7 +2003,7 @@
       "address": "전북특별자치도 전주시 완산구 평화로 106 1층 104호 평화동2가, 평화주공 그린타운 상가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "58048": {
@@ -2009,7 +2012,7 @@
       "address": "전라북도 전주시 완산구 전주객사5길 46 (고사동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53450": {
@@ -2018,7 +2021,7 @@
       "address": "전북특별자치도 전주시 덕진구 팔달로 377 1층금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53263": {
@@ -2027,7 +2030,7 @@
       "address": "전라북도 전주시 완산구 한두평3길 18-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "53101": {
@@ -2036,7 +2039,7 @@
       "address": "전라북도 전주시 덕진구 만성북1길 3 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "19613": {
@@ -2045,7 +2048,7 @@
       "address": "전라북도 전주시 완산구 척동5길 19",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "19806": {
@@ -2054,7 +2057,7 @@
       "address": "전라북도 전주시 덕진구 안덕원로 370, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18667": {
@@ -2063,7 +2066,7 @@
       "address": "전북특별자치도 전주시 완산구 구룡2길 20 효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18682": {
@@ -2072,7 +2075,7 @@
       "address": "전라북도 전주시 덕진구 인후동1가 827-14",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "12120": {
@@ -2081,7 +2084,7 @@
       "address": "전라북도 전주시 덕진구 삼송1길 4 1층(금암동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
@@ -2093,7 +2096,7 @@
       "address": "전라북도 전주시 덕진구 솔내9길 10 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18492": {
@@ -2102,7 +2105,7 @@
       "address": "전라북도 전주시 완산구 노송광장로 37(서노송동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18173": {
@@ -2111,7 +2114,7 @@
       "address": "전라북도 전주시 완산구 중산중앙로 36(중화산동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "51076": {
@@ -2120,7 +2123,7 @@
       "address": "전라북도 전주시 완산구 홍산남로 45-28 (효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "17965": {
@@ -2129,7 +2132,7 @@
       "address": "전라북도 전주시 완산구 소태정 4길 11(효자동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18875": {
@@ -2138,7 +2141,7 @@
       "address": "전라북도 전주시 완산구 양지1길 15-11 5호, 6호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "51191": {
@@ -2147,7 +2150,7 @@
       "address": "전라북도 전주시 덕진구 쪽구름2길 5 1동 102,103호(반월동, 주건축물)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18531": {
@@ -2156,7 +2159,7 @@
       "address": "전라북도 전주시 덕진구 우아동2가 아중중아로 17",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18612": {
@@ -2165,7 +2168,7 @@
       "address": "전라북도 전주시 덕진구 인후동2가 백제대로 751",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "18506": {
@@ -2174,7 +2177,7 @@
       "address": "전라북도 전주시 완산구 서신동 933-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "19649": {
@@ -2183,7 +2186,7 @@
       "address": "전북특별자치도 전주시 덕진구 무삼지로 90 1층 인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "17770": {
@@ -2192,7 +2195,7 @@
       "address": "전라북도 전주시 덕진구 신복3길 10 1층(팔복동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "50010": {
@@ -2201,7 +2204,7 @@
       "address": "전북특별자치도 전주시 덕진구 건지로 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "50066": {
@@ -2210,7 +2213,7 @@
       "address": "전라북도 전주시 덕진구 아중천2길 46 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "50454": {
@@ -2219,7 +2222,7 @@
       "address": "전라북도 전주시 덕진구 견훤로 235 (인후동 1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "17244": {
@@ -2228,7 +2231,7 @@
       "address": "전북특별자치도 전주시 완산구 기린대로 85 지하1층 풍남동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "12591": {
@@ -2237,7 +2240,7 @@
       "address": "전라북도 전주시 덕진구 신복로 62",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "12614": {
@@ -2246,7 +2249,7 @@
       "address": "전라북도 전주시 덕진구 용산3길 15 475-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "11327": {
@@ -2255,7 +2258,7 @@
       "address": "전라북도 전주시 완산구 현무3길80(서노송동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792248254,
       "direct_failures": 1,
@@ -2267,7 +2270,7 @@
       "address": "전라북도 전주시 덕진구 진버들6길 18",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "10772": {
@@ -2276,7 +2279,7 @@
       "address": "전라북도 전주시 덕진구 건산로 74 (진북동) 263-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
@@ -2288,7 +2291,7 @@
       "address": "전라북도 전주시 덕진구 무삼지로 47 1층(인후동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "10672": {
@@ -2297,7 +2300,7 @@
       "address": "전라북도 전주시 완산구 충경로 17(중앙동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792239114,
       "direct_failures": 1,
@@ -2309,7 +2312,7 @@
       "address": "전라북도 전주시 완산구 산월2길 43 (중화산동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "13488": {
@@ -2318,7 +2321,7 @@
       "address": "전라북도 전주시 완산구 신봉3길 2 593-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "10762": {
@@ -2327,7 +2330,7 @@
       "address": "전북특별자치도 전주시 덕진구 건지로 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792243878,
       "direct_failures": 1,
@@ -2339,7 +2342,7 @@
       "address": "전라북도 전주시 덕진구 정언신로 178 920-3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "11130": {
@@ -2348,7 +2351,7 @@
       "address": "전라북도 전주시 덕진구 도당산로67 (우아동 3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
@@ -2360,7 +2363,7 @@
       "address": "전라북도 전주시 덕진구 붓내3길 14 1층(송천동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "12829": {
@@ -2369,7 +2372,7 @@
       "address": "전라북도 전주시 완산구 백마산길 40",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "15783": {
@@ -2378,7 +2381,7 @@
       "address": "전라북도 전주시 완산구 농소2길 17(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "14967": {
@@ -2387,7 +2390,7 @@
       "address": "전라북도 전주시 완산구 용머리로 29-13 외2필지 제상가동 101호,102호(효자동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "15283": {
@@ -2396,7 +2399,7 @@
       "address": "전라북도 전주시 완산구 우림로 1021 382-1 외1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "12301": {
@@ -2405,7 +2408,7 @@
       "address": "전라북도 전주시 덕진구 매봉로 48-1 1586-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "13542": {
@@ -2414,7 +2417,7 @@
       "address": "전라북도 전주시 덕진구 덕진연못3길 9-3 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "13069": {
@@ -2423,7 +2426,7 @@
       "address": "전북특별자치도 전주시 완산구 고사평3길 15 서신동, 오복빌라",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "14863": {
@@ -2432,7 +2435,7 @@
       "address": "전라북도 전주시 완산구 중산6길 15-3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "14565": {
@@ -2441,7 +2444,7 @@
       "address": "전라북도 전주시 완산구 온고을로 22(서신동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     },
     "14374": {
@@ -2450,47 +2453,29 @@
       "address": "전라북도 전주시 덕진구 태진로 119(진북동) 416-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
+      "reason": "STALE",
       "checked_at": 1792252384
     }
   },
-  "updated_at": 1792252384,
+  "updated_at": 1792253349,
   "calls": [
-    {
-      "region": "jeonju",
-      "keyword": "전주시",
-      "target": null,
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 25.5,
-      "at": 1792252384
-    },
-    {
-      "region": "jeonju",
-      "keyword": "전주건지점",
-      "target": "12120",
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 2.13,
-      "at": 1792252384
-    },
     {
       "region": "namwon",
       "keyword": "남원시",
       "target": null,
       "result": "VALIDATED",
       "validation_reason": null,
-      "elapsed_seconds": 6.13,
-      "at": 1792252384
+      "elapsed_seconds": 5.84,
+      "at": 1792253349
     },
     {
       "region": "namwon",
-      "keyword": "남원부영점",
-      "target": "68604",
+      "keyword": "남원교룡로점",
+      "target": "54276",
       "result": "VALIDATED",
       "validation_reason": null,
-      "elapsed_seconds": 2.57,
-      "at": 1792252384
+      "elapsed_seconds": 0.83,
+      "at": 1792253349
     },
     {
       "region": "asan",
@@ -2498,17 +2483,17 @@
       "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 16.17,
-      "at": 1792252384
+      "elapsed_seconds": 23.39,
+      "at": 1792253349
     },
     {
       "region": "asan",
-      "keyword": "아산용화중점",
-      "target": "16294",
+      "keyword": "아산탕정시티점",
+      "target": "16310",
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 2.49,
-      "at": 1792252384
+      "elapsed_seconds": 0.44,
+      "at": 1792253349
     }
   ],
   "halted": true,
@@ -2525,8 +2510,8 @@
     },
     "jeonju": {
       "total": 135,
-      "known": 6,
-      "unknown": 129
+      "known": 0,
+      "unknown": 135
     }
   }
 }
