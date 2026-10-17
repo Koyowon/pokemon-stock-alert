@@ -306,6 +306,9 @@ def main():
     from unified_settings import enabled as unified_enabled
     enabled_regions = unified_enabled("cu", load_enabled_regions())
 
+    # Deduplicate verified, existing coordinate probes without inventing geocodes.
+    # No additional requests are authorized until independently verified coordinates exist.
+    planned = set()
     for city, points in POINTS.items():
         region_id = REGION_IDS[city]
         if region_id not in enabled_regions:
@@ -313,6 +316,11 @@ def main():
             continue
 
         for lat, lng in points:
+            probe = (city, lat, lng)
+            if probe in planned:
+                print("DUPLICATE_COORDINATE_SKIPPED:", city, lat, lng, flush=True)
+                continue
+            planned.add(probe)
             try:
                 stores = query(city, lat, lng)
                 successful_queries += 1
@@ -346,6 +354,7 @@ def main():
                     type(exc).__name__, str(exc)[:200], flush=True,
                 )
 
+    print("PLANNED_UNIQUE_COORDINATE_QUERIES:", len(planned), flush=True)
     print("SUCCESSFUL_QUERIES:", successful_queries, flush=True)
     print("FAILED_QUERIES:", failed_queries, flush=True)
     print("UNIQUE_STORES:", len(observed), flush=True)
