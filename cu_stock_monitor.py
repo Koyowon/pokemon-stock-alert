@@ -273,10 +273,30 @@ def store_identity_status(old, item):
     return "MATCH"
 
 
+def load_verified_directory():
+    """Read validated CU identities; never treat an absent API result as zero stock."""
+    path = Path(__file__).with_name("cu_official_verified_directory.json")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("verified_count") != 377 or not isinstance(data.get("stores"), list):
+        raise RuntimeError("CU official directory count mismatch")
+    directory = {}
+    for item in data["stores"]:
+        code = str(item.get("cu_store_code", ""))
+        if (not re.fullmatch(r"[0-9]+", code) or code in directory
+                or item.get("verification") != "OFFICIAL_LIST_AND_DETAIL_MATCH"
+                or not item.get("name") or not item.get("address")
+                or item.get("source_url") !=
+                "https://cu.bgfretail.com/store/view.do?jumpo=" + code):
+            raise RuntimeError("Invalid CU official directory entry: " + code)
+        directory[code] = item
+    return directory
+
+
 def main():
     print("CU STOCK MONITOR START", flush=True)
 
     state = load_state()
+    official_directory = load_verified_directory()
     observed = {}
     conflicts = set()
     successful_queries = 0
@@ -329,6 +349,11 @@ def main():
     print("SUCCESSFUL_QUERIES:", successful_queries, flush=True)
     print("FAILED_QUERIES:", failed_queries, flush=True)
     print("UNIQUE_STORES:", len(observed), flush=True)
+    covered = set(observed) & set(official_directory)
+    print("OFFICIAL_DIRECTORY_VERIFIED:", len(official_directory), flush=True)
+    print("OFFICIAL_DIRECTORY_OBSERVED:", len(covered), flush=True)
+    print("OFFICIAL_DIRECTORY_NOT_OBSERVED:", len(official_directory) - len(covered), flush=True)
+    print("DIRECTORY_IS_A_COVERAGE_AUDIT_NOT_AN_INVENTORY_SOURCE", flush=True)
     print("CONFLICT_STORES:", len(conflicts), flush=True)
 
     # Candidate registry is an audit overlay, not a replacement for API results.
