@@ -1,7 +1,7 @@
 {
   "version": 1,
   "product": "8800286275732",
-  "cursor": 2,
+  "cursor": 0,
   "stores": {
     "68604": {
       "region": "namwon",
@@ -9,8 +9,8 @@
       "address": "전북특별자치도 남원시 농고길 19 1층도통동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254
     },
     "68505": {
       "region": "namwon",
@@ -18,73 +18,73 @@
       "address": "전라북도 남원시 가방뜰길 57",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254
     },
     "67647": {
       "region": "namwon",
       "name": "남원신터미널점",
       "address": "전라북도 남원시 용성로 115",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "68502": {
       "region": "namwon",
       "name": "남원IC점",
       "address": "전라북도 남원시 충정로 266",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "68160": {
       "region": "namwon",
       "name": "남원센터점",
       "address": "전라북도 남원시 용성로 178",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "68062": {
       "region": "namwon",
       "name": "남원도통중앙점",
       "address": "전라북도 남원시 큰들길 35",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "67808": {
       "region": "namwon",
       "name": "남원삼성점",
       "address": "전라북도 남원시 요천로 2245",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "59696": {
       "region": "namwon",
@@ -92,21 +92,24 @@
       "address": "전라북도 남원시 동림로 8, 죽향주공아파트 가동 1호,2호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254,
+      "last_direct_at": 1792248254,
+      "direct_failures": 1,
+      "next_direct_at": 1792249154
     },
     "59128": {
       "region": "namwon",
       "name": "남원남문로점",
       "address": "전라북도 남원시 남문로 359, 1층",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "59258": {
       "region": "namwon",
@@ -114,8 +117,8 @@
       "address": "전라북도 남원시 동림로 82, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -124,53 +127,53 @@
       "region": "namwon",
       "name": "남원아성점",
       "address": "전라북도 남원시 동림로 29",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "57132": {
       "region": "namwon",
       "name": "남원광치산단점",
       "address": "전라북도 남원시 춘향로 294",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "55458": {
       "region": "namwon",
       "name": "남원운봉점",
       "address": "전라북도 남원시 운봉읍 바래봉길 2",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "55093": {
       "region": "namwon",
       "name": "남원동충센터점",
       "address": "전북특별자치도 남원시 붕맛길 20 1층, 동충동",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "54276": {
       "region": "namwon",
@@ -178,8 +181,8 @@
       "address": "전라북도 남원시 붕맛길 83(향교동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -188,28 +191,28 @@
       "region": "namwon",
       "name": "남원시청점",
       "address": "전라북도 남원시 시청남로 6 (도통동)",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415,
+      "last_success_at": 1792248254,
       "direct_failures": 0,
-      "next_direct_at": 1792246315
+      "next_direct_at": 1792249154
     },
     "53436": {
       "region": "namwon",
       "name": "남원향교점",
       "address": "전북특별자치도 남원시 대복사길 12 1층향교동",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792245415,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792248254,
       "last_direct_at": 1792238523,
       "direct_failures": 0,
-      "next_direct_at": 1792246315,
+      "next_direct_at": 1792249154,
       "last_known_quantity": 0,
-      "last_success_at": 1792245415
+      "last_success_at": 1792248254
     },
     "64812": {
       "region": "asan",
@@ -217,17 +220,17 @@
       "address": "충남 아산시 충무로 70 1층 코너 1, 2호권곡동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64767": {
       "region": "asan",
       "name": "아산탕정역센터점",
       "address": "충남 아산시 탕정면 한들물빛5로 33 1층 104호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -239,8 +242,8 @@
       "address": "충남 아산시 무궁화로 112 1층초사동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64685": {
       "region": "asan",
@@ -248,8 +251,8 @@
       "address": "충남 아산시 탕정면 선문로221번길 70 119호선문대학교 보건의료관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64551": {
       "region": "asan",
@@ -257,8 +260,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점3호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64552": {
       "region": "asan",
@@ -266,8 +269,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점1호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64484": {
       "region": "asan",
@@ -275,8 +278,8 @@
       "address": "충남 아산시 둔포면 중앙공원로17번길 11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64473": {
       "region": "asan",
@@ -284,8 +287,8 @@
       "address": "충남 아산시 신창면 황산길 100-50 1층 경찰대학 학생회관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64416": {
       "region": "asan",
@@ -293,8 +296,8 @@
       "address": "충남 아산시 탕정면 한들물빛5로 11 115호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64335": {
       "region": "asan",
@@ -302,17 +305,17 @@
       "address": "충남 아산시 음봉면 음봉로 515-46 1층 110,111호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64302": {
       "region": "asan",
       "name": "아산좌부교차로점",
       "address": "충남 아산시 고불로 692 102호 좌부동",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -324,8 +327,8 @@
       "address": "충남 아산시 배방읍 모산로 52 상가동 102호 (배방5차한성필하우스아파트)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "64012": {
       "region": "asan",
@@ -333,17 +336,17 @@
       "address": "충남 아산시 배방읍 세교중앙로 42",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "63889": {
       "region": "asan",
       "name": "아산둔포이지점",
       "address": "충남 아산시 둔포면 아산밸리중앙로 67 상가 411동, 114, 115호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -355,8 +358,8 @@
       "address": "충남 아산시 탕정면 용머리길 41 A동 1층 116호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68882": {
       "region": "asan",
@@ -364,8 +367,8 @@
       "address": "충청남도 아산시 서부남로 48 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68595": {
       "region": "asan",
@@ -373,8 +376,8 @@
       "address": "충청남도 아산시 시민로244번길 11-17",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68588": {
       "region": "asan",
@@ -382,8 +385,8 @@
       "address": "충청남도 아산시 문화로 257-20 상가동 1층 102호, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68661": {
       "region": "asan",
@@ -391,17 +394,17 @@
       "address": "충청남도 아산시 삼동로86번길 9",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68434": {
       "region": "asan",
       "name": "아산장존아름점",
       "address": "충청남도 아산시 장존동 73-3",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -413,8 +416,8 @@
       "address": "충청남도 아산시 선장면 아산만로 780",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68342": {
       "region": "asan",
@@ -422,8 +425,8 @@
       "address": "충청남도 아산시 용화로12번길 12-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "68291": {
       "region": "asan",
@@ -431,8 +434,8 @@
       "address": "충청남도 아산시 권곡로 50, 상가1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "63437": {
       "region": "asan",
@@ -440,8 +443,8 @@
       "address": "충청남도 아산시 배방읍 북수로 149, 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67978": {
       "region": "asan",
@@ -449,17 +452,17 @@
       "address": "충청남도 아산시 영인면 고룡산로 646",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67964": {
       "region": "asan",
       "name": "아산남성점",
       "address": "충청남도 아산시 신창면 서부북로 849-6, 1층 106호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -469,10 +472,10 @@
       "region": "asan",
       "name": "아산탕정행복점",
       "address": "충청남도 아산시 배방읍 동방로 131, S001동 4호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -484,17 +487,17 @@
       "address": "충남 아산시 둔포면 윤보선로450번길 3 상가동 1층 101호,102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67769": {
       "region": "asan",
       "name": "아산온천타운점",
       "address": "충청남도 아산시 온화로65번길 19,1층",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -506,8 +509,8 @@
       "address": "충청남도 아산시 어의정로17번길 6-3, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59641": {
       "region": "asan",
@@ -515,8 +518,8 @@
       "address": "충청남도 아산시 배방읍 배방로 13번길 9-4, 106호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59761": {
       "region": "asan",
@@ -524,8 +527,8 @@
       "address": "충청남도 아산시 탕정면 탕정면로8번길 55-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59802": {
       "region": "asan",
@@ -533,8 +536,8 @@
       "address": "충청남도 아산시 둔포면 해위안길 79, 1동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59745": {
       "region": "asan",
@@ -542,8 +545,8 @@
       "address": "충청남도 아산시 둔포면 아산호로 907, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67435": {
       "region": "asan",
@@ -551,8 +554,8 @@
       "address": "충청남도 아산시 탕정면 명암길 2번길 1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67428": {
       "region": "asan",
@@ -560,8 +563,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 336번길 96",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67347": {
       "region": "asan",
@@ -569,8 +572,8 @@
       "address": "충청남도 아산시 배방읍 광장로 177-14, 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67322": {
       "region": "asan",
@@ -578,8 +581,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 41",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59259": {
       "region": "asan",
@@ -587,8 +590,8 @@
       "address": "충청남도 아산시 서부북로 536",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67221": {
       "region": "asan",
@@ -596,8 +599,8 @@
       "address": "충남 아산시 음봉면 산동로 134 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59279": {
       "region": "asan",
@@ -605,8 +608,8 @@
       "address": "충남 아산시 배방읍 월천4길 89 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "67150": {
       "region": "asan",
@@ -614,8 +617,8 @@
       "address": "충청남도 아산시 둔포면 둔포중앙로 109번길 11, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59099": {
       "region": "asan",
@@ -623,17 +626,17 @@
       "address": "충청남도 아산시 용화로 75, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "59018": {
       "region": "asan",
       "name": "아산창덕에버빌점",
       "address": "충청남도 아산시 신창면 서부북로 270",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -643,10 +646,10 @@
       "region": "asan",
       "name": "아산인주휴게소점",
       "address": "충청남도 아산시 인주면 서해로 488, 490",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -658,8 +661,8 @@
       "address": "충남 아산시 탕정면 탕정면로 124 101호이레짬뽕건물",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57519": {
       "region": "asan",
@@ -667,8 +670,8 @@
       "address": "충청남도 아산시 배방읍 희망로46번길 8 118호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57562": {
       "region": "asan",
@@ -676,8 +679,8 @@
       "address": "충청남도 아산시 배방읍 온천대로 1829",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57553": {
       "region": "asan",
@@ -685,8 +688,8 @@
       "address": "충남 아산시 둔포면 충무로 1179 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57419": {
       "region": "asan",
@@ -694,8 +697,8 @@
       "address": "충청남도 아산시 신창면 남성길 71-1, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57387": {
       "region": "asan",
@@ -703,17 +706,17 @@
       "address": "충청남도 아산시 배방읍 북수리 1781",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "57045": {
       "region": "asan",
       "name": "아산온천빌리지점",
       "address": "충청남도 아산시 온천동 1368",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -725,8 +728,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 394 102, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "56274": {
       "region": "asan",
@@ -734,8 +737,8 @@
       "address": "충청남도 아산시 삼동로16번길 43 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "56276": {
       "region": "asan",
@@ -743,8 +746,8 @@
       "address": "충청남도 아산시 배방읍 호서로79번길 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "56152": {
       "region": "asan",
@@ -752,8 +755,8 @@
       "address": "충청남도 아산시 도고면 기곡로62번길 21-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "56134": {
       "region": "asan",
@@ -761,8 +764,8 @@
       "address": "충청남도 아산시 선장면 아산만로 697",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "56061": {
       "region": "asan",
@@ -770,8 +773,8 @@
       "address": "충청남도 아산시 염치읍 은행나무길215번길 2 9-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55567": {
       "region": "asan",
@@ -779,8 +782,8 @@
       "address": "충남 아산시 탕정면 선문로 387 제120동 제1층 104호홍익아파트",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55568": {
       "region": "asan",
@@ -788,8 +791,8 @@
       "address": "충청남도 아산시 탕정면 매곡로71번길 32",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55554": {
       "region": "asan",
@@ -797,17 +800,17 @@
       "address": "충남 아산시 선장면 서부남로 115 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55340": {
       "region": "asan",
       "name": "아산신창남성점",
       "address": "충청남도 아산시 신창면 서부북로 745",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -819,8 +822,8 @@
       "address": "충남 아산시 음봉면 연암율금로 119 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55210": {
       "region": "asan",
@@ -828,8 +831,8 @@
       "address": "충청남도 아산시 배방읍 배방로187번길 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "55131": {
       "region": "asan",
@@ -837,8 +840,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1652-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "54970": {
       "region": "asan",
@@ -846,8 +849,8 @@
       "address": "충청남도 아산시 탕정면로 405 상가동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "54499": {
       "region": "asan",
@@ -855,17 +858,17 @@
       "address": "충청남도 아산시 음봉면 음봉로 332",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53876": {
       "region": "asan",
       "name": "아산온양로점",
       "address": "충남 아산시 온양역길 46-3 1층 1호",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -877,8 +880,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 458 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53631": {
       "region": "asan",
@@ -886,8 +889,8 @@
       "address": "충청남도 아산시 장재로 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53585": {
       "region": "asan",
@@ -895,8 +898,8 @@
       "address": "충청남도 아산시 시민로 292, 1층 (용화동, 성지빌딩)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53528": {
       "region": "asan",
@@ -904,8 +907,8 @@
       "address": "충청남도 아산시 음봉면 연암율금로 220-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53249": {
       "region": "asan",
@@ -913,17 +916,17 @@
       "address": "충청남도 아산시 둔포면 윤보선로336번길 6",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "53220": {
       "region": "asan",
       "name": "아산문화점",
       "address": "충남 아산시 문화로 123-8 A동 102호온천동",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -935,8 +938,8 @@
       "address": "충청남도 아산시 아산밸리동로 261-11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "52911": {
       "region": "asan",
@@ -944,8 +947,8 @@
       "address": "충청남도 아산시 탕정면로 114-22 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "52336": {
       "region": "asan",
@@ -953,8 +956,8 @@
       "address": "충청남도 아산시 도고산로 713 3동 4호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "52214": {
       "region": "asan",
@@ -962,8 +965,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 92-12",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "17644": {
       "region": "asan",
@@ -971,8 +974,8 @@
       "address": "충청남도 아산시 둔포면 봉신로 279",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "51369": {
       "region": "asan",
@@ -980,8 +983,8 @@
       "address": "충청남도 아산시 번영로 223 외3필지 1층 108호(모종동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "51064": {
       "region": "asan",
@@ -989,8 +992,8 @@
       "address": "충청남도 아산시 배방로 58-34",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "18945": {
       "region": "asan",
@@ -998,8 +1001,8 @@
       "address": "충청남도 아산시 배방읍 호서로 45-14",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "18778": {
       "region": "asan",
@@ -1007,8 +1010,8 @@
       "address": "충청남도 아산시 번영로69번길 24 buy the way 편의점1층(온천동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "18801": {
       "region": "asan",
@@ -1016,8 +1019,8 @@
       "address": "충청남도 아산시 음봉면 음봉면로 3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "19853": {
       "region": "asan",
@@ -1025,8 +1028,8 @@
       "address": "충청남도 아산시 탕정면 이순신대로 393 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "51230": {
       "region": "asan",
@@ -1034,8 +1037,8 @@
       "address": "충청남도 아산시 염치읍 아산로 724",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "17981": {
       "region": "asan",
@@ -1043,8 +1046,8 @@
       "address": "충청남도 아산시 삼동로 102-9 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "16310": {
       "region": "asan",
@@ -1052,21 +1055,22 @@
       "address": "충청남도 아산시 탕정면 탕정로 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "13167": {
       "region": "asan",
       "name": "아산온천광장점",
       "address": "충청남도 아산시 청운로 70",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
-      "direct_failures": 0,
-      "next_direct_at": 1792247499
+      "direct_failures": 1,
+      "next_direct_at": 1792249154,
+      "last_direct_at": 1792248254
     },
     "15851": {
       "region": "asan",
@@ -1074,8 +1078,8 @@
       "address": "충청남도 아산시 청운로 23-4 용화동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "16080": {
       "region": "asan",
@@ -1083,8 +1087,8 @@
       "address": "충청남도 아산시 탕정면탕정면로8번길 33-7 명암리 932-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "15090": {
       "region": "asan",
@@ -1092,8 +1096,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 298 104,105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -1104,8 +1108,8 @@
       "address": "충남 아산시 배방읍 북수로 106 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "MISSING_IN_RESPONSE",
-      "checked_at": 1792246599,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_direct_at": 1792238672,
       "direct_failures": 1,
       "next_direct_at": 1792239572
@@ -1116,8 +1120,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1703",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_direct_at": 1792242284,
       "direct_failures": 1,
       "next_direct_at": 1792243184
@@ -1128,8 +1132,8 @@
       "address": "충청남도 아산시 용화로47번길 7-1, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "14532": {
       "region": "asan",
@@ -1137,8 +1141,8 @@
       "address": "충청남도 아산시 탕정면 명암길2번길 25-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -1149,8 +1153,8 @@
       "address": "충청남도 아산시 문화로 301-25, 1층 107호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599
+      "reason": "HTTP_502",
+      "checked_at": 1792248254
     },
     "12538": {
       "region": "asan",
@@ -1158,8 +1162,8 @@
       "address": "충남 아산시 인주면 인주산단로 23-22 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
-      "checked_at": 1792246599,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -1168,10 +1172,10 @@
       "region": "asan",
       "name": "아산신창창조점",
       "address": "충청남도 아산시 신창면 순천향로 47-25 순천향로 47-25",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
-      "checked_at": 1792246599,
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "HTTP_502",
+      "checked_at": 1792248254,
       "last_known_quantity": 0,
       "last_success_at": 1792246599,
       "direct_failures": 0,
@@ -1184,7 +1188,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64725": {
       "region": "jeonju",
@@ -1193,7 +1197,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64704": {
       "region": "jeonju",
@@ -1202,7 +1206,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64669": {
       "region": "jeonju",
@@ -1211,7 +1215,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64629": {
       "region": "jeonju",
@@ -1220,7 +1224,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64610": {
       "region": "jeonju",
@@ -1229,7 +1233,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64596": {
       "region": "jeonju",
@@ -1238,7 +1242,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64558": {
       "region": "jeonju",
@@ -1247,7 +1251,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64486": {
       "region": "jeonju",
@@ -1256,7 +1260,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64384": {
       "region": "jeonju",
@@ -1265,7 +1269,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64344": {
       "region": "jeonju",
@@ -1274,7 +1278,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64318": {
       "region": "jeonju",
@@ -1283,7 +1287,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64269": {
       "region": "jeonju",
@@ -1292,7 +1296,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64215": {
       "region": "jeonju",
@@ -1301,7 +1305,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "64083": {
       "region": "jeonju",
@@ -1310,7 +1314,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63973": {
       "region": "jeonju",
@@ -1319,7 +1323,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "69123": {
       "region": "jeonju",
@@ -1328,7 +1332,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "69096": {
       "region": "jeonju",
@@ -1337,7 +1341,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "69045": {
       "region": "jeonju",
@@ -1346,7 +1350,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "69025": {
       "region": "jeonju",
@@ -1355,7 +1359,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68631": {
       "region": "jeonju",
@@ -1364,7 +1368,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63792": {
       "region": "jeonju",
@@ -1373,7 +1377,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63814": {
       "region": "jeonju",
@@ -1382,7 +1386,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68765": {
       "region": "jeonju",
@@ -1391,7 +1395,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68703": {
       "region": "jeonju",
@@ -1400,7 +1404,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68668": {
       "region": "jeonju",
@@ -1409,7 +1413,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68634": {
       "region": "jeonju",
@@ -1418,7 +1422,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68592": {
       "region": "jeonju",
@@ -1427,7 +1431,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63728": {
       "region": "jeonju",
@@ -1436,7 +1440,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68412": {
       "region": "jeonju",
@@ -1445,7 +1449,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68363": {
       "region": "jeonju",
@@ -1454,7 +1458,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68349": {
       "region": "jeonju",
@@ -1463,7 +1467,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63602": {
       "region": "jeonju",
@@ -1472,7 +1476,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68241": {
       "region": "jeonju",
@@ -1481,7 +1485,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68223": {
       "region": "jeonju",
@@ -1490,7 +1494,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63515": {
       "region": "jeonju",
@@ -1499,7 +1503,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68108": {
       "region": "jeonju",
@@ -1508,7 +1512,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68090": {
       "region": "jeonju",
@@ -1517,7 +1521,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "68022": {
       "region": "jeonju",
@@ -1526,7 +1530,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63451": {
       "region": "jeonju",
@@ -1535,7 +1539,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67962": {
       "region": "jeonju",
@@ -1544,7 +1548,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67982": {
       "region": "jeonju",
@@ -1553,7 +1557,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67861": {
       "region": "jeonju",
@@ -1562,7 +1566,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67839": {
       "region": "jeonju",
@@ -1571,7 +1575,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "63103": {
       "region": "jeonju",
@@ -1580,7 +1584,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59985": {
       "region": "jeonju",
@@ -1589,7 +1593,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59883": {
       "region": "jeonju",
@@ -1598,7 +1602,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67682": {
       "region": "jeonju",
@@ -1607,7 +1611,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67669": {
       "region": "jeonju",
@@ -1616,7 +1620,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67670": {
       "region": "jeonju",
@@ -1625,7 +1629,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67657": {
       "region": "jeonju",
@@ -1634,7 +1638,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59764": {
       "region": "jeonju",
@@ -1643,7 +1647,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67507": {
       "region": "jeonju",
@@ -1652,7 +1656,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67508": {
       "region": "jeonju",
@@ -1661,7 +1665,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67458": {
       "region": "jeonju",
@@ -1670,7 +1674,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67365": {
       "region": "jeonju",
@@ -1679,7 +1683,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67364": {
       "region": "jeonju",
@@ -1688,7 +1692,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59592": {
       "region": "jeonju",
@@ -1697,7 +1701,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67344": {
       "region": "jeonju",
@@ -1706,7 +1710,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59559": {
       "region": "jeonju",
@@ -1715,7 +1719,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67235": {
       "region": "jeonju",
@@ -1724,7 +1728,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59389": {
       "region": "jeonju",
@@ -1733,7 +1737,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59377": {
       "region": "jeonju",
@@ -1742,7 +1746,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "67151": {
       "region": "jeonju",
@@ -1751,7 +1755,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59239": {
       "region": "jeonju",
@@ -1760,7 +1764,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59164": {
       "region": "jeonju",
@@ -1769,7 +1773,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "59133": {
       "region": "jeonju",
@@ -1778,7 +1782,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57407": {
       "region": "jeonju",
@@ -1787,7 +1791,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57726": {
       "region": "jeonju",
@@ -1796,7 +1800,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57632": {
       "region": "jeonju",
@@ -1805,7 +1809,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57206": {
       "region": "jeonju",
@@ -1814,7 +1818,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57074": {
       "region": "jeonju",
@@ -1823,7 +1827,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "57038": {
       "region": "jeonju",
@@ -1832,7 +1836,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "56342": {
       "region": "jeonju",
@@ -1841,7 +1845,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "56325": {
       "region": "jeonju",
@@ -1850,7 +1854,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "56327": {
       "region": "jeonju",
@@ -1859,7 +1863,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "56269": {
       "region": "jeonju",
@@ -1868,7 +1872,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "56007": {
       "region": "jeonju",
@@ -1877,7 +1881,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "55815": {
       "region": "jeonju",
@@ -1886,7 +1890,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "55760": {
       "region": "jeonju",
@@ -1895,7 +1899,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "55640": {
       "region": "jeonju",
@@ -1904,7 +1908,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "54890": {
       "region": "jeonju",
@@ -1913,7 +1917,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "54815": {
       "region": "jeonju",
@@ -1922,7 +1926,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53999": {
       "region": "jeonju",
@@ -1931,7 +1935,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53895": {
       "region": "jeonju",
@@ -1940,7 +1944,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "58108": {
       "region": "jeonju",
@@ -1949,7 +1953,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53709": {
       "region": "jeonju",
@@ -1958,7 +1962,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "58048": {
       "region": "jeonju",
@@ -1967,7 +1971,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53450": {
       "region": "jeonju",
@@ -1976,7 +1980,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53263": {
       "region": "jeonju",
@@ -1985,7 +1989,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "53101": {
       "region": "jeonju",
@@ -1994,7 +1998,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "19613": {
       "region": "jeonju",
@@ -2003,7 +2007,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "19806": {
       "region": "jeonju",
@@ -2012,7 +2016,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18667": {
       "region": "jeonju",
@@ -2021,7 +2025,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18682": {
       "region": "jeonju",
@@ -2030,7 +2034,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "12120": {
       "region": "jeonju",
@@ -2039,7 +2043,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "50966": {
       "region": "jeonju",
@@ -2048,7 +2052,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18492": {
       "region": "jeonju",
@@ -2057,7 +2061,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18173": {
       "region": "jeonju",
@@ -2066,7 +2070,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "51076": {
       "region": "jeonju",
@@ -2075,7 +2079,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "17965": {
       "region": "jeonju",
@@ -2084,7 +2088,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18875": {
       "region": "jeonju",
@@ -2093,7 +2097,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "51191": {
       "region": "jeonju",
@@ -2102,7 +2106,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18531": {
       "region": "jeonju",
@@ -2111,7 +2115,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18612": {
       "region": "jeonju",
@@ -2120,7 +2124,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "18506": {
       "region": "jeonju",
@@ -2129,7 +2133,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "19649": {
       "region": "jeonju",
@@ -2138,7 +2142,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "17770": {
       "region": "jeonju",
@@ -2147,7 +2151,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "50010": {
       "region": "jeonju",
@@ -2156,7 +2160,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "50066": {
       "region": "jeonju",
@@ -2165,7 +2169,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "50454": {
       "region": "jeonju",
@@ -2174,7 +2178,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "17244": {
       "region": "jeonju",
@@ -2183,7 +2187,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "12591": {
       "region": "jeonju",
@@ -2192,7 +2196,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "12614": {
       "region": "jeonju",
@@ -2201,7 +2205,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "11327": {
       "region": "jeonju",
@@ -2209,8 +2213,11 @@
       "address": "전라북도 전주시 완산구 현무3길80(서노송동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792248254,
+      "last_direct_at": 1792248254,
+      "direct_failures": 1,
+      "next_direct_at": 1792249154
     },
     "16865": {
       "region": "jeonju",
@@ -2219,7 +2226,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "10772": {
       "region": "jeonju",
@@ -2228,7 +2235,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599,
+      "checked_at": 1792248254,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -2240,7 +2247,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "10672": {
       "region": "jeonju",
@@ -2249,7 +2256,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599,
+      "checked_at": 1792248254,
       "last_direct_at": 1792239114,
       "direct_failures": 1,
       "next_direct_at": 1792240014
@@ -2261,7 +2268,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "13488": {
       "region": "jeonju",
@@ -2270,7 +2277,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "10762": {
       "region": "jeonju",
@@ -2279,7 +2286,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599,
+      "checked_at": 1792248254,
       "last_direct_at": 1792243878,
       "direct_failures": 1,
       "next_direct_at": 1792244778
@@ -2291,7 +2298,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "11130": {
       "region": "jeonju",
@@ -2300,7 +2307,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599,
+      "checked_at": 1792248254,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -2312,7 +2319,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "12829": {
       "region": "jeonju",
@@ -2321,7 +2328,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "15783": {
       "region": "jeonju",
@@ -2330,7 +2337,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "14967": {
       "region": "jeonju",
@@ -2339,7 +2346,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "15283": {
       "region": "jeonju",
@@ -2348,7 +2355,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "12301": {
       "region": "jeonju",
@@ -2357,7 +2364,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "13542": {
       "region": "jeonju",
@@ -2366,7 +2373,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "13069": {
       "region": "jeonju",
@@ -2375,7 +2382,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "14863": {
       "region": "jeonju",
@@ -2384,7 +2391,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "14565": {
       "region": "jeonju",
@@ -2393,7 +2400,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     },
     "14374": {
       "region": "jeonju",
@@ -2402,59 +2409,77 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792246599
+      "checked_at": 1792248254
     }
   },
-  "updated_at": 1792246599,
+  "updated_at": 1792248254,
   "calls": [
-    {
-      "region": "asan",
-      "keyword": "아산시",
-      "target": null,
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 29.29,
-      "at": 1792246599
-    },
-    {
-      "region": "asan",
-      "keyword": "아산테크노밸리1호점",
-      "target": "15090",
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 2.02,
-      "at": 1792246599
-    },
     {
       "region": "jeonju",
       "keyword": "전주시",
       "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 12.33,
-      "at": 1792246599
+      "elapsed_seconds": 4.74,
+      "at": 1792248254
     },
     {
       "region": "jeonju",
-      "keyword": "전주우아점",
-      "target": "11130",
+      "keyword": "전주서노송점",
+      "target": "11327",
+      "result": "VALIDATED",
+      "validation_reason": null,
+      "elapsed_seconds": 2.63,
+      "at": 1792248254
+    },
+    {
+      "region": "namwon",
+      "keyword": "남원시",
+      "target": null,
+      "result": "VALIDATED",
+      "validation_reason": null,
+      "elapsed_seconds": 6.48,
+      "at": 1792248254
+    },
+    {
+      "region": "namwon",
+      "keyword": "남원죽항점",
+      "target": "59696",
+      "result": "VALIDATED",
+      "validation_reason": null,
+      "elapsed_seconds": 2.38,
+      "at": 1792248254
+    },
+    {
+      "region": "asan",
+      "keyword": "아산시",
+      "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 0.76,
-      "at": 1792246599
+      "elapsed_seconds": 19.85,
+      "at": 1792248254
+    },
+    {
+      "region": "asan",
+      "keyword": "아산온천광장점",
+      "target": "13167",
+      "result": "HTTP_502",
+      "validation_reason": null,
+      "elapsed_seconds": 0.61,
+      "at": 1792248254
     }
   ],
   "halted": true,
   "summary": {
     "namwon": {
       "total": 17,
-      "known": 0,
-      "unknown": 17
+      "known": 12,
+      "unknown": 5
     },
     "asan": {
       "total": 99,
-      "known": 15,
-      "unknown": 84
+      "known": 0,
+      "unknown": 99
     },
     "jeonju": {
       "total": 135,
