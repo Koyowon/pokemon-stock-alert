@@ -1,0 +1,54 @@
+name: Seven-Eleven Coverage Watch
+
+on:
+  schedule:
+    - cron: '4,9,14,19,24,29,34,39,44,49,54,59 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seveneleven-coverage-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bounded coverage and health check
+        run: timeout --signal=TERM --kill-after=5s 210s python seveneleven_watch.py --live
+      - name: Save Seven-Eleven watch state only
+        run: |
+          git add seveneleven_watch_state.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Update Seven-Eleven coverage watch [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Publish coverage summary
+        if: success()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          state = json.loads(Path('seveneleven_watch_state.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write('## Seven-Eleven coverage watch\n\n')
+              out.write('Third-party API observations; UNKNOWN is not zero.\n\n')
+              out.write('| Region | Watched | Known | Unknown |\n|---|---:|---:|---:|\n')
+              for region, count in state['summary'].items():
+                  out.write(f"| {region} | {count['total']} | {count['known']} | {count['unknown']} |\n")
+              out.write(f"\nRequests: {len(state['calls'])}; circuit stopped: {state['halted']}\n")
+              out.write('\nUnknown store codes: ' + ', '.join(c for c,r in state['stores'].items() if r['status'] != 'OK') + '\n')
+          PY
