@@ -56,6 +56,7 @@ async function load(){
  for(const [key,value] of Object.entries(em)){
   const [chain,id,barcode]=key.split('|');
   if(!['이마트24','emart24'].includes(chain)||barcode!==BARCODE)continue;
+  if(chain==='emart24'&&Object.hasOwn(em,'이마트24|'+id+'|'+BARCODE))continue;
   const s=stores.stores?.[id];if(!s)continue;
   const unique='이마트24|'+id;if(seen.has(unique))continue;seen.add(unique);
   add('이마트24',id,s.name,s.address,region(s.address),value,null);
