@@ -88,6 +88,24 @@ class MonitorIntegration(unittest.TestCase):
         self.assertFalse(self.saved)
         self.assertFalse(self.sent)
 
+    def test_duplicate_coordinates_queried_once(self):
+        with patch.object(monitor, "POINTS", {"남원": [(35.416, 127.390), (35.416, 127.390)]}):
+            with patch.object(monitor, "query", return_value=[]) as mocked_query:
+                with redirect_stdout(io.StringIO()) as output:
+                    monitor.main()
+                self.assertEqual(mocked_query.call_count, 1)
+                self.assertIn("DUPLICATE_COORDINATE_SKIPPED", output.getvalue())
+
+    def test_time_budget_prevents_queries(self):
+        with patch.object(monitor.time, "monotonic", side_effect=[0, monitor.MAX_QUERY_SECONDS]):
+            with patch.object(monitor, "query", side_effect=AssertionError("query must not run")):
+                with redirect_stdout(io.StringIO()) as output:
+                    with self.assertRaises(RuntimeError):
+                        monitor.main()
+                self.assertIn("QUERY_TIME_BUDGET_EXHAUSTED", output.getvalue())
+                self.assertFalse(self.saved)
+                self.assertFalse(self.sent)
+
 
 if __name__ == "__main__":
     unittest.main()
