@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import time
 import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
@@ -14,6 +15,7 @@ URL = "https://mcp.aka.page/api/cu/inventory"
 BARCODE = "8800286275732"
 PRODUCT = "포켓몬)30주년기념카드"
 STATE_FILE = Path(__file__).with_name("cu_stock_state.json")
+MAX_QUERY_SECONDS = 600  # Leave headroom under the 12-minute workflow timeout.
 
 POINTS = {
     "남원": [
@@ -309,6 +311,7 @@ def main():
     # Deduplicate verified, existing coordinate probes without inventing geocodes.
     # No additional requests are authorized until independently verified coordinates exist.
     planned = set()
+    query_deadline = time.monotonic() + MAX_QUERY_SECONDS
     for city, points in POINTS.items():
         region_id = REGION_IDS[city]
         if region_id not in enabled_regions:
@@ -316,6 +319,9 @@ def main():
             continue
 
         for lat, lng in points:
+            if time.monotonic() >= query_deadline:
+                print("QUERY_TIME_BUDGET_EXHAUSTED: remaining stores UNKNOWN", flush=True)
+                break
             probe = (city, lat, lng)
             if probe in planned:
                 print("DUPLICATE_COORDINATE_SKIPPED:", city, lat, lng, flush=True)
