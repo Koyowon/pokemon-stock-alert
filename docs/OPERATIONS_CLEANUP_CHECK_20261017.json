@@ -1,0 +1,50 @@
+{
+  "pass": true,
+  "base_files": 134,
+  "archived_original_paths": 12,
+  "unchanged_original_files": 121,
+  "scheduled_workflows_preserved": [
+    ".github/workflows/cu-registration-monitor.yml",
+    ".github/workflows/cu-stock-monitor.yml",
+    ".github/workflows/gs25-stock-monitor.yml",
+    ".github/workflows/stock-monitor.yml",
+    ".github/workflows/unified-telegram-control.yml"
+  ],
+  "active_workflow_count": 43,
+  "runtime_closure": [
+    "asan_cu_watch_registry.json",
+    "cu_asan_registry.py",
+    "cu_registration_monitor.py",
+    "cu_registration_state.json",
+    "cu_stock_monitor.py",
+    "cu_stock_state.json",
+    "emart24_jeonju_seed.json",
+    "gs25_independent/config.json",
+    "gs25_independent/gs25_asan_approval_review.csv",
+    "gs25_independent/gs25_asan_guard.py",
+    "gs25_independent/gs25_auto_monitor.py",
+    "gs25_independent/gs25_stock_state.json",
+    "monitor.py",
+    "region_config.py",
+    "region_settings.json",
+    "request_pacing.py",
+    "state.json",
+    "stock_snapshot_report.py",
+    "stores.json",
+    "telegram_control.py",
+    "telegram_control_cursor.json",
+    "unified_control.json",
+    "unified_settings.py"
+  ],
+  "web_inputs_preserved": [
+    "cu_stock_state.json",
+    "state.json",
+    "stores.json",
+    "gs25_independent/gs25_stock_state.json"
+  ],
+  "dangling_archived_script_references": [],
+  "all_archive_blobs_match_original": true,
+  "network_calls": 0,
+  "telegram_calls": 0,
+  "actions_runs": 0
+}

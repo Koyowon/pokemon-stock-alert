@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "base_commit": "eb357be43045af26319dbbeba07231e0a9f6cd7d",
+  "moves": [
+    {
+      "from": "install_stock_change_alerts.py",
+      "to": "archive/retired_20261017/install_stock_change_alerts.py",
+      "sha": "2afb647d82d7ef2ad0b7e00bb7a26e6ed4a5cc2b",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": "install_unified_controls.py",
+      "to": "archive/retired_20261017/install_unified_controls.py",
+      "sha": "6aa1ba9c17af3a1cac2a3aea6587288438008b39",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": "integrate_gs25_guard.py",
+      "to": "archive/retired_20261017/integrate_gs25_guard.py",
+      "sha": "c466bf34da4606df992def6abc3c5ece32339e93",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": ".github/workflows/install-stock-change-alerts.yml",
+      "to": "archive/retired_20261017/.github/workflows/install-stock-change-alerts.yml",
+      "sha": "cfb50e8d7f5671d5b1a391d949cffc76ebcfbd80",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": ".github/workflows/install-unified-controls.yml",
+      "to": "archive/retired_20261017/.github/workflows/install-unified-controls.yml",
+      "sha": "ee6e6d533d9466f67e849ddd104c201506e18900",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": ".github/workflows/gs25-guard-deploy.yml",
+      "to": "archive/retired_20261017/.github/workflows/gs25-guard-deploy.yml",
+      "sha": "3dc3f91cdaf0726e95655305a92bad376648f005",
+      "reason": "completed_one_time_migration"
+    },
+    {
+      "from": ".github/workflows/gs25-guard-integration-test.yml",
+      "to": "archive/retired_20261017/.github/workflows/gs25-guard-integration-test.yml",
+      "sha": "c44f7731484d0064f5e2d43629db1d2602022eec",
+      "reason": "completed_patch_integration_workflow_tests_retained"
+    },
+    {
+      "from": "seveneleven_diagnostic.py",
+      "to": "archive/retired_20261017/seveneleven_diagnostic.py",
+      "sha": "73d15c7c1a084b2dfb99914a9dace11dea02f8cf",
+      "reason": "non_operating_chain_diagnostic"
+    },
+    {
+      "from": "seveneleven_relay_diagnostic.py",
+      "to": "archive/retired_20261017/seveneleven_relay_diagnostic.py",
+      "sha": "c901c3cbd242a905811cac8c07652e8dfa4265b3",
+      "reason": "non_operating_chain_diagnostic"
+    },
+    {
+      "from": ".github/workflows/seveneleven-diagnostic.yml",
+      "to": "archive/retired_20261017/.github/workflows/seveneleven-diagnostic.yml",
+      "sha": "ecd62b357c6ab323bb25ea316d1cd5ac231c324f",
+      "reason": "non_operating_chain_diagnostic"
+    },
+    {
+      "from": ".github/workflows/seveneleven-relay-diagnostic.yml",
+      "to": "archive/retired_20261017/.github/workflows/seveneleven-relay-diagnostic.yml",
+      "sha": "45d5874cdca5502118da7c73ed838904a82639b8",
+      "reason": "non_operating_chain_diagnostic"
+    },
+    {
+      "from": "config.json",
+      "to": "archive/retired_20261017/config.json",
+      "sha": "833417fb0aa8b7871575e9c55cb84e3666c08151",
+      "reason": "unused_initial_configuration"
+    }
+  ],
+  "historical_copies": [
+    {
+      "from": "README.md",
+      "to": "archive/retired_20261017/INITIAL_README.md",
+      "sha": "3df9e0c58c3eea2455a7a194b8e87a1887820515"
+    }
+  ],
+  "notes": [
+    "No permanent deletion. Original blob SHAs reused for archived files.",
+    "Archived workflows are outside root .github/workflows; they are no longer dispatchable from Actions.",
+    "Archived scripts are historical only; relative paths are not relocated for execution. Restore original paths only after review.",
+    "Scheduled workflows, monitor code, active configuration, state, store registry, web UI and regression tests remain unchanged."
+  ]
+}
