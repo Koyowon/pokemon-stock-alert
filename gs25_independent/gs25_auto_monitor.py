@@ -65,12 +65,17 @@ def safe(value):
 def naver_map(name, address=''):
     return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
 
-def telegram(message):
+def telegram(message, map_url=None):
     token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
     if not token or not chat_id:
         raise RuntimeError('TELEGRAM_SECRETS_MISSING')
-    body = urllib.parse.urlencode({'chat_id': chat_id, 'text': message, 'disable_web_page_preview': 'true'}).encode()
+    fields = {'chat_id': chat_id, 'text': message, 'disable_web_page_preview': 'true'}
+    if map_url:
+        fields['reply_markup'] = json.dumps({'inline_keyboard': [[
+            {'text': '🗺 네이버지도에서 매장 보기', 'url': map_url}
+        ]]}, ensure_ascii=False)
+    body = urllib.parse.urlencode(fields).encode()
     req = urllib.request.Request('https://api.telegram.org/bot' + token + '/sendMessage', data=body, method='POST')
     with urllib.request.urlopen(req, timeout=20) as response:
         result = json.loads(response.read(100000))
@@ -167,10 +172,9 @@ def main():
                 detail = f'현재 재고: {q}개' if prev_q is None else f'이전 재고: {prev_q}개 → 현재 재고: {q}개'
                 msg = (f'{title}\n지역: {region["name"]}\n매장: GS25 {item["name"]}\n'
                        f'조회 코드: {code}\n{detail}\n'
-                       f'🗺 네이버지도: {naver_map("GS25 " + item["name"])}\n'
                        '※ 제3자 API 기준이며, 방문 전 매장에 실제 재고를 확인하세요.')
                 try:
-                    telegram(msg)
+                    telegram(msg, map_url=naver_map('GS25 ' + item['name']))
                 except (OSError, ValueError, RuntimeError) as exc:
                     print(f'ALERT_FAILED region={rid} store={sid} error={type(exc).__name__}', flush=True)
                     # Avoid advancing this store's baseline if the alert was not sent.

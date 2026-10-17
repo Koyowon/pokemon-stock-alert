@@ -200,7 +200,7 @@ def save_state(state):
 def naver_map(name, address=''):
     return 'https://map.naver.com/p/search/' + quote((address or name).strip(), safe='')
 
-def telegram(message):
+def telegram(message, map_url=None):
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
     if not token or not chat_id:
@@ -208,10 +208,12 @@ def telegram(message):
         return False
 
     url = "https://api.telegram.org/bot" + token + "/sendMessage"
-    payload = urllib.parse.urlencode({
-        "chat_id": chat_id,
-        "text": message,
-    }).encode("utf-8")
+    fields = {"chat_id": chat_id, "text": message}
+    if map_url:
+        fields["reply_markup"] = json.dumps({"inline_keyboard": [[
+            {"text": "🗺 네이버지도에서 매장 보기", "url": map_url}
+        ]]}, ensure_ascii=False)
+    payload = urllib.parse.urlencode(fields).encode("utf-8")
     request = urllib.request.Request(
         url, data=payload, method="POST"
     )
@@ -390,10 +392,9 @@ def main():
                 + "매장: " + item["name"] + "\n"
                 + "주소: " + item["address"] + "\n"
                 + detail + "\n"
-                + "🗺 네이버지도: " + naver_map(item["name"], item["address"]) + "\n"
                 + "※ 조회 시점의 수량이며, 방문 전 매장에 확인하세요."
             )
-            if telegram(body):
+            if telegram(body, map_url=naver_map(item["name"], item["address"])):
                 alerted = quantity > 0
                 print("ALERT_SENT:", code, previous, quantity, flush=True)
             else:
