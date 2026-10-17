@@ -7,31 +7,151 @@
     "아산시",
     "전주시"
   ],
-  "coverage_complete": false,
-  "coverage_note": "브라우저의 반복적인 탐색·DOM 시간 초과 및 실행 세션 초기화로 전체 수집 미완료. 공식 목록과 상세페이지를 모두 확인한 신규 코드만 포함.",
+  "coverage_complete": true,
+  "coverage_note": "2026-10-17 CU 공식 지역 전체 검색: 남원 4페이지 20개, 아산 32페이지 157개, 전주 덕진 21페이지 102개 및 완산 22페이지 106개. 아산 일부는 앞선 같은 날짜 공식 목록 수집을 재사용하고 상세페이지를 이번 작업에서 재확인. 총 385개 중 주소 대조 통과 377개, 보류 8개. 재고조회는 하지 않음.",
   "stock_queried": false,
   "stores": [
     {
-      "cu_store_code": "26881",
-      "name": "남원노암점",
-      "address": "전북특별자치도 남원시 노송로 1229, (노암동, 한신) 1층",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26881",
+      "cu_store_code": "04766",
+      "name": "전주효자점",
+      "address": "전북특별자치도 전주시 완산구 거마평로 203, (효자동1가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=04766",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "49642",
-      "name": "남원대로점",
-      "address": "전북특별자치도 남원시 요천로 1331 2002마트 (조산동) 2002마트",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49642",
+      "cu_store_code": "05307",
+      "name": "아산탕정점",
+      "address": "충청남도 아산시 탕정면 탕정면로 205, (호산리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=05307",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "47635",
-      "name": "남원오투그란데점",
-      "address": "전북특별자치도 남원시 교룡로 28 1층 상가동 107,108호",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47635",
+      "cu_store_code": "05366",
+      "name": "전주우아점",
+      "address": "전북특별자치도 전주시 덕진구 우아로 10, (우아동3가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=05366",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "06458",
+      "name": "아산호서대점",
+      "address": "충청남도 아산시 배방읍 호서로 16, (세출리) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=06458",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "08499",
+      "name": "아산순천향대점",
+      "address": "충청남도 아산시 신창면 순천향로 31, (읍내리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=08499",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "11230",
+      "name": "온양역점",
+      "address": "충청남도 아산시 시민로 364-33, (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=11230",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "11734",
+      "name": "아산서부휴게소점",
+      "address": "충청남도 아산시 배방읍 온천대로 2230, (세교리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=11734",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "13108",
+      "name": "전주상산고점",
+      "address": "전북특별자치도 전주시 완산구 거마평로 130, (효자동1가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=13108",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "14517",
+      "name": "공단대로점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 702, (팔복동1가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=14517",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "16834",
+      "name": "송천사랑점",
+      "address": "전북특별자치도 전주시 덕진구 두간9길 3, (송천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=16834",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "17087",
+      "name": "하가중앙점",
+      "address": "전북특별자치도 전주시 덕진구 가리내4길 11, (덕진동2가) 1층 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=17087",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "18087",
+      "name": "아산용화원룸점",
+      "address": "충청남도 아산시 온화로83번길 16-26(용화동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=18087",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "18553",
+      "name": "온양제일호텔점",
+      "address": "충청남도 아산시 온천대로 1462, (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=18553",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "18604",
+      "name": "전주교대점",
+      "address": "전북특별자치도 전주시 완산구 서학로 34, (동서학동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=18604",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "18851",
+      "name": "유연로점",
+      "address": "전북특별자치도 전주시 완산구 유연로 327, (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=18851",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "19377",
+      "name": "전주터미널점",
+      "address": "전북특별자치도 전주시 덕진구 가리내로 30, (금암동) 1층 1동 1호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=19377",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "19483",
+      "name": "아산트라팰리스2호점",
+      "address": "충청남도 아산시 탕정면 탕정면로 37, (명암리, 탕정삼성트라팰리스) 1층 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=19483",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "20097",
+      "name": "아산인주점",
+      "address": "충청남도 아산시 인주면 아산만로 1250, (대음리) 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=20097",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
@@ -44,234 +164,138 @@
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "50180",
-      "name": "남원지리산점",
-      "address": "전북특별자치도 남원시 산내면 천왕봉로 700 (대정리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50180",
+      "cu_store_code": "20599",
+      "name": "아산북수점",
+      "address": "충청남도 아산시 배방읍 북수로 86, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=20599",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "49152",
-      "name": "뉴아산한라점",
-      "address": "충청남도 아산시 삼동로 41 (권곡동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49152",
+      "cu_store_code": "20870",
+      "name": "전북대병원점",
+      "address": "전북특별자치도 전주시 덕진구 건지로 12, (금암동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=20870",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "35701",
-      "name": "배방금호점",
-      "address": "충청남도 아산시 배방읍 배방로201번길 17, (북수리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35701",
+      "cu_store_code": "20999",
+      "name": "중앙여고명문점",
+      "address": "전북특별자치도 전주시 덕진구 석소로 25-11, (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=20999",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "48237",
-      "name": "신창그랜드점",
-      "address": "충청남도 아산시 신창면 온천대로 819 (읍내리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48237",
+      "cu_store_code": "21567",
+      "name": "전주해성점",
+      "address": "전북특별자치도 전주시 완산구 계룡산길 90, (삼천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=21567",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "55764",
-      "name": "신창상아주공점",
-      "address": "충청남도 아산시 신창면 온천대로 985 (남성리, 아산상아주공아파트) 아산상아주공아파트",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55764",
+      "cu_store_code": "21865",
+      "name": "전주효자롯데점",
+      "address": "전북특별자치도 전주시 완산구 홍산북로 13, (효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=21865",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "50870",
-      "name": "아산둔포그랜드점",
-      "address": "충청남도 아산시 둔포면 충무로 1838 (둔포리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50870",
+      "cu_store_code": "21899",
+      "name": "아산신창내안애점",
+      "address": "충청남도 아산시 신창면 행목로 200, 재동임대아파트 1층 117동 비102호, 비103호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=21899",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "26179",
-      "name": "아산둔포타운점",
-      "address": "충청남도 아산시 둔포면 둔포중앙로171번길 21, (둔포리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26179",
+      "cu_store_code": "22440",
+      "name": "전주아중은혜점",
+      "address": "전북특별자치도 전주시 덕진구 석소3길 13, (우아동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=22440",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "53109",
-      "name": "아산모종더스카이점",
-      "address": "충청남도 아산시 번영로 190 (모종동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53109",
+      "cu_store_code": "22880",
+      "name": "전주비젼대학점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 235, (효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=22880",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "52509",
-      "name": "아산모종한국점",
-      "address": "충청남도 아산시 번영로230번길 20, (모종동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52509",
+      "cu_store_code": "23031",
+      "name": "전주안행로점",
+      "address": "전북특별자치도 전주시 완산구 안행로 86, (효자동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=23031",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "42728",
-      "name": "아산배미점",
-      "address": "충청남도 아산시 서부북로 974 (배미동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42728",
+      "cu_store_code": "23477",
+      "name": "전주평화주공점",
+      "address": "전북특별자치도 전주시 완산구 덕적골2길 25, (평화동1가, 평화주공아파트)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=23477",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "38564",
-      "name": "아산배방월천점",
-      "address": "충청남도 아산시 배방읍 월천3길 27, (북수리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38564",
+      "cu_store_code": "23564",
+      "name": "전주효자혜성점",
+      "address": "전북특별자치도 전주시 완산구 홍산남로 29-7, (효자동2가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=23564",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "40958",
-      "name": "아산산동점",
-      "address": "충청남도 아산시 음봉면 음봉로 803, (산동리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40958",
+      "cu_store_code": "23683",
+      "name": "안골삼성점",
+      "address": "전북특별자치도 전주시 덕진구 진버들1길 6, (인후동1가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=23683",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "45224",
-      "name": "아산소화주공점",
-      "address": "충청남도 아산시 신창면 남성길 116-8, (남성리, 소화마을아파트)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45224",
+      "cu_store_code": "23828",
+      "name": "아산테크노밸리2호점",
+      "address": "충청남도 아산시 둔포면 운용길 73, (운용리) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=23828",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "48995",
-      "name": "아산시티프라디움점",
-      "address": "충청남도 아산시 한들물빛3로 36 (탕정면) 한들물빛도시 시티프라디움",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48995",
+      "cu_store_code": "24362",
+      "name": "아산창용점",
+      "address": "충청남도 아산시 영인면 아산호로 681, (창용리) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=24362",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "48941",
-      "name": "아산신정호수점",
-      "address": "충청남도 아산시 순천향로 476 (신인동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48941",
+      "cu_store_code": "24458",
+      "name": "송천비사벌점",
+      "address": "전북특별자치도 전주시 덕진구 붓내1길 16, (송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=24458",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "49659",
-      "name": "아산신창휴게소점",
-      "address": "충청남도 아산시 신창면 온천대로 725",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49659",
+      "cu_store_code": "24591",
+      "name": "전주한옥대호점",
+      "address": "전북특별자치도 전주시 완산구 어진길 103, (전동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=24591",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "34157",
-      "name": "아산영인점",
-      "address": "충청남도 아산시 영인면 상성길 127, (아산리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=34157",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "49877",
-      "name": "아산온천동점",
-      "address": "충청남도 아산시 온화로11번길 14, (온천동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49877",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "54779",
-      "name": "아산용화다온점",
-      "address": "충청남도 아산시 용화고길 28",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54779",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "53945",
-      "name": "아산음봉포스코점",
-      "address": "충청남도 아산시 월암로 27 (음봉면)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53945",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "45372",
-      "name": "아산인주산단점",
-      "address": "충청남도 아산시 인주면 인주산단로 23-12 (걸매리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45372",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "48003",
-      "name": "아산충무병원점",
-      "address": "충청남도 아산시 문화로 385(모종동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48003",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "47972",
-      "name": "아산탕정코닝점",
-      "address": "충청남도 아산시 탕정면 탕정로 251, (명암리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47972",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "40623",
-      "name": "아산테크노밸리점",
-      "address": "충청남도 아산시 둔포면 아산밸리서로 70, (운용리)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40623",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "30663",
-      "name": "아산풍기점",
-      "address": "충청남도 아산시 어의정로 184 (풍기동 이지더원) 1층 상가동 104,105호호",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=30663",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "52370",
-      "name": "아산호서로점",
-      "address": "충청남도 아산시 배방읍 호서로 166 1층",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52370",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "31593",
-      "name": "KCC스위첸점",
-      "address": "전북특별자치도 전주시 덕진구 오송1길 37-13",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31593",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "31540",
-      "name": "고시점",
-      "address": "전북특별자치도 전주시 덕진구 팔달로 356, (진북동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31540",
-      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
-      "product_status": "NOT_QUERIED"
-    },
-    {
-      "cu_store_code": "46424",
-      "name": "금암원룸점",
-      "address": "전북특별자치도 전주시 덕진구 금암6길 21 (금암동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46424",
+      "cu_store_code": "25016",
+      "name": "호서대인산홀점",
+      "address": "충청남도 아산시 배방읍 호서로79번길 20, (세출리) 호서대학교장영실관점 지하1층 121호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=25016",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
@@ -284,26 +308,538 @@
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "46280",
-      "name": "뉴만성골드점",
-      "address": "전북특별자치도 전주시 덕진구 만성로 181 (만성동, 골드클래스) 골드클래스",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46280",
+      "cu_store_code": "26179",
+      "name": "아산둔포타운점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로171번길 21, (둔포리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26179",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "54664",
-      "name": "뉴에코데시앙네스트점",
-      "address": "전북특별자치도 전주시 덕진구 세병로 134",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54664",
+      "cu_store_code": "26295",
+      "name": "효자서부리턴점",
+      "address": "전북특별자치도 전주시 완산구 척동3길 1, (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26295",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "55444",
-      "name": "뉴전주호반베르디움점",
-      "address": "전북특별자치도 전주시 덕진구 오공로 73",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55444",
+      "cu_store_code": "26373",
+      "name": "전주중화산센터점",
+      "address": "전북특별자치도 전주시 완산구 신촌3길 20, (중화산동2가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26373",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "26543",
+      "name": "전주우아대로점",
+      "address": "전북특별자치도 전주시 덕진구 건산로 276, (우아동2가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26543",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "26654",
+      "name": "전주대마로니에점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303 전주대학교",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26654",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "26881",
+      "name": "남원노암점",
+      "address": "전북특별자치도 남원시 노송로 1229, (노암동, 한신) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26881",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "26909",
+      "name": "아산장재타운점",
+      "address": "충청남도 아산시 용연로 152 (배방읍) 1층 106호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=26909",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27015",
+      "name": "아중지구점",
+      "address": "전북특별자치도 전주시 덕진구 산정2길 13, (산정동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27015",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27050",
+      "name": "아산운교점",
+      "address": "충청남도 아산시 둔포면 석곡길 40-53, (운교리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27050",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27297",
+      "name": "아산용화타운점",
+      "address": "충청남도 아산시 어의정로133번길 18 (용화동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27297",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27756",
+      "name": "아산팬더점",
+      "address": "충청남도 아산시 아산로 103-17 중부팬더아파트 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27756",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27804",
+      "name": "아산신정골점",
+      "address": "충청남도 아산시 음봉면 음봉면로 257 신정골해장국",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27804",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "27959",
+      "name": "아산배방한성점",
+      "address": "아산시 배방읍 공수리 1480 1층 102호호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=27959",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28010",
+      "name": "효자솔하우스점",
+      "address": "전북특별자치도 전주시 완산구 농소1길 1, (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28010",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28065",
+      "name": "아산이지더원1차점",
+      "address": "충청남도 아산시 아산밸리중앙로 50 (둔포면) 아산테크노밸리이지더원1단지아파트 1층 113동 B101호 102호호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28065",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28257",
+      "name": "전주IC점",
+      "address": "전북특별자치도 전주시 덕진구 서당길 4 호남기사식당",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28257",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28416",
+      "name": "전주제일점",
+      "address": "전북특별자치도 전주시 덕진구 아중로 166 (인후동1가) 1층 207동 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28416",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28548",
+      "name": "전주평화마을점",
+      "address": "전북특별자치도 전주시 완산구 구이로 2094, (평화동2가, 평화주공그린타운)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28548",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28640",
+      "name": "아산초원점",
+      "address": "충청남도 아산시 고불로 671, (좌부동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28640",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28692",
+      "name": "송천오송점",
+      "address": "전북특별자치도 전주시 덕진구 사근1길 15, 필지(송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28692",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "28704",
+      "name": "아산반도점",
+      "address": "충청남도 아산시 아산로 116-21 (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=28704",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "29508",
+      "name": "아산모종캐슬2차점",
+      "address": "충청남도 아산시 모종로22번길 33 (모종동) 모종캐슬어울림2단지 1층 상가동 201호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=29508",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "29641",
+      "name": "아산관대점",
+      "address": "충청남도 아산시 둔포면 충무로 1396",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=29641",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "30306",
+      "name": "아산시민점",
+      "address": "충청남도 아산시 시민로457번길 11, (온천동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=30306",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "30663",
+      "name": "아산풍기점",
+      "address": "충청남도 아산시 어의정로 184 (풍기동 이지더원) 1층 상가동 104,105호호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=30663",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "30792",
+      "name": "아산신봉점",
+      "address": "충청남도 아산시 윤보선로 132, (영인면) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=30792",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31005",
+      "name": "남원동충현대점",
+      "address": "전북특별자치도 남원시 동문로 84, (향교동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31005",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31190",
+      "name": "아산갈산빌리지점",
+      "address": "충청남도 아산시 탕정면 탕정면로 158-1, (갈산리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31190",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31320",
+      "name": "송천대명점",
+      "address": "전북특별자치도 전주시 덕진구 시천로 45, (송천동2가, 대명궁궐) 2층 5, 6호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31320",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31321",
+      "name": "아산둔포원룸점",
+      "address": "충청남도 아산시 둔포면 둔포로 78 국제하이빌",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31321",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31347",
+      "name": "남원동림로점",
+      "address": "전북특별자치도 남원시 동림로 113, (향교동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31347",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31397",
+      "name": "아산이지더원8단지점",
+      "address": "충청남도 아산시 아산밸리남로 81 (둔포면) 아산테크노밸리이지더원8단지아파트 1층 815동 104,105,106호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31397",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31452",
+      "name": "에코중앙점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 67 (송천동2가) 상가1동 102호 1층 상가1동 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31452",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31540",
+      "name": "고시점",
+      "address": "전북특별자치도 전주시 덕진구 팔달로 356, (진북동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31540",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31580",
+      "name": "전주서일점",
+      "address": "전북특별자치도 전주시 완산구 새터로 99 동아한일아파트 상가(서신동) 1층 상가동 107,108호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31580",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31593",
+      "name": "KCC스위첸점",
+      "address": "전북특별자치도 전주시 덕진구 오송1길 37-13",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31593",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31629",
+      "name": "전주서신미소점",
+      "address": "전북특별자치도 전주시 완산구 고사평로 5, (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31629",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31729",
+      "name": "대성로드점",
+      "address": "전북특별자치도 전주시 완산구 춘향로 5213 (대성동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31729",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31732",
+      "name": "아산부영점",
+      "address": "충청남도 아산시 온천대로 1105-13, (득산동) 부영아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31732",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "31826",
+      "name": "비전대기숙사점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 235",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=31826",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32045",
+      "name": "기전원룸점",
+      "address": "전북특별자치도 전주시 완산구 문학대3길 1 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32045",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32344",
+      "name": "남원서문사거리점",
+      "address": "전북특별자치도 남원시 의총로 110, (동충동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32344",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32411",
+      "name": "선문대학교점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70, 선문대학교 학생회관(갈산리) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32411",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32498",
+      "name": "아산테크노밸리센터점",
+      "address": "충청남도 아산시 아산밸리서로 168 (둔포면) 1층 103호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32498",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32601",
+      "name": "선문대학교오렌지점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32601",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "32867",
+      "name": "객리단길점",
+      "address": "전북특별자치도 전주시 완산구 전주객사2길 73 (다가동4가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=32867",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33071",
+      "name": "아산장재행복점",
+      "address": "충청남도 아산시 배방읍 공원로 69",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33071",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33139",
+      "name": "아산송촌교차로점",
+      "address": "충청남도 아산시 음봉로 307 (음봉면)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33139",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33205",
+      "name": "아산탕정타운점",
+      "address": "충청남도 아산시 탕정면 탕정면로 20, (명암리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33205",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33297",
+      "name": "전주서신예촌점",
+      "address": "전북특별자치도 전주시 완산구 서신천변로 13, (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33297",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33521",
+      "name": "효자휴먼시아점",
+      "address": "전북특별자치도 전주시 완산구 호암로 87 (효자동2가, 효자휴먼시아5단지아파트) 효자휴먼시아5단지아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33521",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33608",
+      "name": "선문대학교본관점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교본관",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33608",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33675",
+      "name": "전주화산센터점",
+      "address": "전북특별자치도 전주시 완산구 효자로 320 (중화산동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33675",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "33700",
+      "name": "아산온중점",
+      "address": "충청남도 아산시 온중로 59 (용화동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=33700",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "34027",
+      "name": "뉴효자원룸점",
+      "address": "전북특별자치도 전주시 완산구 배학3길 1 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=34027",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "34157",
+      "name": "아산영인점",
+      "address": "충청남도 아산시 영인면 상성길 127, (아산리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=34157",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "34350",
+      "name": "전주효자주공점",
+      "address": "전북특별자치도 전주시 완산구 우전로 195, (효자동2가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=34350",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "35054",
+      "name": "아산외암마을점",
+      "address": "충청남도 아산시 송악면 송악로 784, (역촌리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35054",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "35288",
+      "name": "아산신도점",
+      "address": "충청남도 아산시 용화고길 90, 동 호 용화지구신도브래뉴 1층 상가동 106, 107호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35288",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "35701",
+      "name": "배방금호점",
+      "address": "충청남도 아산시 배방읍 배방로201번길 17, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35701",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "35819",
+      "name": "전주평화동신점",
+      "address": "전북특별자치도 전주시 완산구 양지2길 10 (평화동2가, 동신아파트) 동신아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35819",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "35989",
+      "name": "전북사대부고점",
+      "address": "전북특별자치도 전주시 덕진구 조경단로 106 (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=35989",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "36738",
+      "name": "아산신창샘마을점",
+      "address": "충청남도 아산시 신창면 남성길 99 샘마을아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=36738",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "36878",
+      "name": "남원시외터미널점",
+      "address": "전북특별자치도 남원시 용성로 109, (동충동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=36878",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "37587",
+      "name": "뉴남원월락점",
+      "address": "전북특별자치도 남원시 낙현길 6 (월락동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=37587",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "37666",
+      "name": "남원중앙점",
+      "address": "전북특별자치도 남원시 남문로 446, (쌍교동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=37666",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "37852",
+      "name": "송천신일점",
+      "address": "전북특별자치도 전주시 덕진구 솔내로 139 송천새마을금고 (송천동1가) 송천새마을금고",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=37852",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
@@ -316,18 +852,106 @@
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "54771",
-      "name": "대자인병원점",
-      "address": "전북특별자치도 전주시 덕진구 견훤로 384 진로빌딩 (우아동3가) 진로빌딩",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54771",
+      "cu_store_code": "37980",
+      "name": "선문대학교기숙사점",
+      "address": "충청남도 아산시 선문로221번길 70 (탕정면) 선문대학교 아산캠퍼스 생활관친교관1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=37980",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "47149",
-      "name": "만성법원점",
-      "address": "전북특별자치도 전주시 덕진구 만성중앙로 35 1층",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47149",
+      "cu_store_code": "38193",
+      "name": "켄싱턴리조트남원점",
+      "address": "전북특별자치도 남원시 소리길 66, (어현동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38193",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "38336",
+      "name": "배방원룸점",
+      "address": "충청남도 아산시 북수로111번길 8 (배방읍) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38336",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "38367",
+      "name": "송천센터점",
+      "address": "전북특별자치도 전주시 덕진구 천마산로 62 (송천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38367",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "38379",
+      "name": "아산모종캐슬3차점",
+      "address": "충청남도 아산시 모종남로22번길 11 (모종동, 모종캐슬어울림3단지) 모종캐슬어울림3단지",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38379",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "38426",
+      "name": "전주진북우성점",
+      "address": "전북특별자치도 전주시 덕진구 벚꽃로 57 (진북동) 우성아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38426",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "38564",
+      "name": "아산배방월천점",
+      "address": "충청남도 아산시 배방읍 월천3길 27, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=38564",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39049",
+      "name": "에코데시앙네스트2차",
+      "address": "전북특별자치도 전주시 덕진구 세병로 90",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39049",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39083",
+      "name": "전주여고명문점",
+      "address": "전북특별자치도 전주시 덕진구 모래내6길 15 (인후동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39083",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39428",
+      "name": "덕진스마트점",
+      "address": "전북특별자치도 전주시 덕진구 사평3길 4 (덕진동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39428",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39512",
+      "name": "전주효자일등점",
+      "address": "전북특별자치도 전주시 완산구 효자천변2길 17 (효자동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39512",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39567",
+      "name": "전주서곡점",
+      "address": "전북특별자치도 전주시 완산구 서곡3길 13",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39567",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "39597",
+      "name": "전주서곡대로점",
+      "address": "전북특별자치도 전주시 완산구 세내로 512",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=39597",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
@@ -340,18 +964,538 @@
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "48857",
-      "name": "만성스페이스온점",
-      "address": "전북특별자치도 전주시 덕진구 만성북로 51-25(만성동)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48857",
+      "cu_store_code": "40059",
+      "name": "아산온양힐스테이트점",
+      "address": "충청남도 아산시 남산로 120 현대홈타운아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40059",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "52000",
-      "name": "만성시티점",
-      "address": "전북특별자치도 전주시 덕진구 만성동로 11 (만성동, 시티프라디움) 시티프라디움",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52000",
+      "cu_store_code": "40623",
+      "name": "아산테크노밸리점",
+      "address": "충청남도 아산시 둔포면 아산밸리서로 70, (운용리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40623",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40740",
+      "name": "전주평화모악점",
+      "address": "전북특별자치도 전주시 완산구 구이로 2078 (평화동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40740",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40793",
+      "name": "아산탕정중앙점",
+      "address": "충청남도 아산시 탕정면 명암길3번길 16",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40793",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40839",
+      "name": "아산온천마을점",
+      "address": "충청남도 아산시 시장길15번길 13",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40839",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40840",
+      "name": "아산배방우방점",
+      "address": "충청남도 아산시 배방로 58-44 (배방읍) 우방아이유쉘2단지",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40840",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40856",
+      "name": "아산둔포충무점",
+      "address": "충청남도 아산시 충무로 1799 (둔포면) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40856",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40927",
+      "name": "전주신시가지점",
+      "address": "전북특별자치도 전주시 완산구 홍산1길 21 (효자동2가, 서희스타힐스) 서희스타힐스",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40927",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "40958",
+      "name": "아산산동점",
+      "address": "충청남도 아산시 음봉면 음봉로 803, (산동리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=40958",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41060",
+      "name": "전주대평생교육원점",
+      "address": "전북특별자치도 전주시 완산구 후곡길 11-2, (효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41060",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41325",
+      "name": "아산배방공수점",
+      "address": "충청남도 아산시 배방읍 모산로 136 사이버PC방 (공수리) 사이버PC방",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41325",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41426",
+      "name": "아산더퍼스트휴점",
+      "address": "충청남도 아산시 탕정면 용머리길 109",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41426",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41608",
+      "name": "아산마니사점",
+      "address": "충청남도 아산시 배방읍 광장로 210 (장재리, 요진와이시티)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41608",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41683",
+      "name": "전주노송센터점",
+      "address": "전북특별자치도 전주시 완산구 권삼득로 78 (서노송동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41683",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41686",
+      "name": "아산남부점",
+      "address": "충청남도 아산시 남부로 321-17 (풍기동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41686",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41691",
+      "name": "아산삼정그린코아점",
+      "address": "충청남도 아산시 배방읍 모산로126번길 17-7, (공수리, 배방삼정그린코아)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41691",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41730",
+      "name": "아산신창한성점",
+      "address": "충청남도 아산시 신창면 서부북로 918 (남성리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41730",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41799",
+      "name": "전주효자스마일점",
+      "address": "전북특별자치도 전주시 완산구 봉곡로 45 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41799",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41808",
+      "name": "뉴전주고사점",
+      "address": "전북특별자치도 전주시 완산구 전주객사4길 76 (고사동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41808",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41834",
+      "name": "효자웨스트점",
+      "address": "전북특별자치도 전주시 완산구 효자로 161",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41834",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "41926",
+      "name": "인후빌리지점",
+      "address": "전북특별자치도 전주시 덕진구 가재미로 24 (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=41926",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42021",
+      "name": "아산탕정골목점",
+      "address": "충청남도 아산시 탕정면 탕정면로8번길 89, (명암리) 1층 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42021",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42110",
+      "name": "송천센트럴점",
+      "address": "전북특별자치도 전주시 덕진구 송천로 1 (송천동1가, 송천동센트럴파크아파트) 송천동센트럴파크아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42110",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42119",
+      "name": "전주파크리움점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 525 (덕진동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42119",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42195",
+      "name": "전주모악점",
+      "address": "전북특별자치도 전주시 완산구 난전들로 256 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42195",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42375",
+      "name": "아산뉴한올점",
+      "address": "충청남도 아산시 청운로 149 (권곡동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42375",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42489",
+      "name": "중화산타운점",
+      "address": "전북특별자치도 전주시 완산구 메너머1길 14-1 (중화산동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42489",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42564",
+      "name": "중화산점",
+      "address": "전북특별자치도 전주시 완산구 어은로 6 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42564",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42579",
+      "name": "아산모종한성점",
+      "address": "충청남도 아산시 모종로 22 (모종동) 모종한성필하우스2차아파트 1층 상가동 104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42579",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42608",
+      "name": "아산스타점",
+      "address": "충청남도 아산시 용화로12번길 4-2, (용화동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42608",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42684",
+      "name": "전주혁신로드점",
+      "address": "전북특별자치도 전주시 덕진구 혁신로 390",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42684",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42685",
+      "name": "아산염작점",
+      "address": "충청남도 아산시 둔포면 아산밸리동로 263-10, (염작리) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42685",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42701",
+      "name": "전북대스타점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 333 (덕진동1가) 1층 101, 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42701",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42728",
+      "name": "아산배미점",
+      "address": "충청남도 아산시 서부북로 974 (배미동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42728",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42772",
+      "name": "아산권곡주공점",
+      "address": "충청남도 아산시 박물관로 13 (권곡동, 주공아파트) 1층 상가동 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42772",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42848",
+      "name": "인후성락점",
+      "address": "전북특별자치도 전주시 덕진구 명주5길 7 (인후동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42848",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "42960",
+      "name": "아산영인예락점",
+      "address": "충청남도 아산시 영인면 토정로 200 (역리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=42960",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43024",
+      "name": "덕진광장점",
+      "address": "전북특별자치도 전주시 덕진구 덕진광장로 1-13 (덕진동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43024",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43029",
+      "name": "아산권곡삼부점",
+      "address": "충청남도 아산시 문화로243번길 13 (권곡동, 삼부르네상스) 삼부르네상스",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43029",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43086",
+      "name": "인주중앙점",
+      "address": "충청남도 아산시 인주면 아산만로 1698, (밀두리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43086",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43355",
+      "name": "한들물빛공원점",
+      "address": "충청남도 아산시 탕정면 한들물빛도시로 70 1층 E동 105,106호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43355",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43414",
+      "name": "송천한양점",
+      "address": "전북특별자치도 전주시 덕진구 와룡로 17 (송천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43414",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43426",
+      "name": "전주서신2호점",
+      "address": "전북특별자치도 전주시 완산구 서신로 51, (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43426",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43427",
+      "name": "태평아이파크후문점",
+      "address": "전북특별자치도 전주시 완산구 물레방아3길 16 1층 나동 2, 3호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43427",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43548",
+      "name": "아산빅토리아점",
+      "address": "충청남도 아산시 배방읍 광장로 181 (장재리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43548",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43566",
+      "name": "전주평화사거리점",
+      "address": "전북특별자치도 전주시 완산구 모악로 4774 1층 107호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43566",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43651",
+      "name": "전주삼천안행점",
+      "address": "전북특별자치도 전주시 완산구 안행로 9 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43651",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43674",
+      "name": "아산장재점",
+      "address": "충청남도 아산시 배방읍 장재로 46-46",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43674",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43686",
+      "name": "아산스파포레점",
+      "address": "충청남도 아산시 아산온천로157번길 67 (음봉면)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43686",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43748",
+      "name": "아산배미로드점",
+      "address": "충청남도 아산시 배미로 7-2 (득산동) 1층 5동",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43748",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43752",
+      "name": "아산배방롯데점",
+      "address": "충청남도 아산시 북수로 183 (배방읍) 롯데캐슬아파트 1층 301동 105,106호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43752",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43790",
+      "name": "전주본점",
+      "address": "전북특별자치도 전주시 완산구 용리로 177 (삼천동1가) 세창짜임아파트 1층 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43790",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43799",
+      "name": "아산온양점",
+      "address": "충청남도 아산시 남산로8번길 40-17 (용화동, 그린빌라트) 그린빌라트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43799",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43871",
+      "name": "전주효자골드점",
+      "address": "전북특별자치도 전주시 완산구 신봉로 72 (효자동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43871",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "43955",
+      "name": "전주기전대학교점",
+      "address": "전북특별자치도 전주시 완산구 전주천서로 267 전주기전대학 (중화산동1가) 전주기전대학",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=43955",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44016",
+      "name": "금암스타점",
+      "address": "전북특별자치도 전주시 덕진구 떡전로 18 (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44016",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44077",
+      "name": "선문대학교공학관점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44077",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44165",
+      "name": "아산음봉초원점",
+      "address": "충청남도 아산시 음봉로681번길 24 (음봉면) 초원그린타운 1층 상가동 107,116호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44165",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44188",
+      "name": "아중레이크파크점",
+      "address": "전북특별자치도 전주시 덕진구 인교9길 25 (우아동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44188",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44190",
+      "name": "전주삼천센터점",
+      "address": "전북특별자치도 전주시 완산구 용리로 72 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44190",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44307",
+      "name": "전주서부아이파크점",
+      "address": "전북특별자치도 전주시 완산구 홍산로 390 (효자동3가, 서부신시가지아이파크아파트) 서부신시가지아이파크아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44307",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44344",
+      "name": "혁신으뜸점",
+      "address": "전북특별자치도 전주시 덕진구 오공로 90 (중동) 호반베르디움더클래스2 1층 101, 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44344",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44363",
+      "name": "에코시티점",
+      "address": "전북특별자치도 전주시 덕진구 세병1길 36 (송천동2가) 베스트타워 1층 104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44363",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44598",
+      "name": "전주반월점",
+      "address": "전북특별자치도 전주시 덕진구 반월5길 8-2 (반월동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44598",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44599",
+      "name": "아산외암로점",
+      "address": "충청남도 아산시 송악면 송악로 826-3 (외암리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44599",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44705",
+      "name": "서린2주유소점",
+      "address": "전북특별자치도 전주시 완산구 선비로 1444 (용복동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44705",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "44925",
+      "name": "아산트라팰리스점",
+      "address": "충청남도 아산시 탕정면 탕정면로 37 (명암리, 탕정삼성트라팰리스아파트) 탕정삼성트라팰리스아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44925",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     },
@@ -364,12 +1508,1527 @@
       "product_status": "NOT_QUERIED"
     },
     {
-      "cu_store_code": "24458",
-      "name": "송천비사벌점",
-      "address": "전북특별자치도 전주시 덕진구 붓내1길 16, (송천동2가)",
-      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=24458",
+      "cu_store_code": "44958",
+      "name": "아산호서대일등점",
+      "address": "충청남도 아산시 호서로 92 1동 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=44958",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45224",
+      "name": "아산소화주공점",
+      "address": "충청남도 아산시 신창면 남성길 116-8, (남성리, 소화마을아파트)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45224",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45265",
+      "name": "전주화산스타점",
+      "address": "전북특별자치도 전주시 완산구 한두평1길 15 (중화산동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45265",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45372",
+      "name": "아산인주산단점",
+      "address": "충청남도 아산시 인주면 인주산단로 23-12 (걸매리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45372",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45489",
+      "name": "전북도청타운점",
+      "address": "전북특별자치도 전주시 완산구 홍산북로 75 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45489",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45501",
+      "name": "전주삼천용흥점",
+      "address": "전북특별자치도 전주시 완산구 삼천천변1길 11 삼천주공6단지아파트 (삼천동1가) 삼천주공6단지아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45501",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45511",
+      "name": "뉴평화광신점",
+      "address": "전북특별자치도 전주시 완산구 모악로 4651-12 (평화동2가) 동도미소드림아파트 1층 상가동 103,104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45511",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45649",
+      "name": "뉴배방삼성점",
+      "address": "충청남도 아산시 배방읍 배방로173번길 14 패밀리마트 (북수리) 패밀리마트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45649",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45711",
+      "name": "전주대스타빌점",
+      "address": "전북특별자치도 전주시 완산구 백마산길 67-7, 노벨(효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45711",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45712",
+      "name": "전주대스타점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303, 전주대학교 가동 1층 2호(효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45712",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45716",
+      "name": "아산신창로드점",
+      "address": "충청남도 아산시 신창면 서부남로 810, (읍내리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45716",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45717",
+      "name": "배방제일점",
+      "address": "충청남도 아산시 배방읍 모산로 182, (공수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45717",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45721",
+      "name": "전북도청상록회점",
+      "address": "전북특별자치도 전주시 완산구 효자로 225 전라북도청 (효자동3가) 전라북도청",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45721",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45777",
+      "name": "뉴아산둔포산업단지점",
+      "address": "충청남도 아산시 둔포면 아산밸리로 296-21",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45777",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45818",
+      "name": "전주서신센터점",
+      "address": "전북특별자치도 전주시 완산구 서신로 32, (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45818",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "45898",
+      "name": "뉴남원하정점",
+      "address": "전북특별자치도 남원시 의총로 78 (하정동) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=45898",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46004",
+      "name": "아산아람채점",
+      "address": "충청남도 아산시 온천대로 1323-25 (방축동, 아산KD아람채) 아산KD아람채",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46004",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46069",
+      "name": "뉴아산휴먼시아점",
+      "address": "충청남도 아산시 배방읍 용연로 36 (장재리, 용연마을휴먼시아1단지아파트) 용연마을휴먼시아1단지아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46069",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46265",
+      "name": "전주효자빌리지점",
+      "address": "전북특별자치도 전주시 완산구 황강서원로 11 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46265",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46280",
+      "name": "뉴만성골드점",
+      "address": "전북특별자치도 전주시 덕진구 만성로 181 (만성동, 골드클래스) 골드클래스",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46280",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46301",
+      "name": "뉴효천로드점",
+      "address": "전북특별자치도 전주시 완산구 쑥고개로 397 우전빅마트 (효자동2가) 우전빅마트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46301",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46404",
+      "name": "전주삼천타운점",
+      "address": "전북특별자치도 전주시 완산구 거마평로 88 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46404",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46424",
+      "name": "금암원룸점",
+      "address": "전북특별자치도 전주시 덕진구 금암6길 21 (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46424",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46508",
+      "name": "뉴아중정원점",
+      "address": "전북특별자치도 전주시 덕진구 인교로 47",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46508",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46634",
+      "name": "전주동물원점",
+      "address": "전북특별자치도 전주시 덕진구 소리로 68 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46634",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46802",
+      "name": "전주진북스타점",
+      "address": "전북특별자치도 전주시 덕진구 숲정이2길 41 (진북동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46802",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46930",
+      "name": "전주스타점",
+      "address": "전북특별자치도 전주시 덕진구 한배미로 33 (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46930",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "46992",
+      "name": "아산오토몰점",
+      "address": "충청남도 아산시 배방읍 동방1로 11 (휴대리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=46992",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47023",
+      "name": "아산파모스라움점",
+      "address": "충청남도 아산시 희망로46번길 11-16 (배방읍)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47023",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47099",
+      "name": "송천아이파크점",
+      "address": "전북특별자치도 전주시 덕진구 오송로 45 (송천동1가, 송천아이파크) 송천아이파크",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47099",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47149",
+      "name": "만성법원점",
+      "address": "전북특별자치도 전주시 덕진구 만성중앙로 35 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47149",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47262",
+      "name": "아산탕정호반점",
+      "address": "충청남도 아산시 탕정면 갈산샛들로 57, 상가 117동 120호 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47262",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47264",
+      "name": "전북혁신해피트리점",
+      "address": "전북특별자치도 전주시 덕진구 기지로 72 (중동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47264",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47285",
+      "name": "전주교원점",
+      "address": "전북특별자치도 전주시 완산구 온고을로 1 한국교직원공제회전북회관 (서신동) 한국교직원공제회전북회관",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47285",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47325",
+      "name": "전주흑석중앙점",
+      "address": "전북특별자치도 전주시 완산구 흑석로 56 (서서학동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47325",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47503",
+      "name": "전북대후생관점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47503",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47635",
+      "name": "남원오투그란데점",
+      "address": "전북특별자치도 남원시 교룡로 28 1층 상가동 107,108호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47635",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47688",
+      "name": "신아산모아엘가1차점",
+      "address": "충청남도 아산시 신창면 남성길 72, 122동 B109호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47688",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47693",
+      "name": "전주역점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 839, (우아동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47693",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47714",
+      "name": "아산줌파크점",
+      "address": "충청남도 아산시 시민로 135 (용화동) 아산줌파크 1층 근린생활시설동 103,104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47714",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47732",
+      "name": "중산프리미엄점",
+      "address": "전북특별자치도 전주시 완산구 중산3길 1 (중화산동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47732",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47792",
+      "name": "아산신정호공원점",
+      "address": "충청남도 아산시 남부로 18 (방축동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47792",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "47972",
+      "name": "아산탕정코닝점",
+      "address": "충청남도 아산시 탕정면 탕정로 251, (명암리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=47972",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48003",
+      "name": "아산충무병원점",
+      "address": "충청남도 아산시 문화로 385(모종동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48003",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48038",
+      "name": "전주명심점",
+      "address": "전북특별자치도 전주시 덕진구 편운로 40 (여의동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48038",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48052",
+      "name": "금암본점",
+      "address": "전북특별자치도 전주시 덕진구 떡전4길 31, (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48052",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48117",
+      "name": "아산음봉해링턴점",
+      "address": "충청남도 아산시 음봉면 산동리 252번지 1층 B동 114호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48117",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48121",
+      "name": "전주평화우미점",
+      "address": "전북특별자치도 전주시 완산구 모악로 4689",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48121",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48129",
+      "name": "아중중앙점",
+      "address": "전북특별자치도 전주시 덕진구 아중4길 3, (우아동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48129",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48181",
+      "name": "송천주공점",
+      "address": "전북특별자치도 전주시 덕진구 솔내로 175, (송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48181",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48186",
+      "name": "전주진북점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 136 (진북동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48186",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48237",
+      "name": "신창그랜드점",
+      "address": "충청남도 아산시 신창면 온천대로 819 (읍내리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48237",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48334",
+      "name": "전주성덕점",
+      "address": "전북특별자치도 전주시 덕진구 번영로 215 (성덕동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48334",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48428",
+      "name": "에코사랑점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 208 (송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48428",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48429",
+      "name": "전주삼천프리미엄점",
+      "address": "전북특별자치도 전주시 완산구 송정2길 3 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48429",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48438",
+      "name": "아산둔포신양점",
+      "address": "충청남도 아산시 둔포면 관용로 183-1 (신양리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48438",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48537",
+      "name": "모종네오루체점",
+      "address": "충청남도 아산시 못마루로 139 (모종동, 힐스테이트모종네오루체) 힐스테이트모종네오루체",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48537",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48641",
+      "name": "삼천퍼스트점",
+      "address": "전북특별자치도 전주시 완산구 솟대1길 1 (삼천동1가) cu 삼천퍼스트점 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48641",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48663",
+      "name": "전주대신정문점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303 (효자동2가) 전주대학교 (효자동2가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48663",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48800",
+      "name": "아산삼일파라뷰점",
+      "address": "충청남도 아산시 문화공원로 42 (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48800",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48855",
+      "name": "전주효자타운점",
+      "address": "전북특별자치도 전주시 완산구 황강서원2길 17-1 (효자동3가) 1층(효자동 3가) 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48855",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48857",
+      "name": "만성스페이스온점",
+      "address": "전북특별자치도 전주시 덕진구 만성북로 51-25(만성동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48857",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48873",
+      "name": "아산배방별하점",
+      "address": "충청남도 아산시 배방읍 세교길 14, 근린생활시설동 1층 3,4호 (별하신도시 하늘채) 103,104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48873",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48912",
+      "name": "삼천스타점",
+      "address": "전북특별자치도 전주시 완산구 거마남로 9 (삼천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48912",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48941",
+      "name": "아산신정호수점",
+      "address": "충청남도 아산시 순천향로 476 (신인동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48941",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "48995",
+      "name": "아산시티프라디움점",
+      "address": "충청남도 아산시 한들물빛3로 36 (탕정면) 한들물빛도시 시티프라디움",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=48995",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49078",
+      "name": "에코더샵점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 171 (송천동2가) 1층 101호 1층 상가동 101호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49078",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49152",
+      "name": "뉴아산한라점",
+      "address": "충청남도 아산시 삼동로 41 (권곡동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49152",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49205",
+      "name": "아산둔포테크노점",
+      "address": "충청남도 아산시 둔포면 산업밸리길 40 (석곡리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49205",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49230",
+      "name": "전주대학생회관점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303, 전주대학교 학생회관내(효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49230",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49245",
+      "name": "북수원룸점",
+      "address": "충청남도 아산시 배방읍 배방로201번길 27, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49245",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49350",
+      "name": "전주세내로점",
+      "address": "전북특별자치도 전주시 완산구 세내로 285 샘물아동병원 (효자동3가) 샘물아동병원",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49350",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49475",
+      "name": "송천중앙점",
+      "address": "전북특별자치도 전주시 덕진구 붓내3길 20, (송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49475",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49507",
+      "name": "서신이편한점",
+      "address": "전북특별자치도 전주시 완산구 홍산로 495 상가",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49507",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49642",
+      "name": "남원대로점",
+      "address": "전북특별자치도 남원시 요천로 1331 2002마트 (조산동) 2002마트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49642",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49643",
+      "name": "남원코아루점",
+      "address": "전북특별자치도 남원시 충정로 320 (월락동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49643",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49659",
+      "name": "아산신창휴게소점",
+      "address": "충청남도 아산시 신창면 온천대로 725",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49659",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49662",
+      "name": "아중부영점",
+      "address": "전북특별자치도 전주시 덕진구 무삼지로 8",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49662",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49666",
+      "name": "송천벽산점",
+      "address": "전북특별자치도 전주시 덕진구 송천3길 59, (송천동1가) 벽산E리버파크 113동 106호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49666",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49821",
+      "name": "아산모종본점",
+      "address": "충청남도 아산시 번영로216번길 26 (모종동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49821",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49877",
+      "name": "아산온천동점",
+      "address": "충청남도 아산시 온화로11번길 14, (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49877",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49878",
+      "name": "전주효자힐스점",
+      "address": "전라북도 전주시 완산구 따박골로 12, 힐스테이어울림효자 상가",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49878",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "49954",
+      "name": "전주효자신일점",
+      "address": "전북특별자치도 전주시 완산구 신봉로 55",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=49954",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50008",
+      "name": "전주평화센터점",
+      "address": "전북특별자치도 전주시 완산구 평화로 136 (평화동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50008",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50180",
+      "name": "남원지리산점",
+      "address": "전북특별자치도 남원시 산내면 천왕봉로 700 (대정리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50180",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50251",
+      "name": "비전플러스점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 227-51 (효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50251",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50447",
+      "name": "송천샘터점",
+      "address": "전북특별자치도 전주시 덕진구 송천중앙로 143 (송천동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50447",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50450",
+      "name": "전주고려병원점",
+      "address": "전북특별자치도 전주시 덕진구 안덕원로 373, (산정동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50450",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50492",
+      "name": "아산용화센터점",
+      "address": "충청남도 아산시 용화로48번길 3-25, (용화동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50492",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50502",
+      "name": "아산로제비앙점",
+      "address": "충청남도 아산시 배방읍 동방로 134 (세교리) 근린생활시설 B103호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50502",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50619",
+      "name": "아산CGV점",
+      "address": "충청남도 아산시 온천대로 1538 (온천동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50619",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50654",
+      "name": "서곡두산점",
+      "address": "전북특별자치도 전주시 완산구 서곡로 20-1",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50654",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50657",
+      "name": "호성주공점",
+      "address": "전북특별자치도 전주시 덕진구 호성로 80, 호성주공2단지 제상가동",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50657",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50664",
+      "name": "전주송천제일점",
+      "address": "전북특별자치도 전주시 덕진구 솔내로 203, 송천주공복합상가 (송천동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50664",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50719",
+      "name": "일성리조트지리산점",
+      "address": "전북특별자치도 남원시 산내면 천왕봉로 626-25 일성지리산콘도미니엄 (대정리) 일성지리산콘도미니엄",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50719",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50723",
+      "name": "전북도청사랑점",
+      "address": "전북특별자치도 전주시 완산구 홍산북로 53, (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50723",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50728",
+      "name": "아산홍익점",
+      "address": "충청남도 아산시 탕정면 탕정면로 230-21 상록빌",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50728",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50792",
+      "name": "전주서문점",
+      "address": "전북특별자치도 전주시 완산구 서신천변13길 11 (서신동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50792",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50870",
+      "name": "아산둔포그랜드점",
+      "address": "충청남도 아산시 둔포면 충무로 1838 (둔포리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50870",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "50997",
+      "name": "아산한라동백점",
+      "address": "충청남도 아산시 삼동로 34 (모종동, 한라동백아파트) 한라동백아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=50997",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51057",
+      "name": "뉴아산운용점",
+      "address": "충청남도 아산시 운용길 44 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51057",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51060",
+      "name": "전주호성센터점",
+      "address": "전북특별자치도 전주시 덕진구 호성3길 19 진이비인후과 (호성동1가) 진이비인후과",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51060",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51091",
+      "name": "아산배방한성6차점",
+      "address": "충청남도 아산시 배방읍 배방로 127 (공수리, 한성필하우스6차) 한성필하우스6차",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51091",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51098",
+      "name": "전주혁신점",
+      "address": "전북특별자치도 전주시 덕진구 틀못2길 6 (장동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51098",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51189",
+      "name": "전주금암점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 398, (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51189",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51249",
+      "name": "인후휴먼시아점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무2길 7 (인후동1가, 인후휴먼시아) 인후휴먼시아",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51249",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51256",
+      "name": "전주휴게소점",
+      "address": "전북특별자치도 전주시 덕진구 동부대로 1530 (고랑동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51256",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51313",
+      "name": "인후프리미엄점",
+      "address": "전북특별자치도 전주시 덕진구 가재미로 53 (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51313",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51360",
+      "name": "전주호성파크점",
+      "address": "전북특별자치도 전주시 덕진구 호성로 104-10 진호빌딩 (호성동1가) 진호빌딩",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51360",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51424",
+      "name": "뉴한옥마을동문점",
+      "address": "전북특별자치도 전주시 완산구 경기전길 17 등용문회계학원 (풍남동1가) 등용문회계학원",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51424",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51471",
+      "name": "아산순천향타운점",
+      "address": "충청남도 아산시 신창면 순천향로15번길 16, (읍내리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51471",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51506",
+      "name": "아산음봉더샵점",
+      "address": "충청남도 아산시 음봉면 음봉로 567 (덕지리, 더샵레이크사이드아파트) 더샵레이크사이드아파트, 106, 107, 108, 112, 113호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51506",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "51627",
+      "name": "효천노블점",
+      "address": "전북특별자치도 전주시 완산구 홍산로 14 (삼천동2가) 1층 4호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=51627",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52000",
+      "name": "만성시티점",
+      "address": "전북특별자치도 전주시 덕진구 만성동로 11 (만성동, 시티프라디움) 시티프라디움",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52000",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52025",
+      "name": "아중현대점",
+      "address": "전북특별자치도 전주시 덕진구 정언신로 107 (인후동1가) 103호, 104호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52025",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52055",
+      "name": "전주동서학점",
+      "address": "전북특별자치도 전주시 완산구 장승배기로 410 (동서학동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52055",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52346",
+      "name": "전주하가빌리지점",
+      "address": "전북특별자치도 전주시 덕진구 가리내8길 11 (덕진동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52346",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52370",
+      "name": "아산호서로점",
+      "address": "충청남도 아산시 배방읍 호서로 166 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52370",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52435",
+      "name": "전주호성대로점",
+      "address": "전북특별자치도 전주시 덕진구 초포다리로 94 (호성동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52435",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52446",
+      "name": "전주안골점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무4길 19 (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52446",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52454",
+      "name": "뉴아산권곡타운점",
+      "address": "충청남도 아산시 삼동로 71 (권곡동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52454",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52488",
+      "name": "중화산에코르점",
+      "address": "전북특별자치도 전주시 완산구 화산천변로 50 (중화산동2가) 현대에코르아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52488",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52493",
+      "name": "전주포스코점",
+      "address": "전북특별자치도 전주시 완산구 우전2길 66, 카리스빌딩 우전길 66 103(효자동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52493",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52509",
+      "name": "아산모종한국점",
+      "address": "충청남도 아산시 번영로230번길 20, (모종동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52509",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52567",
+      "name": "아산북수타운점",
+      "address": "충청남도 아산시 배방읍 배방로 219-10, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52567",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52636",
+      "name": "아산둔포점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로 130, (둔포리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52636",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52701",
+      "name": "인후어울림점",
+      "address": "전북특별자치도 전주시 덕진구 심방죽5길 1, (인후동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52701",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52703",
+      "name": "반월세움펠리피아점",
+      "address": "전북특별자치도 전주시 덕진구 혁신로 727 (반월동, 세움펠리피아2차) 세움펠리피아2차",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52703",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52742",
+      "name": "전주에코포레나점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 21 (송천동2가) 에코포레나",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52742",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52880",
+      "name": "전주효자수목토점",
+      "address": "전북특별자치도 전주시 완산구 범안1길 5 한라빌딩 (효자동2가) 한라빌딩",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52880",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "52924",
+      "name": "전북대금암점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 247 (금암동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=52924",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53002",
+      "name": "전주프리미엄점",
+      "address": "전북특별자치도 전주시 완산구 맏내로 38 (평화동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53002",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53066",
+      "name": "전주근영점",
+      "address": "전북특별자치도 전주시 완산구 영경1길 16, (중화산동2가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53066",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53097",
+      "name": "아산북수매일점",
+      "address": "충청남도 아산시 배방읍 배방로229번길 19-2, (북수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53097",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53109",
+      "name": "아산모종더스카이점",
+      "address": "충청남도 아산시 번영로 190 (모종동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53109",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53135",
+      "name": "전주효자중앙점",
+      "address": "전북특별자치도 전주시 완산구 용머리로 59",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53135",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53153",
+      "name": "아산음봉삼일점",
+      "address": "충청남도 아산시 음봉면 음봉로 847, (산동리, 삼일원앙)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53153",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53260",
+      "name": "도고스타점",
+      "address": "충청남도 아산시 온천대로 417 (도고면)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53260",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53301",
+      "name": "송천서호점",
+      "address": "전북특별자치도 전주시 덕진구 송천로 49, (송천동1가) 1층 제2동",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53301",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53351",
+      "name": "전주서해그랑블점",
+      "address": "전라북도 전주시 완산구 물왕멀로 49, (중노송동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53351",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53442",
+      "name": "전주혁신중흥점",
+      "address": "전북특별자치도 전주시 덕진구 틀못3길 12",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53442",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53451",
+      "name": "남원금동점",
+      "address": "전북특별자치도 남원시 서문로 67 (금동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53451",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53482",
+      "name": "아산영인스타점",
+      "address": "충청남도 아산시 영인면 영인로 63 (아산리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53482",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53603",
+      "name": "삼천도서관점",
+      "address": "전북특별자치도 전주시 완산구 용리로 122",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53603",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53649",
+      "name": "뉴아산배방신도시점",
+      "address": "충청남도 아산시 동방로 114",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53649",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53923",
+      "name": "E춘향휴게소순천점",
+      "address": "전북특별자치도 남원시 수지면 순천완주고속도로 49 (남창리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53923",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53924",
+      "name": "E춘향휴게소완주점",
+      "address": "전북특별자치도 남원시 수지면 순천완주고속도로 50 (산정리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53924",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53945",
+      "name": "아산음봉포스코점",
+      "address": "충청남도 아산시 월암로 27 (음봉면)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53945",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53951",
+      "name": "아산음봉로드점",
+      "address": "충청남도 아산시 음봉면 산동로 273, (산동리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53951",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53953",
+      "name": "아산자이센텀점",
+      "address": "충청남도 아산시 동방로 180-4",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53953",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53966",
+      "name": "아산송악외암점",
+      "address": "충청남도 아산시 외암로 364",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53966",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53982",
+      "name": "아산온천타운점",
+      "address": "충청남도 아산시 중앙로 27, (온천동, 가람빌) 1동 1층 101호, 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53982",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "53983",
+      "name": "전주삼천신일점",
+      "address": "전북특별자치도 전주시 완산구 강변로 98-1 (삼천동1가, 신일강변)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=53983",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54032",
+      "name": "아산인주케이점",
+      "address": "충청남도 아산시 아산만로 1624",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54032",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54071",
+      "name": "아산모산점",
+      "address": "충청남도 아산시 배방읍 모산로 151-1 (공수리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54071",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54074",
+      "name": "아산탕정나플점",
+      "address": "충청남도 아산시 한들물빛6로 26",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54074",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54117",
+      "name": "서곡프라임점",
+      "address": "전북특별자치도 전주시 완산구 서곡6길 26, (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54117",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54178",
+      "name": "전북대타운점",
+      "address": "전북특별자치도 전주시 덕진구 명륜3길 17 (덕진동1가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54178",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54209",
+      "name": "전주에코백석점",
+      "address": "전북특별자치도 전주시 덕진구 백석남로 131 제1층 제112호,113호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54209",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54583",
+      "name": "전주럭키점",
+      "address": "전북특별자치도 전주시 덕진구 태진로 139",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54583",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54607",
+      "name": "전북경찰청점",
+      "address": "전북특별자치도 전주시 완산구 마전중앙로 21, (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54607",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54609",
+      "name": "위브어울림점",
+      "address": "전북특별자치도 전주시 덕진구 견훤로 335, (인후동1가) 위브어울림아파트 1층 101,102,103호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54609",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54612",
+      "name": "전주효자시티점",
+      "address": "전북특별자치도 전주시 완산구 척동길 16",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54612",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54633",
+      "name": "전주한옥태조로점",
+      "address": "전북특별자치도 전주시 완산구 간납로 1, (풍남동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54633",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54664",
+      "name": "뉴에코데시앙네스트점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 134",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54664",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54729",
+      "name": "아산스위첸점",
+      "address": "충청남도 아산시 삼동로70번길 36",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54729",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54732",
+      "name": "전주효자베스트점",
+      "address": "전북특별자치도 전주시 완산구 범안3길 15",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54732",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54771",
+      "name": "대자인병원점",
+      "address": "전북특별자치도 전주시 덕진구 견훤로 384 진로빌딩 (우아동3가) 진로빌딩",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54771",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54779",
+      "name": "아산용화다온점",
+      "address": "충청남도 아산시 용화고길 28",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54779",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54913",
+      "name": "전주인후중앙점",
+      "address": "전북특별자치도 전주시 덕진구 인후3길 29",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54913",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "54962",
+      "name": "남원여고정문점",
+      "address": "전북특별자치도 남원시 광천북길 207, 이명아피아노음악학원 (왕정동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=54962",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55009",
+      "name": "전주효자플러스점",
+      "address": "전북특별자치도 전주시 완산구 호암로 88, 1층 102호, 103호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55009",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55025",
+      "name": "아산순천향학사점",
+      "address": "충청남도 아산시 신창면 순천향로 12-1 (읍내리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55025",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55110",
+      "name": "전주인후플러스점",
+      "address": "전북특별자치도 전주시 덕진구 한배미4길 16 1층",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55110",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55142",
+      "name": "아산모종어울림점",
+      "address": "충청남도 아산시 번영로224번길 49 (모종동)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55142",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55208",
+      "name": "아산이편한시티점",
+      "address": "충청남도 아산시 광장로 155",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55208",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55326",
+      "name": "전주홍산점",
+      "address": "전북특별자치도 전주시 완산구 배학4길 39 (효자동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55326",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55379",
+      "name": "삼천아너센트럴점",
+      "address": "전북특별자치도 전주시 완산구 백제대로 87",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55379",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55392",
+      "name": "전북대점",
+      "address": "전북특별자치도 전주시 덕진구 명륜4길 17 1층,2층 (101호, 102호, 204호)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55392",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55444",
+      "name": "뉴전주호반베르디움점",
+      "address": "전북특별자치도 전주시 덕진구 오공로 73",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55444",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55455",
+      "name": "아산선문대원룸점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 38-9, (매곡리)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55455",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55608",
+      "name": "아산미진무지개점",
+      "address": "충청남도 아산시 인주면 현대로 862, (해암리, 미진무지개아파트)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55608",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55613",
+      "name": "전주효천1호점",
+      "address": "전북특별자치도 전주시 완산구 효천중앙로 52 (효자동2가) 리버클래스 상가1동 101호, 102호",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55613",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55764",
+      "name": "신창상아주공점",
+      "address": "충청남도 아산시 신창면 온천대로 985 (남성리, 아산상아주공아파트) 아산상아주공아파트",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55764",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55781",
+      "name": "뉴남원의료원점",
+      "address": "전북특별자치도 남원시 충정로 365",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55781",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55802",
+      "name": "아산배방황금점",
+      "address": "충청남도 아산시 배방로 53",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55802",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55854",
+      "name": "전주호성주공정문점",
+      "address": "전북특별자치도 전주시 덕진구 소리로 181",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55854",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "55857",
+      "name": "진흥더블점",
+      "address": "전북특별자치도 전주시 덕진구 호성로 138",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=55857",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "56051",
+      "name": "전주송천중앙점",
+      "address": "전북특별자치도 전주시 덕진구 붓내3길 18",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=56051",
+      "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
+      "product_status": "NOT_QUERIED"
+    },
+    {
+      "cu_store_code": "56069",
+      "name": "전주팔달로점",
+      "address": "전북특별자치도 전주시 완산구 팔달로 192 (경원동3가)",
+      "source_url": "https://cu.bgfretail.com/store/view.do?jumpo=56069",
       "verification": "OFFICIAL_LIST_AND_DETAIL_MATCH",
       "product_status": "NOT_QUERIED"
     }
-  ]
+  ],
+  "official_observed_count": 385,
+  "verified_count": 377,
+  "held_count": 8
 }
