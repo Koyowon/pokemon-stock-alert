@@ -1,0 +1,75 @@
+{
+  "executed_at": "2026-10-17T11:11:33.784Z",
+  "request_count": 3,
+  "transport": "Python urllib read-only GET, no redirects/retries",
+  "http_results": [
+    {
+      "step": "product_contract",
+      "status": 200
+    },
+    {
+      "step": "store_contract",
+      "status": 200
+    },
+    {
+      "step": "inventory_contract",
+      "status": 200
+    }
+  ],
+  "provider": "third-party mcp.aka.page",
+  "product_observed": {
+    "itemCode": "8800286275732",
+    "itemName": "비젼)포켓몬확장팩(30주년)_H"
+  },
+  "inventory_query": {
+    "storeKeyword": "남원",
+    "storeLimit": 5,
+    "totalStoreCount": 22,
+    "returnedStoreCount": 5
+  },
+  "observed_rows": [
+    {
+      "storeCode": "64303",
+      "storeName": "서귀포기린리조트점",
+      "address": "제주특별자치도 서귀포시 남원읍 서성로 391 1층",
+      "stockQuantity": -1,
+      "classification": "OUTSIDE_NAMWON_CITY"
+    },
+    {
+      "storeCode": "57677",
+      "storeName": "서귀포남원신례점",
+      "address": "제주특별자치도 서귀포시 남원읍 신례동로 2",
+      "stockQuantity": -1,
+      "classification": "OUTSIDE_NAMWON_CITY"
+    },
+    {
+      "storeCode": "55023",
+      "storeName": "서귀포동백마을점",
+      "address": "제주특별자치도 서귀포시 남원읍 한신로 543",
+      "stockQuantity": -1,
+      "classification": "OUTSIDE_NAMWON_CITY"
+    },
+    {
+      "storeCode": "68505",
+      "storeName": "남원금동점",
+      "address": "전라북도 남원시 가방뜰길 57",
+      "stockQuantity": -1,
+      "classification": "UNKNOWN"
+    },
+    {
+      "storeCode": "59128",
+      "storeName": "남원남문로점",
+      "address": "전라북도 남원시 남문로 359, 1층",
+      "stockQuantity": 0,
+      "classification": "API_REPORTED_ZERO"
+    }
+  ],
+  "limitations": [
+    "Third-party API responses, not store-confirmed quantities.",
+    "5 of 22 keyword results only; not a regional full scan.",
+    "Store search full body was lost in tool output truncation; do not claim a full identity join.",
+    "Execution stdout was partially truncated; summary transcribes only visible field/value blocks, not a complete raw response archive.",
+    "Asan/Jeonju not queried; no further inventory calls beyond three.",
+    "Operational activation, alerts, state writes and Actions runs remain disabled."
+  ]
+}
