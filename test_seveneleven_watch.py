@@ -141,4 +141,70 @@ class WatchTests(unittest.TestCase):
         again=self.run_watch(fetch,result,now=12300)
         self.assertEqual(again['calls'][0]['region'],'asan')
 
+
+    def test_valid_unavailable_response_does_not_open_provider_circuit(self):
+        def fetch(keyword):
+            result=copy.deepcopy(self.payloads['namwon'])
+            result['data']['stockAvailable']=False
+            for row in result['data']['inventory']['stores']:row['stockQuantity']=-1
+            return result
+        # Use just Namwon identity for its queries; other regions are deliberate mismatches.
+        def routed(keyword):
+            if keyword in self.cities:
+                region=self.cities[keyword]
+                result=copy.deepcopy(self.payloads[region])
+                result['data']['stockAvailable']=False
+                for row in result['data']['inventory']['stores']:row['stockQuantity']=-1
+                return result
+            row=next(r for d in self.directories.values() for r in d['data']['stores'] if r['storeName']==keyword)
+            result=copy.deepcopy(self.payloads['namwon'])
+            result['data']['stockAvailable']=False
+            item=copy.deepcopy(row);item['stockQuantity']=-1
+            result['data']['inventory']['stores']=[item]
+            result['data']['inventory']['totalStoreCount']=1
+            return result
+        result=self.run_watch(routed)
+        self.assertEqual(len(result['calls']),6)
+        self.assertFalse(result['halted'])
+        self.assertTrue(all(c['result']=='VALIDATED' for c in result['calls']))
+        self.assertTrue(all(r['quantity'] is None for r in result['stores'].values()))
+
+    def test_unavailable_with_numeric_quantity_is_rejected(self):
+        def fetch(keyword):
+            result=copy.deepcopy(self.payloads['namwon']);result['data']['stockAvailable']=False
+            return result
+        result=self.run_watch(fetch)
+        self.assertEqual(result['calls'][0]['validation_reason'],'INCONSISTENT_STOCK_FLAG')
+        self.assertTrue(result['halted'])
+        self.assertTrue(all(r['quantity'] is None for r in result['stores'].values()))
+
+    def test_unavailable_cannot_bypass_product_validation(self):
+        def fetch(keyword):
+            result=copy.deepcopy(self.payloads['namwon'])
+            result['data']['stockAvailable']=False;result['data']['product']['itemCode']='wrong'
+            return result
+        result=self.run_watch(fetch)
+        self.assertEqual(result['calls'][0]['validation_reason'],'PRODUCT_CODE_MISMATCH')
+        self.assertTrue(result['halted'])
+
+    def test_slow_request_timeout_is_45_seconds_without_live_network(self):
+        import seveneleven_watch as module
+        raw=json.dumps(self.payloads['namwon']).encode()
+        with patch('seveneleven_watch.urllib.request.build_opener') as build:
+            response=build.return_value.open.return_value.__enter__.return_value
+            response.read.return_value=raw
+            result=module.fetch_inventory('남원시')
+        self.assertTrue(result['success'])
+        self.assertEqual(build.return_value.open.call_args.kwargs['timeout'],45)
+        response.read.assert_called_once_with(1000001)
+
+    def test_timeout_reason_and_elapsed_logging_are_explicit(self):
+        import seveneleven_watch as module
+        with patch('seveneleven_watch.urllib.request.build_opener') as build:
+            build.return_value.open.side_effect=TimeoutError()
+            with self.assertRaisesRegex(RelayFailure,'READ_TIMEOUT'):module.fetch_inventory('남원시')
+        result=self.run_watch(Mock(side_effect=RelayFailure('READ_TIMEOUT')))
+        self.assertEqual(result['calls'][0]['result'],'READ_TIMEOUT')
+        self.assertIn('elapsed_seconds',result['calls'][0])
+
 if __name__=='__main__':unittest.main()

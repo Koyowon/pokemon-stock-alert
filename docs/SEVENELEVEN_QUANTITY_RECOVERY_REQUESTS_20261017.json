@@ -1,0 +1,58 @@
+{
+  "requests": [
+    {
+      "label": "jeonju",
+      "params": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "전주시",
+        "storeLimit": 200
+      },
+      "checked_at": "2026-10-17T12:08:21.239445+00:00",
+      "http_status": 502,
+      "seconds": 36.38
+    },
+    {
+      "label": "namwon",
+      "params": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "남원시",
+        "storeLimit": 200
+      },
+      "checked_at": "2026-10-17T12:08:59.620611+00:00",
+      "http_status": 502,
+      "seconds": 6.66
+    },
+    {
+      "label": "palbok",
+      "params": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "전주팔복프라임점",
+        "storeLimit": 5
+      },
+      "checked_at": "2026-10-17T12:09:08.279968+00:00",
+      "http_status": 502,
+      "seconds": 7.22
+    }
+  ],
+  "representative_error": {
+    "success": false,
+    "error": {
+      "code": "CONVENIENCE_RELAY_FAILED",
+      "message": "편의점 릴레이 요청에 실패했습니다."
+    },
+    "diagnostics": {
+      "code": "CONVENIENCE_RELAY_FAILED",
+      "message": "편의점 릴레이 요청에 실패했습니다.",
+      "status": 502,
+      "retryable": true,
+      "operation": "seveneleven_request",
+      "upstreamStatus": 502,
+      "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+    }
+  },
+  "sha256": {
+    "palbok_error.json": "79ccd67bd867d7885f2b3a34f46e1e7c077ecdc2abe8a4b2427e0b23a8c225b7",
+    "namwon_error.json": "79ccd67bd867d7885f2b3a34f46e1e7c077ecdc2abe8a4b2427e0b23a8c225b7",
+    "jeonju_error.json": "79ccd67bd867d7885f2b3a34f46e1e7c077ecdc2abe8a4b2427e0b23a8c225b7"
+  }
+}

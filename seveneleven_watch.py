@@ -19,6 +19,7 @@ CITIES = {'namwon': '남원시', 'asan': '아산시', 'jeonju': '전주시'}
 MAX_CALLS = 6
 MAX_SECONDS = 180
 STALE_SECONDS = 900
+REQUEST_TIMEOUT = 45
 
 
 class RelayFailure(Exception):
@@ -34,12 +35,15 @@ def fetch_inventory(keyword):
     request = urllib.request.Request(url, headers={
         'Accept': 'application/json', 'User-Agent': 'PokemonStockCoverageWatch/1.0'})
     try:
-        with urllib.request.build_opener(NoRedirect).open(request, timeout=20) as response:
+        with urllib.request.build_opener(NoRedirect).open(request, timeout=REQUEST_TIMEOUT) as response:
             raw = response.read(1_000_001)
     except urllib.error.HTTPError as exc:
         raise RelayFailure('HTTP_' + str(exc.code), exc.code in (400, 401, 403, 404, 429)) from None
-    except (OSError, TimeoutError):
-        raise RelayFailure('TRANSPORT_ERROR') from None
+    except (TimeoutError, urllib.error.URLError) as exc:
+        is_timeout = isinstance(exc, TimeoutError) or isinstance(getattr(exc, 'reason', None), TimeoutError)
+        raise RelayFailure('READ_TIMEOUT' if is_timeout else 'NETWORK_ERROR') from None
+    except OSError:
+        raise RelayFailure('NETWORK_ERROR') from None
     if len(raw) > 1_000_000:
         raise RelayFailure('OVERSIZED_RESPONSE', True)
     try:
@@ -84,15 +88,16 @@ def run_watch(directories, previous, fetch, now, monotonic=time.monotonic, pause
 
     def query(region, keyword, target=None):
         nonlocal failures, halted
-        if halted or len(calls) >= MAX_CALLS or monotonic() - start >= MAX_SECONDS - 25:
+        if halted or len(calls) >= MAX_CALLS or monotonic() - start >= MAX_SECONDS - REQUEST_TIMEOUT - 5:
             return False
         if calls:
             pause(2)
         codes = [target] if target else [c for c, (r, _) in registered.items() if r == region]
-        reason = None
+        reason = None; detail = None
+        request_started = monotonic()
         try:
             payload = fetch(keyword)
-            classified = classify_snapshot(directories[region], payload, region)
+            classified = classify_snapshot(directories[region], payload, region, allow_unavailable=True)
             observed = {r['storeCode'] for r in payload['data']['inventory']['stores']}
             for code in codes:
                 result = classified[code]
@@ -101,13 +106,16 @@ def run_watch(directories, previous, fetch, now, monotonic=time.monotonic, pause
             failures = 0
         except RelayFailure as exc:
             reason = str(exc); failures += 1; halted = exc.terminal
-        except (UnverifiedSnapshot, KeyError, TypeError, ValueError):
-            reason = 'UNVERIFIED_RESPONSE'; failures += 1
+        except UnverifiedSnapshot as exc:
+            reason = 'UNVERIFIED_RESPONSE'; detail = str(exc); failures += 1
+        except (KeyError, TypeError, ValueError):
+            reason = 'UNVERIFIED_RESPONSE'; detail = 'INVALID_SCHEMA'; failures += 1
         if reason:
             for code in codes:
                 mark(code, None, reason)
         calls.append({'region': region, 'keyword': keyword, 'target': target,
-                      'result': reason or 'VALIDATED', 'at': now})
+                      'result': reason or 'VALIDATED', 'validation_reason': detail,
+                      'elapsed_seconds': round(monotonic() - request_started, 2), 'at': now})
         if target:
             record = state['stores'][target]
             record['last_direct_at'] = now
@@ -171,3 +179,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

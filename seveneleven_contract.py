@@ -65,7 +65,7 @@ def code_of(row):
     return code
 
 
-def classify_snapshot(directory, inventory, region):
+def classify_snapshot(directory, inventory, region, *, allow_unavailable=False):
     if region not in PREFIXES:
         raise UnverifiedSnapshot('UNSUPPORTED_REGION')
     data = envelope(directory)
@@ -90,7 +90,9 @@ def classify_snapshot(directory, inventory, region):
         raise UnverifiedSnapshot('PRODUCT_CODE_MISMATCH')
     if text(product.get('itemName')) != PRODUCT:
         raise UnverifiedSnapshot('PRODUCT_NAME_MISMATCH')
-    if data.get('stockAvailable') is not True or data.get('stockError'):
+    stock_available = data.get('stockAvailable') is True
+    if data.get('stockError') or not (stock_available or
+            (allow_unavailable and data.get('stockAvailable') is False)):
         raise UnverifiedSnapshot('STOCK_UNAVAILABLE')
     block = data.get('inventory')
     if not isinstance(block, dict):
@@ -102,6 +104,8 @@ def classify_snapshot(directory, inventory, region):
         if not isinstance(row, dict):
             raise UnverifiedSnapshot('INVALID_INVENTORY_ROW')
         code = code_of(row)
+        if not stock_available and type(row.get('stockQuantity')) is int and row['stockQuantity'] >= 0:
+            raise UnverifiedSnapshot('INCONSISTENT_STOCK_FLAG')
         if not in_region(row['address'], region):
             continue
         if code in observed:
@@ -121,3 +125,4 @@ def classify_snapshot(directory, inventory, region):
             'status': 'OK' if valid else 'UNKNOWN',
         }
     return result
+
