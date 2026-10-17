@@ -314,8 +314,6 @@ def main():
 
         for lat, lng in points:
             try:
-                # A second bounded page expands coverage without assuming that
-                # CU supports querying inventory directly by store code.
                 stores = query(city, lat, lng)
                 successful_queries += 1
                 if city == "아산":
