@@ -22,11 +22,12 @@ class MonitorIntegration(unittest.TestCase):
         self.patches = [
             patch.object(monitor, "POINTS", {"남원": [(35.416, 127.390)]}),
             patch.object(monitor, "load_state", side_effect=lambda: copy.deepcopy(self.initial)),
-            patch.object(monitor, "save_state", side_effect=lambda state: self.saved.append(copy.deepcopy(state))),
             patch.object(monitor, "load_verified_directory", side_effect=lambda: copy.deepcopy(self.directory)),
             patch.object(monitor, "load_enabled_regions", return_value={"namwon"}),
             patch("unified_settings.enabled", return_value={"namwon"}),
             patch.object(monitor, "telegram", side_effect=lambda message: self.sent.append(message) or True),
+            patch("urllib.request.urlopen", side_effect=AssertionError("Network access forbidden in offline tests")),
+            patch.object(monitor, "save_state", side_effect=lambda state: self.saved.append(copy.deepcopy(state))),
         ]
         for p in self.patches:
             p.start()
