@@ -184,14 +184,16 @@ def main():
     found = {}
     successful = 0
     failures = 0
+    consecutive_failures = 0
 
-    for keyword in KEYWORDS:
+    for keyword in dict.fromkeys(KEYWORDS):
         try:
             offset = 0
             seen_pages = set()
             while offset < 300:
                 products, total = get_page(keyword, offset)
                 successful += 1
+                consecutive_failures = 0
                 print("QUERY:", keyword, "OFFSET:", offset,
                       "PRODUCTS:", len(products), "TOTAL:", total,
                       flush=True)
@@ -220,8 +222,13 @@ def main():
                 time.sleep(2)
         except Exception as exc:
             failures += 1
+            consecutive_failures += 1
             print("QUERY_ERROR:", keyword,
                   type(exc).__name__, str(exc)[:200], flush=True)
+            terminal = isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404, 429)
+            if terminal or consecutive_failures >= 3:
+                print("QUERY_CIRCUIT_OPEN: remaining keywords held", flush=True)
+                break
         time.sleep(2)
 
     if successful == 0:

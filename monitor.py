@@ -8,6 +8,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from region_config import load_enabled_regions
+from request_pacing import RequestPacer
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent
@@ -15,6 +16,12 @@ BASE = "https://mcp.aka.page/api/emart24"
 STATE_FILE = ROOT / "state.json"
 STORES_FILE = ROOT / "stores.json"
 JEONJU_FILE = ROOT / "emart24_jeonju_seed.json"
+INVENTORY_PACER = RequestPacer(1.5)
+
+
+class InventoryRequestBlocked(RuntimeError):
+    """A terminal HTTP response must not trigger more inventory probes."""
+    pass
 
 REGIONS = {"남원": "남원시", "아산": "아산시", "전주": "전주시"}
 REGION_IDS = {"남원": "namwon", "아산": "asan", "전주": "jeonju"}
@@ -47,6 +54,8 @@ def api(path, params, attempts=2):
                 "User-Agent": "PokemonStockMonitor/1.1",
                 "Accept": "application/json",
             })
+            if path == "inventory":
+                INVENTORY_PACER.wait()
             with urllib.request.urlopen(req, timeout=15) as response:
                 payload = json.load(response)
             if not isinstance(payload, dict) or payload.get("success") is not True:
@@ -58,6 +67,8 @@ def api(path, params, attempts=2):
         except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
             last = exc
             if isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404, 429):
+                if path == "inventory":
+                    raise InventoryRequestBlocked(f"HTTP {exc.code}; inventory scan held") from exc
                 break
             if attempt + 1 < attempts:
                 time.sleep(3 * (attempt + 1))
@@ -109,6 +120,16 @@ def get_stores(active_regions):
     except (ValueError, TypeError):
         refresh = True
 
+    # Failed discovery must not add the same timeout cost to every stock run.
+    if refresh:
+        try:
+            attempted = datetime.fromisoformat(cache.get("last_refresh_attempt", ""))
+            if attempted.tzinfo is not None and timedelta(0) <= now - attempted < timedelta(minutes=15):
+                refresh = False
+                print("DIRECTORY_REFRESH_COOLDOWN: using saved stores")
+        except (ValueError, TypeError):
+            pass
+
     if refresh:
         successful = 0
         # Existing Namwon/Asan discovery is unchanged.
@@ -144,6 +165,7 @@ def get_stores(active_regions):
         if active_regions:
             save_json(STORES_FILE, {
                 "last_refresh": now.isoformat() if successful == len(discoverable) else cache.get("last_refresh"),
+                "last_refresh_attempt": now.isoformat(),
                 "stores": stores,
             })
 
@@ -186,8 +208,12 @@ def notify(message, map_url=None):
 
 def stock(plu, codes):
     """Return quantities and per-store diagnostics."""
+    codes = list(dict.fromkeys(codes))
     values = {}
     statuses = {code: "NOT_CHECKED" for code in codes}
+    pending_fallbacks = []
+    successful_batches = 0
+    stopped = False
     consecutive_failures = 0
     fallback_calls = 0
     max_fallback_calls = 6
@@ -214,33 +240,46 @@ def stock(plu, codes):
             if code not in returned and statuses[code] != "OK":
                 statuses[code] = "MISSING_IN_RESPONSE"
 
+    # Keep the established three-store request shape and serial execution.
+    # On a total outage, test three batches before spending single-store probes.
     for start in range(0, len(codes), 3):
         batch = codes[start:start + 3]
         try:
             data = api("inventory", {"pluCd": plu, "bizNoArr": ",".join(batch)}, attempts=2)
             collect(data, batch)
+            successful_batches += 1
             consecutive_failures = 0
+        except InventoryRequestBlocked as exc:
+            for code in batch:
+                statuses[code] = "HTTP_BLOCKED"
+            print(f"WARNING: {exc}; no retries or single-store probes")
+            stopped = True
+            break
         except (RuntimeError, ValueError) as exc:
             consecutive_failures += 1
             for code in batch:
                 statuses[code] = "BATCH_ERROR"
+            pending_fallbacks.extend(batch)
             print(f"WARNING: inventory batch failed ({len(batch)} stores): {exc}")
-            if fallback_calls < max_fallback_calls:
-                for code in batch:
-                    if fallback_calls >= max_fallback_calls:
-                        break
-                    fallback_calls += 1
-                    time.sleep(2)
-                    try:
-                        data = api("inventory", {"pluCd": plu, "bizNoArr": code}, attempts=1)
-                        collect(data, [code])
-                    except (RuntimeError, ValueError) as single_exc:
-                        statuses[code] = "SINGLE_ERROR"
-                        print(f"WARNING: single-store lookup failed ({code}): {single_exc}")
             if consecutive_failures >= 3:
                 print("WARNING: 3 consecutive failed batches; stopping this product to protect API")
+                stopped = True
                 break
-        time.sleep(1.5)
+
+    if successful_batches and not stopped:
+        for code in pending_fallbacks[:max_fallback_calls]:
+            fallback_calls += 1
+            time.sleep(2)
+            try:
+                data = api("inventory", {"pluCd": plu, "bizNoArr": code}, attempts=1)
+                collect(data, [code])
+            except InventoryRequestBlocked as exc:
+                statuses[code] = "HTTP_BLOCKED"
+                print(f"WARNING: {exc}; remaining single-store probes held")
+                break
+            except (RuntimeError, ValueError) as exc:
+                statuses[code] = "SINGLE_ERROR"
+                print(f"WARNING: single-store lookup failed ({code}): {exc}")
     print(f"Inventory diagnostics: {fallback_calls} bounded single-store probes")
     return values, statuses
 

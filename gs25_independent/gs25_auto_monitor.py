@@ -25,6 +25,10 @@ KEYWORDS = {
 }
 
 
+class ProviderBlocked(RuntimeError):
+    pass
+
+
 def api_query(code, term):
     url = API + '?' + urllib.parse.urlencode({'action': 'gs25CheckInventory', 'format': 'json', 'itemCode': code, 'storeKeyword': term, 'storeLimit': 100})
     req = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'gs25-stock-monitor/1.0'})
@@ -43,6 +47,8 @@ def api_query(code, term):
                 raise ValueError('MISSING_STORES')
             return rows
         except (OSError, ValueError, UnicodeError, TimeoutError) as exc:
+            if isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404, 429):
+                raise ProviderBlocked(f"HTTP {exc.code}") from exc
             if attempt:
                 raise RuntimeError(type(exc).__name__) from exc
             time.sleep(1)
@@ -104,18 +110,28 @@ def main():
     new_state = {'version': 2, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     failures = 0
     alerts = 0
+    consecutive_failures = 0
+    provider_blocked = False
     for region in enabled:
+        if provider_blocked:
+            print("QUERY_CIRCUIT_OPEN: remaining regions unchanged", flush=True)
+            break
         rid = region['id']
         seen = {}
         conflicts = set()
         failed = False
-        for term in KEYWORDS[rid]:
+        for term in dict.fromkeys(KEYWORDS[rid]):
             try:
                 rows = api_query(code, term)
+                consecutive_failures = 0
             except RuntimeError as exc:
                 print(f'QUERY_ERROR region={rid} term={term} error={exc}', flush=True)
                 failed = True
                 failures += 1
+                consecutive_failures += 1
+                if isinstance(exc, ProviderBlocked) or consecutive_failures >= 3:
+                    provider_blocked = True
+                    break
                 continue
             if len(rows) >= 100:
                 print(f'QUERY_LIMIT region={rid} term={term}; no safe region update', flush=True)

@@ -2,6 +2,8 @@
 import json
 import os
 import re
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
@@ -278,6 +280,9 @@ def store_identity_status(old, item):
 def main():
     print("CU STOCK MONITOR START", flush=True)
 
+    scan_started = time.monotonic()
+    consecutive_failures = 0
+    provider_blocked = False
     state = load_state()
     observed = {}
     conflicts = set()
@@ -289,14 +294,17 @@ def main():
     enabled_regions = unified_enabled("cu", load_enabled_regions())
 
     for city, points in POINTS.items():
+        if provider_blocked:
+            break
         region_id = REGION_IDS[city]
         if region_id not in enabled_regions:
             print("REGION_DISABLED:", city, flush=True)
             continue
 
-        for lat, lng in points:
+        for lat, lng in dict.fromkeys(points):
             try:
                 stores = query(city, lat, lng)
+                consecutive_failures = 0
                 successful_queries += 1
                 if city == "아산":
                     asan_successful_queries += 1
@@ -323,11 +331,18 @@ def main():
 
             except Exception as exc:
                 failed_queries += 1
+                consecutive_failures += 1
+                terminal = isinstance(exc, urllib.error.HTTPError) and exc.code in (400, 401, 403, 404, 429)
                 print(
                     "QUERY_ERROR:", city, lat, lng,
                     type(exc).__name__, str(exc)[:200], flush=True,
                 )
+                if terminal or consecutive_failures >= 3:
+                    provider_blocked = True
+                    print("QUERY_CIRCUIT_OPEN: remaining points unknown", flush=True)
+                    break
 
+    print("QUERY_SCAN_SECONDS:", round(time.monotonic() - scan_started, 3), flush=True)
     print("SUCCESSFUL_QUERIES:", successful_queries, flush=True)
     print("FAILED_QUERIES:", failed_queries, flush=True)
     print("UNIQUE_STORES:", len(observed), flush=True)

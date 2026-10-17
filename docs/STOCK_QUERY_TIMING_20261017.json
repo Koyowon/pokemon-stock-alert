@@ -1,0 +1,950 @@
+{
+  "base_commit": "a27edb033d738d81f9c54645f6a52d0fcc84bf3c",
+  "sample_collected_at": "2026-10-17T10:53:56.632Z",
+  "schedule_stats": [
+    {
+      "name": "CU Pokemon 30th Stock Monitor",
+      "n": 9,
+      "totalSecondsRange": [
+        27,
+        34
+      ],
+      "startGapMinutes": {
+        "min": 17.95,
+        "median": 24.15,
+        "max": 26.583333333333332
+      }
+    },
+    {
+      "name": "CU Pokemon 30th Registration Monitor",
+      "n": 7,
+      "totalSecondsRange": [
+        26,
+        33
+      ],
+      "startGapMinutes": {
+        "min": 22.95,
+        "median": 35.56666666666667,
+        "max": 38.516666666666666
+      }
+    },
+    {
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "n": 10,
+      "totalSecondsRange": [
+        21,
+        28
+      ],
+      "startGapMinutes": {
+        "min": 17.366666666666667,
+        "median": 23.916666666666668,
+        "max": 26.7
+      }
+    },
+    {
+      "name": "Pokemon Stock Monitor",
+      "n": 7,
+      "totalSecondsRange": [
+        94,
+        143
+      ],
+      "startGapMinutes": {
+        "min": 21.483333333333334,
+        "median": 30.316666666666666,
+        "max": 33.81666666666667
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": 39026097300,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:45:15Z",
+      "run_started_at": "2026-10-17T10:45:15Z",
+      "updated_at": "2026-10-17T10:45:49Z",
+      "head_sha": "a27edb033d738d81f9c54645f6a52d0fcc84bf3c",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39026097300"
+    },
+    {
+      "id": 39025966599,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:43:09Z",
+      "run_started_at": "2026-10-17T10:43:09Z",
+      "updated_at": "2026-10-17T10:43:42Z",
+      "head_sha": "0cbd1b07e2ebbd91b8c9dd9f5109167845f5aa5e",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39025966599"
+    },
+    {
+      "id": 39025858405,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:41:26Z",
+      "run_started_at": "2026-10-17T10:41:26Z",
+      "updated_at": "2026-10-17T10:41:49Z",
+      "head_sha": "c427289092f385f81b31e431558089b341b07bee",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39025858405"
+    },
+    {
+      "id": 39025601390,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:37:23Z",
+      "run_started_at": "2026-10-17T10:37:23Z",
+      "updated_at": "2026-10-17T10:39:46Z",
+      "head_sha": "c427289092f385f81b31e431558089b341b07bee",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39025601390"
+    },
+    {
+      "id": 39025093886,
+      "name": "Pokemon Stock Monitor",
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:29:35Z",
+      "run_started_at": "2026-10-17T10:29:35Z",
+      "updated_at": "2026-10-17T10:32:00Z",
+      "head_sha": "0c105c5f80a7629d562e11ce87a0b396d0a08cd6",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39025093886"
+    },
+    {
+      "id": 39024408937,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:18:40Z",
+      "run_started_at": "2026-10-17T10:18:40Z",
+      "updated_at": "2026-10-17T10:19:13Z",
+      "head_sha": "0c105c5f80a7629d562e11ce87a0b396d0a08cd6",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39024408937"
+    },
+    {
+      "id": 39024230631,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:15:49Z",
+      "run_started_at": "2026-10-17T10:15:49Z",
+      "updated_at": "2026-10-17T10:16:14Z",
+      "head_sha": "2d1cba943a8ef0fb87c375452630e51446ff59e2",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39024230631"
+    },
+    {
+      "id": 39023702579,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:07:29Z",
+      "run_started_at": "2026-10-17T10:07:29Z",
+      "updated_at": "2026-10-17T10:07:56Z",
+      "head_sha": "b44f5f2f96a9b59ab36601750042dd03b5ef42dd",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39023702579"
+    },
+    {
+      "id": 39023675045,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T10:07:04Z",
+      "run_started_at": "2026-10-17T10:07:04Z",
+      "updated_at": "2026-10-17T10:08:42Z",
+      "head_sha": "b44f5f2f96a9b59ab36601750042dd03b5ef42dd",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39023675045"
+    },
+    {
+      "id": 39023157330,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:59:01Z",
+      "run_started_at": "2026-10-17T09:59:01Z",
+      "updated_at": "2026-10-17T09:59:28Z",
+      "head_sha": "b44f5f2f96a9b59ab36601750042dd03b5ef42dd",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39023157330"
+    },
+    {
+      "id": 39023097350,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:58:00Z",
+      "run_started_at": "2026-10-17T09:58:00Z",
+      "updated_at": "2026-10-17T09:58:21Z",
+      "head_sha": "10b19012b4c6c212943005b767c37240b0154008",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39023097350"
+    },
+    {
+      "id": 39022272586,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:44:28Z",
+      "run_started_at": "2026-10-17T09:44:28Z",
+      "updated_at": "2026-10-17T09:44:54Z",
+      "head_sha": "10b19012b4c6c212943005b767c37240b0154008",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39022272586"
+    },
+    {
+      "id": 39022067269,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:41:10Z",
+      "run_started_at": "2026-10-17T09:41:10Z",
+      "updated_at": "2026-10-17T09:42:44Z",
+      "head_sha": "10b19012b4c6c212943005b767c37240b0154008",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39022067269"
+    },
+    {
+      "id": 39021714506,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:35:30Z",
+      "run_started_at": "2026-10-17T09:35:30Z",
+      "updated_at": "2026-10-17T09:36:02Z",
+      "head_sha": "10b19012b4c6c212943005b767c37240b0154008",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39021714506"
+    },
+    {
+      "id": 39021689375,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:35:07Z",
+      "run_started_at": "2026-10-17T09:35:07Z",
+      "updated_at": "2026-10-17T09:35:28Z",
+      "head_sha": "0e99fc42638393aea98f7b07e16760b51a314706",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39021689375"
+    },
+    {
+      "id": 39020144277,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:10:55Z",
+      "run_started_at": "2026-10-17T09:10:55Z",
+      "updated_at": "2026-10-17T09:11:19Z",
+      "head_sha": "1f1a9e5e8924dfdc71cb6a66b1e4b0d3be333e17",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39020144277"
+    },
+    {
+      "id": 39020132378,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:10:44Z",
+      "run_started_at": "2026-10-17T09:10:44Z",
+      "updated_at": "2026-10-17T09:11:12Z",
+      "head_sha": "1f1a9e5e8924dfdc71cb6a66b1e4b0d3be333e17",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39020132378"
+    },
+    {
+      "id": 39020023621,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:09:03Z",
+      "run_started_at": "2026-10-17T09:09:03Z",
+      "updated_at": "2026-10-17T09:10:38Z",
+      "head_sha": "0d8e801794031203579ea190da9209a3613f0b07",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39020023621"
+    },
+    {
+      "id": 39020015112,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T09:08:54Z",
+      "run_started_at": "2026-10-17T09:08:54Z",
+      "updated_at": "2026-10-17T09:09:26Z",
+      "head_sha": "0d8e801794031203579ea190da9209a3613f0b07",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39020015112"
+    },
+    {
+      "id": 39019065456,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:53:33Z",
+      "run_started_at": "2026-10-17T08:53:33Z",
+      "updated_at": "2026-10-17T08:54:00Z",
+      "head_sha": "63a4c29a8a83240921a45eeb41205c9b6d5aa670",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39019065456"
+    },
+    {
+      "id": 39019018876,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:52:47Z",
+      "run_started_at": "2026-10-17T08:52:47Z",
+      "updated_at": "2026-10-17T08:53:17Z",
+      "head_sha": "63a4c29a8a83240921a45eeb41205c9b6d5aa670",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39019018876"
+    },
+    {
+      "id": 39018545601,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:45:13Z",
+      "run_started_at": "2026-10-17T08:45:13Z",
+      "updated_at": "2026-10-17T08:45:41Z",
+      "head_sha": "63a4c29a8a83240921a45eeb41205c9b6d5aa670",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39018545601"
+    },
+    {
+      "id": 39018433823,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:43:27Z",
+      "run_started_at": "2026-10-17T08:43:27Z",
+      "updated_at": "2026-10-17T08:45:07Z",
+      "head_sha": "e6a308768924c5e9350667e88821888597d9f4af",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39018433823"
+    },
+    {
+      "id": 39017459907,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:27:55Z",
+      "run_started_at": "2026-10-17T08:27:55Z",
+      "updated_at": "2026-10-17T08:28:18Z",
+      "head_sha": "110d15a93f1da9d1216deb3ca24e05ec3548c630",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39017459907"
+    },
+    {
+      "id": 39017386865,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:26:45Z",
+      "run_started_at": "2026-10-17T08:26:45Z",
+      "updated_at": "2026-10-17T08:27:19Z",
+      "head_sha": "110d15a93f1da9d1216deb3ca24e05ec3548c630",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39017386865"
+    },
+    {
+      "id": 39016313753,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:09:38Z",
+      "run_started_at": "2026-10-17T08:09:38Z",
+      "updated_at": "2026-10-17T08:11:15Z",
+      "head_sha": "110d15a93f1da9d1216deb3ca24e05ec3548c630",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39016313753"
+    },
+    {
+      "id": 39016136318,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:06:42Z",
+      "run_started_at": "2026-10-17T08:06:42Z",
+      "updated_at": "2026-10-17T08:07:11Z",
+      "head_sha": "110d15a93f1da9d1216deb3ca24e05ec3548c630",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39016136318"
+    },
+    {
+      "id": 39015968411,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:04:00Z",
+      "run_started_at": "2026-10-17T08:04:00Z",
+      "updated_at": "2026-10-17T08:04:26Z",
+      "head_sha": "96cab63be2463bbff22aa27c00c759e381191eaa",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39015968411"
+    },
+    {
+      "id": 39015881009,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T08:02:36Z",
+      "run_started_at": "2026-10-17T08:02:36Z",
+      "updated_at": "2026-10-17T08:03:04Z",
+      "head_sha": "96cab63be2463bbff22aa27c00c759e381191eaa",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39015881009"
+    },
+    {
+      "id": 39014990311,
+      "name": "Pokemon Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T07:48:09Z",
+      "run_started_at": "2026-10-17T07:48:09Z",
+      "updated_at": "2026-10-17T07:49:48Z",
+      "head_sha": "47c616769160858e80d95eb3afc2c12a25da4428",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39014990311"
+    },
+    {
+      "id": 39014713377,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T07:43:45Z",
+      "run_started_at": "2026-10-17T07:43:45Z",
+      "updated_at": "2026-10-17T07:44:13Z",
+      "head_sha": "47c616769160858e80d95eb3afc2c12a25da4428",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39014713377"
+    },
+    {
+      "id": 39014671802,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T07:43:05Z",
+      "run_started_at": "2026-10-17T07:43:05Z",
+      "updated_at": "2026-10-17T07:43:33Z",
+      "head_sha": "ae4664f6657977d9515bb6a5ef4c85806355d9cc",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39014671802"
+    },
+    {
+      "id": 39014519322,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T07:40:36Z",
+      "run_started_at": "2026-10-17T07:40:36Z",
+      "updated_at": "2026-10-17T07:41:08Z",
+      "head_sha": "ae4664f6657977d9515bb6a5ef4c85806355d9cc",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39014519322"
+    },
+    {
+      "id": 39013015732,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-17T07:16:23Z",
+      "run_started_at": "2026-10-17T07:16:23Z",
+      "updated_at": "2026-10-17T07:16:46Z",
+      "head_sha": "a8ac435002ab17267eefbf68c5d667c8bae76b97",
+      "html_url": "https://github.com/Koyowon/pokemon-stock-alert/actions/runs/39013015732"
+    }
+  ],
+  "job_step_timings": [
+    {
+      "id": 39026097300,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:45:17Z",
+          "end": "2026-10-17T10:45:48Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:45:18Z",
+              "end": "2026-10-17T10:45:18Z",
+              "result": "success"
+            },
+            {
+              "name": "Checkout",
+              "start": "2026-10-17T10:45:18Z",
+              "end": "2026-10-17T10:45:19Z",
+              "result": "success"
+            },
+            {
+              "name": "Set up Python",
+              "start": "2026-10-17T10:45:19Z",
+              "end": "2026-10-17T10:45:19Z",
+              "result": "success"
+            },
+            {
+              "name": "Check CU stock",
+              "start": "2026-10-17T10:45:19Z",
+              "end": "2026-10-17T10:45:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Save CU stock state only",
+              "start": "2026-10-17T10:45:46Z",
+              "end": "2026-10-17T10:45:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Set up Python",
+              "start": "2026-10-17T10:45:46Z",
+              "end": "2026-10-17T10:45:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "start": "2026-10-17T10:45:46Z",
+              "end": "2026-10-17T10:45:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:45:46Z",
+              "end": "2026-10-17T10:45:46Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39025966599,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:43:11Z",
+          "end": "2026-10-17T10:43:41Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:43:12Z",
+              "end": "2026-10-17T10:43:12Z",
+              "result": "success"
+            },
+            {
+              "name": "Checkout",
+              "start": "2026-10-17T10:43:12Z",
+              "end": "2026-10-17T10:43:13Z",
+              "result": "success"
+            },
+            {
+              "name": "Set up Python",
+              "start": "2026-10-17T10:43:13Z",
+              "end": "2026-10-17T10:43:14Z",
+              "result": "success"
+            },
+            {
+              "name": "Check CU product registration",
+              "start": "2026-10-17T10:43:14Z",
+              "end": "2026-10-17T10:43:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Save CU notification state only",
+              "start": "2026-10-17T10:43:39Z",
+              "end": "2026-10-17T10:43:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Set up Python",
+              "start": "2026-10-17T10:43:39Z",
+              "end": "2026-10-17T10:43:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "start": "2026-10-17T10:43:39Z",
+              "end": "2026-10-17T10:43:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:43:39Z",
+              "end": "2026-10-17T10:43:39Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39025858405,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:41:29Z",
+          "end": "2026-10-17T10:41:48Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:41:29Z",
+              "end": "2026-10-17T10:41:30Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "start": "2026-10-17T10:41:30Z",
+              "end": "2026-10-17T10:41:30Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "start": "2026-10-17T10:41:30Z",
+              "end": "2026-10-17T10:41:31Z",
+              "result": "success"
+            },
+            {
+              "name": "Check GS25 stock and send Telegram alerts for new positives",
+              "start": "2026-10-17T10:41:31Z",
+              "end": "2026-10-17T10:41:45Z",
+              "result": "success"
+            },
+            {
+              "name": "Save GS25 state",
+              "start": "2026-10-17T10:41:45Z",
+              "end": "2026-10-17T10:41:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "start": "2026-10-17T10:41:46Z",
+              "end": "2026-10-17T10:41:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "start": "2026-10-17T10:41:46Z",
+              "end": "2026-10-17T10:41:46Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:41:46Z",
+              "end": "2026-10-17T10:41:46Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39025601390,
+      "name": "Pokemon Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:37:26Z",
+          "end": "2026-10-17T10:39:46Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:37:27Z",
+              "end": "2026-10-17T10:37:27Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "start": "2026-10-17T10:37:27Z",
+              "end": "2026-10-17T10:37:28Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "start": "2026-10-17T10:37:28Z",
+              "end": "2026-10-17T10:37:28Z",
+              "result": "success"
+            },
+            {
+              "name": "Check emart24 stock",
+              "start": "2026-10-17T10:37:28Z",
+              "end": "2026-10-17T10:39:43Z",
+              "result": "success"
+            },
+            {
+              "name": "Save stock and store cache",
+              "start": "2026-10-17T10:39:43Z",
+              "end": "2026-10-17T10:39:43Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "start": "2026-10-17T10:39:43Z",
+              "end": "2026-10-17T10:39:43Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "start": "2026-10-17T10:39:43Z",
+              "end": "2026-10-17T10:39:43Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:39:43Z",
+              "end": "2026-10-17T10:39:43Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39025093886,
+      "name": "Pokemon Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:29:38Z",
+          "end": "2026-10-17T10:32:00Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:29:38Z",
+              "end": "2026-10-17T10:29:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "start": "2026-10-17T10:29:39Z",
+              "end": "2026-10-17T10:29:39Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "start": "2026-10-17T10:29:39Z",
+              "end": "2026-10-17T10:29:40Z",
+              "result": "success"
+            },
+            {
+              "name": "Check emart24 stock",
+              "start": "2026-10-17T10:29:40Z",
+              "end": "2026-10-17T10:31:56Z",
+              "result": "success"
+            },
+            {
+              "name": "Save stock and store cache",
+              "start": "2026-10-17T10:31:56Z",
+              "end": "2026-10-17T10:31:58Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "start": "2026-10-17T10:31:58Z",
+              "end": "2026-10-17T10:31:58Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "start": "2026-10-17T10:31:58Z",
+              "end": "2026-10-17T10:31:58Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:31:58Z",
+              "end": "2026-10-17T10:31:58Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39024408937,
+      "name": "CU Pokemon 30th Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:18:42Z",
+          "end": "2026-10-17T10:19:12Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:18:43Z",
+              "end": "2026-10-17T10:18:44Z",
+              "result": "success"
+            },
+            {
+              "name": "Checkout",
+              "start": "2026-10-17T10:18:44Z",
+              "end": "2026-10-17T10:18:45Z",
+              "result": "success"
+            },
+            {
+              "name": "Set up Python",
+              "start": "2026-10-17T10:18:45Z",
+              "end": "2026-10-17T10:18:45Z",
+              "result": "success"
+            },
+            {
+              "name": "Check CU stock",
+              "start": "2026-10-17T10:18:45Z",
+              "end": "2026-10-17T10:19:09Z",
+              "result": "success"
+            },
+            {
+              "name": "Save CU stock state only",
+              "start": "2026-10-17T10:19:09Z",
+              "end": "2026-10-17T10:19:09Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Set up Python",
+              "start": "2026-10-17T10:19:09Z",
+              "end": "2026-10-17T10:19:09Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "start": "2026-10-17T10:19:09Z",
+              "end": "2026-10-17T10:19:09Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:19:09Z",
+              "end": "2026-10-17T10:19:09Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39024230631,
+      "name": "GS25 Pokemon 30th Stock Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:15:52Z",
+          "end": "2026-10-17T10:16:13Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:15:53Z",
+              "end": "2026-10-17T10:15:54Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "start": "2026-10-17T10:15:54Z",
+              "end": "2026-10-17T10:15:54Z",
+              "result": "success"
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "start": "2026-10-17T10:15:54Z",
+              "end": "2026-10-17T10:15:55Z",
+              "result": "success"
+            },
+            {
+              "name": "Check GS25 stock and send Telegram alerts for new positives",
+              "start": "2026-10-17T10:15:55Z",
+              "end": "2026-10-17T10:16:09Z",
+              "result": "success"
+            },
+            {
+              "name": "Save GS25 state",
+              "start": "2026-10-17T10:16:09Z",
+              "end": "2026-10-17T10:16:11Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "start": "2026-10-17T10:16:11Z",
+              "end": "2026-10-17T10:16:11Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "start": "2026-10-17T10:16:11Z",
+              "end": "2026-10-17T10:16:11Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:16:11Z",
+              "end": "2026-10-17T10:16:11Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39023702579,
+      "name": "CU Pokemon 30th Registration Monitor",
+      "jobs": [
+        {
+          "start": "2026-10-17T10:07:32Z",
+          "end": "2026-10-17T10:07:55Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "start": "2026-10-17T10:07:33Z",
+              "end": "2026-10-17T10:07:34Z",
+              "result": "success"
+            },
+            {
+              "name": "Checkout",
+              "start": "2026-10-17T10:07:34Z",
+              "end": "2026-10-17T10:07:34Z",
+              "result": "success"
+            },
+            {
+              "name": "Set up Python",
+              "start": "2026-10-17T10:07:34Z",
+              "end": "2026-10-17T10:07:35Z",
+              "result": "success"
+            },
+            {
+              "name": "Check CU product registration",
+              "start": "2026-10-17T10:07:35Z",
+              "end": "2026-10-17T10:07:52Z",
+              "result": "success"
+            },
+            {
+              "name": "Save CU notification state only",
+              "start": "2026-10-17T10:07:52Z",
+              "end": "2026-10-17T10:07:52Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Set up Python",
+              "start": "2026-10-17T10:07:52Z",
+              "end": "2026-10-17T10:07:53Z",
+              "result": "success"
+            },
+            {
+              "name": "Post Checkout",
+              "start": "2026-10-17T10:07:53Z",
+              "end": "2026-10-17T10:07:53Z",
+              "result": "success"
+            },
+            {
+              "name": "Complete job",
+              "start": "2026-10-17T10:07:53Z",
+              "end": "2026-10-17T10:07:53Z",
+              "result": "success"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
