@@ -1,23 +1,46 @@
-# 포켓몬카드 30주년 전북 재고 알리미 — 클라우드 초기 버전
+# 포켓몬카드 30주년 재고 알림
 
-## 현재 구현 범위
-- CU, GS25, 이마트24 / 전북특별자치도 전체 / 30주년 관련 상품 검색 조건
-- 텔레그램 테스트 알림
-- 검증된 재고 데이터가 나중에 연결되면 신규 재고·수량 증가 알림 및 상태 저장
-- GitHub Actions 예약 실행(10분 간격 요청; 실제 실행 시간은 지연될 수 있음)
+CU·이마트24·GS25의 남원·아산·전주 재고 조회, 수량 변동 Telegram 알림, 지역별 조회 제어를 운영합니다. 실제 재고는 조회 후 바뀔 수 있으며 누락·오류는 재고 0과 구분합니다.
 
-**중요: 세 편의점의 실제 재고 데이터 조회 연동은 아직 없습니다. 이 버전은 재고를 검색하거나 실제 입고를 통보하지 않습니다.** 점포별 공식 서비스의 이용조건과 허용된 데이터 접근 방법을 확인한 뒤 `monitor.py`의 `load_stock()`에 실제 조회 기능을 추가해야 합니다. 로그인 보호·접근 제한을 우회하지 마세요.
+## 운영 파일
 
-## 아이폰에서 설치
-1. GitHub의 비공개 저장소를 엽니다.
-2. 압축 해제 후 `monitor.py`, `config.json`, `state.json`, `README.md`를 저장소 루트에 올립니다.
-3. **중요:** `.github/workflows/stock-monitor.yml`은 해당 경로에 정확히 생성해야 합니다. iOS Safari에서 `Add file` → `Create new file`을 선택하고 파일명 칸에 `.github/workflows/stock-monitor.yml`을 입력한 다음 ZIP 안의 내용을 붙여넣는 방법이 가장 확실합니다.
-4. `Settings` → `Secrets and variables` → `Actions` → `New repository secret`에서 `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`를 각각 등록합니다. **토큰을 코드·채팅·스크린샷에 공개하지 마세요.**
-5. `Actions` → `Pokemon Stock Monitor` → `Run workflow` → `Run workflow`를 누릅니다. 처음 수동 실행은 텔레그램 테스트 메시지만 보냅니다.
-6. 정기 실행은 저장소 기본 브랜치의 워크플로에서 작동합니다. GitHub 정책에 따라 지연·중단될 수 있으며 정확한 10분 주기를 보장하지 않습니다.
+| 역할 | 진입점 | 주요 데이터·의존성 |
+|---|---|---|
+| 이마트24 조회 | `monitor.py` | `request_pacing.py`, `stores.json`, `emart24_jeonju_seed.json`, `state.json` |
+| CU 재고 조회 | `cu_stock_monitor.py` | `cu_asan_registry.py`, `asan_cu_watch_registry.json`, `cu_stock_state.json` |
+| CU 상품등록 감지 | `cu_registration_monitor.py` | `cu_registration_state.json` |
+| GS25 조회 | `gs25_independent/gs25_auto_monitor.py` | 같은 폴더의 `config.json`, `gs25_asan_guard.py`, `gs25_asan_approval_review.csv`, `gs25_stock_state.json` |
+| Telegram 제어·현황 | `telegram_control.py` | `stock_snapshot_report.py`, `unified_control.json`, `telegram_control_cursor.json` |
+| 공통 지역 설정 | `region_config.py`, `unified_settings.py` | `region_settings.json`, `unified_control.json` |
+| 저장 재고 웹 화면 | `docs/stock/index.html` | CU·이마트24·GS25의 마지막 저장 기록을 읽으며 0개와 미확인을 구분 |
+| 지도 링크 연결 | `docs/index.html` | Telegram 현황의 지도 링크에서 사용 |
 
-## 운영 관련 주의
-- 이 버전은 재고 데이터가 연결되기 전에는 예약 실행 시 '연동 없음'만 기록하고 알림을 보내지 않습니다.
-- `state.json`을 저장소에 커밋하는 방식으로 이전 수량을 보존하도록 준비했습니다. `contents: write` 권한이 필요합니다.
-- 무료 사용량, 비공개 저장소 Actions 실행 제한, Actions 정책을 확인하세요.
-- 실제 재고는 변경될 수 있으니 방문 전 매장에 전화로 확인하세요.
+위 파일의 경로와 상태 데이터를 유지해야 합니다. **기존 상태 파일을 지우면 이전 수량과 알림 기준을 잃을 수 있습니다.**
+
+## 정기 실행
+
+루트 `.github/workflows/`에서 다음 5개가 정기 실행됩니다.
+
+- `stock-monitor.yml`: 이마트24, 5분 cron
+- `cu-stock-monitor.yml`: CU 재고, 5분 cron
+- `cu-registration-monitor.yml`: CU 상품등록, 15분 cron
+- `gs25-stock-monitor.yml`: GS25, 5분 cron
+- `unified-telegram-control.yml`: Telegram 제어, 5분 cron
+
+예약 시각은 실제 시작 간격을 보장하지 않습니다. 상태 저장·웹 화면의 기록은 실시간 재고 보장이 아닙니다. 기타 남아 있는 수동 진단 워크플로는 문제 분석용으로 유지합니다.
+
+## 오프라인 검증
+
+실제 재고 API·Telegram 없이 최적화 및 GS25 guard 회귀를 검증하는 명령:
+
+```sh
+python -m unittest -v test_monitor_optimization test_gs25_guard_integration gs25_independent.test_gs25_asan_guard
+```
+
+`test_stock_alerts.py` 등 다른 수동 진단 스크립트에는 외부 통신이 포함될 수 있습니다. 위 오프라인 명령과 구분하여 사용하세요.
+
+## 보관 파일
+
+완료된 일회성 설치/통합 도구, 초기 설정, 현재 운영 대상이 아닌 세븐일레븐 진단 도구를 [보관 폴더](archive/retired_20261017/README.md)로 옮겼습니다. 영구 삭제하지 않았으며 원래 경로와 Git blob SHA는 [복원 목록](archive/retired_20261017/MANIFEST.json)에 기록했습니다. 보관된 workflow는 Actions 목록에서 실행되지 않습니다.
+
+점포 등록 근거와 감사 데이터는 운영에 직접 쓰이지 않더라도 검증 이력을 위해 유지합니다. 최근 변경은 [조회 최적화 보고서](docs/STOCK_QUERY_OPTIMIZATION_20261017.md), [이마트24 공식 코드 보고서](docs/EMART24_OFFICIAL_CODES_20261017.md)를 참고하세요.
