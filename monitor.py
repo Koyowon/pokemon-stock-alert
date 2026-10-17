@@ -69,8 +69,8 @@ def load_jeonju_seed():
     if data.get("version") != 1 or data.get("region_id") != "jeonju":
         raise RuntimeError("Jeonju seed metadata invalid or missing")
     rows = data.get("stores")
-    if not isinstance(rows, dict) or len(rows) != 63:
-        raise RuntimeError("Jeonju seed must contain 63 stores")
+    if not isinstance(rows, dict) or len(rows) < 63:
+        raise RuntimeError("Jeonju seed must retain at least 63 validated stores")
     result = {}
     for code, item in rows.items():
         if not (isinstance(code, str) and code.isdigit() and
