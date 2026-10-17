@@ -119,4 +119,19 @@ class ContractTests(unittest.TestCase):
             classify_snapshot(directory,{'success':False,'error':'HTTP 502'},'jeonju')
 
 
+    def test_jeonju_recovered_city_response_keeps_35_absent_stores_unknown(self):
+        directory=json.loads((FIXTURES/'jeonju_stores.json').read_text())
+        inventory=json.loads((FIXTURES/'jeonju_inventory_100.json').read_text())
+        rows=classify_snapshot(directory,inventory,'jeonju')
+        observed={r['storeCode'] for r in inventory['data']['inventory']['stores']}
+        self.assertEqual(len(observed),100)
+        self.assertEqual(len(rows),135)
+        missing=set(rows)-observed
+        self.assertEqual(len(missing),35)
+        self.assertTrue(all(rows[c]['quantity'] is None for c in missing))
+        self.assertEqual(sum(r['quantity']==0 for r in rows.values()),6)
+        self.assertEqual(sum(r['quantity'] is None for r in rows.values()),129)
+        self.assertFalse(any((r['quantity'] or 0)>0 for r in rows.values()))
+
+
 if __name__=='__main__':unittest.main()

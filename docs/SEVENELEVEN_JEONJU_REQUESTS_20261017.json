@@ -1,0 +1,1371 @@
+[
+  {
+    "label": "pickup_wansan",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주효자더샵점",
+      "storeLimit": 5
+    },
+    "http_status": 200,
+    "seconds": 9.86,
+    "checked_at": "2026-10-17T11:32:14.294169+00:00",
+    "response": {
+      "success": true,
+      "data": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "전주효자더샵점",
+        "product": {
+          "itemCode": "8800286275732",
+          "itemName": "비젼)포켓몬확장팩(30주년)_H",
+          "salePrice": 3500,
+          "imageUrl": ""
+        },
+        "stockAvailable": false,
+        "stockError": null,
+        "note": "선택한 매장의 재고 수량을 확인하지 못했습니다.",
+        "inventory": {
+          "totalStoreCount": 1,
+          "inStockStoreCount": 0,
+          "count": 1,
+          "stores": [
+            {
+              "storeCode": "64704",
+              "storeName": "전주효자더샵점",
+              "address": "전북특별자치도 전주시 완산구 우전2길 59 1층 101호효자동2가",
+              "latitude": 35.8094688697369,
+              "longitude": 127.106826075737,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 0
+            }
+          ]
+        }
+      },
+      "meta": {
+        "total": 1,
+        "pageSize": 5
+      }
+    }
+  },
+  {
+    "label": "pickup_deokjin",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주팔복프라임점",
+      "storeLimit": 5
+    },
+    "http_status": 200,
+    "seconds": 8.25,
+    "checked_at": "2026-10-17T11:32:24.548826+00:00",
+    "response": {
+      "success": true,
+      "data": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "전주팔복프라임점",
+        "product": {
+          "itemCode": "8800286275732",
+          "itemName": "비젼)포켓몬확장팩(30주년)_H",
+          "salePrice": 3500,
+          "imageUrl": ""
+        },
+        "stockAvailable": true,
+        "stockError": null,
+        "note": "실시간 재고 데이터가 포함되어 있습니다.",
+        "inventory": {
+          "totalStoreCount": 1,
+          "inStockStoreCount": 0,
+          "count": 1,
+          "stores": [
+            {
+              "storeCode": "64669",
+              "storeName": "전주팔복프라임점",
+              "address": "전북특별자치도 전주시 덕진구 추천4길 44 1층팔복동2가",
+              "latitude": 35.8505383367596,
+              "longitude": 127.105907297894,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 0
+            }
+          ]
+        }
+      },
+      "meta": {
+        "total": 1,
+        "pageSize": 5
+      }
+    }
+  },
+  {
+    "label": "control_namwon",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "남원남문로점",
+      "storeLimit": 5
+    },
+    "http_status": 200,
+    "seconds": 7.55,
+    "checked_at": "2026-10-17T11:32:34.103383+00:00",
+    "response": {
+      "success": true,
+      "data": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "남원남문로점",
+        "product": {
+          "itemCode": "8800286275732",
+          "itemName": "비젼)포켓몬확장팩(30주년)_H",
+          "salePrice": 3500,
+          "imageUrl": ""
+        },
+        "stockAvailable": true,
+        "stockError": null,
+        "note": "실시간 재고 데이터가 포함되어 있습니다.",
+        "inventory": {
+          "totalStoreCount": 1,
+          "inStockStoreCount": 0,
+          "count": 1,
+          "stores": [
+            {
+              "storeCode": "59128",
+              "storeName": "남원남문로점",
+              "address": "전라북도 남원시 남문로 359, 1층",
+              "latitude": 35.4069104791,
+              "longitude": 127.3707458028,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 0
+            }
+          ]
+        }
+      },
+      "meta": {
+        "total": 1,
+        "pageSize": 5
+      }
+    }
+  },
+  {
+    "label": "jeonju_full",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주시",
+      "storeLimit": 200
+    },
+    "http_status": 200,
+    "seconds": 34.03,
+    "checked_at": "2026-10-17T11:33:06.876655+00:00",
+    "response": {
+      "success": true,
+      "data": {
+        "keyword": "포켓몬확장팩(30주년)",
+        "storeKeyword": "전주시",
+        "product": {
+          "itemCode": "8800286275732",
+          "itemName": "비젼)포켓몬확장팩(30주년)_H",
+          "salePrice": 3500,
+          "imageUrl": ""
+        },
+        "stockAvailable": true,
+        "stockError": null,
+        "note": "실시간 재고 데이터가 포함되어 있습니다.",
+        "inventory": {
+          "totalStoreCount": 100,
+          "inStockStoreCount": 0,
+          "count": 100,
+          "stores": [
+            {
+              "storeCode": "64737",
+              "storeName": "전주영생점",
+              "address": "전북특별자치도 전주시 완산구 천잠로 333 1층효자동3가",
+              "latitude": 35.8161003648112,
+              "longitude": 127.09198764822,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 0
+            },
+            {
+              "storeCode": "59133",
+              "storeName": "전주효자스토리점",
+              "address": "전북특별자치도 전주시 완산구 봉곡2길 23 101호효자동3가",
+              "latitude": 35.812858633,
+              "longitude": 127.0947856328,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 440
+            },
+            {
+              "storeCode": "64725",
+              "storeName": "전주전일고점",
+              "address": "전북특별자치도 전주시 완산구 우전로 249 1층효자동2가, 전일고등학교",
+              "latitude": 35.8156425075812,
+              "longitude": 127.09980393598,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 707
+            },
+            {
+              "storeCode": "63451",
+              "storeName": "전주백마산점",
+              "address": "전북특별자치도 전주시 완산구 백마산길 112 101동 상가101호, 상가102호효자동3가",
+              "latitude": 35.8206068459,
+              "longitude": 127.0858755384,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 745
+            },
+            {
+              "storeCode": "56325",
+              "storeName": "전주효자봉곡로점",
+              "address": "전라북도 전주시 완산구 봉곡1길 26",
+              "latitude": 35.8130529631,
+              "longitude": 127.0998092471,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 782
+            },
+            {
+              "storeCode": "64558",
+              "storeName": "전주홍리단길점",
+              "address": "전북특별자치도 전주시 완산구 마전들로 29 1층 효자동3가",
+              "latitude": 35.8211947424765,
+              "longitude": 127.098799562994,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 836
+            },
+            {
+              "storeCode": "19613",
+              "storeName": "전주효자점",
+              "address": "전라북도 전주시 완산구 척동5길 19",
+              "latitude": 35.8231404085,
+              "longitude": 127.0979239052,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 948
+            },
+            {
+              "storeCode": "18667",
+              "storeName": "전주연지점",
+              "address": "전북특별자치도 전주시 완산구 구룡2길 20 효자동2가",
+              "latitude": 35.8131436248,
+              "longitude": 127.1039959748,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1132
+            },
+            {
+              "storeCode": "63792",
+              "storeName": "전주나래점",
+              "address": "전북특별자치도 전주시 완산구 구룡1길 15 1층 효자동2가",
+              "latitude": 35.8118332409,
+              "longitude": 127.1035033304,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1142
+            },
+            {
+              "storeCode": "59559",
+              "storeName": "전주홍산로점",
+              "address": "전라북도 전주시 완산구 홍산북로 25, 1층 101호",
+              "latitude": 35.817528173,
+              "longitude": 127.1046502465,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1153
+            },
+            {
+              "storeCode": "59239",
+              "storeName": "전주뉴기전점",
+              "address": "전라북도 전주시 완산구 문학로 8, 1층 105호",
+              "latitude": 35.8257497426,
+              "longitude": 127.1020379794,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1404
+            },
+            {
+              "storeCode": "68668",
+              "storeName": "전주웨스턴점",
+              "address": "전라북도 전주시 완산구 홍산중앙로 45 1층",
+              "latitude": 35.8176041395,
+              "longitude": 127.1087449343,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1520
+            },
+            {
+              "storeCode": "17965",
+              "storeName": "전주도교육청점",
+              "address": "전라북도 전주시 완산구 소태정 4길 11(효자동2가)",
+              "latitude": 35.8048497522,
+              "longitude": 127.101568964,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1520
+            },
+            {
+              "storeCode": "64704",
+              "storeName": "전주효자더샵점",
+              "address": "전북특별자치도 전주시 완산구 우전2길 59 1층 101호효자동2가",
+              "latitude": 35.8094688697369,
+              "longitude": 127.106826075737,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1528
+            },
+            {
+              "storeCode": "68634",
+              "storeName": "전주홍산중앙로점",
+              "address": "전북특별자치도 전주시 완산구 홍산남로 69-7 전북특별자치도 전주시 완산구 홍산남로 69-7, 1층 101호(효자동3가)",
+              "latitude": 35.8164521064,
+              "longitude": 127.1093704898,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1568
+            },
+            {
+              "storeCode": "68412",
+              "storeName": "전주뉴타운점",
+              "address": "전북특별자치도 전주시 완산구 홍산중앙로 46 1층 4호(효자동3가)",
+              "latitude": 35.8175511769,
+              "longitude": 127.1093087922,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1570
+            },
+            {
+              "storeCode": "68703",
+              "storeName": "전주문학타운점",
+              "address": "전라북도 전주시 완산구 문학대4길 23 101,102호",
+              "latitude": 35.8268949919,
+              "longitude": 127.1045255144,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1649
+            },
+            {
+              "storeCode": "64610",
+              "storeName": "전주유탑스퀘어점",
+              "address": "전북특별자치도 전주시 완산구 서원로 145 102동 101호, 102호효자동3가",
+              "latitude": 35.8141519347627,
+              "longitude": 127.110795445233,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 1710
+            },
+            {
+              "storeCode": "67962",
+              "storeName": "전주서곡지구점",
+              "address": "전라북도 전주시 완산구 서곡4길 46-11",
+              "latitude": 35.8330502396,
+              "longitude": 127.1015600897,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2073
+            },
+            {
+              "storeCode": "67669",
+              "storeName": "전주화산하늘채점",
+              "address": "전북특별자치도 전주시 완산구 화산천변로 15 1층 중화산동2가",
+              "latitude": 35.8203029133,
+              "longitude": 127.1159740404,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2213
+            },
+            {
+              "storeCode": "68349",
+              "storeName": "전주화산지구점",
+              "address": "전북특별자치도 전주시 완산구 신촌4길 10-10 1층중화산동2가",
+              "latitude": 35.818641022,
+              "longitude": 127.1171530515,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 2287
+            },
+            {
+              "storeCode": "67458",
+              "storeName": "전주효자삼성점",
+              "address": "전라북도 전주시 완산구 효자천변2길 10, 1층",
+              "latitude": 35.8049478405,
+              "longitude": 127.1135846603,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2309
+            },
+            {
+              "storeCode": "67344",
+              "storeName": "전주서신쌍용점",
+              "address": "전라북도 전주시 완산구 당산로 11-3, 상가1동 1층 1호",
+              "latitude": 35.833065138672,
+              "longitude": 127.109315267765,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2449
+            },
+            {
+              "storeCode": "59985",
+              "storeName": "전주상산타운점",
+              "address": "전라북도 전주시 완산구 거마평로 127, 제상가1동 1층 107, 108호",
+              "latitude": 35.803920583887,
+              "longitude": 127.116555176305,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2597
+            },
+            {
+              "storeCode": "64269",
+              "storeName": "전주뉴비사벌점",
+              "address": "전북특별자치도 전주시 완산구 당산로 46 1층서신동",
+              "latitude": 35.8320079496255,
+              "longitude": 127.113317709982,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2613
+            },
+            {
+              "storeCode": "68090",
+              "storeName": "전주화산에코르점",
+              "address": "전라북도 전주시 완산구 메너머3길 29 중화산동2가",
+              "latitude": 35.8236070424,
+              "longitude": 127.1195863072,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2625
+            },
+            {
+              "storeCode": "67365",
+              "storeName": "전주삼천호반점",
+              "address": "전라북도 전주시 완산구 용리로 16",
+              "latitude": 35.7984156623,
+              "longitude": 127.1115068732,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2639
+            },
+            {
+              "storeCode": "67657",
+              "storeName": "전주한일점",
+              "address": "전라북도 전주시 완산구 메너머1길 9",
+              "latitude": 35.8208021486,
+              "longitude": 127.1216404427,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2724
+            },
+            {
+              "storeCode": "67839",
+              "storeName": "전주서신타운점",
+              "address": "전라북도 전주시 완산구 고사평4길 9, 1층 일부",
+              "latitude": 35.8355209414,
+              "longitude": 127.1105613139,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2733
+            },
+            {
+              "storeCode": "67151",
+              "storeName": "전주온누리점",
+              "address": "전라북도 전주시 완산구 메너머2길 14, 1층",
+              "latitude": 35.8224697,
+              "longitude": 127.1213441,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2740
+            },
+            {
+              "storeCode": "64318",
+              "storeName": "전주삼천주공점",
+              "address": "전북특별자치도 전주시 완산구 삼천천변2길 23-4 1층 삼천동1가",
+              "latitude": 35.7967084535086,
+              "longitude": 127.113010359435,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2871
+            },
+            {
+              "storeCode": "53263",
+              "storeName": "전주병원점",
+              "address": "전라북도 전주시 완산구 한두평3길 18-1",
+              "latitude": 35.81473705,
+              "longitude": 127.1251066,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 2990
+            },
+            {
+              "storeCode": "68108",
+              "storeName": "전주하가부영점",
+              "address": "전북특별자치도 전주시 덕진구 경동로 18 제상가동 1층 101호 덕진동2가, 사랑으로부영아파트",
+              "latitude": 35.842937763471,
+              "longitude": 127.108043698715,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3317
+            },
+            {
+              "storeCode": "67670",
+              "storeName": "전주대림점",
+              "address": "전라북도 전주시 완산구 효동2길 23",
+              "latitude": 35.8043581306,
+              "longitude": 127.1268158216,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3401
+            },
+            {
+              "storeCode": "18875",
+              "storeName": "전주평화동신점",
+              "address": "전라북도 전주시 완산구 양지1길 15-11 5호, 6호",
+              "latitude": 35.7918539636,
+              "longitude": 127.1199928199,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3694
+            },
+            {
+              "storeCode": "54815",
+              "storeName": "전주하가진흥점",
+              "address": "전북특별자치도 전주시 덕진구 추탄로 64",
+              "latitude": 35.8463762775,
+              "longitude": 127.1092570201,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3709
+            },
+            {
+              "storeCode": "69025",
+              "storeName": "전주한솔점",
+              "address": "전북특별자치도 전주시 덕진구 상리로 1 1층팔복동2가",
+              "latitude": 35.84899304,
+              "longitude": 127.1018455075,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3764
+            },
+            {
+              "storeCode": "53101",
+              "storeName": "전주만성중앙점",
+              "address": "전라북도 전주시 덕진구 만성북1길 3 1층",
+              "latitude": 35.8491531,
+              "longitude": 127.0774143,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3903
+            },
+            {
+              "storeCode": "53999",
+              "storeName": "전주덕진점",
+              "address": "전라북도 전주시 덕진구 들사평로 39, 1층",
+              "latitude": 35.8398653,
+              "longitude": 127.1239905,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3912
+            },
+            {
+              "storeCode": "54890",
+              "storeName": "전주양현중점",
+              "address": "전라북도 전주시 덕진구 만성북4길 7",
+              "latitude": 35.8484687687,
+              "longitude": 127.0749501383,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3913
+            },
+            {
+              "storeCode": "56007",
+              "storeName": "전주서원신일점",
+              "address": "전라북도 전주시 완산구 서원로 388",
+              "latitude": 35.8144967271,
+              "longitude": 127.1356945839,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3945
+            },
+            {
+              "storeCode": "59764",
+              "storeName": "전주뉴기전대학교점",
+              "address": "전라북도 전주시 완산구 전주천서로 267",
+              "latitude": 35.817013496655,
+              "longitude": 127.13601626048,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 3971
+            },
+            {
+              "storeCode": "64669",
+              "storeName": "전주팔복프라임점",
+              "address": "전북특별자치도 전주시 덕진구 추천4길 44 1층팔복동2가",
+              "latitude": 35.8505383367596,
+              "longitude": 127.105907297894,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 4030
+            },
+            {
+              "storeCode": "59164",
+              "storeName": "전주뉴프론티어점",
+              "address": "전라북도 전주시 덕진구 떡전3길 15-1, 1층 101호",
+              "latitude": 35.8371617047,
+              "longitude": 127.1286155698,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 4048
+            },
+            {
+              "storeCode": "63728",
+              "storeName": "전주산단점",
+              "address": "전라북도 전주시 덕진구 팔복로 140, 1층",
+              "latitude": 35.85352112105947,
+              "longitude": 127.0919073058364,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4161
+            },
+            {
+              "storeCode": "68363",
+              "storeName": "전주펠리피아점",
+              "address": "전북특별자치도 전주시 덕진구 기린대로 465 1층 101,102호덕진동1가, 전북대세움펠리피아상가",
+              "latitude": 35.8415068955,
+              "longitude": 127.1260457048,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4172
+            },
+            {
+              "storeCode": "64486",
+              "storeName": "전주새강병원점",
+              "address": "전북특별자치도 전주시 완산구 백제대로 20 1충평화동1가",
+              "latitude": 35.7968808120253,
+              "longitude": 127.132157144206,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4206
+            },
+            {
+              "storeCode": "55640",
+              "storeName": "전주객리단길점",
+              "address": "전북특별자치도 전주시 완산구 전주객사1길 45 1층다가동3가",
+              "latitude": 35.818213117608,
+              "longitude": 127.139127737244,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4257
+            },
+            {
+              "storeCode": "67982",
+              "storeName": "전주전북대센터점",
+              "address": "전북특별자치도 전주시 덕진구 명륜3길 9 (덕진동1가)",
+              "latitude": 35.8422191922,
+              "longitude": 127.1271735394,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4301
+            },
+            {
+              "storeCode": "64344",
+              "storeName": "전주금암빌리지점",
+              "address": "전북특별자치도 전주시 덕진구 기린대로 400-29 1층 일부 금암동",
+              "latitude": 35.8381883355628,
+              "longitude": 127.132681969031,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4415
+            },
+            {
+              "storeCode": "53450",
+              "storeName": "전주청담병원점",
+              "address": "전북특별자치도 전주시 덕진구 팔달로 377 1층금암동",
+              "latitude": 35.83374876,
+              "longitude": 127.1362086,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4444
+            },
+            {
+              "storeCode": "58108",
+              "storeName": "전주대학로점",
+              "address": "전라북도 전주시 덕진구 권삼득로 303 1층(금암동)",
+              "latitude": 35.84322051,
+              "longitude": 127.1284499,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4461
+            },
+            {
+              "storeCode": "56342",
+              "storeName": "전주평화로점",
+              "address": "전라북도 전주시 완산구 평화로 219, 1층 101호",
+              "latitude": 35.796083708,
+              "longitude": 127.1361174959,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4560
+            },
+            {
+              "storeCode": "12120",
+              "storeName": "전주건지점",
+              "address": "전라북도 전주시 덕진구 삼송1길 4 1층(금암동)",
+              "latitude": 35.8410501134,
+              "longitude": 127.1328799676,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4614
+            },
+            {
+              "storeCode": "59389",
+              "storeName": "전주대양아리스타점",
+              "address": "전북특별자치도 전주시 완산구 태평4길 11 1층 103호 104호태평동",
+              "latitude": 35.8233571306,
+              "longitude": 127.1426478236,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4638
+            },
+            {
+              "storeCode": "68592",
+              "storeName": "전주전라감영점",
+              "address": "전북특별자치도 전주시 완산구 전라감영로 41 1층 중앙동4가",
+              "latitude": 35.8155311541,
+              "longitude": 127.1437792564,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4670
+            },
+            {
+              "storeCode": "67364",
+              "storeName": "전주평화호반점",
+              "address": "전북특별자치도 전주시 완산구 소대배기로 10 평화동2가",
+              "latitude": 35.7870314626,
+              "longitude": 127.1312023104,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4791
+            },
+            {
+              "storeCode": "67507",
+              "storeName": "전주평화한성점",
+              "address": "전라북도 전주시 완산구 평화19길 23, 1층",
+              "latitude": 35.7952244742,
+              "longitude": 127.1388373774,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4821
+            },
+            {
+              "storeCode": "58048",
+              "storeName": "전주고사중앙점",
+              "address": "전라북도 전주시 완산구 전주객사5길 46 (고사동)",
+              "latitude": 35.8202420793,
+              "longitude": 127.1452969746,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4829
+            },
+            {
+              "storeCode": "64629",
+              "storeName": "전북대캠퍼스점",
+              "address": "전북특별자치도 전주시 덕진구 삼송1길 34 1층금암동",
+              "latitude": 35.8428141192488,
+              "longitude": 127.134714415007,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4864
+            },
+            {
+              "storeCode": "64215",
+              "storeName": "전주자인병원점",
+              "address": "전북특별자치도 전주시 완산구 노송광장로 59 1층서노송동",
+              "latitude": 35.8259589635497,
+              "longitude": 127.145098992724,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4913
+            },
+            {
+              "storeCode": "63103",
+              "storeName": "전주산단행복점",
+              "address": "전라북도 전주시 덕진구 팔과정로 168, 전주1산단 S001동, 104, 105호",
+              "latitude": 35.860332375854,
+              "longitude": 127.097039032838,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4939
+            },
+            {
+              "storeCode": "68022",
+              "storeName": "전주첨단점",
+              "address": "전라북도 전주시 덕진구 운암로 42",
+              "latitude": 35.8607463844,
+              "longitude": 127.0886519794,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 4974
+            },
+            {
+              "storeCode": "55815",
+              "storeName": "전주평화삼우점",
+              "address": "전라북도 전주시 완산구 장승배기4길 5",
+              "latitude": 35.80005986,
+              "longitude": 127.1439369,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5013
+            },
+            {
+              "storeCode": "18492",
+              "storeName": "전주시청제일점",
+              "address": "전라북도 전주시 완산구 노송광장로 37(서노송동)",
+              "latitude": 35.8245201478,
+              "longitude": 127.1467946459,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5029
+            },
+            {
+              "storeCode": "57074",
+              "storeName": "전주지안플러스점",
+              "address": "전라북도 전주시 완산구 덕적골2길 43",
+              "latitude": 35.7945006469,
+              "longitude": 127.1413140681,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5055
+            },
+            {
+              "storeCode": "53709",
+              "storeName": "전주평화그린점",
+              "address": "전북특별자치도 전주시 완산구 평화로 106 1층 104호 평화동2가, 평화주공 그린타운 상가",
+              "latitude": 35.78607762,
+              "longitude": 127.1344415,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5080
+            },
+            {
+              "storeCode": "67861",
+              "storeName": "전주백제점",
+              "address": "전라북도 전주시 덕진구 조경단로 92, 1층 104호",
+              "latitude": 35.8421338095,
+              "longitude": 127.139415465,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5164
+            },
+            {
+              "storeCode": "59377",
+              "storeName": "전주빌리언점",
+              "address": "전라북도 전주시 완산구 공수내로 19, 1층",
+              "latitude": 35.8054427357,
+              "longitude": 127.1481925283,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5205
+            },
+            {
+              "storeCode": "69045",
+              "storeName": "전주한옥마을본점",
+              "address": "전라북도 전주시 완산구 경기전길 120",
+              "latitude": 35.8140552489,
+              "longitude": 127.1510076285,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5327
+            },
+            {
+              "storeCode": "57206",
+              "storeName": "전주그랑블점",
+              "address": "전라북도 전주시 완산구 견훤왕궁1길 27",
+              "latitude": 35.8267180299,
+              "longitude": 127.1508098189,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 5433
+            },
+            {
+              "storeCode": "69096",
+              "storeName": "전주송천솔내점",
+              "address": "전북특별자치도 전주시 덕진구 솔내7길 10 1층(송천동1가)",
+              "latitude": 35.8597073193378,
+              "longitude": 127.122261036373,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5564
+            },
+            {
+              "storeCode": "55760",
+              "storeName": "전주건지중앙점",
+              "address": "전라북도 전주시 덕진구 건지3길 10",
+              "latitude": 35.845037609957,
+              "longitude": 127.144188969212,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5701
+            },
+            {
+              "storeCode": "63515",
+              "storeName": "전주교대점",
+              "address": "전라북도 전주시 완산구 서학로 47, 1층",
+              "latitude": 35.80949934,
+              "longitude": 127.1546946,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5702
+            },
+            {
+              "storeCode": "64596",
+              "storeName": "전주송천한솔점",
+              "address": "전북특별자치도 전주시 덕진구 솔내8길 23-6 상가동 1층 1,2호송천동1가",
+              "latitude": 35.8614904032085,
+              "longitude": 127.124152590062,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5821
+            },
+            {
+              "storeCode": "59592",
+              "storeName": "전주인후낭만점",
+              "address": "전라북도 전주시 덕진구 심방죽로 22, 1층",
+              "latitude": 35.837976776039,
+              "longitude": 127.151108287378,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5859
+            },
+            {
+              "storeCode": "68631",
+              "storeName": "전주여의제일점",
+              "address": "전라북도 전주시 덕진구 쪽구름로 23 상가3동 101호(여의동, 제일아파트)",
+              "latitude": 35.867652531749,
+              "longitude": 127.07827459319,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5864
+            },
+            {
+              "storeCode": "57726",
+              "storeName": "전주인후건산점",
+              "address": "전라북도 전주시 덕진구 건산로 159, 1층",
+              "latitude": 35.833472563,
+              "longitude": 127.1546738658,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 5973
+            },
+            {
+              "storeCode": "57632",
+              "storeName": "전주노송스타점",
+              "address": "전라북도 전주시 완산구 마당재4길 23",
+              "latitude": 35.822885876,
+              "longitude": 127.1593899976,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6124
+            },
+            {
+              "storeCode": "63973",
+              "storeName": "전주인후거성점",
+              "address": "전북특별자치도 전주시 덕진구 팽나무5길 8 1층 인후동1가",
+              "latitude": 35.8362526039285,
+              "longitude": 127.155610284374,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6158
+            },
+            {
+              "storeCode": "68765",
+              "storeName": "전주송천현대점",
+              "address": "전라북도 전주시 덕진구 오송1길 13 1층",
+              "latitude": 35.8632710929,
+              "longitude": 127.1282803501,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6182
+            },
+            {
+              "storeCode": "69123",
+              "storeName": "전주청담점",
+              "address": "전북특별자치도 전주시 덕진구 견훤로 199-1 (인후동1가)",
+              "latitude": 35.8295711557411,
+              "longitude": 127.159168059396,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6239
+            },
+            {
+              "storeCode": "18682",
+              "storeName": "전주스타점",
+              "address": "전라북도 전주시 덕진구 인후동1가 827-14",
+              "latitude": 35.8317417614,
+              "longitude": 127.1591741794,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6302
+            },
+            {
+              "storeCode": "64083",
+              "storeName": "전주인후중앙점",
+              "address": "전북특별자치도 전주시 덕진구 정언신로 62-2 1층인후동1가",
+              "latitude": 35.830263039172,
+              "longitude": 127.160869593262,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6407
+            },
+            {
+              "storeCode": "56327",
+              "storeName": "전주도당산점",
+              "address": "전라북도 전주시 덕진구 도당산로 18 1층",
+              "latitude": 35.8441602841,
+              "longitude": 127.1555022652,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 6521
+            },
+            {
+              "storeCode": "67235",
+              "storeName": "전주인후사랑점",
+              "address": "전라북도 전주시 덕진구 가재미로 5",
+              "latitude": 35.8256113074,
+              "longitude": 127.1634456756,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6529
+            },
+            {
+              "storeCode": "51191",
+              "storeName": "전주반월세움점",
+              "address": "전라북도 전주시 덕진구 쪽구름2길 5 1동 102,103호(반월동, 주건축물)",
+              "latitude": 35.8734545823,
+              "longitude": 127.0755921539,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6546
+            },
+            {
+              "storeCode": "64384",
+              "storeName": "전주반월오네뜨점",
+              "address": "전북특별자치도 전주시 덕진구 쪽구름로 119 1층 일부호 반월동",
+              "latitude": 35.8737374445092,
+              "longitude": 127.072208305908,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6652
+            },
+            {
+              "storeCode": "63814",
+              "storeName": "전주덕진보건소점",
+              "address": "전라북도 전주시 덕진구 우아1길 23 1층",
+              "latitude": 35.8477754282,
+              "longitude": 127.1545904182,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 6653
+            },
+            {
+              "storeCode": "57038",
+              "storeName": "전주에코시티점",
+              "address": "전라북도 전주시 덕진구 세병1길 10 103호",
+              "latitude": 35.8723499095,
+              "longitude": 127.1250613446,
+              "stockQuantity": 0,
+              "isSoldOut": true,
+              "distanceM": 6929
+            },
+            {
+              "storeCode": "56269",
+              "storeName": "전주아중부영점",
+              "address": "전라북도 전주시 덕진구 석소로 5-16",
+              "latitude": 35.8276053763,
+              "longitude": 127.1683854605,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7006
+            },
+            {
+              "storeCode": "59883",
+              "storeName": "전주시그니처점",
+              "address": "전라북도 전주시 덕진구 백제대로 838, 1층 101, 102호",
+              "latitude": 35.8486069895,
+              "longitude": 127.1597283264,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7096
+            },
+            {
+              "storeCode": "57407",
+              "storeName": "전주우아동신점",
+              "address": "전라북도 전주시 덕진구 우아4길 23",
+              "latitude": 35.8501311394,
+              "longitude": 127.1589232264,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7122
+            },
+            {
+              "storeCode": "68223",
+              "storeName": "전주호성신동아점",
+              "address": "전라북도 전주시 덕진구 호성1길 25",
+              "latitude": 35.8563585,
+              "longitude": 127.1538302,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7150
+            },
+            {
+              "storeCode": "53895",
+              "storeName": "전주이편한세상점",
+              "address": "전라북도 전주시 덕진구 우아10길 17-20",
+              "latitude": 35.85352274,
+              "longitude": 127.1565856,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7157
+            },
+            {
+              "storeCode": "63602",
+              "storeName": "전주오지오점",
+              "address": "전라북도 전주시 덕진구 석소2길 31, 101호",
+              "latitude": 35.8351838,
+              "longitude": 127.1680948,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7182
+            },
+            {
+              "storeCode": "19806",
+              "storeName": "전주산정점",
+              "address": "전라북도 전주시 덕진구 안덕원로 370, 1층",
+              "latitude": 35.8389505302,
+              "longitude": 127.1673483264,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7254
+            },
+            {
+              "storeCode": "67508",
+              "storeName": "전주아중솔래점",
+              "address": "전라북도 전주시 덕진구 아중1길 15 1층",
+              "latitude": 35.8288540166,
+              "longitude": 127.1713318533,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7293
+            },
+            {
+              "storeCode": "67682",
+              "storeName": "전주뉴아중파크점",
+              "address": "전라북도 전주시 덕진구 인교로 61 스카이 1층 101호",
+              "latitude": 35.8268612102,
+              "longitude": 127.1720801743,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7320
+            },
+            {
+              "storeCode": "68241",
+              "storeName": "전주아중스타점",
+              "address": "전라북도 전주시 덕진구 중상보로 30, 1층",
+              "latitude": 35.8330454591,
+              "longitude": 127.1708053047,
+              "stockQuantity": -1,
+              "isSoldOut": false,
+              "distanceM": 7352
+            }
+          ]
+        }
+      },
+      "meta": {
+        "total": 100,
+        "pageSize": 200
+      }
+    }
+  },
+  {
+    "label": "wansan",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주시 완산구",
+      "storeLimit": 200
+    },
+    "http_status": 502,
+    "seconds": 20.48,
+    "checked_at": "2026-10-17T11:33:34.212052+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "deokjin",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주시 덕진구",
+      "storeLimit": 200
+    },
+    "http_status": 502,
+    "seconds": 7.06,
+    "checked_at": "2026-10-17T11:33:43.268712+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "wansan",
+    "params": {
+      "keyword": "전주시 완산구",
+      "limit": 200
+    },
+    "http_status": 502,
+    "seconds": 5.52,
+    "checked_at": "2026-10-17T11:34:01.210150+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "deokjin",
+    "params": {
+      "keyword": "전주시 덕진구",
+      "limit": 200
+    },
+    "http_status": 502,
+    "seconds": 6.85,
+    "checked_at": "2026-10-17T11:34:10.056234+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "50966",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주송천우림점",
+      "storeLimit": 5
+    },
+    "http_status": 502,
+    "seconds": 5.2,
+    "checked_at": "2026-10-17T11:34:10.397221+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "18173",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주중화산어은점",
+      "storeLimit": 5
+    },
+    "http_status": 502,
+    "seconds": 7.13,
+    "checked_at": "2026-10-17T11:34:19.525380+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  },
+  {
+    "label": "51076",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주도청CGV점",
+      "storeLimit": 5
+    },
+    "http_status": 502,
+    "seconds": 6.97,
+    "checked_at": "2026-10-17T11:34:28.499976+00:00",
+    "response": {
+      "success": false,
+      "error": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다."
+      },
+      "diagnostics": {
+        "code": "CONVENIENCE_RELAY_FAILED",
+        "message": "편의점 릴레이 요청에 실패했습니다.",
+        "status": 502,
+        "retryable": true,
+        "operation": "seveneleven_request",
+        "upstreamStatus": 502,
+        "hint": "일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요."
+      }
+    }
+  }
+]
