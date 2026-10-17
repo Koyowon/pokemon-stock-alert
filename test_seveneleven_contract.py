@@ -89,5 +89,34 @@ class ContractTests(unittest.TestCase):
         with self.assertRaisesRegex(UnverifiedSnapshot,'UNSUPPORTED_REGION'):
             classify_snapshot(self.directory,self.inventory,'jeju')
 
+    def test_asan_recheck_99_stores_15_zero_84_unknown(self):
+        directory=json.loads((FIXTURES/'asan_stores_complete.json').read_text())
+        inventory=json.loads((FIXTURES/'asan_inventory.json').read_text())
+        rows=classify_snapshot(directory,inventory,'asan')
+        self.assertEqual(len(rows),99)
+        self.assertEqual(sum(x['quantity']==0 for x in rows.values()),15)
+        self.assertEqual(sum(x['quantity'] is None for x in rows.values()),84)
+
+    def test_asan_missing_mildu_store_is_unknown(self):
+        directory=json.loads((FIXTURES/'asan_stores_complete.json').read_text())
+        inventory=json.loads((FIXTURES/'asan_inventory.json').read_text())
+        rows=classify_snapshot(directory,inventory,'asan')
+        self.assertEqual(rows['12792']['name'],'아산밀두점')
+        self.assertIsNone(rows['12792']['quantity'])
+
+    def test_asan_outside_city_addresses_excluded(self):
+        directory=json.loads((FIXTURES/'asan_stores_complete.json').read_text())
+        inventory=json.loads((FIXTURES/'asan_inventory.json').read_text())
+        rows=classify_snapshot(directory,inventory,'asan')
+        self.assertNotIn('서창장골점',[r['name'] for r in rows.values()])
+        self.assertNotIn('정읍아산병원점',[r['name'] for r in rows.values()])
+
+    def test_jeonju_502_cannot_become_all_zero(self):
+        directory=json.loads((FIXTURES/'jeonju_stores.json').read_text())
+        self.assertEqual(len(directory['data']['stores']),135)
+        self.assertEqual(directory['data']['totalCount'],135)
+        with self.assertRaisesRegex(UnverifiedSnapshot,'API_FAILURE'):
+            classify_snapshot(directory,{'success':False,'error':'HTTP 502'},'jeonju')
+
 
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,115 @@
+[
+  {
+    "city": "아산시",
+    "kind": "stores",
+    "params": {
+      "keyword": "아산시",
+      "limit": 200
+    },
+    "at": "2026-10-17T11:22:58.862474+00:00",
+    "status": 200,
+    "meta": {
+      "total": 101,
+      "page": 1,
+      "pageSize": 200
+    },
+    "data_fields": [
+      "keyword",
+      "count",
+      "totalCount",
+      "stores"
+    ]
+  },
+  {
+    "city": "아산시",
+    "kind": "inventory",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "아산시",
+      "storeLimit": 200
+    },
+    "at": "2026-10-17T11:23:11.192020+00:00",
+    "status": 200,
+    "meta": {
+      "total": 98,
+      "pageSize": 200
+    },
+    "data_fields": [
+      "keyword",
+      "storeKeyword",
+      "product",
+      "stockAvailable",
+      "stockError",
+      "note",
+      "inventory"
+    ]
+  },
+  {
+    "city": "전주시",
+    "kind": "stores",
+    "params": {
+      "keyword": "전주시",
+      "limit": 200
+    },
+    "at": "2026-10-17T11:23:49.571025+00:00",
+    "status": 200,
+    "meta": {
+      "total": 135,
+      "page": 1,
+      "pageSize": 200
+    },
+    "data_fields": [
+      "keyword",
+      "count",
+      "totalCount",
+      "stores"
+    ]
+  },
+  {
+    "city": "전주시",
+    "kind": "inventory",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주시",
+      "storeLimit": 200
+    },
+    "at": "2026-10-17T11:23:59.691760+00:00",
+    "error": "HTTPError",
+    "status": 502
+  },
+  {
+    "district": "덕진구",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주시 덕진구",
+      "storeLimit": 200
+    },
+    "at": "2026-10-17T11:24:57.652227+00:00",
+    "error": "HTTPError",
+    "status": 502
+  },
+  {
+    "target": "아산밀두점",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "아산밀두점",
+      "storeLimit": 5
+    },
+    "at": "2026-10-17T11:26:02.123347+00:00",
+    "error": "HTTPError",
+    "status": 502,
+    "error_preview": "{\"success\":false,\"error\":{\"code\":\"CONVENIENCE_RELAY_FAILED\",\"message\":\"편의점 릴레이 요청에 실패했습니다.\"},\"diagnostics\":{\"code\":\"CONVENIENCE_RELAY_FAILED\",\"message\":\"편의점 릴레이 요청에 실패했습니다.\",\"status\":502,\"retryable\":true,\"operation\":\"seveneleven_request\",\"upstreamStatus\":502,\"hint\":\"일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요.\"}}"
+  },
+  {
+    "target": "전주영생점",
+    "params": {
+      "keyword": "포켓몬확장팩(30주년)",
+      "storeKeyword": "전주영생점",
+      "storeLimit": 5
+    },
+    "at": "2026-10-17T11:26:12.154362+00:00",
+    "error": "HTTPError",
+    "status": 502,
+    "error_preview": "{\"success\":false,\"error\":{\"code\":\"CONVENIENCE_RELAY_FAILED\",\"message\":\"편의점 릴레이 요청에 실패했습니다.\"},\"diagnostics\":{\"code\":\"CONVENIENCE_RELAY_FAILED\",\"message\":\"편의점 릴레이 요청에 실패했습니다.\",\"status\":502,\"retryable\":true,\"operation\":\"seveneleven_request\",\"upstreamStatus\":502,\"hint\":\"일시적인 외부 서비스 오류입니다. 잠시 후 재시도해주세요.\"}}"
+  }
+]
