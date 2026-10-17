@@ -283,7 +283,7 @@ def stock(plu, codes):
     print(f"Inventory diagnostics: {fallback_calls} bounded single-store probes")
     return values, statuses
 
-def main():
+def run_monitor(health):
     print("EMART24 STOCK MONITOR START", flush=True)
     from unified_settings import enabled as unified_enabled
     enabled_regions = unified_enabled("emart24", load_enabled_regions())
@@ -302,6 +302,8 @@ def main():
     stores = get_stores(active_regions)
     if not stores:
         raise RuntimeError("No saved or discoverable stores")
+    for code, store in stores.items():
+        health.expect(code, store["name"], store["address"])
     previous = read_json(STATE_FILE, {})
     updated = dict(previous)
     numeric = 0
@@ -310,6 +312,7 @@ def main():
         values, statuses = stock(plu, list(stores))
         print(f"--- Per-store diagnostics: {product} ---")
         for code, status in statuses.items():
+            health.unknown(code, status)
             print(f"STORE {code} | {stores[code]['name']} | {status}")
         for code, store in stores.items():
             key = f"이마트24|{code}|{plu}"
@@ -317,6 +320,7 @@ def main():
             if qty is None:
                 unknown += 1
                 continue
+            health.observe(code, qty, store["name"], store["address"])
             numeric += 1
             old = previous.get(key)
             message = None
@@ -370,5 +374,11 @@ def main():
         print("WARNING: No numeric stock values; API health needs investigation")
     print("EMART24 STOCK MONITOR FINISHED", flush=True)
 
+def main():
+    from inventory_health import monitor_with_health
+    return monitor_with_health("emart24", run_monitor)
+
+
 if __name__ == "__main__":
     main()
+

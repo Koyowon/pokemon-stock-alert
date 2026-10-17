@@ -89,7 +89,7 @@ def telegram(message, map_url=None):
         raise RuntimeError('TELEGRAM_SEND_FAILED')
 
 
-def main():
+def run_monitor(health):
     config = json.loads(CONFIG.read_text(encoding='utf-8'))
     assert config['provider'] == 'GS25'
     code = config['item_code']
@@ -107,6 +107,10 @@ def main():
             raise RuntimeError('STATE_ITEM_CODE_MISMATCH')
     else:
         previous = {'version': 1, 'item_code': code, 'regions': {}}
+    for rid, block in previous.get('regions', {}).items():
+        if rid in active:
+            for sid, row in block.get('stores', block.get('positive', {})).items():
+                health.expect(sid, row.get('name', ''), region=rid)
     new_state = {'version': 2, 'item_code': code, 'regions': dict(previous.get('regions', {})), 'checked_at_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     failures = 0
     alerts = 0
@@ -158,7 +162,17 @@ def main():
             print(f'ASAN_GUARD kept={len(seen)} excluded={before_guard - len(seen)}', flush=True)
         positives = {sid: item for sid, item in seen.items() if item['quantity'] > 0}
         print(f'REGION region={rid} scanned={len(seen)} positive={len(positives)} complete={not failed} conflicts={len(conflicts)}', flush=True)
+        for sid, row in seen.items():
+            health.expect(sid, row['name'], region=rid)
+            if not failed:
+                health.observe(sid, row['quantity'], row['name'], region=rid)
+        for sid in conflicts:
+            health.unknown(sid, 'CONFLICT')
         if failed:
+            health.errors.append('PARTIAL_SCAN:' + rid)
+            for sid, target in health.targets.items():
+                if target['region'] == rid:
+                    health.unknown(sid, 'PARTIAL_SCAN')
             print(f'SKIP_REGION_STATE region={rid} reason=PARTIAL_SCAN', flush=True)
             continue
         prior = previous.get('regions', {}).get(rid)
@@ -214,5 +228,12 @@ def main():
     return 1 if failures else 0
 
 
+def main():
+    sys.path.insert(0, str(ROOT.parent))
+    from inventory_health import monitor_with_health
+    return monitor_with_health('gs25', run_monitor)
+
+
 if __name__ == '__main__':
     sys.exit(main())
+

@@ -35,3 +35,18 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      - name: Save emart24 inventory health and summary
+        if: ${{ always() && github.ref == 'refs/heads/main' }}
+        run: |
+          if [ -f emart24_inventory_health.json ]; then
+            python inventory_health.py emart24
+            git add emart24_inventory_health.json
+            if ! git diff --cached --quiet; then
+              git config user.name 'github-actions[bot]'
+              git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+              git commit -m 'Update emart24 inventory health [skip ci]'
+              git pull --rebase origin main
+              git push origin HEAD:main
+            fi
+          fi

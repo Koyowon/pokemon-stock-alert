@@ -277,7 +277,7 @@ def store_identity_status(old, item):
     return "MATCH"
 
 
-def main():
+def run_monitor(health):
     print("CU STOCK MONITOR START", flush=True)
 
     scan_started = time.monotonic()
@@ -292,6 +292,17 @@ def main():
 
     from unified_settings import enabled as unified_enabled
     enabled_regions = unified_enabled("cu", load_enabled_regions())
+
+    from inventory_health import region_of
+    directory = json.loads(Path(__file__).with_name("cu_official_verified_directory.json").read_text())
+    for row in directory["stores"]:
+        region = region_of(row["address"])
+        if region in enabled_regions:
+            health.expect(row["cu_store_code"], row["name"], row["address"], region)
+    for code, row in state["stores"].items():
+        region = region_of(row.get("address", ""))
+        if region in enabled_regions and code not in health.targets:
+            health.expect(code, row.get("name", ""), row.get("address", ""), region)
 
     for city, points in POINTS.items():
         if provider_blocked:
@@ -361,6 +372,19 @@ def main():
             asan_observed,
             query_succeeded=asan_successful_queries > 0,
         )
+
+    for code, item in observed.items():
+        target = health.targets.get(code)
+        official_identity = dict(target, city=item["city"]) if target else {}
+        if (store_identity_status(state["stores"].get(code, {}), item) == "MATCH"
+                and store_identity_status(official_identity, item) == "MATCH"):
+            health.observe(code, item["stock"], item["name"], item["address"], REGION_IDS[item["city"]])
+        else:
+            health.unknown(code, "IDENTITY_HOLD")
+    for code in conflicts:
+        health.unknown(code, "CONFLICT")
+    if failed_queries:
+        health.errors.append("QUERY_FAILURES:" + str(failed_queries))
 
     if successful_queries == 0:
         if not (set(REGION_IDS.values()) & enabled_regions):
@@ -434,5 +458,11 @@ def main():
     print("CU STOCK MONITOR FINISHED", flush=True)
 
 
+def main():
+    from inventory_health import monitor_with_health
+    return monitor_with_health("cu", run_monitor)
+
+
 if __name__ == "__main__":
     main()
+
