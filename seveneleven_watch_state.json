@@ -1,7 +1,7 @@
 {
   "version": 1,
   "product": "8800286275732",
-  "cursor": 1,
+  "cursor": 2,
   "stores": {
     "68604": {
       "region": "namwon",
@@ -9,7 +9,7 @@
       "address": "전북특별자치도 남원시 농고길 19 1층도통동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
@@ -21,7 +21,7 @@
       "address": "전라북도 남원시 가방뜰길 57",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
@@ -33,7 +33,7 @@
       "address": "전라북도 남원시 용성로 115",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -46,7 +46,7 @@
       "address": "전라북도 남원시 충정로 266",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -59,7 +59,7 @@
       "address": "전라북도 남원시 용성로 178",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -72,7 +72,7 @@
       "address": "전라북도 남원시 큰들길 35",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -85,7 +85,7 @@
       "address": "전라북도 남원시 요천로 2245",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -98,7 +98,7 @@
       "address": "전라북도 남원시 동림로 8, 죽향주공아파트 가동 1호,2호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792248254,
       "direct_failures": 1,
@@ -110,7 +110,7 @@
       "address": "전라북도 남원시 남문로 359, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -123,7 +123,7 @@
       "address": "전라북도 남원시 동림로 82, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
@@ -135,7 +135,7 @@
       "address": "전라북도 남원시 동림로 29",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -148,7 +148,7 @@
       "address": "전라북도 남원시 춘향로 294",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -161,7 +161,7 @@
       "address": "전라북도 남원시 운봉읍 바래봉길 2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -174,7 +174,7 @@
       "address": "전북특별자치도 남원시 붕맛길 20 1층, 동충동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -187,7 +187,7 @@
       "address": "전라북도 남원시 붕맛길 83(향교동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792253349,
       "direct_failures": 2,
@@ -199,7 +199,7 @@
       "address": "전라북도 남원시 시청남로 6 (도통동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_known_quantity": 0,
       "last_success_at": 1792253349,
@@ -213,7 +213,7 @@
       "address": "전북특별자치도 남원시 대복사길 12 1층향교동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
+      "reason": "STALE",
       "checked_at": 1792257514,
       "last_direct_at": 1792238523,
       "direct_failures": 0,
@@ -227,8 +227,8 @@
       "address": "충남 아산시 충무로 70 1층 코너 1, 2호권곡동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64767": {
       "region": "asan",
@@ -236,8 +236,8 @@
       "address": "충남 아산시 탕정면 한들물빛5로 33 1층 104호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -249,8 +249,8 @@
       "address": "충남 아산시 무궁화로 112 1층초사동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64685": {
       "region": "asan",
@@ -258,8 +258,8 @@
       "address": "충남 아산시 탕정면 선문로221번길 70 119호선문대학교 보건의료관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64551": {
       "region": "asan",
@@ -267,8 +267,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점3호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64552": {
       "region": "asan",
@@ -276,8 +276,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점1호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64484": {
       "region": "asan",
@@ -285,8 +285,8 @@
       "address": "충남 아산시 둔포면 중앙공원로17번길 11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64473": {
       "region": "asan",
@@ -294,8 +294,8 @@
       "address": "충남 아산시 신창면 황산길 100-50 1층 경찰대학 학생회관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64416": {
       "region": "asan",
@@ -303,8 +303,8 @@
       "address": "충남 아산시 탕정면 한들물빛5로 11 115호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64335": {
       "region": "asan",
@@ -312,8 +312,8 @@
       "address": "충남 아산시 음봉면 음봉로 515-46 1층 110,111호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64302": {
       "region": "asan",
@@ -321,8 +321,8 @@
       "address": "충남 아산시 고불로 692 102호 좌부동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -334,8 +334,8 @@
       "address": "충남 아산시 배방읍 모산로 52 상가동 102호 (배방5차한성필하우스아파트)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "64012": {
       "region": "asan",
@@ -343,8 +343,8 @@
       "address": "충남 아산시 배방읍 세교중앙로 42",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "63889": {
       "region": "asan",
@@ -352,8 +352,8 @@
       "address": "충남 아산시 둔포면 아산밸리중앙로 67 상가 411동, 114, 115호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -365,8 +365,8 @@
       "address": "충남 아산시 탕정면 용머리길 41 A동 1층 116호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68882": {
       "region": "asan",
@@ -374,8 +374,8 @@
       "address": "충청남도 아산시 서부남로 48 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68595": {
       "region": "asan",
@@ -383,8 +383,8 @@
       "address": "충청남도 아산시 시민로244번길 11-17",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68588": {
       "region": "asan",
@@ -392,8 +392,8 @@
       "address": "충청남도 아산시 문화로 257-20 상가동 1층 102호, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68661": {
       "region": "asan",
@@ -401,8 +401,8 @@
       "address": "충청남도 아산시 삼동로86번길 9",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68434": {
       "region": "asan",
@@ -410,8 +410,8 @@
       "address": "충청남도 아산시 장존동 73-3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -423,8 +423,8 @@
       "address": "충청남도 아산시 선장면 아산만로 780",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68342": {
       "region": "asan",
@@ -432,8 +432,8 @@
       "address": "충청남도 아산시 용화로12번길 12-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "68291": {
       "region": "asan",
@@ -441,8 +441,8 @@
       "address": "충청남도 아산시 권곡로 50, 상가1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "63437": {
       "region": "asan",
@@ -450,8 +450,8 @@
       "address": "충청남도 아산시 배방읍 북수로 149, 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67978": {
       "region": "asan",
@@ -459,8 +459,8 @@
       "address": "충청남도 아산시 영인면 고룡산로 646",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67964": {
       "region": "asan",
@@ -468,8 +468,8 @@
       "address": "충청남도 아산시 신창면 서부북로 849-6, 1층 106호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -481,8 +481,8 @@
       "address": "충청남도 아산시 배방읍 동방로 131, S001동 4호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -494,8 +494,8 @@
       "address": "충남 아산시 둔포면 윤보선로450번길 3 상가동 1층 101호,102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67769": {
       "region": "asan",
@@ -503,8 +503,8 @@
       "address": "충청남도 아산시 온화로65번길 19,1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -516,8 +516,8 @@
       "address": "충청남도 아산시 어의정로17번길 6-3, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59641": {
       "region": "asan",
@@ -525,8 +525,8 @@
       "address": "충청남도 아산시 배방읍 배방로 13번길 9-4, 106호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59761": {
       "region": "asan",
@@ -534,8 +534,8 @@
       "address": "충청남도 아산시 탕정면 탕정면로8번길 55-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59802": {
       "region": "asan",
@@ -543,8 +543,8 @@
       "address": "충청남도 아산시 둔포면 해위안길 79, 1동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59745": {
       "region": "asan",
@@ -552,8 +552,8 @@
       "address": "충청남도 아산시 둔포면 아산호로 907, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67435": {
       "region": "asan",
@@ -561,8 +561,8 @@
       "address": "충청남도 아산시 탕정면 명암길 2번길 1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67428": {
       "region": "asan",
@@ -570,8 +570,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 336번길 96",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67347": {
       "region": "asan",
@@ -579,8 +579,8 @@
       "address": "충청남도 아산시 배방읍 광장로 177-14, 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67322": {
       "region": "asan",
@@ -588,8 +588,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 41",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59259": {
       "region": "asan",
@@ -597,8 +597,8 @@
       "address": "충청남도 아산시 서부북로 536",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67221": {
       "region": "asan",
@@ -606,8 +606,8 @@
       "address": "충남 아산시 음봉면 산동로 134 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59279": {
       "region": "asan",
@@ -615,8 +615,8 @@
       "address": "충남 아산시 배방읍 월천4길 89 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "67150": {
       "region": "asan",
@@ -624,8 +624,8 @@
       "address": "충청남도 아산시 둔포면 둔포중앙로 109번길 11, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59099": {
       "region": "asan",
@@ -633,8 +633,8 @@
       "address": "충청남도 아산시 용화로 75, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "59018": {
       "region": "asan",
@@ -642,8 +642,8 @@
       "address": "충청남도 아산시 신창면 서부북로 270",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -655,8 +655,8 @@
       "address": "충청남도 아산시 인주면 서해로 488, 490",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -668,8 +668,8 @@
       "address": "충남 아산시 탕정면 탕정면로 124 101호이레짬뽕건물",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57519": {
       "region": "asan",
@@ -677,8 +677,8 @@
       "address": "충청남도 아산시 배방읍 희망로46번길 8 118호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57562": {
       "region": "asan",
@@ -686,8 +686,8 @@
       "address": "충청남도 아산시 배방읍 온천대로 1829",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57553": {
       "region": "asan",
@@ -695,8 +695,8 @@
       "address": "충남 아산시 둔포면 충무로 1179 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57419": {
       "region": "asan",
@@ -704,8 +704,8 @@
       "address": "충청남도 아산시 신창면 남성길 71-1, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57387": {
       "region": "asan",
@@ -713,8 +713,8 @@
       "address": "충청남도 아산시 배방읍 북수리 1781",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "57045": {
       "region": "asan",
@@ -722,8 +722,8 @@
       "address": "충청남도 아산시 온천동 1368",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -735,8 +735,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 394 102, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "56274": {
       "region": "asan",
@@ -744,8 +744,8 @@
       "address": "충청남도 아산시 삼동로16번길 43 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "56276": {
       "region": "asan",
@@ -753,8 +753,8 @@
       "address": "충청남도 아산시 배방읍 호서로79번길 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "56152": {
       "region": "asan",
@@ -762,8 +762,8 @@
       "address": "충청남도 아산시 도고면 기곡로62번길 21-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "56134": {
       "region": "asan",
@@ -771,8 +771,8 @@
       "address": "충청남도 아산시 선장면 아산만로 697",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "56061": {
       "region": "asan",
@@ -780,8 +780,8 @@
       "address": "충청남도 아산시 염치읍 은행나무길215번길 2 9-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55567": {
       "region": "asan",
@@ -789,8 +789,8 @@
       "address": "충남 아산시 탕정면 선문로 387 제120동 제1층 104호홍익아파트",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55568": {
       "region": "asan",
@@ -798,8 +798,8 @@
       "address": "충청남도 아산시 탕정면 매곡로71번길 32",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55554": {
       "region": "asan",
@@ -807,8 +807,8 @@
       "address": "충남 아산시 선장면 서부남로 115 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55340": {
       "region": "asan",
@@ -816,8 +816,8 @@
       "address": "충청남도 아산시 신창면 서부북로 745",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -829,8 +829,8 @@
       "address": "충남 아산시 음봉면 연암율금로 119 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55210": {
       "region": "asan",
@@ -838,8 +838,8 @@
       "address": "충청남도 아산시 배방읍 배방로187번길 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "55131": {
       "region": "asan",
@@ -847,8 +847,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1652-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "54970": {
       "region": "asan",
@@ -856,8 +856,8 @@
       "address": "충청남도 아산시 탕정면로 405 상가동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "54499": {
       "region": "asan",
@@ -865,8 +865,8 @@
       "address": "충청남도 아산시 음봉면 음봉로 332",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53876": {
       "region": "asan",
@@ -874,8 +874,8 @@
       "address": "충남 아산시 온양역길 46-3 1층 1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -887,8 +887,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 458 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53631": {
       "region": "asan",
@@ -896,8 +896,8 @@
       "address": "충청남도 아산시 장재로 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53585": {
       "region": "asan",
@@ -905,8 +905,8 @@
       "address": "충청남도 아산시 시민로 292, 1층 (용화동, 성지빌딩)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53528": {
       "region": "asan",
@@ -914,8 +914,8 @@
       "address": "충청남도 아산시 음봉면 연암율금로 220-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53249": {
       "region": "asan",
@@ -923,8 +923,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로336번길 6",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "53220": {
       "region": "asan",
@@ -932,8 +932,8 @@
       "address": "충남 아산시 문화로 123-8 A동 102호온천동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -945,8 +945,8 @@
       "address": "충청남도 아산시 아산밸리동로 261-11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "52911": {
       "region": "asan",
@@ -954,8 +954,8 @@
       "address": "충청남도 아산시 탕정면로 114-22 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "52336": {
       "region": "asan",
@@ -963,8 +963,8 @@
       "address": "충청남도 아산시 도고산로 713 3동 4호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "52214": {
       "region": "asan",
@@ -972,8 +972,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 92-12",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "17644": {
       "region": "asan",
@@ -981,8 +981,8 @@
       "address": "충청남도 아산시 둔포면 봉신로 279",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "51369": {
       "region": "asan",
@@ -990,8 +990,8 @@
       "address": "충청남도 아산시 번영로 223 외3필지 1층 108호(모종동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "51064": {
       "region": "asan",
@@ -999,8 +999,8 @@
       "address": "충청남도 아산시 배방로 58-34",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "18945": {
       "region": "asan",
@@ -1008,8 +1008,8 @@
       "address": "충청남도 아산시 배방읍 호서로 45-14",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "18778": {
       "region": "asan",
@@ -1017,8 +1017,8 @@
       "address": "충청남도 아산시 번영로69번길 24 buy the way 편의점1층(온천동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "18801": {
       "region": "asan",
@@ -1026,8 +1026,8 @@
       "address": "충청남도 아산시 음봉면 음봉면로 3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "19853": {
       "region": "asan",
@@ -1035,8 +1035,8 @@
       "address": "충청남도 아산시 탕정면 이순신대로 393 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "51230": {
       "region": "asan",
@@ -1044,8 +1044,8 @@
       "address": "충청남도 아산시 염치읍 아산로 724",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "17981": {
       "region": "asan",
@@ -1053,8 +1053,8 @@
       "address": "충청남도 아산시 삼동로 102-9 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029
     },
     "16310": {
       "region": "asan",
@@ -1062,8 +1062,8 @@
       "address": "충청남도 아산시 탕정면 탕정로 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792253349,
       "direct_failures": 1,
       "next_direct_at": 1792254249
@@ -1074,8 +1074,8 @@
       "address": "충청남도 아산시 청운로 70",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -1088,8 +1088,8 @@
       "address": "충청남도 아산시 청운로 23-4 용화동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
       "next_direct_at": 1792250356
@@ -1100,8 +1100,8 @@
       "address": "충청남도 아산시 탕정면탕정면로8번길 33-7 명암리 932-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792250904,
       "direct_failures": 1,
       "next_direct_at": 1792251804
@@ -1112,8 +1112,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 298 104,105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -1124,8 +1124,8 @@
       "address": "충남 아산시 배방읍 북수로 106 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792238672,
       "direct_failures": 1,
       "next_direct_at": 1792239572
@@ -1136,8 +1136,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1703",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792242284,
       "direct_failures": 1,
       "next_direct_at": 1792243184
@@ -1148,8 +1148,8 @@
       "address": "충청남도 아산시 용화로47번길 7-1, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -1160,8 +1160,8 @@
       "address": "충청남도 아산시 탕정면 명암길2번길 25-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -1172,8 +1172,11 @@
       "address": "충청남도 아산시 문화로 301-25, 1층 107호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
+      "last_direct_at": 1792259029,
+      "direct_failures": 1,
+      "next_direct_at": 1792259929
     },
     "12538": {
       "region": "asan",
@@ -1181,8 +1184,8 @@
       "address": "충남 아산시 인주면 인주산단로 23-22 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -1193,8 +1196,8 @@
       "address": "충청남도 아산시 신창면 순천향로 47-25 순천향로 47-25",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792254863,
+      "reason": "HTTP_502",
+      "checked_at": 1792259029,
       "last_known_quantity": 0,
       "last_success_at": 1792254863,
       "direct_failures": 0,
@@ -2465,25 +2468,25 @@
       "checked_at": 1792256307
     }
   },
-  "updated_at": 1792257514,
+  "updated_at": 1792259029,
   "calls": [
     {
-      "region": "namwon",
-      "keyword": "남원시",
+      "region": "asan",
+      "keyword": "아산시",
       "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 1.05,
-      "at": 1792257514
+      "elapsed_seconds": 0.58,
+      "at": 1792259029
     },
     {
-      "region": "namwon",
-      "keyword": "남원시청점",
-      "target": "54131",
+      "region": "asan",
+      "keyword": "아산모종한성점",
+      "target": "17034",
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 0.92,
-      "at": 1792257514
+      "elapsed_seconds": 1.28,
+      "at": 1792259029
     }
   ],
   "halted": true,
