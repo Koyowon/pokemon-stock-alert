@@ -1,7 +1,107 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>포켓몬 30주년팩 재고 현황판</title><style>body{font:15px system-ui;background:#f5f7fb;color:#1e293b;margin:0}main{max-width:950px;margin:auto;padding:20px}section{background:white;padding:20px;border-radius:15px;margin:12px 0}input,select,button{padding:10px;margin:3px;border:1px solid #ccd3df;border-radius:9px;background:white}button{background:#243c7b;color:white}table{width:100%;border-collapse:collapse}td,th{text-align:left;border-bottom:1px solid #eee;padding:9px 4px}small{color:#64748b}.scroll{overflow:auto}</style><main><section><h2>🎴 포켓몬 30주년팩 재고 현황</h2><p>CU · 이마트24 · GS25 | 남원 · 아산 · 전주</p><small>GitHub 마지막 저장 수량이며 실시간 재고는 아닙니다.</small></section><section><select id="city"><option value="">전체 지역</option><option>남원</option><option>아산</option><option>전주</option></select><select id="chain"><option value="">전체 편의점</option><option>CU</option><option>이마트24</option><option>GS25</option></select><select id="status"><option value="">전체 상태</option><option value="yes">재고 있음</option><option value="no">0개</option><option value="unknown">미확인</option></select><input id="q" placeholder="점포명 검색"><button onclick="load()">새로고침</button><p id="msg">불러오는 중…</p><p id="count"></p><div class="scroll"><table><thead><tr><th>편의점</th><th>지역</th><th>점포명</th><th>수량</th></tr></thead><tbody id="body"></tbody></table></div></section></main><script>
-const base='https://raw.githubusercontent.com/Koyowon/pokemon-stock-alert/main/';const $=id=>document.getElementById(id);let all=[];const region=s=>/남원/.test(s)?'남원':/아산/.test(s)?'아산':/전주/.test(s)?'전주':null;const qty=n=>Number.isInteger(n)&&n>=0?n:null;const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));async function read(path){let r=await fetch(base+path+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(path+' '+r.status);return r.json()}
-async function load(){ $('msg').textContent='조회 중…';try{const [cu,em,stores,gs]=await Promise.all([read('cu_stock_state.json'),read('state.json'),read('stores.json'),read('gs25_independent/gs25_stock_state.json')]);let rows=[];for(const [id,v] of Object.entries(cu.stores||{})){const city=v.city||region(v.address);if(['남원','아산','전주'].includes(city))rows.push({chain:'CU',city,name:v.name||id,qty:qty(v.stock)})}
-let seen=new Set();for(const [key,n] of Object.entries(em)){const [chain,id,barcode]=key.split('|');if(chain!=='emart24'||barcode!=='8800286275732')continue;const s=stores.stores?.[id]||{};const city=region(s.address||s.name||'');if(city){seen.add(id);rows.push({chain:'이마트24',city,name:s.name||id,qty:qty(n)})}}for(const [id,s] of Object.entries(stores.stores||{})){if(seen.has(id))continue;const city=region(s.address||s.name||'');if(city)rows.push({chain:'이마트24',city,name:s.name||id,qty:null})}
-for(const [key,v] of Object.entries(gs.regions||{})){const city={namwon:'남원',asan:'아산',jeonju:'전주'}[key];if(!city)continue;for(const [id,s] of Object.entries(v.stores||{}))rows.push({chain:'GS25',city,name:s.name||id,qty:qty(s.quantity)})}all=rows;render();$('msg').textContent='파일 확인: '+new Date().toLocaleString('ko-KR')+' (편의점별 마지막 재고조회 시각과 다를 수 있음)'}catch(e){$('msg').textContent='조회 실패: '+e.message}}
-function render(){let c=$('city').value,h=$('chain').value,s=$('status').value,q=$('q').value.trim().toLowerCase();let a=all.filter(x=>(!c||x.city===c)&&(!h||x.chain===h)&&(!q||x.name.toLowerCase().includes(q))&&(!s||(s==='yes'?x.qty>0:s==='no'?x.qty===0:x.qty===null)));a.sort((x,y)=>(y.qty>0)-(x.qty>0)||x.city.localeCompare(y.city,'ko'));$('count').textContent='표시 '+a.length+'개 점포 · 재고 있음 '+a.filter(x=>x.qty>0).length+' · 0개 '+a.filter(x=>x.qty===0).length+' · 미확인 '+a.filter(x=>x.qty===null).length;$('body').innerHTML=a.map(x=>'<tr><td>'+esc(x.chain)+'</td><td>'+esc(x.city)+'</td><td>'+esc(x.name)+'</td><td>'+ (x.qty===null?'미확인':x.qty+'개')+'</td></tr>').join('')||'<tr><td colspan="4">해당 점포 없음</td></tr>'}for(const id of ['city','chain','status','q'])$(id).addEventListener('input',render);load();
-</script></html>
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>포켓몬카드 통합 재고 지도</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyo9me7qJxS7m5c=" crossorigin="">
+<style>
+*{box-sizing:border-box}body{font:15px system-ui,-apple-system,sans-serif;background:#f4f6fa;color:#172033;margin:0}main{max-width:1100px;margin:auto;padding:16px}header,.panel{background:white;border:1px solid #e3e7ed;border-radius:16px;padding:17px;margin-bottom:12px}h1{font-size:23px;margin:0 0 8px}p{margin:6px 0;color:#566477;line-height:1.5}.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}select,input,button{padding:10px;border:1px solid #cbd5e1;border-radius:9px;background:white;font:inherit}button{cursor:pointer}label{display:flex;align-items:center;gap:6px}#map{height:410px;border-radius:12px;background:#e9eff0}#summary{font-weight:600;margin:12px 0}#list{max-height:500px;overflow:auto}.store{border-bottom:1px solid #e5e7eb;padding:12px 2px}.store:last-child{border-bottom:0}.store button{font-weight:700;border:0;padding:0;background:none;text-align:left;color:#1554a3}.store small,.muted{display:block;color:#64748b;margin-top:5px}.qty{font-weight:700}.positive{color:#138349}.unknown{color:#8a610c}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.actions a{color:#135bb1}#warning{color:#825800}.leaflet-popup-content{min-width:220px;line-height:1.5}.leaflet-popup-content a{color:#1256a4}@media(min-width:850px){.layout{display:grid;grid-template-columns:1.35fr 1fr;gap:12px}.layout .panel{margin-bottom:0}#map{height:560px}#list{max-height:490px}}</style>
+</head><body><main>
+<header><h1>🎴 포켓몬카드 통합 재고 지도</h1><p>CU · 이마트24 · GS25 | 마지막으로 저장된 재고 기록 (실시간 아님)</p><p id="warning">검증된 좌표가 있는 점포만 지도에 표시합니다. 좌표가 없는 점포는 아래 목록에서 확인할 수 있습니다.</p></header>
+<section class="panel filters">
+<select id="chain" aria-label="편의점"><option value="">모든 편의점</option><option>CU</option><option>이마트24</option><option>GS25</option></select>
+<select id="city" aria-label="지역"><option value="">모든 지역</option><option>남원</option><option>아산</option><option>전주</option><option>제주</option></select>
+<input id="query" placeholder="매장명 또는 주소 검색" aria-label="매장 검색">
+<label><input id="positive" type="checkbox"> 재고 있는 매장만</label>
+<button id="refresh">새로고침</button>
+</section>
+<div class="layout"><section class="panel"><div id="map" aria-label="검증된 매장 위치 지도"></div><p id="mapInfo"></p></section>
+<section class="panel"><div id="summary" aria-live="polite">불러오는 중…</div><div id="list"></div></section></div>
+<p class="muted" id="updated">파일 로딩 중…</p>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+'use strict';
+const BASE='https://raw.githubusercontent.com/Koyowon/pokemon-stock-alert/main/';
+const BARCODE='8800286275732';
+const $=id=>document.getElementById(id);
+const region=s=>/남원/.test(s)?'남원':/아산/.test(s)?'아산':/전주/.test(s)?'전주':/제주|서귀포/.test(s)?'제주':null;
+const number=n=>(typeof n==='number'&&Number.isInteger(n)&&n>=0)?n:(typeof n==='string'&&/^\\d+$/.test(n)?Number(n):null);
+const mapLink=(name,address)=>'https://map.naver.com/p/search/'+encodeURIComponent((address||name).trim());
+const product='포켓몬 30주년 기념카드';
+const map=L.map('map').setView([36.2,127.5],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19}).addTo(map);
+const pins=L.layerGroup().addTo(map);
+let rows=[],verified={},markers=new Map();
+async function read(path){const r=await fetch(BASE+path+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error(path+': HTTP '+r.status);return r.json();}
+function validCoord(entry,row){
+ if(!entry||entry.verification!=='ADDRESS_AND_STORE_ID_MATCH'||entry.chain!==row.chain||entry.store_id!==row.id)return null;
+ if(typeof entry.address!=='string'||entry.address.trim()!==row.address.trim())return null;
+ if(!Number.isFinite(entry.lat)||!Number.isFinite(entry.lng)||entry.lat<33||entry.lat>39||entry.lng<124||entry.lng>132)return null;
+ if(!entry.source||typeof entry.source!=='string')return null;
+ return [entry.lat,entry.lng];
+}
+function add(chain,id,name,address,city,qty,checked){
+ const row={chain,id:String(id),name:String(name||id),address:String(address||''),city:city||region(address||name)||'미확인',qty:number(qty),checked:checked||null,product};
+ row.coords=validCoord(verified[chain+'|'+row.id],row);rows.push(row);
+}
+async function load(){
+ $('summary').textContent='데이터 불러오는 중…';
+ try{
+ const [cu,em,stores,gs,geo]=await Promise.all([
+ read('cu_stock_state.json'),read('state.json'),read('stores.json'),
+ read('gs25_independent/gs25_stock_state.json'),read('docs/stock/verified_coordinates.json')]);
+ verified=geo.stores&&typeof geo.stores==='object'?geo.stores:{};
+ rows=[];
+ for(const [id,v] of Object.entries(cu.stores||{}))add('CU',id,v.name,v.address,v.city,v.stock,null);
+ const seen=new Set();
+ for(const [key,value] of Object.entries(em)){
+  const [chain,id,barcode]=key.split('|');
+  if(!['이마트24','emart24'].includes(chain)||barcode!==BARCODE)continue;
+  if(chain==='emart24'&&Object.hasOwn(em,'이마트24|'+id+'|'+BARCODE))continue;
+  const s=stores.stores?.[id];if(!s)continue;
+  const unique='이마트24|'+id;if(seen.has(unique))continue;seen.add(unique);
+  add('이마트24',id,s.name,s.address,region(s.address),value,null);
+ }
+ for(const [rid,group] of Object.entries(gs.regions||{})){
+  const city={namwon:'남원',asan:'아산',jeonju:'전주',jeju:'제주'}[rid]||'미확인';
+  for(const [id,v] of Object.entries(group.stores||{}))add('GS25',id,v.name,'',city,v.quantity,group.checked_at_utc);
+ }
+ render();$('updated').textContent='페이지 데이터 로드: '+new Date().toLocaleString('ko-KR')+' · CU/이마트24 저장 파일에는 점포별 재고 확인 시각이 없어 표시하지 않습니다. GS25는 지역별 상태 기록 시각입니다.';
+ }catch(err){$('summary').textContent='데이터 로딩 실패: '+err.message;$('updated').textContent='이전 결과를 최신 정보로 간주하지 마세요.';}
+}
+function element(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
+function showPopup(row,marker){
+ const wrap=document.createElement('div');
+ wrap.append(element('strong',row.chain+' '+row.name));
+ wrap.append(element('div','주소: '+(row.address||'저장된 주소 없음')));
+ wrap.append(element('div','상품: '+row.product));
+ wrap.append(element('div','마지막 확인 재고: '+(row.qty===null?'미확인':row.qty===0?'0개 (재고 없음)':row.qty+'개')));
+ wrap.append(element('div','조회 시각: '+(row.checked?new Date(row.checked).toLocaleString('ko-KR'):'기록 없음')));
+ const a=element('a','🗺 네이버지도에서 매장 보기');a.href=mapLink(row.chain+' '+row.name,row.address);a.target='_blank';a.rel='noopener noreferrer';wrap.append(a);
+ marker.bindPopup(wrap).openPopup();
+}
+function render(){
+ const c=$('chain').value,city=$('city').value,q=$('query').value.trim().toLowerCase(),pos=$('positive').checked;
+ const visible=rows.filter(x=>(!c||x.chain===c)&&(!city||x.city===city)&&(!q||(x.name+' '+x.address).toLowerCase().includes(q))&&(!pos||x.qty>0));
+ visible.sort((a,b)=>(b.qty>0)-(a.qty>0)||a.city.localeCompare(b.city,'ko')||a.name.localeCompare(b.name,'ko'));
+ pins.clearLayers();markers.clear();const bounds=[];
+ for(const r of visible){if(!r.coords)continue;const marker=L.marker(r.coords).addTo(pins);marker.on('click',()=>showPopup(r,marker));markers.set(r.chain+'|'+r.id,marker);bounds.push(r.coords);}
+ if(bounds.length)map.fitBounds(bounds,{padding:[30,30],maxZoom:12});
+ $('mapInfo').textContent='검증 좌표 표시 '+bounds.length+'곳 · 위치 미확인 '+(visible.length-bounds.length)+'곳 (위치 미확인 점포는 지도에 표시하지 않음)';
+ $('summary').textContent='표시 '+visible.length+'곳 · 재고 있음 '+visible.filter(x=>x.qty>0).length+' · 0개 '+visible.filter(x=>x.qty===0).length+' · 미확인 '+visible.filter(x=>x.qty===null).length;
+ const list=$('list');list.replaceChildren();
+ if(!visible.length){list.append(element('p','조건에 맞는 매장이 없습니다.'));return;}
+ for(const r of visible){
+  const box=element('article',undefined,'store');
+  const title=element('button',r.chain+' '+r.name);
+  title.addEventListener('click',()=>{const marker=markers.get(r.chain+'|'+r.id);if(marker){map.setView(r.coords,Math.max(map.getZoom(),14));showPopup(r,marker);document.getElementById('map').scrollIntoView({behavior:'smooth',block:'center'});}else{alert('검증된 위치 좌표가 없습니다. 매장 정보는 목록에서 확인할 수 있습니다.');}});
+  box.append(title);
+  box.append(element('div','재고: '+(r.qty===null?'미확인':r.qty===0?'0개 (재고 없음)':r.qty+'개'),r.qty>0?'qty positive':r.qty===null?'qty unknown':'qty'));
+  box.append(element('small',r.city+' · '+(r.address||'주소 미등록')));
+  box.append(element('small','상품: '+r.product+' · 조회 시각: '+(r.checked?new Date(r.checked).toLocaleString('ko-KR'):'기록 없음')));
+  const actions=element('div',undefined,'actions');const a=element('a','네이버지도 검색');a.href=mapLink(r.chain+' '+r.name,r.address);a.target='_blank';a.rel='noopener noreferrer';actions.append(a);box.append(actions);list.append(box);
+ }
+}
+for(const id of ['chain','city','query','positive'])$(id).addEventListener('input',render);
+$('refresh').addEventListener('click',load);
+load();
+</script></body></html>

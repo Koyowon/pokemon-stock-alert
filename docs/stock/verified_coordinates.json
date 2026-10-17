@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "description": "Only verified store ID + exact address coordinates. No unverified points are plotted.",
+  "stores": {}
+}
