@@ -21,6 +21,8 @@ function attachLocations(rows,registry,now=Date.now()/1000){
   return {...row,location:match?{latitude:entry.latitude,longitude:entry.longitude,source:entry.source_url,verifiedAt:entry.verified_at}:null,address:text(row.address)||(match?entry.address:'')};
  });
 }
-function pins(rows,{includeZero=false}={}){return rows.filter(r=>r.status==='known'&&typeof r.qty==='number'&&Number.isInteger(r.qty)&&(r.qty>0||(includeZero&&r.qty===0))&&r.location);}
-const api={attachLocations,pins};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.StockMapModel=api;
+function eligible(row,{includeZero=false,includeUnknown=false}={}){return row.status==='known'&&Number.isInteger(row.qty)&&(row.qty>0||(includeZero&&row.qty===0))||includeUnknown&&row.status==='unknown'&&row.qty===null;}
+function pins(rows,options={}){return rows.filter(r=>r.location&&eligible(r,options));}
+const api={attachLocations,pins,eligible};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.StockMapModel=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+
