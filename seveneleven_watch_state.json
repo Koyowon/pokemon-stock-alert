@@ -1,7 +1,7 @@
 {
   "version": 1,
   "product": "8800286275732",
-  "cursor": 1,
+  "cursor": 2,
   "stores": {
     "68604": {
       "region": "namwon",
@@ -9,7 +9,7 @@
       "address": "전북특별자치도 남원시 농고길 19 1층도통동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792290500,
       "direct_failures": 3,
@@ -21,7 +21,7 @@
       "address": "전라북도 남원시 가방뜰길 57",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792285443,
       "direct_failures": 3,
@@ -31,9 +31,9 @@
       "region": "namwon",
       "name": "남원신터미널점",
       "address": "전라북도 남원시 용성로 115",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -44,9 +44,9 @@
       "region": "namwon",
       "name": "남원IC점",
       "address": "전라북도 남원시 충정로 266",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -57,9 +57,9 @@
       "region": "namwon",
       "name": "남원센터점",
       "address": "전라북도 남원시 용성로 178",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -70,9 +70,9 @@
       "region": "namwon",
       "name": "남원도통중앙점",
       "address": "전라북도 남원시 큰들길 35",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -83,9 +83,9 @@
       "region": "namwon",
       "name": "남원삼성점",
       "address": "전라북도 남원시 요천로 2245",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -98,7 +98,7 @@
       "address": "전라북도 남원시 동림로 8, 죽향주공아파트 가동 1호,2호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792300177,
       "direct_failures": 4,
@@ -108,9 +108,9 @@
       "region": "namwon",
       "name": "남원남문로점",
       "address": "전라북도 남원시 남문로 359, 1층",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -123,7 +123,7 @@
       "address": "전라북도 남원시 동림로 82, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792295587,
       "direct_failures": 4,
@@ -133,9 +133,9 @@
       "region": "namwon",
       "name": "남원아성점",
       "address": "전라북도 남원시 동림로 29",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -147,9 +147,9 @@
       "region": "namwon",
       "name": "남원광치산단점",
       "address": "전라북도 남원시 춘향로 294",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -161,9 +161,9 @@
       "region": "namwon",
       "name": "남원운봉점",
       "address": "전라북도 남원시 운봉읍 바래봉길 2",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -175,9 +175,9 @@
       "region": "namwon",
       "name": "남원동충센터점",
       "address": "전북특별자치도 남원시 붕맛길 20 1층, 동충동",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -191,7 +191,7 @@
       "address": "전라북도 남원시 붕맛길 83(향교동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "NO_QUANTITY",
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792293655,
       "direct_failures": 4,
@@ -201,9 +201,9 @@
       "region": "namwon",
       "name": "남원시청점",
       "address": "전라북도 남원시 시청남로 6 (도통동)",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_known_quantity": 0,
       "last_success_at": 1792300177,
@@ -215,9 +215,9 @@
       "region": "namwon",
       "name": "남원향교점",
       "address": "전북특별자치도 남원시 대복사길 12 1층향교동",
-      "status": "OK",
-      "quantity": 0,
-      "reason": "OBSERVED",
+      "status": "UNKNOWN",
+      "quantity": null,
+      "reason": "STALE",
       "checked_at": 1792300177,
       "last_direct_at": 1792238523,
       "direct_failures": 0,
@@ -231,21 +231,21 @@
       "address": "충남 아산시 충무로 70 1층 코너 1, 2호권곡동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64767": {
       "region": "asan",
       "name": "아산탕정역센터점",
       "address": "충남 아산시 탕정면 한들물빛5로 33 1층 104호",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "64740": {
       "region": "asan",
@@ -253,8 +253,8 @@
       "address": "충남 아산시 무궁화로 112 1층초사동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64685": {
       "region": "asan",
@@ -262,8 +262,8 @@
       "address": "충남 아산시 탕정면 선문로221번길 70 119호선문대학교 보건의료관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64551": {
       "region": "asan",
@@ -271,8 +271,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점3호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64552": {
       "region": "asan",
@@ -280,8 +280,8 @@
       "address": "충남 아산시 남부로 370-24 3층 매점1호 풍기동, 이순신종합운동장",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64484": {
       "region": "asan",
@@ -289,8 +289,8 @@
       "address": "충남 아산시 둔포면 중앙공원로17번길 11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64473": {
       "region": "asan",
@@ -298,8 +298,8 @@
       "address": "충남 아산시 신창면 황산길 100-50 1층 경찰대학 학생회관",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64416": {
       "region": "asan",
@@ -307,8 +307,8 @@
       "address": "충남 아산시 탕정면 한들물빛5로 11 115호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64335": {
       "region": "asan",
@@ -316,21 +316,21 @@
       "address": "충남 아산시 음봉면 음봉로 515-46 1층 110,111호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64302": {
       "region": "asan",
       "name": "아산좌부교차로점",
       "address": "충남 아산시 고불로 692 102호 좌부동",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "64273": {
       "region": "asan",
@@ -338,8 +338,8 @@
       "address": "충남 아산시 배방읍 모산로 52 상가동 102호 (배방5차한성필하우스아파트)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "64012": {
       "region": "asan",
@@ -347,21 +347,21 @@
       "address": "충남 아산시 배방읍 세교중앙로 42",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "63889": {
       "region": "asan",
       "name": "아산둔포이지점",
       "address": "충남 아산시 둔포면 아산밸리중앙로 67 상가 411동, 114, 115호",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "63850": {
       "region": "asan",
@@ -369,8 +369,8 @@
       "address": "충남 아산시 탕정면 용머리길 41 A동 1층 116호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68882": {
       "region": "asan",
@@ -378,8 +378,8 @@
       "address": "충청남도 아산시 서부남로 48 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68595": {
       "region": "asan",
@@ -387,8 +387,8 @@
       "address": "충청남도 아산시 시민로244번길 11-17",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68588": {
       "region": "asan",
@@ -396,8 +396,8 @@
       "address": "충청남도 아산시 문화로 257-20 상가동 1층 102호, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68661": {
       "region": "asan",
@@ -405,21 +405,21 @@
       "address": "충청남도 아산시 삼동로86번길 9",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68434": {
       "region": "asan",
       "name": "아산장존아름점",
       "address": "충청남도 아산시 장존동 73-3",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "68377": {
       "region": "asan",
@@ -427,8 +427,8 @@
       "address": "충청남도 아산시 선장면 아산만로 780",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68342": {
       "region": "asan",
@@ -436,8 +436,8 @@
       "address": "충청남도 아산시 용화로12번길 12-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "68291": {
       "region": "asan",
@@ -445,8 +445,8 @@
       "address": "충청남도 아산시 권곡로 50, 상가1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "63437": {
       "region": "asan",
@@ -454,8 +454,8 @@
       "address": "충청남도 아산시 배방읍 북수로 149, 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67978": {
       "region": "asan",
@@ -463,34 +463,34 @@
       "address": "충청남도 아산시 영인면 고룡산로 646",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67964": {
       "region": "asan",
       "name": "아산남성점",
       "address": "충청남도 아산시 신창면 서부북로 849-6, 1층 106호",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "63269": {
       "region": "asan",
       "name": "아산탕정행복점",
       "address": "충청남도 아산시 배방읍 동방로 131, S001동 4호",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "63145": {
       "region": "asan",
@@ -498,21 +498,21 @@
       "address": "충남 아산시 둔포면 윤보선로450번길 3 상가동 1층 101호,102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67769": {
       "region": "asan",
       "name": "아산온천타운점",
       "address": "충청남도 아산시 온화로65번길 19,1층",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "67733": {
       "region": "asan",
@@ -520,8 +520,8 @@
       "address": "충청남도 아산시 어의정로17번길 6-3, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59641": {
       "region": "asan",
@@ -529,8 +529,8 @@
       "address": "충청남도 아산시 배방읍 배방로 13번길 9-4, 106호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59761": {
       "region": "asan",
@@ -538,8 +538,8 @@
       "address": "충청남도 아산시 탕정면 탕정면로8번길 55-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59802": {
       "region": "asan",
@@ -547,8 +547,8 @@
       "address": "충청남도 아산시 둔포면 해위안길 79, 1동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59745": {
       "region": "asan",
@@ -556,8 +556,8 @@
       "address": "충청남도 아산시 둔포면 아산호로 907, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67435": {
       "region": "asan",
@@ -565,8 +565,8 @@
       "address": "충청남도 아산시 탕정면 명암길 2번길 1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67428": {
       "region": "asan",
@@ -574,8 +574,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 336번길 96",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67347": {
       "region": "asan",
@@ -583,8 +583,8 @@
       "address": "충청남도 아산시 배방읍 광장로 177-14, 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67322": {
       "region": "asan",
@@ -592,8 +592,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 41",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59259": {
       "region": "asan",
@@ -601,8 +601,8 @@
       "address": "충청남도 아산시 서부북로 536",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67221": {
       "region": "asan",
@@ -610,8 +610,8 @@
       "address": "충남 아산시 음봉면 산동로 134 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59279": {
       "region": "asan",
@@ -619,8 +619,8 @@
       "address": "충남 아산시 배방읍 월천4길 89 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "67150": {
       "region": "asan",
@@ -628,8 +628,8 @@
       "address": "충청남도 아산시 둔포면 둔포중앙로 109번길 11, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59099": {
       "region": "asan",
@@ -637,34 +637,34 @@
       "address": "충청남도 아산시 용화로 75, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "59018": {
       "region": "asan",
       "name": "아산창덕에버빌점",
       "address": "충청남도 아산시 신창면 서부북로 270",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "59020": {
       "region": "asan",
       "name": "아산인주휴게소점",
       "address": "충청남도 아산시 인주면 서해로 488, 490",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "57823": {
       "region": "asan",
@@ -672,8 +672,8 @@
       "address": "충남 아산시 탕정면 탕정면로 124 101호이레짬뽕건물",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57519": {
       "region": "asan",
@@ -681,8 +681,8 @@
       "address": "충청남도 아산시 배방읍 희망로46번길 8 118호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57562": {
       "region": "asan",
@@ -690,8 +690,8 @@
       "address": "충청남도 아산시 배방읍 온천대로 1829",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57553": {
       "region": "asan",
@@ -699,8 +699,8 @@
       "address": "충남 아산시 둔포면 충무로 1179 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57419": {
       "region": "asan",
@@ -708,8 +708,8 @@
       "address": "충청남도 아산시 신창면 남성길 71-1, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57387": {
       "region": "asan",
@@ -717,21 +717,21 @@
       "address": "충청남도 아산시 배방읍 북수리 1781",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "57045": {
       "region": "asan",
       "name": "아산온천빌리지점",
       "address": "충청남도 아산시 온천동 1368",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "57047": {
       "region": "asan",
@@ -739,8 +739,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 394 102, 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "56274": {
       "region": "asan",
@@ -748,8 +748,8 @@
       "address": "충청남도 아산시 삼동로16번길 43 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "56276": {
       "region": "asan",
@@ -757,8 +757,8 @@
       "address": "충청남도 아산시 배방읍 호서로79번길 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "56152": {
       "region": "asan",
@@ -766,8 +766,8 @@
       "address": "충청남도 아산시 도고면 기곡로62번길 21-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "56134": {
       "region": "asan",
@@ -775,8 +775,8 @@
       "address": "충청남도 아산시 선장면 아산만로 697",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "56061": {
       "region": "asan",
@@ -784,8 +784,8 @@
       "address": "충청남도 아산시 염치읍 은행나무길215번길 2 9-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55567": {
       "region": "asan",
@@ -793,8 +793,8 @@
       "address": "충남 아산시 탕정면 선문로 387 제120동 제1층 104호홍익아파트",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55568": {
       "region": "asan",
@@ -802,8 +802,8 @@
       "address": "충청남도 아산시 탕정면 매곡로71번길 32",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55554": {
       "region": "asan",
@@ -811,21 +811,21 @@
       "address": "충남 아산시 선장면 서부남로 115 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55340": {
       "region": "asan",
       "name": "아산신창남성점",
       "address": "충청남도 아산시 신창면 서부북로 745",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786
+      "next_direct_at": 1792302633
     },
     "55233": {
       "region": "asan",
@@ -833,8 +833,8 @@
       "address": "충남 아산시 음봉면 연암율금로 119 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55210": {
       "region": "asan",
@@ -842,8 +842,8 @@
       "address": "충청남도 아산시 배방읍 배방로187번길 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "55131": {
       "region": "asan",
@@ -851,8 +851,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1652-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733
     },
     "54970": {
       "region": "asan",
@@ -860,8 +860,11 @@
       "address": "충청남도 아산시 탕정면로 405 상가동 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
+      "last_direct_at": 1792301733,
+      "direct_failures": 1,
+      "next_direct_at": 1792302633
     },
     "54499": {
       "region": "asan",
@@ -869,8 +872,8 @@
       "address": "충청남도 아산시 음봉면 음봉로 332",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792296886,
       "direct_failures": 1,
       "next_direct_at": 1792297786
@@ -879,14 +882,14 @@
       "region": "asan",
       "name": "아산온양로점",
       "address": "충남 아산시 온양역길 46-3 1층 1호",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
-      "direct_failures": 1,
-      "next_direct_at": 1792301077,
+      "last_success_at": 1792301733,
+      "direct_failures": 0,
+      "next_direct_at": 1792302633,
       "last_direct_at": 1792300177
     },
     "53676": {
@@ -895,8 +898,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로 458 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792295587,
       "direct_failures": 1,
       "next_direct_at": 1792296487
@@ -907,8 +910,8 @@
       "address": "충청남도 아산시 장재로 22",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792293655,
       "direct_failures": 1,
       "next_direct_at": 1792294555
@@ -919,8 +922,8 @@
       "address": "충청남도 아산시 시민로 292, 1층 (용화동, 성지빌딩)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792292258,
       "direct_failures": 1,
       "next_direct_at": 1792293158
@@ -931,8 +934,8 @@
       "address": "충청남도 아산시 음봉면 연암율금로 220-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792290500,
       "direct_failures": 1,
       "next_direct_at": 1792291400
@@ -943,8 +946,8 @@
       "address": "충청남도 아산시 둔포면 윤보선로336번길 6",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792285443,
       "direct_failures": 1,
       "next_direct_at": 1792286343
@@ -953,14 +956,14 @@
       "region": "asan",
       "name": "아산문화점",
       "address": "충남 아산시 문화로 123-8 A동 102호온천동",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786,
+      "next_direct_at": 1792302633,
       "last_direct_at": 1792287170
     },
     "53068": {
@@ -969,8 +972,8 @@
       "address": "충청남도 아산시 아산밸리동로 261-11 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792281443,
       "direct_failures": 1,
       "next_direct_at": 1792282343
@@ -981,8 +984,8 @@
       "address": "충청남도 아산시 탕정면로 114-22 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792280539,
       "direct_failures": 1,
       "next_direct_at": 1792281439
@@ -993,8 +996,8 @@
       "address": "충청남도 아산시 도고산로 713 3동 4호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792278234,
       "direct_failures": 1,
       "next_direct_at": 1792279134
@@ -1005,8 +1008,8 @@
       "address": "충청남도 아산시 둔포면 둔포로 92-12",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792277337,
       "direct_failures": 1,
       "next_direct_at": 1792278237
@@ -1017,8 +1020,8 @@
       "address": "충청남도 아산시 둔포면 봉신로 279",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792261489,
       "direct_failures": 1,
       "next_direct_at": 1792262389
@@ -1029,8 +1032,8 @@
       "address": "충청남도 아산시 번영로 223 외3필지 1층 108호(모종동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792276054,
       "direct_failures": 1,
       "next_direct_at": 1792276954
@@ -1041,8 +1044,8 @@
       "address": "충청남도 아산시 배방로 58-34",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792273513,
       "direct_failures": 1,
       "next_direct_at": 1792274413
@@ -1053,8 +1056,8 @@
       "address": "충청남도 아산시 배방읍 호서로 45-14",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792269255,
       "direct_failures": 1,
       "next_direct_at": 1792270155
@@ -1065,8 +1068,8 @@
       "address": "충청남도 아산시 번영로69번길 24 buy the way 편의점1층(온천동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792266874,
       "direct_failures": 1,
       "next_direct_at": 1792267774
@@ -1077,8 +1080,8 @@
       "address": "충청남도 아산시 음봉면 음봉면로 3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792267721,
       "direct_failures": 1,
       "next_direct_at": 1792268621
@@ -1089,8 +1092,8 @@
       "address": "충청남도 아산시 탕정면 이순신대로 393 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792270726,
       "direct_failures": 1,
       "next_direct_at": 1792271626
@@ -1101,8 +1104,8 @@
       "address": "충청남도 아산시 염치읍 아산로 724",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792274670,
       "direct_failures": 1,
       "next_direct_at": 1792275570
@@ -1113,8 +1116,8 @@
       "address": "충청남도 아산시 삼동로 102-9 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792263188,
       "direct_failures": 1,
       "next_direct_at": 1792264088
@@ -1125,8 +1128,8 @@
       "address": "충청남도 아산시 탕정면 탕정로 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792253349,
       "direct_failures": 1,
       "next_direct_at": 1792254249
@@ -1135,14 +1138,14 @@
       "region": "asan",
       "name": "아산온천광장점",
       "address": "충청남도 아산시 청운로 70",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786,
+      "next_direct_at": 1792302633,
       "last_direct_at": 1792248254
     },
     "15851": {
@@ -1151,8 +1154,8 @@
       "address": "충청남도 아산시 청운로 23-4 용화동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
       "next_direct_at": 1792250356
@@ -1163,8 +1166,8 @@
       "address": "충청남도 아산시 탕정면탕정면로8번길 33-7 명암리 932-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792250904,
       "direct_failures": 1,
       "next_direct_at": 1792251804
@@ -1175,8 +1178,8 @@
       "address": "충남 아산시 둔포면 아산밸리로 298 104,105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -1187,8 +1190,8 @@
       "address": "충남 아산시 배방읍 북수로 106 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "MISSING_IN_RESPONSE",
+      "checked_at": 1792301733,
       "last_direct_at": 1792238672,
       "direct_failures": 1,
       "next_direct_at": 1792239572
@@ -1199,8 +1202,8 @@
       "address": "충청남도 아산시 인주면 아산만로 1703",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792242284,
       "direct_failures": 1,
       "next_direct_at": 1792243184
@@ -1211,8 +1214,8 @@
       "address": "충청남도 아산시 용화로47번길 7-1, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -1223,8 +1226,8 @@
       "address": "충청남도 아산시 탕정면 명암길2번길 25-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -1235,8 +1238,8 @@
       "address": "충청남도 아산시 문화로 301-25, 1층 107호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792259029,
       "direct_failures": 1,
       "next_direct_at": 1792259929
@@ -1247,8 +1250,8 @@
       "address": "충남 아산시 인주면 인주산단로 23-22 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "reason": "NO_QUANTITY",
+      "checked_at": 1792301733,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -1257,14 +1260,14 @@
       "region": "asan",
       "name": "아산신창창조점",
       "address": "충청남도 아산시 신창면 순천향로 47-25 순천향로 47-25",
-      "status": "UNKNOWN",
-      "quantity": null,
-      "reason": "HTTP_502",
-      "checked_at": 1792300177,
+      "status": "OK",
+      "quantity": 0,
+      "reason": "OBSERVED",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
-      "last_success_at": 1792296886,
+      "last_success_at": 1792301733,
       "direct_failures": 0,
-      "next_direct_at": 1792297786,
+      "next_direct_at": 1792302633,
       "last_direct_at": 1792254863
     },
     "64737": {
@@ -1273,8 +1276,8 @@
       "address": "전북특별자치도 전주시 완산구 천잠로 333 1층효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64725": {
       "region": "jeonju",
@@ -1282,8 +1285,8 @@
       "address": "전북특별자치도 전주시 완산구 우전로 249 1층효자동2가, 전일고등학교",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64704": {
       "region": "jeonju",
@@ -1291,8 +1294,8 @@
       "address": "전북특별자치도 전주시 완산구 우전2길 59 1층 101호효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64669": {
       "region": "jeonju",
@@ -1300,8 +1303,8 @@
       "address": "전북특별자치도 전주시 덕진구 추천4길 44 1층팔복동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1313,8 +1316,8 @@
       "address": "전북특별자치도 전주시 덕진구 삼송1길 34 1층금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64610": {
       "region": "jeonju",
@@ -1322,8 +1325,8 @@
       "address": "전북특별자치도 전주시 완산구 서원로 145 102동 101호, 102호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64596": {
       "region": "jeonju",
@@ -1331,8 +1334,8 @@
       "address": "전북특별자치도 전주시 덕진구 솔내8길 23-6 상가동 1층 1,2호송천동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64558": {
       "region": "jeonju",
@@ -1340,8 +1343,8 @@
       "address": "전북특별자치도 전주시 완산구 마전들로 29 1층 효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64486": {
       "region": "jeonju",
@@ -1349,8 +1352,8 @@
       "address": "전북특별자치도 전주시 완산구 백제대로 20 1충평화동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64384": {
       "region": "jeonju",
@@ -1358,8 +1361,8 @@
       "address": "전북특별자치도 전주시 덕진구 쪽구름로 119 1층 일부호 반월동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64344": {
       "region": "jeonju",
@@ -1367,8 +1370,8 @@
       "address": "전북특별자치도 전주시 덕진구 기린대로 400-29 1층 일부 금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64318": {
       "region": "jeonju",
@@ -1376,8 +1379,8 @@
       "address": "전북특별자치도 전주시 완산구 삼천천변2길 23-4 1층 삼천동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64269": {
       "region": "jeonju",
@@ -1385,8 +1388,8 @@
       "address": "전북특별자치도 전주시 완산구 당산로 46 1층서신동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64215": {
       "region": "jeonju",
@@ -1394,8 +1397,8 @@
       "address": "전북특별자치도 전주시 완산구 노송광장로 59 1층서노송동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "64083": {
       "region": "jeonju",
@@ -1403,8 +1406,8 @@
       "address": "전북특별자치도 전주시 덕진구 정언신로 62-2 1층인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63973": {
       "region": "jeonju",
@@ -1412,8 +1415,8 @@
       "address": "전북특별자치도 전주시 덕진구 팽나무5길 8 1층 인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "69123": {
       "region": "jeonju",
@@ -1421,8 +1424,8 @@
       "address": "전북특별자치도 전주시 덕진구 견훤로 199-1 (인후동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "69096": {
       "region": "jeonju",
@@ -1430,8 +1433,8 @@
       "address": "전북특별자치도 전주시 덕진구 솔내7길 10 1층(송천동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "69045": {
       "region": "jeonju",
@@ -1439,8 +1442,8 @@
       "address": "전라북도 전주시 완산구 경기전길 120",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "69025": {
       "region": "jeonju",
@@ -1448,8 +1451,8 @@
       "address": "전북특별자치도 전주시 덕진구 상리로 1 1층팔복동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68631": {
       "region": "jeonju",
@@ -1457,8 +1460,8 @@
       "address": "전라북도 전주시 덕진구 쪽구름로 23 상가3동 101호(여의동, 제일아파트)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63792": {
       "region": "jeonju",
@@ -1466,8 +1469,8 @@
       "address": "전북특별자치도 전주시 완산구 구룡1길 15 1층 효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63814": {
       "region": "jeonju",
@@ -1475,8 +1478,8 @@
       "address": "전라북도 전주시 덕진구 우아1길 23 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68765": {
       "region": "jeonju",
@@ -1484,8 +1487,8 @@
       "address": "전라북도 전주시 덕진구 오송1길 13 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68703": {
       "region": "jeonju",
@@ -1493,8 +1496,8 @@
       "address": "전라북도 전주시 완산구 문학대4길 23 101,102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68668": {
       "region": "jeonju",
@@ -1502,8 +1505,8 @@
       "address": "전라북도 전주시 완산구 홍산중앙로 45 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68634": {
       "region": "jeonju",
@@ -1511,8 +1514,8 @@
       "address": "전북특별자치도 전주시 완산구 홍산남로 69-7 전북특별자치도 전주시 완산구 홍산남로 69-7, 1층 101호(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68592": {
       "region": "jeonju",
@@ -1520,8 +1523,8 @@
       "address": "전북특별자치도 전주시 완산구 전라감영로 41 1층 중앙동4가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63728": {
       "region": "jeonju",
@@ -1529,8 +1532,8 @@
       "address": "전라북도 전주시 덕진구 팔복로 140, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68412": {
       "region": "jeonju",
@@ -1538,8 +1541,8 @@
       "address": "전북특별자치도 전주시 완산구 홍산중앙로 46 1층 4호(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68363": {
       "region": "jeonju",
@@ -1547,8 +1550,8 @@
       "address": "전북특별자치도 전주시 덕진구 기린대로 465 1층 101,102호덕진동1가, 전북대세움펠리피아상가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68349": {
       "region": "jeonju",
@@ -1556,8 +1559,8 @@
       "address": "전북특별자치도 전주시 완산구 신촌4길 10-10 1층중화산동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1569,8 +1572,8 @@
       "address": "전라북도 전주시 덕진구 석소2길 31, 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68241": {
       "region": "jeonju",
@@ -1578,8 +1581,8 @@
       "address": "전라북도 전주시 덕진구 중상보로 30, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68223": {
       "region": "jeonju",
@@ -1587,8 +1590,8 @@
       "address": "전라북도 전주시 덕진구 호성1길 25",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63515": {
       "region": "jeonju",
@@ -1596,8 +1599,8 @@
       "address": "전라북도 전주시 완산구 서학로 47, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68108": {
       "region": "jeonju",
@@ -1605,8 +1608,8 @@
       "address": "전북특별자치도 전주시 덕진구 경동로 18 제상가동 1층 101호 덕진동2가, 사랑으로부영아파트",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68090": {
       "region": "jeonju",
@@ -1614,8 +1617,8 @@
       "address": "전라북도 전주시 완산구 메너머3길 29 중화산동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "68022": {
       "region": "jeonju",
@@ -1623,8 +1626,8 @@
       "address": "전라북도 전주시 덕진구 운암로 42",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63451": {
       "region": "jeonju",
@@ -1632,8 +1635,8 @@
       "address": "전북특별자치도 전주시 완산구 백마산길 112 101동 상가101호, 상가102호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67962": {
       "region": "jeonju",
@@ -1641,8 +1644,8 @@
       "address": "전라북도 전주시 완산구 서곡4길 46-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67982": {
       "region": "jeonju",
@@ -1650,8 +1653,8 @@
       "address": "전북특별자치도 전주시 덕진구 명륜3길 9 (덕진동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67861": {
       "region": "jeonju",
@@ -1659,8 +1662,8 @@
       "address": "전라북도 전주시 덕진구 조경단로 92, 1층 104호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67839": {
       "region": "jeonju",
@@ -1668,8 +1671,8 @@
       "address": "전라북도 전주시 완산구 고사평4길 9, 1층 일부",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "63103": {
       "region": "jeonju",
@@ -1677,8 +1680,8 @@
       "address": "전라북도 전주시 덕진구 팔과정로 168, 전주1산단 S001동, 104, 105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59985": {
       "region": "jeonju",
@@ -1686,8 +1689,8 @@
       "address": "전라북도 전주시 완산구 거마평로 127, 제상가1동 1층 107, 108호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59883": {
       "region": "jeonju",
@@ -1695,8 +1698,8 @@
       "address": "전라북도 전주시 덕진구 백제대로 838, 1층 101, 102호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67682": {
       "region": "jeonju",
@@ -1704,8 +1707,8 @@
       "address": "전라북도 전주시 덕진구 인교로 61 스카이 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67669": {
       "region": "jeonju",
@@ -1713,8 +1716,8 @@
       "address": "전북특별자치도 전주시 완산구 화산천변로 15 1층 중화산동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67670": {
       "region": "jeonju",
@@ -1722,8 +1725,8 @@
       "address": "전라북도 전주시 완산구 효동2길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67657": {
       "region": "jeonju",
@@ -1731,8 +1734,8 @@
       "address": "전라북도 전주시 완산구 메너머1길 9",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59764": {
       "region": "jeonju",
@@ -1740,8 +1743,8 @@
       "address": "전라북도 전주시 완산구 전주천서로 267",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67507": {
       "region": "jeonju",
@@ -1749,8 +1752,8 @@
       "address": "전라북도 전주시 완산구 평화19길 23, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67508": {
       "region": "jeonju",
@@ -1758,8 +1761,8 @@
       "address": "전라북도 전주시 덕진구 아중1길 15 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67458": {
       "region": "jeonju",
@@ -1767,8 +1770,8 @@
       "address": "전라북도 전주시 완산구 효자천변2길 10, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67365": {
       "region": "jeonju",
@@ -1776,8 +1779,8 @@
       "address": "전라북도 전주시 완산구 용리로 16",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67364": {
       "region": "jeonju",
@@ -1785,8 +1788,8 @@
       "address": "전북특별자치도 전주시 완산구 소대배기로 10 평화동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59592": {
       "region": "jeonju",
@@ -1794,8 +1797,8 @@
       "address": "전라북도 전주시 덕진구 심방죽로 22, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67344": {
       "region": "jeonju",
@@ -1803,8 +1806,8 @@
       "address": "전라북도 전주시 완산구 당산로 11-3, 상가1동 1층 1호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59559": {
       "region": "jeonju",
@@ -1812,8 +1815,8 @@
       "address": "전라북도 전주시 완산구 홍산북로 25, 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67235": {
       "region": "jeonju",
@@ -1821,8 +1824,8 @@
       "address": "전라북도 전주시 덕진구 가재미로 5",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59389": {
       "region": "jeonju",
@@ -1830,8 +1833,8 @@
       "address": "전북특별자치도 전주시 완산구 태평4길 11 1층 103호 104호태평동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59377": {
       "region": "jeonju",
@@ -1839,8 +1842,8 @@
       "address": "전라북도 전주시 완산구 공수내로 19, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "67151": {
       "region": "jeonju",
@@ -1848,8 +1851,8 @@
       "address": "전라북도 전주시 완산구 메너머2길 14, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59239": {
       "region": "jeonju",
@@ -1857,8 +1860,8 @@
       "address": "전라북도 전주시 완산구 문학로 8, 1층 105호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "59164": {
       "region": "jeonju",
@@ -1866,8 +1869,8 @@
       "address": "전라북도 전주시 덕진구 떡전3길 15-1, 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1879,8 +1882,8 @@
       "address": "전북특별자치도 전주시 완산구 봉곡2길 23 101호효자동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "57407": {
       "region": "jeonju",
@@ -1888,8 +1891,8 @@
       "address": "전라북도 전주시 덕진구 우아4길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "57726": {
       "region": "jeonju",
@@ -1897,8 +1900,8 @@
       "address": "전라북도 전주시 덕진구 건산로 159, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "57632": {
       "region": "jeonju",
@@ -1906,8 +1909,8 @@
       "address": "전라북도 전주시 완산구 마당재4길 23",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "57206": {
       "region": "jeonju",
@@ -1915,8 +1918,8 @@
       "address": "전라북도 전주시 완산구 견훤왕궁1길 27",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1928,8 +1931,8 @@
       "address": "전라북도 전주시 완산구 덕적골2길 43",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "57038": {
       "region": "jeonju",
@@ -1937,8 +1940,8 @@
       "address": "전라북도 전주시 덕진구 세병1길 10 103호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1950,8 +1953,8 @@
       "address": "전라북도 전주시 완산구 평화로 219, 1층 101호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "56325": {
       "region": "jeonju",
@@ -1959,8 +1962,8 @@
       "address": "전라북도 전주시 완산구 봉곡1길 26",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "56327": {
       "region": "jeonju",
@@ -1968,8 +1971,8 @@
       "address": "전라북도 전주시 덕진구 도당산로 18 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792293655,
       "direct_failures": 0,
@@ -1981,8 +1984,8 @@
       "address": "전라북도 전주시 덕진구 석소로 5-16",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "56007": {
       "region": "jeonju",
@@ -1990,8 +1993,8 @@
       "address": "전라북도 전주시 완산구 서원로 388",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "55815": {
       "region": "jeonju",
@@ -1999,8 +2002,8 @@
       "address": "전라북도 전주시 완산구 장승배기4길 5",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "55760": {
       "region": "jeonju",
@@ -2008,8 +2011,8 @@
       "address": "전라북도 전주시 덕진구 건지3길 10",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "55640": {
       "region": "jeonju",
@@ -2017,8 +2020,8 @@
       "address": "전북특별자치도 전주시 완산구 전주객사1길 45 1층다가동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "54890": {
       "region": "jeonju",
@@ -2026,8 +2029,8 @@
       "address": "전라북도 전주시 덕진구 만성북4길 7",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "54815": {
       "region": "jeonju",
@@ -2035,8 +2038,8 @@
       "address": "전북특별자치도 전주시 덕진구 추탄로 64",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53999": {
       "region": "jeonju",
@@ -2044,8 +2047,8 @@
       "address": "전라북도 전주시 덕진구 들사평로 39, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53895": {
       "region": "jeonju",
@@ -2053,8 +2056,8 @@
       "address": "전라북도 전주시 덕진구 우아10길 17-20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "58108": {
       "region": "jeonju",
@@ -2062,8 +2065,8 @@
       "address": "전라북도 전주시 덕진구 권삼득로 303 1층(금암동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53709": {
       "region": "jeonju",
@@ -2071,8 +2074,8 @@
       "address": "전북특별자치도 전주시 완산구 평화로 106 1층 104호 평화동2가, 평화주공 그린타운 상가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "58048": {
       "region": "jeonju",
@@ -2080,8 +2083,8 @@
       "address": "전라북도 전주시 완산구 전주객사5길 46 (고사동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53450": {
       "region": "jeonju",
@@ -2089,8 +2092,8 @@
       "address": "전북특별자치도 전주시 덕진구 팔달로 377 1층금암동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53263": {
       "region": "jeonju",
@@ -2098,8 +2101,8 @@
       "address": "전라북도 전주시 완산구 한두평3길 18-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "53101": {
       "region": "jeonju",
@@ -2107,8 +2110,8 @@
       "address": "전라북도 전주시 덕진구 만성북1길 3 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "19613": {
       "region": "jeonju",
@@ -2116,8 +2119,8 @@
       "address": "전라북도 전주시 완산구 척동5길 19",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "19806": {
       "region": "jeonju",
@@ -2125,8 +2128,8 @@
       "address": "전라북도 전주시 덕진구 안덕원로 370, 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18667": {
       "region": "jeonju",
@@ -2134,8 +2137,8 @@
       "address": "전북특별자치도 전주시 완산구 구룡2길 20 효자동2가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18682": {
       "region": "jeonju",
@@ -2143,8 +2146,8 @@
       "address": "전라북도 전주시 덕진구 인후동1가 827-14",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "12120": {
       "region": "jeonju",
@@ -2152,8 +2155,8 @@
       "address": "전라북도 전주시 덕진구 삼송1길 4 1층(금암동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -2164,8 +2167,8 @@
       "address": "전라북도 전주시 덕진구 솔내9길 10 1동",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18492": {
       "region": "jeonju",
@@ -2173,8 +2176,11 @@
       "address": "전라북도 전주시 완산구 노송광장로 37(서노송동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
+      "last_direct_at": 1792301733,
+      "direct_failures": 1,
+      "next_direct_at": 1792302633
     },
     "18173": {
       "region": "jeonju",
@@ -2182,8 +2188,8 @@
       "address": "전라북도 전주시 완산구 중산중앙로 36(중화산동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792298726,
       "direct_failures": 1,
       "next_direct_at": 1792299626
@@ -2194,8 +2200,8 @@
       "address": "전라북도 전주시 완산구 홍산남로 45-28 (효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "17965": {
       "region": "jeonju",
@@ -2203,8 +2209,8 @@
       "address": "전라북도 전주시 완산구 소태정 4길 11(효자동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792296886,
       "direct_failures": 1,
       "next_direct_at": 1792297786
@@ -2215,8 +2221,8 @@
       "address": "전라북도 전주시 완산구 양지1길 15-11 5호, 6호",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "51191": {
       "region": "jeonju",
@@ -2224,8 +2230,8 @@
       "address": "전라북도 전주시 덕진구 쪽구름2길 5 1동 102,103호(반월동, 주건축물)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18531": {
       "region": "jeonju",
@@ -2233,8 +2239,8 @@
       "address": "전라북도 전주시 덕진구 우아동2가 아중중아로 17",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18612": {
       "region": "jeonju",
@@ -2242,8 +2248,8 @@
       "address": "전라북도 전주시 덕진구 인후동2가 백제대로 751",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "18506": {
       "region": "jeonju",
@@ -2251,8 +2257,8 @@
       "address": "전라북도 전주시 완산구 서신동 933-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792276054,
       "direct_failures": 0,
@@ -2264,8 +2270,8 @@
       "address": "전북특별자치도 전주시 덕진구 무삼지로 90 1층 인후동1가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "17770": {
       "region": "jeonju",
@@ -2273,8 +2279,8 @@
       "address": "전라북도 전주시 덕진구 신복3길 10 1층(팔복동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792295587,
       "direct_failures": 1,
       "next_direct_at": 1792296487
@@ -2285,8 +2291,8 @@
       "address": "전북특별자치도 전주시 덕진구 건지로 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "50066": {
       "region": "jeonju",
@@ -2294,8 +2300,8 @@
       "address": "전라북도 전주시 덕진구 아중천2길 46 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "50454": {
       "region": "jeonju",
@@ -2303,8 +2309,8 @@
       "address": "전라북도 전주시 덕진구 견훤로 235 (인후동 1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726
+      "reason": "HTTP_502",
+      "checked_at": 1792301733
     },
     "17244": {
       "region": "jeonju",
@@ -2312,8 +2318,8 @@
       "address": "전북특별자치도 전주시 완산구 기린대로 85 지하1층 풍남동3가",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792293655,
       "direct_failures": 1,
       "next_direct_at": 1792294555
@@ -2324,8 +2330,8 @@
       "address": "전라북도 전주시 덕진구 신복로 62",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792260021,
       "direct_failures": 1,
       "next_direct_at": 1792260921
@@ -2336,8 +2342,8 @@
       "address": "전라북도 전주시 덕진구 용산3길 15 475-4",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792263188,
       "direct_failures": 1,
       "next_direct_at": 1792264088
@@ -2348,8 +2354,8 @@
       "address": "전라북도 전주시 완산구 현무3길80(서노송동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792248254,
       "direct_failures": 1,
       "next_direct_at": 1792249154
@@ -2360,8 +2366,8 @@
       "address": "전라북도 전주시 덕진구 진버들6길 18",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792290500,
       "direct_failures": 1,
       "next_direct_at": 1792291400
@@ -2372,8 +2378,8 @@
       "address": "전라북도 전주시 덕진구 건산로 74 (진북동) 263-11",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -2384,8 +2390,8 @@
       "address": "전라북도 전주시 덕진구 무삼지로 47 1층(인후동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792274670,
       "direct_failures": 1,
       "next_direct_at": 1792275570
@@ -2396,8 +2402,8 @@
       "address": "전라북도 전주시 완산구 충경로 17(중앙동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792239114,
       "direct_failures": 1,
       "next_direct_at": 1792240014
@@ -2408,8 +2414,8 @@
       "address": "전라북도 전주시 완산구 산월2길 43 (중화산동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_known_quantity": 0,
       "last_success_at": 1792276054,
       "direct_failures": 0,
@@ -2422,8 +2428,8 @@
       "address": "전라북도 전주시 완산구 신봉3길 2 593-8",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792267721,
       "direct_failures": 1,
       "next_direct_at": 1792268621
@@ -2434,8 +2440,8 @@
       "address": "전북특별자치도 전주시 덕진구 건지로 20",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792243878,
       "direct_failures": 1,
       "next_direct_at": 1792244778
@@ -2446,8 +2452,8 @@
       "address": "전라북도 전주시 덕진구 정언신로 178 920-3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792256307,
       "direct_failures": 1,
       "next_direct_at": 1792257207
@@ -2458,8 +2464,8 @@
       "address": "전라북도 전주시 덕진구 도당산로67 (우아동 3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -2470,8 +2476,8 @@
       "address": "전라북도 전주시 덕진구 붓내3길 14 1층(송천동2가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792271967,
       "direct_failures": 1,
       "next_direct_at": 1792272867
@@ -2482,8 +2488,8 @@
       "address": "전라북도 전주시 완산구 백마산길 40",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792264244,
       "direct_failures": 1,
       "next_direct_at": 1792265144
@@ -2494,8 +2500,8 @@
       "address": "전라북도 전주시 완산구 농소2길 17(효자동3가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792288931,
       "direct_failures": 1,
       "next_direct_at": 1792289831
@@ -2506,8 +2512,8 @@
       "address": "전라북도 전주시 완산구 용머리로 29-13 외2필지 제상가동 101호,102호(효자동1가)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792282943,
       "direct_failures": 1,
       "next_direct_at": 1792283843
@@ -2518,8 +2524,8 @@
       "address": "전라북도 전주시 완산구 우림로 1021 382-1 외1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792285443,
       "direct_failures": 1,
       "next_direct_at": 1792286343
@@ -2530,8 +2536,8 @@
       "address": "전라북도 전주시 덕진구 매봉로 48-1 1586-1",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792254863,
       "direct_failures": 1,
       "next_direct_at": 1792255763
@@ -2542,8 +2548,8 @@
       "address": "전라북도 전주시 덕진구 덕진연못3길 9-3 1층",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792273513,
       "direct_failures": 1,
       "next_direct_at": 1792274413
@@ -2554,8 +2560,8 @@
       "address": "전북특별자치도 전주시 완산구 고사평3길 15 서신동, 오복빌라",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792266874,
       "direct_failures": 1,
       "next_direct_at": 1792267774
@@ -2566,8 +2572,8 @@
       "address": "전라북도 전주시 완산구 중산6길 15-3",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792280539,
       "direct_failures": 1,
       "next_direct_at": 1792281439
@@ -2578,8 +2584,8 @@
       "address": "전라북도 전주시 완산구 온고을로 22(서신동)",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792279472,
       "direct_failures": 1,
       "next_direct_at": 1792280372
@@ -2590,63 +2596,63 @@
       "address": "전라북도 전주시 덕진구 태진로 119(진북동) 416-2",
       "status": "UNKNOWN",
       "quantity": null,
-      "reason": "STALE",
-      "checked_at": 1792298726,
+      "reason": "HTTP_502",
+      "checked_at": 1792301733,
       "last_direct_at": 1792278234,
       "direct_failures": 1,
       "next_direct_at": 1792279134
     }
   },
-  "updated_at": 1792300177,
+  "updated_at": 1792301733,
   "calls": [
-    {
-      "region": "namwon",
-      "keyword": "남원시",
-      "target": null,
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 6.08,
-      "at": 1792300177
-    },
-    {
-      "region": "namwon",
-      "keyword": "남원죽항점",
-      "target": "59696",
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 0.71,
-      "at": 1792300177
-    },
     {
       "region": "asan",
       "keyword": "아산시",
       "target": null,
-      "result": "HTTP_502",
+      "result": "VALIDATED",
       "validation_reason": null,
-      "elapsed_seconds": 5.46,
-      "at": 1792300177
+      "elapsed_seconds": 29.94,
+      "at": 1792301733
     },
     {
       "region": "asan",
-      "keyword": "아산온양로점",
-      "target": "53876",
+      "keyword": "아산동산점",
+      "target": "54970",
+      "result": "VALIDATED",
+      "validation_reason": null,
+      "elapsed_seconds": 2.75,
+      "at": 1792301733
+    },
+    {
+      "region": "jeonju",
+      "keyword": "전주시",
+      "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 0.43,
-      "at": 1792300177
+      "elapsed_seconds": 4.77,
+      "at": 1792301733
+    },
+    {
+      "region": "jeonju",
+      "keyword": "전주시청제일점",
+      "target": "18492",
+      "result": "HTTP_502",
+      "validation_reason": null,
+      "elapsed_seconds": 0.5,
+      "at": 1792301733
     }
   ],
   "halted": true,
   "summary": {
     "namwon": {
       "total": 17,
-      "known": 12,
-      "unknown": 5
+      "known": 0,
+      "unknown": 17
     },
     "asan": {
       "total": 99,
-      "known": 0,
-      "unknown": 99
+      "known": 15,
+      "unknown": 84
     },
     "jeonju": {
       "total": 135,
