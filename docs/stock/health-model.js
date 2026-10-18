@@ -58,16 +58,28 @@ function build(data,now=Date.now()/1000){
    else if(r.status==='OK')reason='INVALID_QUANTITY';
    else if(reason==='OBSERVED')reason='UNVERIFIED_RESPONSE';
   }
-  const last=quantity(r?.last_known_quantity)??(r?.status==='OK'?quantity(r.quantity):null)??e.legacy;
-  const lastAt=stamp(r?.last_success_at)??(r?.status==='OK'&&quantity(r.quantity)!==null?stamp(r.checked_at):null);
-  rows.push({...e,qty:current,status:disabled?'disabled':current===null?'unknown':'known',reason,sourceReason:r?.reason||null,group:current!==null?'known':disabled?'disabled':group(reason),checkedAt:stamp(r?.checked_at),lastKnown:last,lastAt:last!==null&&lastAt!==null&&lastAt<=now?lastAt:null,unknownRuns:Number.isInteger(r?.unknown_runs)&&r.unknown_runs>=0?r.unknown_runs:null,firstUnknownAt:stamp(r?.first_unknown_at)});
+  // Keep the last validated observation until a new valid response replaces it.
+  // Legacy values without a trustworthy observation timestamp remain historical only.
+  const mismatch=r&&(CITIES[r.region]!==e.city||(e.chain==='세븐일레븐'&&(r.name!==e.name||r.address!==e.address)));
+  const held=mismatch||/IDENTITY|CONFLICT|REGISTRY/.test(String(r?.reason||''));
+  const observed=!!r&&r.status==='OK'&&quantity(r.quantity)!==null&&stamp(r.checked_at)!==null&&r.checked_at<=now;
+  const last=observed?quantity(r.quantity):quantity(r?.last_known_quantity)??e.legacy;
+  const lastAt=observed?stamp(r.checked_at):quantity(r?.last_known_quantity)!==null?stamp(r?.last_success_at):null;
+  const safeLastAt=last!==null&&lastAt!==null&&lastAt<=now?lastAt:null;
+  const fileFailed=list(data.loadFailures).includes(SOURCES[e.chain][0]);
+  if(fileFailed){current=null;reason='STATE_FILE_UNAVAILABLE';}
+  if(held){current=null;reason='IDENTITY_HOLD';}
+  const retained=!disabled&&!held&&valid&&safeLastAt!==null&&last!==null&&current===null;
+  const qty=current??(retained?last:null),status=disabled?'disabled':current!==null?'known':retained?'retained':'unknown';
+  rows.push({...e,qty,status,reason,sourceReason:r?.reason||null,group:current!==null?'known':disabled?'disabled':group(reason),checkedAt:stamp(r?.checked_at),lastKnown:last,lastAt:safeLastAt,unknownRuns:Number.isInteger(r?.unknown_runs)&&r.unknown_runs>=0?r.unknown_runs:null,firstUnknownAt:stamp(r?.first_unknown_at)});
  }
- const cards=CHAINS.map(chain=>{const rs=rows.filter(r=>r.chain===chain),h=data[SOURCES[chain][0]];return {chain,total:rs.length,known:rs.filter(r=>r.status==='known').length,unknown:rs.filter(r=>r.status==='unknown').length,disabled:rs.filter(r=>r.status==='disabled').length,updatedAt:stamp(h?.updated_at),issue:!h?'STATE_FILE_MISSING':!validHealth(h,chain)?'HEALTH_INVALID':timeIssue(h.updated_at,now),errors:Array.isArray(h?.errors)?h.errors:[]};});
+ const cards=CHAINS.map(chain=>{const rs=rows.filter(r=>r.chain===chain),h=data[SOURCES[chain][0]];return {chain,total:rs.length,known:rs.filter(r=>r.qty!==null).length,retained:rs.filter(r=>r.status==='retained').length,unknown:rs.filter(r=>r.status==='unknown').length,disabled:rs.filter(r=>r.status==='disabled').length,updatedAt:stamp(h?.updated_at),issue:!h?'STATE_FILE_MISSING':!validHealth(h,chain)?'HEALTH_INVALID':timeIssue(h.updated_at,now),errors:Array.isArray(h?.errors)?h.errors:[]};});
  return {rows,cards};
 }
 function filter(rows,{city='',chain='',status='',reason='',q=''}={}){q=q.trim().toLocaleLowerCase();return rows.filter(r=>(!city||r.city===city)&&(!chain||r.chain===chain)&&(!status||(status==='yes'?r.qty>0:status==='no'?r.qty===0:status===r.status))&&(!reason||r.group===reason)&&(!q||[r.name,r.code,r.address].join(' ').toLocaleLowerCase().includes(q)));}
-function csv(rows){const cell=v=>{let s=String(v??'');if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};return '\ufeff'+[['브랜드','지역','점포코드','매장명','주소','미확인 분류','사유 코드','최근 상태 기록(UTC)','이전 확인 수량','이전 수량 확인시각(UTC)','연속 미확인 실행 수'].map(cell).join(','),...rows.filter(r=>r.status==='unknown').map(r=>[r.chain,r.city,r.code,r.name,r.address,GROUPS[r.group]||r.group,r.reason,r.checkedAt?new Date(r.checkedAt*1000).toISOString():'',r.lastKnown,r.lastAt?new Date(r.lastAt*1000).toISOString():'',r.unknownRuns].map(cell).join(','))].join('\r\n');}
+function csv(rows){const cell=v=>{let s=String(v??'');if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};return '\ufeff'+[['브랜드','지역','점포코드','매장명','주소','미확인 분류','사유 코드','최근 상태 기록(UTC)','이전 확인 수량','이전 수량 확인시각(UTC)','연속 미확인 실행 수'].map(cell).join(','),...rows.filter(r=>['unknown','retained'].includes(r.status)).map(r=>[r.chain,r.city,r.code,r.name,r.address,GROUPS[r.group]||r.group,r.reason,r.checkedAt?new Date(r.checkedAt*1000).toISOString():'',r.lastKnown,r.lastAt?new Date(r.lastAt*1000).toISOString():'',r.unknownRuns].map(cell).join(','))].join('\r\n');}
 const api={PRODUCT,TTL,CHAINS,CITIES,PATHS,GROUPS,quantity,timeIssue,reasonGroup:group,validHealth,build,filter,csv};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;root.StockHealth=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+
 
