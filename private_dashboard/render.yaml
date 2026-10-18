@@ -1,0 +1,20 @@
+# Deployment proposal only. Applying this creates a hosting service.
+services:
+  - type: web
+    name: pokemon-stock-private
+    runtime: docker
+    plan: free
+    dockerfilePath: ./private_dashboard/Dockerfile
+    dockerContext: .
+    autoDeployTrigger: off
+    healthCheckPath: /healthz
+    numInstances: 1
+    envVars:
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATA_REPOSITORY
+        value: Koyowon/pokemon-stock-alert
+      - key: GITHUB_READ_TOKEN
+        sync: false
