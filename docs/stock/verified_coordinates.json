@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "note": "Only reviewed store-specific coordinates with matching chain, code, name, address and HTTPS source may be registered. Third-party directory coordinates have not been independently verified. No store coordinates are inferred from query centers.",
+  "stores": []
+}

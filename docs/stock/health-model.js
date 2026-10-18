@@ -4,7 +4,7 @@
 const PRODUCT='8800286275732', TTL=900;
 const CHAINS=['CU','이마트24','GS25','세븐일레븐'];
 const CITIES={namwon:'남원',asan:'아산',jeonju:'전주'};
-const PATHS={cuHealth:'cu_inventory_health.json',emHealth:'emart24_inventory_health.json',gsHealth:'gs25_inventory_health.json',sevenState:'seveneleven_watch_state.json',cuDirectory:'cu_official_verified_directory.json',cuOld:'cu_stock_state.json',emStores:'stores.json',emOld:'state.json',gsOld:'gs25_independent/gs25_stock_state.json',sevenDirectory:'data/seveneleven_watch_directory.json'};
+const PATHS={coordinates:'docs/stock/verified_coordinates.json',cuHealth:'cu_inventory_health.json',emHealth:'emart24_inventory_health.json',gsHealth:'gs25_inventory_health.json',sevenState:'seveneleven_watch_state.json',cuDirectory:'cu_official_verified_directory.json',cuOld:'cu_stock_state.json',emStores:'stores.json',emOld:'state.json',gsOld:'gs25_independent/gs25_stock_state.json',sevenDirectory:'data/seveneleven_watch_directory.json'};
 const SOURCES={CU:['cuHealth','cu'],이마트24:['emHealth','emart24'],GS25:['gsHealth','gs25'],세븐일레븐:['sevenState',null]};
 const GROUPS={network:'통신·외부 서비스 오류',missing:'응답에 없음·범위 미확정',quantity:'수량 미확인',identity:'매장 정보 대조 필요',validation:'응답 검증 실패',stale:'오래된 기록',clock:'기록 시각 확인 필요',file:'감시 상태 파일 확인 필요',pending:'아직 확인되지 않음',disabled:'감시 꺼짐'};
 const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
@@ -70,3 +70,4 @@ function csv(rows){const cell=v=>{let s=String(v??'');if(/^[=+\-@\t\r]/.test(s))
 const api={PRODUCT,TTL,CHAINS,CITIES,PATHS,GROUPS,quantity,timeIssue,reasonGroup:group,validHealth,build,filter,csv};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;root.StockHealth=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+
