@@ -1,0 +1,5988 @@
+{
+  "reviewed_at": "2026-10-18T02:54:38.491Z",
+  "scope": "Jeonju registered CU, Emart24, SevenEleven; GS25 lacks source addresses and remains pending; Namwon/Asan not reviewed in this batch",
+  "sources": [
+    {
+      "source_url": "https://www.data.go.kr/data/15113231/fileData.do",
+      "source_date": "2024-01-10",
+      "sha256": "f7a41cd55209aa92bb55d5b618f657340499cd2c3f2f51e2ba1e49a75f399398",
+      "encoding": "euc-kr",
+      "row_count": 560
+    },
+    {
+      "source_url": "https://www.data.go.kr/data/15113231/fileData.do",
+      "source_date": "2025-02-05",
+      "sha256": "f7a41cd55209aa92bb55d5b618f657340499cd2c3f2f51e2ba1e49a75f399398",
+      "encoding": "euc-kr",
+      "row_count": 560
+    },
+    {
+      "source_url": "https://www.data.go.kr/data/15113231/fileData.do",
+      "source_date": "2026-05-28",
+      "sha256": "56e7d0adfabf869ca5e28b7057d5febd7b83a76afe87aa460f2642df5120149d",
+      "encoding": "euc-kr",
+      "row_count": 538
+    }
+  ],
+  "policy": "Unique exact brand and normalized name, matching city/district/road/building. Reject conflicting explicit floor/unit, ambiguous source rows, invalid ranges; SevenEleven independent coordinate must be within 100m. Historical agreement is repeatability evidence, not two independent publishers. Current official CU directory or registered directories establish current identity. No geocoding or stock APIs.",
+  "latest_source_issue": "2026-05-28 file had 28 SevenEleven matching-name/road candidates whose coordinates disagree with independent directory by at least 501m. It also maps CU전주효자점 to a different road than current CU official and Naver. No 2026 coordinates were registered.",
+  "registered": [
+    {
+      "chain": "CU",
+      "code": "04766",
+      "name": "전주효자점",
+      "source_row": 176
+    },
+    {
+      "chain": "CU",
+      "code": "05366",
+      "name": "전주우아점",
+      "source_row": 135
+    },
+    {
+      "chain": "CU",
+      "code": "13108",
+      "name": "전주상산고점",
+      "source_row": 112
+    },
+    {
+      "chain": "CU",
+      "code": "14517",
+      "name": "공단대로점",
+      "source_row": 6
+    },
+    {
+      "chain": "CU",
+      "code": "16834",
+      "name": "송천사랑점",
+      "source_row": 41
+    },
+    {
+      "chain": "CU",
+      "code": "17087",
+      "name": "하가중앙점",
+      "source_row": 192
+    },
+    {
+      "chain": "CU",
+      "code": "18604",
+      "name": "전주교대점",
+      "source_row": 86
+    },
+    {
+      "chain": "CU",
+      "code": "19377",
+      "name": "전주터미널점",
+      "source_row": 143
+    },
+    {
+      "chain": "CU",
+      "code": "20870",
+      "name": "전북대병원점",
+      "source_row": 71
+    },
+    {
+      "chain": "CU",
+      "code": "20999",
+      "name": "중앙여고명문점",
+      "source_row": 182
+    },
+    {
+      "chain": "CU",
+      "code": "21567",
+      "name": "전주해성점",
+      "source_row": 163
+    },
+    {
+      "chain": "CU",
+      "code": "21865",
+      "name": "전주효자롯데점",
+      "source_row": 172
+    },
+    {
+      "chain": "CU",
+      "code": "22440",
+      "name": "전주아중은혜점",
+      "source_row": 127
+    },
+    {
+      "chain": "CU",
+      "code": "22880",
+      "name": "전주비젼대학점",
+      "source_row": 104
+    },
+    {
+      "chain": "CU",
+      "code": "23031",
+      "name": "전주안행로점",
+      "source_row": 128
+    },
+    {
+      "chain": "CU",
+      "code": "23477",
+      "name": "전주평화주공점",
+      "source_row": 154
+    },
+    {
+      "chain": "CU",
+      "code": "23564",
+      "name": "전주효자혜성점",
+      "source_row": 178
+    },
+    {
+      "chain": "CU",
+      "code": "23683",
+      "name": "안골삼성점",
+      "source_row": 56
+    },
+    {
+      "chain": "CU",
+      "code": "24458",
+      "name": "송천비사벌점",
+      "source_row": 40
+    },
+    {
+      "chain": "CU",
+      "code": "24591",
+      "name": "전주한옥대호점",
+      "source_row": 160
+    },
+    {
+      "chain": "CU",
+      "code": "25519",
+      "name": "금암파크점",
+      "source_row": 11
+    },
+    {
+      "chain": "CU",
+      "code": "26295",
+      "name": "효자서부리턴점",
+      "source_row": 198
+    },
+    {
+      "chain": "CU",
+      "code": "26373",
+      "name": "전주중화산센터점",
+      "source_row": 138
+    },
+    {
+      "chain": "CU",
+      "code": "26543",
+      "name": "전주우아대로점",
+      "source_row": 134
+    },
+    {
+      "chain": "CU",
+      "code": "26654",
+      "name": "전주대마로니에점",
+      "source_row": 91
+    },
+    {
+      "chain": "CU",
+      "code": "27015",
+      "name": "아중지구점",
+      "source_row": 54
+    },
+    {
+      "chain": "CU",
+      "code": "28010",
+      "name": "효자솔하우스점",
+      "source_row": 199
+    },
+    {
+      "chain": "CU",
+      "code": "28257",
+      "name": "전주IC점",
+      "source_row": 83
+    },
+    {
+      "chain": "CU",
+      "code": "28416",
+      "name": "전주제일점",
+      "source_row": 136
+    },
+    {
+      "chain": "CU",
+      "code": "28548",
+      "name": "전주평화마을점",
+      "source_row": 149
+    },
+    {
+      "chain": "CU",
+      "code": "28692",
+      "name": "송천오송점",
+      "source_row": 46
+    },
+    {
+      "chain": "CU",
+      "code": "31320",
+      "name": "송천대명점",
+      "source_row": 38
+    },
+    {
+      "chain": "CU",
+      "code": "31452",
+      "name": "에코중앙점",
+      "source_row": 63
+    },
+    {
+      "chain": "CU",
+      "code": "31540",
+      "name": "고시점",
+      "source_row": 5
+    },
+    {
+      "chain": "CU",
+      "code": "31580",
+      "name": "전주서일점",
+      "source_row": 123
+    },
+    {
+      "chain": "CU",
+      "code": "31593",
+      "name": "KCC스위첸점",
+      "source_row": 2
+    },
+    {
+      "chain": "CU",
+      "code": "31629",
+      "name": "전주서신미소점",
+      "source_row": 120
+    },
+    {
+      "chain": "CU",
+      "code": "31729",
+      "name": "대성로드점",
+      "source_row": 20
+    },
+    {
+      "chain": "CU",
+      "code": "32045",
+      "name": "기전원룸점",
+      "source_row": 12
+    },
+    {
+      "chain": "CU",
+      "code": "32867",
+      "name": "객리단길점",
+      "source_row": 4
+    },
+    {
+      "chain": "CU",
+      "code": "33297",
+      "name": "전주서신예촌점",
+      "source_row": 122
+    },
+    {
+      "chain": "CU",
+      "code": "33521",
+      "name": "효자휴먼시아점",
+      "source_row": 201
+    },
+    {
+      "chain": "CU",
+      "code": "33675",
+      "name": "전주화산센터점",
+      "source_row": 169
+    },
+    {
+      "chain": "CU",
+      "code": "34027",
+      "name": "뉴효자원룸점",
+      "source_row": 18
+    },
+    {
+      "chain": "CU",
+      "code": "34350",
+      "name": "전주효자주공점",
+      "source_row": 177
+    },
+    {
+      "chain": "CU",
+      "code": "35819",
+      "name": "전주평화동신점",
+      "source_row": 148
+    },
+    {
+      "chain": "CU",
+      "code": "35989",
+      "name": "전북사대부고점",
+      "source_row": 79
+    },
+    {
+      "chain": "CU",
+      "code": "37852",
+      "name": "송천신일점",
+      "source_row": 45
+    },
+    {
+      "chain": "CU",
+      "code": "37930",
+      "name": "대방디엠시티점",
+      "source_row": 19
+    },
+    {
+      "chain": "CU",
+      "code": "38367",
+      "name": "송천센터점",
+      "source_row": 43
+    },
+    {
+      "chain": "CU",
+      "code": "38426",
+      "name": "전주진북우성점",
+      "source_row": 139
+    },
+    {
+      "chain": "CU",
+      "code": "39049",
+      "name": "에코데시앙네스트2차",
+      "source_row": 59
+    },
+    {
+      "chain": "CU",
+      "code": "39083",
+      "name": "전주여고명문점",
+      "source_row": 129
+    },
+    {
+      "chain": "CU",
+      "code": "39428",
+      "name": "덕진스마트점",
+      "source_row": 25
+    },
+    {
+      "chain": "CU",
+      "code": "39512",
+      "name": "전주효자일등점",
+      "source_row": 175
+    },
+    {
+      "chain": "CU",
+      "code": "39567",
+      "name": "전주서곡점",
+      "source_row": 115
+    },
+    {
+      "chain": "CU",
+      "code": "39597",
+      "name": "전주서곡대로점",
+      "source_row": 114
+    },
+    {
+      "chain": "CU",
+      "code": "39866",
+      "name": "만성센터점",
+      "source_row": 29
+    },
+    {
+      "chain": "CU",
+      "code": "40740",
+      "name": "전주평화모악점",
+      "source_row": 150
+    },
+    {
+      "chain": "CU",
+      "code": "40927",
+      "name": "전주신시가지점",
+      "source_row": 126
+    },
+    {
+      "chain": "CU",
+      "code": "41060",
+      "name": "전주대평생교육원점",
+      "source_row": 95
+    },
+    {
+      "chain": "CU",
+      "code": "41683",
+      "name": "전주노송센터점",
+      "source_row": 90
+    },
+    {
+      "chain": "CU",
+      "code": "41799",
+      "name": "전주효자스마일점",
+      "source_row": 174
+    },
+    {
+      "chain": "CU",
+      "code": "41808",
+      "name": "뉴전주고사점",
+      "source_row": 15
+    },
+    {
+      "chain": "CU",
+      "code": "41834",
+      "name": "효자웨스트점",
+      "source_row": 200
+    },
+    {
+      "chain": "CU",
+      "code": "41926",
+      "name": "인후빌리지점",
+      "source_row": 66
+    },
+    {
+      "chain": "CU",
+      "code": "42110",
+      "name": "송천센트럴점",
+      "source_row": 44
+    },
+    {
+      "chain": "CU",
+      "code": "42119",
+      "name": "전주파크리움점",
+      "source_row": 144
+    },
+    {
+      "chain": "CU",
+      "code": "42195",
+      "name": "전주모악점",
+      "source_row": 99
+    },
+    {
+      "chain": "CU",
+      "code": "42489",
+      "name": "중화산타운점",
+      "source_row": 185
+    },
+    {
+      "chain": "CU",
+      "code": "42684",
+      "name": "전주혁신로드점",
+      "source_row": 164
+    },
+    {
+      "chain": "CU",
+      "code": "42701",
+      "name": "전북대스타점",
+      "source_row": 73
+    },
+    {
+      "chain": "CU",
+      "code": "42848",
+      "name": "인후성락점",
+      "source_row": 67
+    },
+    {
+      "chain": "CU",
+      "code": "43024",
+      "name": "덕진광장점",
+      "source_row": 23
+    },
+    {
+      "chain": "CU",
+      "code": "43414",
+      "name": "송천한양점",
+      "source_row": 50
+    },
+    {
+      "chain": "CU",
+      "code": "43426",
+      "name": "전주서신2호점",
+      "source_row": 118
+    },
+    {
+      "chain": "CU",
+      "code": "43427",
+      "name": "태평아이파크후문점",
+      "source_row": 188
+    },
+    {
+      "chain": "CU",
+      "code": "43566",
+      "name": "전주평화사거리점",
+      "source_row": 151
+    },
+    {
+      "chain": "CU",
+      "code": "43651",
+      "name": "전주삼천안행점",
+      "source_row": 108
+    },
+    {
+      "chain": "CU",
+      "code": "43790",
+      "name": "전주본점",
+      "source_row": 102
+    },
+    {
+      "chain": "CU",
+      "code": "43871",
+      "name": "전주효자골드점",
+      "source_row": 171
+    },
+    {
+      "chain": "CU",
+      "code": "43955",
+      "name": "전주기전대학교점",
+      "source_row": 89
+    },
+    {
+      "chain": "CU",
+      "code": "44016",
+      "name": "금암스타점",
+      "source_row": 9
+    },
+    {
+      "chain": "CU",
+      "code": "44188",
+      "name": "아중레이크파크점",
+      "source_row": 51
+    },
+    {
+      "chain": "CU",
+      "code": "44190",
+      "name": "전주삼천센터점",
+      "source_row": 106
+    },
+    {
+      "chain": "CU",
+      "code": "44307",
+      "name": "전주서부아이파크점",
+      "source_row": 117
+    },
+    {
+      "chain": "CU",
+      "code": "44344",
+      "name": "혁신으뜸점",
+      "source_row": 195
+    },
+    {
+      "chain": "CU",
+      "code": "44363",
+      "name": "에코시티점",
+      "source_row": 62
+    },
+    {
+      "chain": "CU",
+      "code": "44598",
+      "name": "전주반월점",
+      "source_row": 101
+    },
+    {
+      "chain": "CU",
+      "code": "44705",
+      "name": "서린2주유소점",
+      "source_row": 36
+    },
+    {
+      "chain": "CU",
+      "code": "45265",
+      "name": "전주화산스타점",
+      "source_row": 170
+    },
+    {
+      "chain": "CU",
+      "code": "45489",
+      "name": "전북도청타운점",
+      "source_row": 78
+    },
+    {
+      "chain": "CU",
+      "code": "45511",
+      "name": "뉴평화광신점",
+      "source_row": 17
+    },
+    {
+      "chain": "CU",
+      "code": "45818",
+      "name": "전주서신센터점",
+      "source_row": 121
+    },
+    {
+      "chain": "CU",
+      "code": "46424",
+      "name": "금암원룸점",
+      "source_row": 10
+    },
+    {
+      "chain": "CU",
+      "code": "46508",
+      "name": "뉴아중정원점",
+      "source_row": 13
+    },
+    {
+      "chain": "CU",
+      "code": "46930",
+      "name": "전주스타점",
+      "source_row": 125
+    },
+    {
+      "chain": "CU",
+      "code": "47149",
+      "name": "만성법원점",
+      "source_row": 28
+    },
+    {
+      "chain": "CU",
+      "code": "47264",
+      "name": "전북혁신해피트리점",
+      "source_row": 82
+    },
+    {
+      "chain": "CU",
+      "code": "47693",
+      "name": "전주역점",
+      "source_row": 131
+    },
+    {
+      "chain": "CU",
+      "code": "48052",
+      "name": "금암본점",
+      "source_row": 8
+    },
+    {
+      "chain": "CU",
+      "code": "48121",
+      "name": "전주평화우미점",
+      "source_row": 153
+    },
+    {
+      "chain": "CU",
+      "code": "48129",
+      "name": "아중중앙점",
+      "source_row": 53
+    },
+    {
+      "chain": "CU",
+      "code": "48181",
+      "name": "송천주공점",
+      "source_row": 47
+    },
+    {
+      "chain": "CU",
+      "code": "48186",
+      "name": "전주진북점",
+      "source_row": 140
+    },
+    {
+      "chain": "CU",
+      "code": "48428",
+      "name": "에코사랑점",
+      "source_row": 61
+    },
+    {
+      "chain": "CU",
+      "code": "48429",
+      "name": "전주삼천프리미엄점",
+      "source_row": 111
+    },
+    {
+      "chain": "CU",
+      "code": "48857",
+      "name": "만성스페이스온점",
+      "source_row": 30
+    },
+    {
+      "chain": "CU",
+      "code": "48912",
+      "name": "삼천스타점",
+      "source_row": 33
+    },
+    {
+      "chain": "CU",
+      "code": "49230",
+      "name": "전주대학생회관점",
+      "source_row": 96
+    },
+    {
+      "chain": "CU",
+      "code": "49475",
+      "name": "송천중앙점",
+      "source_row": 48
+    },
+    {
+      "chain": "CU",
+      "code": "49666",
+      "name": "송천벽산점",
+      "source_row": 39
+    },
+    {
+      "chain": "CU",
+      "code": "50008",
+      "name": "전주평화센터점",
+      "source_row": 152
+    },
+    {
+      "chain": "CU",
+      "code": "50450",
+      "name": "전주고려병원점",
+      "source_row": 84
+    },
+    {
+      "chain": "CU",
+      "code": "50657",
+      "name": "호성주공점",
+      "source_row": 197
+    },
+    {
+      "chain": "CU",
+      "code": "50664",
+      "name": "전주송천제일점",
+      "source_row": 124
+    },
+    {
+      "chain": "CU",
+      "code": "50723",
+      "name": "전북도청사랑점",
+      "source_row": 77
+    },
+    {
+      "chain": "CU",
+      "code": "50792",
+      "name": "전주서문점",
+      "source_row": 116
+    },
+    {
+      "chain": "CU",
+      "code": "51098",
+      "name": "전주혁신점",
+      "source_row": 165
+    },
+    {
+      "chain": "CU",
+      "code": "51189",
+      "name": "전주금암점",
+      "source_row": 88
+    },
+    {
+      "chain": "CU",
+      "code": "51627",
+      "name": "효천노블점",
+      "source_row": 202
+    },
+    {
+      "chain": "CU",
+      "code": "52025",
+      "name": "아중현대점",
+      "source_row": 55
+    },
+    {
+      "chain": "CU",
+      "code": "52488",
+      "name": "중화산에코르점",
+      "source_row": 183
+    },
+    {
+      "chain": "CU",
+      "code": "52493",
+      "name": "전주포스코점",
+      "source_row": 157
+    },
+    {
+      "chain": "CU",
+      "code": "52701",
+      "name": "인후어울림점",
+      "source_row": 69
+    },
+    {
+      "chain": "CU",
+      "code": "53002",
+      "name": "전주프리미엄점",
+      "source_row": 158
+    },
+    {
+      "chain": "CU",
+      "code": "53066",
+      "name": "전주근영점",
+      "source_row": 87
+    },
+    {
+      "chain": "CU",
+      "code": "53442",
+      "name": "전주혁신중흥점",
+      "source_row": 166
+    },
+    {
+      "chain": "CU",
+      "code": "54178",
+      "name": "전북대타운점",
+      "source_row": 75
+    },
+    {
+      "chain": "CU",
+      "code": "54607",
+      "name": "전북경찰청점",
+      "source_row": 70
+    },
+    {
+      "chain": "CU",
+      "code": "54609",
+      "name": "위브어울림점",
+      "source_row": 65
+    },
+    {
+      "chain": "CU",
+      "code": "54771",
+      "name": "대자인병원점",
+      "source_row": 21
+    },
+    {
+      "chain": "CU",
+      "code": "55326",
+      "name": "전주홍산점",
+      "source_row": 168
+    },
+    {
+      "chain": "CU",
+      "code": "55857",
+      "name": "진흥더블점",
+      "source_row": 186
+    },
+    {
+      "chain": "CU",
+      "code": "56069",
+      "name": "전주팔달로점",
+      "source_row": 145
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68223",
+      "name": "전주호성신동아점",
+      "source_row": 542
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63515",
+      "name": "전주교대점",
+      "source_row": 402
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68108",
+      "name": "전주하가부영점",
+      "source_row": 535
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68090",
+      "name": "전주화산에코르점",
+      "source_row": 546
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68022",
+      "name": "전주첨단점",
+      "source_row": 518
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67962",
+      "name": "전주서곡지구점",
+      "source_row": 449
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67982",
+      "name": "전주전북대센터점",
+      "source_row": 510
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67861",
+      "name": "전주백제점",
+      "source_row": 436
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67839",
+      "name": "전주서신타운점",
+      "source_row": 456
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63103",
+      "name": "전주산단행복점",
+      "source_row": 443
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59985",
+      "name": "전주상산타운점",
+      "source_row": 447
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59883",
+      "name": "전주시그니처점",
+      "source_row": 469
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67682",
+      "name": "전주뉴아중파크점",
+      "source_row": 412
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67669",
+      "name": "전주화산하늘채점",
+      "source_row": 549
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67670",
+      "name": "전주대림점",
+      "source_row": 414
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67657",
+      "name": "전주한일점",
+      "source_row": 539
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59764",
+      "name": "전주뉴기전대학교점",
+      "source_row": 409
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67507",
+      "name": "전주평화한성점",
+      "source_row": 532
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67508",
+      "name": "전주아중솔래점",
+      "source_row": 481
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67458",
+      "name": "전주효자삼성점",
+      "source_row": 554
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67365",
+      "name": "전주삼천호반점",
+      "source_row": 446
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67364",
+      "name": "전주평화호반점",
+      "source_row": 533
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59592",
+      "name": "전주인후낭만점",
+      "source_row": 502
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67344",
+      "name": "전주서신쌍용점",
+      "source_row": 452
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59559",
+      "name": "전주홍산로점",
+      "source_row": 544
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67235",
+      "name": "전주인후사랑점",
+      "source_row": 504
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59377",
+      "name": "전주빌리언점",
+      "source_row": 441
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67151",
+      "name": "전주온누리점",
+      "source_row": 490
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59239",
+      "name": "전주뉴기전점",
+      "source_row": 410
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59164",
+      "name": "전주뉴프론티어점",
+      "source_row": 413
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59133",
+      "name": "전주효자스토리점",
+      "source_row": 555
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57407",
+      "name": "전주우아동신점",
+      "source_row": 494
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57726",
+      "name": "전주인후건산점",
+      "source_row": 500
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57632",
+      "name": "전주노송스타점",
+      "source_row": 407
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57206",
+      "name": "전주그랑블점",
+      "source_row": 404
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57074",
+      "name": "전주지안플러스점",
+      "source_row": 516
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57038",
+      "name": "전주에코시티점",
+      "source_row": 486
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56342",
+      "name": "전주평화로점",
+      "source_row": 526
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56325",
+      "name": "전주효자봉곡로점",
+      "source_row": 553
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56327",
+      "name": "전주도당산점",
+      "source_row": 422
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56269",
+      "name": "전주아중부영점",
+      "source_row": 479
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56007",
+      "name": "전주서원신일점",
+      "source_row": 458
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55815",
+      "name": "전주평화삼우점",
+      "source_row": 529
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55760",
+      "name": "전주건지중앙점",
+      "source_row": 398
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55640",
+      "name": "전주객리단길점",
+      "source_row": 396
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54890",
+      "name": "전주양현중점",
+      "source_row": 482
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54815",
+      "name": "전주하가진흥점",
+      "source_row": 536
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53999",
+      "name": "전주덕진점",
+      "source_row": 420
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53895",
+      "name": "전주이편한세상점",
+      "source_row": 499
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "58108",
+      "name": "전주대학로점",
+      "source_row": 418
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53709",
+      "name": "전주평화그린점",
+      "source_row": 523
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "58048",
+      "name": "전주고사중앙점",
+      "source_row": 399
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53450",
+      "name": "전주청담병원점",
+      "source_row": 519
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53263",
+      "name": "전주병원점",
+      "source_row": 437
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53101",
+      "name": "전주만성중앙점",
+      "source_row": 429
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "19613",
+      "name": "전주효자점",
+      "source_row": 556
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "19806",
+      "name": "전주산정점",
+      "source_row": 444
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18667",
+      "name": "전주연지점",
+      "source_row": 488
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12120",
+      "name": "전주건지점",
+      "source_row": 397
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "50966",
+      "name": "전주송천우림점",
+      "source_row": 463
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18492",
+      "name": "전주시청제일점",
+      "source_row": 470
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18173",
+      "name": "전주중화산어은점",
+      "source_row": 515
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "51076",
+      "name": "전주도청CGV점",
+      "source_row": 423
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "51191",
+      "name": "전주반월세움점",
+      "source_row": 432
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18612",
+      "name": "전주사학회관점",
+      "source_row": 442
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17770",
+      "name": "전주래미앙점",
+      "source_row": 425
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "50010",
+      "name": "전북대병원소아병동점",
+      "source_row": 390
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "50066",
+      "name": "전주아중산정점",
+      "source_row": 480
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "50454",
+      "name": "전주인후기린점",
+      "source_row": 501
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12591",
+      "name": "전주공단점",
+      "source_row": 401
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12614",
+      "name": "전주교보점",
+      "source_row": 403
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "16865",
+      "name": "전주아중대우점",
+      "source_row": 474
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "10772",
+      "name": "전주모래내점",
+      "source_row": 431
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14119",
+      "name": "전주인후부영점",
+      "source_row": 503
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "10672",
+      "name": "전주중앙점",
+      "source_row": 513
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14175",
+      "name": "전주화산점",
+      "source_row": 547
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "13488",
+      "name": "전주완산구청점",
+      "source_row": 491
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12366",
+      "name": "전주아중로점",
+      "source_row": 476
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "13496",
+      "name": "전주송천점",
+      "source_row": 464
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12829",
+      "name": "전주대스타점",
+      "source_row": 416
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "15783",
+      "name": "전주호남제일점",
+      "source_row": 540
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "15283",
+      "name": "전주중인점",
+      "source_row": 514
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12301",
+      "name": "전주북부점",
+      "source_row": 438
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "13542",
+      "name": "전주덕진공원점",
+      "source_row": 419
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "13069",
+      "name": "전주서신점",
+      "source_row": 455
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14863",
+      "name": "전주화산제일점",
+      "source_row": 548
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14565",
+      "name": "전주롯데점",
+      "source_row": 427
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14374",
+      "name": "전주진북우성점",
+      "source_row": 517
+    }
+  ],
+  "pending": [
+    {
+      "chain": "CU",
+      "code": "05307",
+      "name": "아산탕정점",
+      "address": "충청남도 아산시 탕정면 탕정면로 205, (호산리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "06458",
+      "name": "아산호서대점",
+      "address": "충청남도 아산시 배방읍 호서로 16, (세출리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "08499",
+      "name": "아산순천향대점",
+      "address": "충청남도 아산시 신창면 순천향로 31, (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "11230",
+      "name": "온양역점",
+      "address": "충청남도 아산시 시민로 364-33, (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "11734",
+      "name": "아산서부휴게소점",
+      "address": "충청남도 아산시 배방읍 온천대로 2230, (세교리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "18087",
+      "name": "아산용화원룸점",
+      "address": "충청남도 아산시 온화로83번길 16-26(용화동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "18553",
+      "name": "온양제일호텔점",
+      "address": "충청남도 아산시 온천대로 1462, (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "18851",
+      "name": "유연로점",
+      "address": "전북특별자치도 전주시 완산구 유연로 327, (서신동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "19483",
+      "name": "아산트라팰리스2호점",
+      "address": "충청남도 아산시 탕정면 탕정면로 37, (명암리, 탕정삼성트라팰리스) 1층 102호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "20097",
+      "name": "아산인주점",
+      "address": "충청남도 아산시 인주면 아산만로 1250, (대음리) 102호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "20269",
+      "name": "남원인월점",
+      "address": "전북특별자치도 남원시 인월면 인월로 73, (인월리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "20599",
+      "name": "아산북수점",
+      "address": "충청남도 아산시 배방읍 북수로 86, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "21899",
+      "name": "아산신창내안애점",
+      "address": "충청남도 아산시 신창면 행목로 200, 재동임대아파트 1층 117동 비102호, 비103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "23828",
+      "name": "아산테크노밸리2호점",
+      "address": "충청남도 아산시 둔포면 운용길 73, (운용리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "24362",
+      "name": "아산창용점",
+      "address": "충청남도 아산시 영인면 아산호로 681, (창용리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "25016",
+      "name": "호서대인산홀점",
+      "address": "충청남도 아산시 배방읍 호서로79번길 20, (세출리) 호서대학교장영실관점 지하1층 121호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "26179",
+      "name": "아산둔포타운점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로171번길 21, (둔포리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "26881",
+      "name": "남원노암점",
+      "address": "전북특별자치도 남원시 노송로 1229, (노암동, 한신) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "26909",
+      "name": "아산장재타운점",
+      "address": "충청남도 아산시 용연로 152 (배방읍) 1층 106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "27050",
+      "name": "아산운교점",
+      "address": "충청남도 아산시 둔포면 석곡길 40-53, (운교리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "27297",
+      "name": "아산용화타운점",
+      "address": "충청남도 아산시 어의정로133번길 18 (용화동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "27756",
+      "name": "아산팬더점",
+      "address": "충청남도 아산시 아산로 103-17 중부팬더아파트 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "27804",
+      "name": "아산신정골점",
+      "address": "충청남도 아산시 음봉면 음봉면로 257 신정골해장국",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "27959",
+      "name": "아산배방한성점",
+      "address": "아산시 배방읍 공수리 1480 1층 102호호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "28065",
+      "name": "아산이지더원1차점",
+      "address": "충청남도 아산시 아산밸리중앙로 50 (둔포면) 아산테크노밸리이지더원1단지아파트 1층 113동 B101호 102호호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "28640",
+      "name": "아산초원점",
+      "address": "충청남도 아산시 고불로 671, (좌부동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "28704",
+      "name": "아산반도점",
+      "address": "충청남도 아산시 아산로 116-21 (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "29508",
+      "name": "아산모종캐슬2차점",
+      "address": "충청남도 아산시 모종로22번길 33 (모종동) 모종캐슬어울림2단지 1층 상가동 201호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "29641",
+      "name": "아산관대점",
+      "address": "충청남도 아산시 둔포면 충무로 1396",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "30306",
+      "name": "아산시민점",
+      "address": "충청남도 아산시 시민로457번길 11, (온천동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "30663",
+      "name": "아산풍기점",
+      "address": "충청남도 아산시 어의정로 184 (풍기동 이지더원) 1층 상가동 104,105호호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "30792",
+      "name": "아산신봉점",
+      "address": "충청남도 아산시 윤보선로 132, (영인면) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31005",
+      "name": "남원동충현대점",
+      "address": "전북특별자치도 남원시 동문로 84, (향교동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31190",
+      "name": "아산갈산빌리지점",
+      "address": "충청남도 아산시 탕정면 탕정면로 158-1, (갈산리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31321",
+      "name": "아산둔포원룸점",
+      "address": "충청남도 아산시 둔포면 둔포로 78 국제하이빌",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31347",
+      "name": "남원동림로점",
+      "address": "전북특별자치도 남원시 동림로 113, (향교동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31397",
+      "name": "아산이지더원8단지점",
+      "address": "충청남도 아산시 아산밸리남로 81 (둔포면) 아산테크노밸리이지더원8단지아파트 1층 815동 104,105,106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31732",
+      "name": "아산부영점",
+      "address": "충청남도 아산시 온천대로 1105-13, (득산동) 부영아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "31826",
+      "name": "비전대기숙사점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 235",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "32344",
+      "name": "남원서문사거리점",
+      "address": "전북특별자치도 남원시 의총로 110, (동충동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "32411",
+      "name": "선문대학교점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70, 선문대학교 학생회관(갈산리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "32498",
+      "name": "아산테크노밸리센터점",
+      "address": "충청남도 아산시 아산밸리서로 168 (둔포면) 1층 103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "32601",
+      "name": "선문대학교오렌지점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "33071",
+      "name": "아산장재행복점",
+      "address": "충청남도 아산시 배방읍 공원로 69",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "33139",
+      "name": "아산송촌교차로점",
+      "address": "충청남도 아산시 음봉로 307 (음봉면)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "33205",
+      "name": "아산탕정타운점",
+      "address": "충청남도 아산시 탕정면 탕정면로 20, (명암리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "33608",
+      "name": "선문대학교본관점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교본관",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "33700",
+      "name": "아산온중점",
+      "address": "충청남도 아산시 온중로 59 (용화동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "34157",
+      "name": "아산영인점",
+      "address": "충청남도 아산시 영인면 상성길 127, (아산리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "35054",
+      "name": "아산외암마을점",
+      "address": "충청남도 아산시 송악면 송악로 784, (역촌리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "35288",
+      "name": "아산신도점",
+      "address": "충청남도 아산시 용화고길 90, 동 호 용화지구신도브래뉴 1층 상가동 106, 107호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "35701",
+      "name": "배방금호점",
+      "address": "충청남도 아산시 배방읍 배방로201번길 17, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "36738",
+      "name": "아산신창샘마을점",
+      "address": "충청남도 아산시 신창면 남성길 99 샘마을아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "36878",
+      "name": "남원시외터미널점",
+      "address": "전북특별자치도 남원시 용성로 109, (동충동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "37587",
+      "name": "뉴남원월락점",
+      "address": "전북특별자치도 남원시 낙현길 6 (월락동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "37666",
+      "name": "남원중앙점",
+      "address": "전북특별자치도 남원시 남문로 446, (쌍교동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "37980",
+      "name": "선문대학교기숙사점",
+      "address": "충청남도 아산시 선문로221번길 70 (탕정면) 선문대학교 아산캠퍼스 생활관친교관1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "38193",
+      "name": "켄싱턴리조트남원점",
+      "address": "전북특별자치도 남원시 소리길 66, (어현동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "38336",
+      "name": "배방원룸점",
+      "address": "충청남도 아산시 북수로111번길 8 (배방읍) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "38379",
+      "name": "아산모종캐슬3차점",
+      "address": "충청남도 아산시 모종남로22번길 11 (모종동, 모종캐슬어울림3단지) 모종캐슬어울림3단지",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "38564",
+      "name": "아산배방월천점",
+      "address": "충청남도 아산시 배방읍 월천3길 27, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40059",
+      "name": "아산온양힐스테이트점",
+      "address": "충청남도 아산시 남산로 120 현대홈타운아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40623",
+      "name": "아산테크노밸리점",
+      "address": "충청남도 아산시 둔포면 아산밸리서로 70, (운용리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40793",
+      "name": "아산탕정중앙점",
+      "address": "충청남도 아산시 탕정면 명암길3번길 16",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40839",
+      "name": "아산온천마을점",
+      "address": "충청남도 아산시 시장길15번길 13",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40840",
+      "name": "아산배방우방점",
+      "address": "충청남도 아산시 배방로 58-44 (배방읍) 우방아이유쉘2단지",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40856",
+      "name": "아산둔포충무점",
+      "address": "충청남도 아산시 충무로 1799 (둔포면) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "40958",
+      "name": "아산산동점",
+      "address": "충청남도 아산시 음봉면 음봉로 803, (산동리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41325",
+      "name": "아산배방공수점",
+      "address": "충청남도 아산시 배방읍 모산로 136 사이버PC방 (공수리) 사이버PC방",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41426",
+      "name": "아산더퍼스트휴점",
+      "address": "충청남도 아산시 탕정면 용머리길 109",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41608",
+      "name": "아산마니사점",
+      "address": "충청남도 아산시 배방읍 광장로 210 (장재리, 요진와이시티)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41686",
+      "name": "아산남부점",
+      "address": "충청남도 아산시 남부로 321-17 (풍기동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41691",
+      "name": "아산삼정그린코아점",
+      "address": "충청남도 아산시 배방읍 모산로126번길 17-7, (공수리, 배방삼정그린코아)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "41730",
+      "name": "아산신창한성점",
+      "address": "충청남도 아산시 신창면 서부북로 918 (남성리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42021",
+      "name": "아산탕정골목점",
+      "address": "충청남도 아산시 탕정면 탕정면로8번길 89, (명암리) 1층 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42375",
+      "name": "아산뉴한올점",
+      "address": "충청남도 아산시 청운로 149 (권곡동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42564",
+      "name": "중화산점",
+      "address": "전북특별자치도 전주시 완산구 어은로 6 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "42579",
+      "name": "아산모종한성점",
+      "address": "충청남도 아산시 모종로 22 (모종동) 모종한성필하우스2차아파트 1층 상가동 104호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42608",
+      "name": "아산스타점",
+      "address": "충청남도 아산시 용화로12번길 4-2, (용화동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42685",
+      "name": "아산염작점",
+      "address": "충청남도 아산시 둔포면 아산밸리동로 263-10, (염작리) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42728",
+      "name": "아산배미점",
+      "address": "충청남도 아산시 서부북로 974 (배미동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42772",
+      "name": "아산권곡주공점",
+      "address": "충청남도 아산시 박물관로 13 (권곡동, 주공아파트) 1층 상가동 102호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "42960",
+      "name": "아산영인예락점",
+      "address": "충청남도 아산시 영인면 토정로 200 (역리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43029",
+      "name": "아산권곡삼부점",
+      "address": "충청남도 아산시 문화로243번길 13 (권곡동, 삼부르네상스) 삼부르네상스",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43086",
+      "name": "인주중앙점",
+      "address": "충청남도 아산시 인주면 아산만로 1698, (밀두리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43355",
+      "name": "한들물빛공원점",
+      "address": "충청남도 아산시 탕정면 한들물빛도시로 70 1층 E동 105,106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43548",
+      "name": "아산빅토리아점",
+      "address": "충청남도 아산시 배방읍 광장로 181 (장재리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43674",
+      "name": "아산장재점",
+      "address": "충청남도 아산시 배방읍 장재로 46-46",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43686",
+      "name": "아산스파포레점",
+      "address": "충청남도 아산시 아산온천로157번길 67 (음봉면)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43748",
+      "name": "아산배미로드점",
+      "address": "충청남도 아산시 배미로 7-2 (득산동) 1층 5동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43752",
+      "name": "아산배방롯데점",
+      "address": "충청남도 아산시 북수로 183 (배방읍) 롯데캐슬아파트 1층 301동 105,106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "43799",
+      "name": "아산온양점",
+      "address": "충청남도 아산시 남산로8번길 40-17 (용화동, 그린빌라트) 그린빌라트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "44077",
+      "name": "선문대학교공학관점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 70 선문대학교 (갈산리) 선문대학교",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "44165",
+      "name": "아산음봉초원점",
+      "address": "충청남도 아산시 음봉로681번길 24 (음봉면) 초원그린타운 1층 상가동 107,116호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "44599",
+      "name": "아산외암로점",
+      "address": "충청남도 아산시 송악면 송악로 826-3 (외암리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "44925",
+      "name": "아산트라팰리스점",
+      "address": "충청남도 아산시 탕정면 탕정면로 37 (명암리, 탕정삼성트라팰리스아파트) 탕정삼성트라팰리스아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "44948",
+      "name": "만성에코르점",
+      "address": "전북특별자치도 전주시 덕진구 만성동로 125 상가 근린생활시설",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "44958",
+      "name": "아산호서대일등점",
+      "address": "충청남도 아산시 호서로 92 1동 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45224",
+      "name": "아산소화주공점",
+      "address": "충청남도 아산시 신창면 남성길 116-8, (남성리, 소화마을아파트)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45372",
+      "name": "아산인주산단점",
+      "address": "충청남도 아산시 인주면 인주산단로 23-12 (걸매리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45501",
+      "name": "전주삼천용흥점",
+      "address": "전북특별자치도 전주시 완산구 삼천천변1길 11 삼천주공6단지아파트 (삼천동1가) 삼천주공6단지아파트",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "45649",
+      "name": "뉴배방삼성점",
+      "address": "충청남도 아산시 배방읍 배방로173번길 14 패밀리마트 (북수리) 패밀리마트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45711",
+      "name": "전주대스타빌점",
+      "address": "전북특별자치도 전주시 완산구 백마산길 67-7, 노벨(효자동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "45712",
+      "name": "전주대스타점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303, 전주대학교 가동 1층 2호(효자동2가)",
+      "reason": "UNIT_CONFLICT"
+    },
+    {
+      "chain": "CU",
+      "code": "45716",
+      "name": "아산신창로드점",
+      "address": "충청남도 아산시 신창면 서부남로 810, (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45717",
+      "name": "배방제일점",
+      "address": "충청남도 아산시 배방읍 모산로 182, (공수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45721",
+      "name": "전북도청상록회점",
+      "address": "전북특별자치도 전주시 완산구 효자로 225 전라북도청 (효자동3가) 전라북도청",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "45777",
+      "name": "뉴아산둔포산업단지점",
+      "address": "충청남도 아산시 둔포면 아산밸리로 296-21",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "45898",
+      "name": "뉴남원하정점",
+      "address": "전북특별자치도 남원시 의총로 78 (하정동) 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "46004",
+      "name": "아산아람채점",
+      "address": "충청남도 아산시 온천대로 1323-25 (방축동, 아산KD아람채) 아산KD아람채",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "46069",
+      "name": "뉴아산휴먼시아점",
+      "address": "충청남도 아산시 배방읍 용연로 36 (장재리, 용연마을휴먼시아1단지아파트) 용연마을휴먼시아1단지아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "46265",
+      "name": "전주효자빌리지점",
+      "address": "전북특별자치도 전주시 완산구 황강서원로 11 (효자동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46280",
+      "name": "뉴만성골드점",
+      "address": "전북특별자치도 전주시 덕진구 만성로 181 (만성동, 골드클래스) 골드클래스",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46301",
+      "name": "뉴효천로드점",
+      "address": "전북특별자치도 전주시 완산구 쑥고개로 397 우전빅마트 (효자동2가) 우전빅마트",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46404",
+      "name": "전주삼천타운점",
+      "address": "전북특별자치도 전주시 완산구 거마평로 88 (삼천동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46634",
+      "name": "전주동물원점",
+      "address": "전북특별자치도 전주시 덕진구 소리로 68 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46802",
+      "name": "전주진북스타점",
+      "address": "전북특별자치도 전주시 덕진구 숲정이2길 41 (진북동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "46992",
+      "name": "아산오토몰점",
+      "address": "충청남도 아산시 배방읍 동방1로 11 (휴대리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47023",
+      "name": "아산파모스라움점",
+      "address": "충청남도 아산시 희망로46번길 11-16 (배방읍)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47099",
+      "name": "송천아이파크점",
+      "address": "전북특별자치도 전주시 덕진구 오송로 45 (송천동1가, 송천아이파크) 송천아이파크",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "47262",
+      "name": "아산탕정호반점",
+      "address": "충청남도 아산시 탕정면 갈산샛들로 57, 상가 117동 120호 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47285",
+      "name": "전주교원점",
+      "address": "전북특별자치도 전주시 완산구 온고을로 1 한국교직원공제회전북회관 (서신동) 한국교직원공제회전북회관",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "47325",
+      "name": "전주흑석중앙점",
+      "address": "전북특별자치도 전주시 완산구 흑석로 56 (서서학동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "47503",
+      "name": "전북대후생관점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "47635",
+      "name": "남원오투그란데점",
+      "address": "전북특별자치도 남원시 교룡로 28 1층 상가동 107,108호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47688",
+      "name": "신아산모아엘가1차점",
+      "address": "충청남도 아산시 신창면 남성길 72, 122동 B109호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47714",
+      "name": "아산줌파크점",
+      "address": "충청남도 아산시 시민로 135 (용화동) 아산줌파크 1층 근린생활시설동 103,104호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47732",
+      "name": "중산프리미엄점",
+      "address": "전북특별자치도 전주시 완산구 중산3길 1 (중화산동2가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "47792",
+      "name": "아산신정호공원점",
+      "address": "충청남도 아산시 남부로 18 (방축동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "47972",
+      "name": "아산탕정코닝점",
+      "address": "충청남도 아산시 탕정면 탕정로 251, (명암리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48003",
+      "name": "아산충무병원점",
+      "address": "충청남도 아산시 문화로 385(모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48038",
+      "name": "전주명심점",
+      "address": "전북특별자치도 전주시 덕진구 편운로 40 (여의동2가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "48117",
+      "name": "아산음봉해링턴점",
+      "address": "충청남도 아산시 음봉면 산동리 252번지 1층 B동 114호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48237",
+      "name": "신창그랜드점",
+      "address": "충청남도 아산시 신창면 온천대로 819 (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48334",
+      "name": "전주성덕점",
+      "address": "전북특별자치도 전주시 덕진구 번영로 215 (성덕동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "48438",
+      "name": "아산둔포신양점",
+      "address": "충청남도 아산시 둔포면 관용로 183-1 (신양리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48537",
+      "name": "모종네오루체점",
+      "address": "충청남도 아산시 못마루로 139 (모종동, 힐스테이트모종네오루체) 힐스테이트모종네오루체",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48641",
+      "name": "삼천퍼스트점",
+      "address": "전북특별자치도 전주시 완산구 솟대1길 1 (삼천동1가) cu 삼천퍼스트점 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "48663",
+      "name": "전주대신정문점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 303 (효자동2가) 전주대학교 (효자동2가) 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "48800",
+      "name": "아산삼일파라뷰점",
+      "address": "충청남도 아산시 문화공원로 42 (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48855",
+      "name": "전주효자타운점",
+      "address": "전북특별자치도 전주시 완산구 황강서원2길 17-1 (효자동3가) 1층(효자동 3가) 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "48873",
+      "name": "아산배방별하점",
+      "address": "충청남도 아산시 배방읍 세교길 14, 근린생활시설동 1층 3,4호 (별하신도시 하늘채) 103,104호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48941",
+      "name": "아산신정호수점",
+      "address": "충청남도 아산시 순천향로 476 (신인동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "48995",
+      "name": "아산시티프라디움점",
+      "address": "충청남도 아산시 한들물빛3로 36 (탕정면) 한들물빛도시 시티프라디움",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49078",
+      "name": "에코더샵점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 171 (송천동2가) 1층 101호 1층 상가동 101호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "49152",
+      "name": "뉴아산한라점",
+      "address": "충청남도 아산시 삼동로 41 (권곡동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49205",
+      "name": "아산둔포테크노점",
+      "address": "충청남도 아산시 둔포면 산업밸리길 40 (석곡리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49245",
+      "name": "북수원룸점",
+      "address": "충청남도 아산시 배방읍 배방로201번길 27, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49350",
+      "name": "전주세내로점",
+      "address": "전북특별자치도 전주시 완산구 세내로 285 샘물아동병원 (효자동3가) 샘물아동병원",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "49507",
+      "name": "서신이편한점",
+      "address": "전북특별자치도 전주시 완산구 홍산로 495 상가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "49642",
+      "name": "남원대로점",
+      "address": "전북특별자치도 남원시 요천로 1331 2002마트 (조산동) 2002마트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49643",
+      "name": "남원코아루점",
+      "address": "전북특별자치도 남원시 충정로 320 (월락동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49659",
+      "name": "아산신창휴게소점",
+      "address": "충청남도 아산시 신창면 온천대로 725",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49662",
+      "name": "아중부영점",
+      "address": "전북특별자치도 전주시 덕진구 무삼지로 8",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "49821",
+      "name": "아산모종본점",
+      "address": "충청남도 아산시 번영로216번길 26 (모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49877",
+      "name": "아산온천동점",
+      "address": "충청남도 아산시 온화로11번길 14, (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "49878",
+      "name": "전주효자힐스점",
+      "address": "전라북도 전주시 완산구 따박골로 12, 힐스테이어울림효자 상가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "49954",
+      "name": "전주효자신일점",
+      "address": "전북특별자치도 전주시 완산구 신봉로 55",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "50180",
+      "name": "남원지리산점",
+      "address": "전북특별자치도 남원시 산내면 천왕봉로 700 (대정리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50251",
+      "name": "비전플러스점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 227-51 (효자동2가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "50447",
+      "name": "송천샘터점",
+      "address": "전북특별자치도 전주시 덕진구 송천중앙로 143 (송천동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "50492",
+      "name": "아산용화센터점",
+      "address": "충청남도 아산시 용화로48번길 3-25, (용화동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50502",
+      "name": "아산로제비앙점",
+      "address": "충청남도 아산시 배방읍 동방로 134 (세교리) 근린생활시설 B103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50619",
+      "name": "아산CGV점",
+      "address": "충청남도 아산시 온천대로 1538 (온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50654",
+      "name": "서곡두산점",
+      "address": "전북특별자치도 전주시 완산구 서곡로 20-1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "50719",
+      "name": "일성리조트지리산점",
+      "address": "전북특별자치도 남원시 산내면 천왕봉로 626-25 일성지리산콘도미니엄 (대정리) 일성지리산콘도미니엄",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50728",
+      "name": "아산홍익점",
+      "address": "충청남도 아산시 탕정면 탕정면로 230-21 상록빌",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50870",
+      "name": "아산둔포그랜드점",
+      "address": "충청남도 아산시 둔포면 충무로 1838 (둔포리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "50997",
+      "name": "아산한라동백점",
+      "address": "충청남도 아산시 삼동로 34 (모종동, 한라동백아파트) 한라동백아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "51057",
+      "name": "뉴아산운용점",
+      "address": "충청남도 아산시 운용길 44 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "51060",
+      "name": "전주호성센터점",
+      "address": "전북특별자치도 전주시 덕진구 호성3길 19 진이비인후과 (호성동1가) 진이비인후과",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51091",
+      "name": "아산배방한성6차점",
+      "address": "충청남도 아산시 배방읍 배방로 127 (공수리, 한성필하우스6차) 한성필하우스6차",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "51249",
+      "name": "인후휴먼시아점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무2길 7 (인후동1가, 인후휴먼시아) 인후휴먼시아",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51256",
+      "name": "전주휴게소점",
+      "address": "전북특별자치도 전주시 덕진구 동부대로 1530 (고랑동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51313",
+      "name": "인후프리미엄점",
+      "address": "전북특별자치도 전주시 덕진구 가재미로 53 (인후동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51360",
+      "name": "전주호성파크점",
+      "address": "전북특별자치도 전주시 덕진구 호성로 104-10 진호빌딩 (호성동1가) 진호빌딩",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51424",
+      "name": "뉴한옥마을동문점",
+      "address": "전북특별자치도 전주시 완산구 경기전길 17 등용문회계학원 (풍남동1가) 등용문회계학원",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "51471",
+      "name": "아산순천향타운점",
+      "address": "충청남도 아산시 신창면 순천향로15번길 16, (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "51506",
+      "name": "아산음봉더샵점",
+      "address": "충청남도 아산시 음봉면 음봉로 567 (덕지리, 더샵레이크사이드아파트) 더샵레이크사이드아파트, 106, 107, 108, 112, 113호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52000",
+      "name": "만성시티점",
+      "address": "전북특별자치도 전주시 덕진구 만성동로 11 (만성동, 시티프라디움) 시티프라디움",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52055",
+      "name": "전주동서학점",
+      "address": "전북특별자치도 전주시 완산구 장승배기로 410 (동서학동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52346",
+      "name": "전주하가빌리지점",
+      "address": "전북특별자치도 전주시 덕진구 가리내8길 11 (덕진동2가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52370",
+      "name": "아산호서로점",
+      "address": "충청남도 아산시 배방읍 호서로 166 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52435",
+      "name": "전주호성대로점",
+      "address": "전북특별자치도 전주시 덕진구 초포다리로 94 (호성동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52446",
+      "name": "전주안골점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무4길 19 (인후동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52454",
+      "name": "뉴아산권곡타운점",
+      "address": "충청남도 아산시 삼동로 71 (권곡동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52509",
+      "name": "아산모종한국점",
+      "address": "충청남도 아산시 번영로230번길 20, (모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52567",
+      "name": "아산북수타운점",
+      "address": "충청남도 아산시 배방읍 배방로 219-10, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52636",
+      "name": "아산둔포점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로 130, (둔포리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52703",
+      "name": "반월세움펠리피아점",
+      "address": "전북특별자치도 전주시 덕진구 혁신로 727 (반월동, 세움펠리피아2차) 세움펠리피아2차",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52742",
+      "name": "전주에코포레나점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 21 (송천동2가) 에코포레나",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52880",
+      "name": "전주효자수목토점",
+      "address": "전북특별자치도 전주시 완산구 범안1길 5 한라빌딩 (효자동2가) 한라빌딩",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "52924",
+      "name": "전북대금암점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 247 (금암동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "53097",
+      "name": "아산북수매일점",
+      "address": "충청남도 아산시 배방읍 배방로229번길 19-2, (북수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53109",
+      "name": "아산모종더스카이점",
+      "address": "충청남도 아산시 번영로 190 (모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53135",
+      "name": "전주효자중앙점",
+      "address": "전북특별자치도 전주시 완산구 용머리로 59",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "53153",
+      "name": "아산음봉삼일점",
+      "address": "충청남도 아산시 음봉면 음봉로 847, (산동리, 삼일원앙)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53260",
+      "name": "도고스타점",
+      "address": "충청남도 아산시 온천대로 417 (도고면)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53301",
+      "name": "송천서호점",
+      "address": "전북특별자치도 전주시 덕진구 송천로 49, (송천동1가) 1층 제2동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "53351",
+      "name": "전주서해그랑블점",
+      "address": "전라북도 전주시 완산구 물왕멀로 49, (중노송동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "53451",
+      "name": "남원금동점",
+      "address": "전북특별자치도 남원시 서문로 67 (금동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53482",
+      "name": "아산영인스타점",
+      "address": "충청남도 아산시 영인면 영인로 63 (아산리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53603",
+      "name": "삼천도서관점",
+      "address": "전북특별자치도 전주시 완산구 용리로 122",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "53649",
+      "name": "뉴아산배방신도시점",
+      "address": "충청남도 아산시 동방로 114",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53923",
+      "name": "E춘향휴게소순천점",
+      "address": "전북특별자치도 남원시 수지면 순천완주고속도로 49 (남창리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53924",
+      "name": "E춘향휴게소완주점",
+      "address": "전북특별자치도 남원시 수지면 순천완주고속도로 50 (산정리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53945",
+      "name": "아산음봉포스코점",
+      "address": "충청남도 아산시 월암로 27 (음봉면)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53951",
+      "name": "아산음봉로드점",
+      "address": "충청남도 아산시 음봉면 산동로 273, (산동리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53953",
+      "name": "아산자이센텀점",
+      "address": "충청남도 아산시 동방로 180-4",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53966",
+      "name": "아산송악외암점",
+      "address": "충청남도 아산시 외암로 364",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53982",
+      "name": "아산온천타운점",
+      "address": "충청남도 아산시 중앙로 27, (온천동, 가람빌) 1동 1층 101호, 102호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "53983",
+      "name": "전주삼천신일점",
+      "address": "전북특별자치도 전주시 완산구 강변로 98-1 (삼천동1가, 신일강변)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54032",
+      "name": "아산인주케이점",
+      "address": "충청남도 아산시 아산만로 1624",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "54071",
+      "name": "아산모산점",
+      "address": "충청남도 아산시 배방읍 모산로 151-1 (공수리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "54074",
+      "name": "아산탕정나플점",
+      "address": "충청남도 아산시 한들물빛6로 26",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "54117",
+      "name": "서곡프라임점",
+      "address": "전북특별자치도 전주시 완산구 서곡6길 26, (효자동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54209",
+      "name": "전주에코백석점",
+      "address": "전북특별자치도 전주시 덕진구 백석남로 131 제1층 제112호,113호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54583",
+      "name": "전주럭키점",
+      "address": "전북특별자치도 전주시 덕진구 태진로 139",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54612",
+      "name": "전주효자시티점",
+      "address": "전북특별자치도 전주시 완산구 척동길 16",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54633",
+      "name": "전주한옥태조로점",
+      "address": "전북특별자치도 전주시 완산구 간납로 1, (풍남동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54664",
+      "name": "뉴에코데시앙네스트점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 134",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54729",
+      "name": "아산스위첸점",
+      "address": "충청남도 아산시 삼동로70번길 36",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "54732",
+      "name": "전주효자베스트점",
+      "address": "전북특별자치도 전주시 완산구 범안3길 15",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54779",
+      "name": "아산용화다온점",
+      "address": "충청남도 아산시 용화고길 28",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "54913",
+      "name": "전주인후중앙점",
+      "address": "전북특별자치도 전주시 덕진구 인후3길 29",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "54962",
+      "name": "남원여고정문점",
+      "address": "전북특별자치도 남원시 광천북길 207, 이명아피아노음악학원 (왕정동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55009",
+      "name": "전주효자플러스점",
+      "address": "전북특별자치도 전주시 완산구 호암로 88, 1층 102호, 103호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "55025",
+      "name": "아산순천향학사점",
+      "address": "충청남도 아산시 신창면 순천향로 12-1 (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55110",
+      "name": "전주인후플러스점",
+      "address": "전북특별자치도 전주시 덕진구 한배미4길 16 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "55142",
+      "name": "아산모종어울림점",
+      "address": "충청남도 아산시 번영로224번길 49 (모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55208",
+      "name": "아산이편한시티점",
+      "address": "충청남도 아산시 광장로 155",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55379",
+      "name": "삼천아너센트럴점",
+      "address": "전북특별자치도 전주시 완산구 백제대로 87",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "55392",
+      "name": "전북대점",
+      "address": "전북특별자치도 전주시 덕진구 명륜4길 17 1층,2층 (101호, 102호, 204호)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "55444",
+      "name": "뉴전주호반베르디움점",
+      "address": "전북특별자치도 전주시 덕진구 오공로 73",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "55455",
+      "name": "아산선문대원룸점",
+      "address": "충청남도 아산시 탕정면 선문로221번길 38-9, (매곡리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55608",
+      "name": "아산미진무지개점",
+      "address": "충청남도 아산시 인주면 현대로 862, (해암리, 미진무지개아파트)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55613",
+      "name": "전주효천1호점",
+      "address": "전북특별자치도 전주시 완산구 효천중앙로 52 (효자동2가) 리버클래스 상가1동 101호, 102호",
+      "reason": "UNIT_CONFLICT"
+    },
+    {
+      "chain": "CU",
+      "code": "55764",
+      "name": "신창상아주공점",
+      "address": "충청남도 아산시 신창면 온천대로 985 (남성리, 아산상아주공아파트) 아산상아주공아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55781",
+      "name": "뉴남원의료원점",
+      "address": "전북특별자치도 남원시 충정로 365",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55802",
+      "name": "아산배방황금점",
+      "address": "충청남도 아산시 배방로 53",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "55854",
+      "name": "전주호성주공정문점",
+      "address": "전북특별자치도 전주시 덕진구 소리로 181",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "56051",
+      "name": "전주송천중앙점",
+      "address": "전북특별자치도 전주시 덕진구 붓내3길 18",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "CU",
+      "code": "45287",
+      "name": "전주팔달로점",
+      "address": "전라북도 전주시 완산구 팔달로 192 (경원동3가)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "CU",
+      "code": "52502",
+      "name": "송천광신점",
+      "address": "전북특별자치도 전주시 덕진구 송천동1가 846-4번지",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20365",
+      "name": "아산음봉쌍암점",
+      "address": "충청남도 아산시 음봉면 월암로 432",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20376",
+      "name": "아산신창신일점",
+      "address": "충청남도 아산시 신창면 서부북로 844",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20584",
+      "name": "전주완산효자점",
+      "address": "전북특별자치도 전주시 완산구 구룡2길 10",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20611",
+      "name": "아산배방황제점",
+      "address": "충청남도 아산시 배방읍 배방로173번길 28-1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20677",
+      "name": "동전주IC점",
+      "address": "전북특별자치도 전주시 덕진구 전진로 64",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "20713",
+      "name": "R아산배미센트럴점",
+      "address": "충청남도 아산시 서부북로 991",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "21214",
+      "name": "전주서신타운점",
+      "address": "전북특별자치도 전주시 완산구 안터5길 14-6",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "21475",
+      "name": "R남원이그린점",
+      "address": "전북특별자치도 남원시 황죽로 11",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "21598",
+      "name": "남원중앙하이츠점",
+      "address": "전북특별자치도 남원시 동림로 129",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "21837",
+      "name": "전주산정타운점",
+      "address": "전북특별자치도 전주시 덕진구 산정2길 8",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "21943",
+      "name": "R전주인후점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무4길 11",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22053",
+      "name": "아산신창점",
+      "address": "충청남도 아산시 신창면 순천향로 223-4",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22058",
+      "name": "R전주대우빌딩점",
+      "address": "전북특별자치도 전주시 완산구 기린대로 213",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22103",
+      "name": "전주삼천도서관점",
+      "address": "전북특별자치도 전주시 완산구 용리로 112",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22167",
+      "name": "아산온천대로점",
+      "address": "충청남도 아산시 곡교천로 161",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22612",
+      "name": "남원센트럴점",
+      "address": "전북특별자치도 남원시 요천로 1306-8",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22629",
+      "name": "SMART전주클래시아점",
+      "address": "전북특별자치도 전주시 덕진구 동부대로 670",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22819",
+      "name": "아산탕정센트럴점",
+      "address": "충청남도 아산시 탕정면 삼성로 523",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22883",
+      "name": "R전주송천삼성점",
+      "address": "전북특별자치도 전주시 덕진구 용소로 72",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22906",
+      "name": "전주반월광신점",
+      "address": "전북특별자치도 전주시 덕진구 반월로 26",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "22912",
+      "name": "아산탕정코닝점",
+      "address": "충청남도 아산시 탕정면 탕정로 85",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23150",
+      "name": "아산권곡파크점",
+      "address": "충청남도 아산시 충무로 150",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23291",
+      "name": "아산호서대점",
+      "address": "충청남도 아산시 배방읍 호서로79번길 51-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23308",
+      "name": "아산득산공단점",
+      "address": "충청남도 아산시 온천대로1122번길 16-4",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23408",
+      "name": "R아산염치중앙점",
+      "address": "충청남도 아산시 염치읍 염성길 115",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23439",
+      "name": "남원요천로점",
+      "address": "전북특별자치도 남원시 요천로 1976",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23441",
+      "name": "전북대실크로드점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23454",
+      "name": "R전주태평점",
+      "address": "전북특별자치도 전주시 완산구 물레방아1길 29",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23493",
+      "name": "전주금암타운점",
+      "address": "전북특별자치도 전주시 덕진구 매봉로 10",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23534",
+      "name": "전주비사벌점",
+      "address": "전북특별자치도 전주시 덕진구 송천중앙로 212",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23561",
+      "name": "전주경원점",
+      "address": "전북특별자치도 전주시 완산구 현무1길 37",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23851",
+      "name": "전주혁신점",
+      "address": "전북특별자치도 전주시 덕진구 오공로 43-48",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23909",
+      "name": "아산도고온천점",
+      "address": "충청남도 아산시 도고면 도고온천로 166",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "23960",
+      "name": "아산탕정타운점",
+      "address": "충청남도 아산시 탕정면 삼성로 301",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24145",
+      "name": "SMART아산영인신봉점",
+      "address": "충청남도 아산시 영인면 장영실로 719",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24176",
+      "name": "아산배방센트럴점",
+      "address": "충청남도 아산시 배방읍 배방로173번길 6-17",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24193",
+      "name": "아산용화타운점",
+      "address": "충청남도 아산시 용화로48번길 14",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24211",
+      "name": "R전주효자플렉스점",
+      "address": "전북특별자치도 전주시 완산구 척동5길 1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24252",
+      "name": "남원도통점",
+      "address": "전북특별자치도 남원시 춘향로 81",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24260",
+      "name": "R전주덕진점",
+      "address": "전북특별자치도 전주시 덕진구 우아3길 20",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24293",
+      "name": "아산둔포신양점",
+      "address": "충청남도 아산시 둔포면 봉신로229번길 6",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24374",
+      "name": "전주송천솔내점",
+      "address": "전북특별자치도 전주시 덕진구 붓내3길 17-25",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24400",
+      "name": "R전북대중앙도서관점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24402",
+      "name": "전북대건지점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24436",
+      "name": "R전주평화마을점",
+      "address": "전북특별자치도 전주시 완산구 평화16길 13",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24461",
+      "name": "R전주반월점",
+      "address": "전북특별자치도 전주시 덕진구 반월4길 7",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24553",
+      "name": "전주효자마을점",
+      "address": "전북특별자치도 전주시 완산구 성지산3길 25",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24621",
+      "name": "아산온천스파점",
+      "address": "충청남도 아산시 음봉면 아산온천로157번길 92",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24866",
+      "name": "R전주어은점",
+      "address": "전북특별자치도 전주시 완산구 어은로 22",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24959",
+      "name": "아산도고로드점",
+      "address": "충청남도 아산시 도고면 온천대로 61 1동 103",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "24965",
+      "name": "아산북수비채점",
+      "address": "충청남도 아산시 배방읍 월천5길 30 111호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25018",
+      "name": "전북대훈산건지점",
+      "address": "전북특별자치도 전주시 덕진구 창포길 93",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25019",
+      "name": "전북대건지위성점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25023",
+      "name": "아산순천향길점",
+      "address": "충청남도 아산시 순천향로 809",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25028",
+      "name": "전주서신마을점",
+      "address": "전북특별자치도 전주시 완산구 안터2길 28",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25052",
+      "name": "전북대진수당점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25089",
+      "name": "전주금암중앙점",
+      "address": "전북특별자치도 전주시 덕진구 떡전5길 24-1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25106",
+      "name": "전주하가지구점",
+      "address": "전북특별자치도 전주시 덕진구 가련산로 11",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25436",
+      "name": "아산음봉동암점",
+      "address": "충청남도 아산시 음봉면 연암산로 55-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25447",
+      "name": "SMART아산음봉공단점",
+      "address": "충청남도 아산시 음봉면 월산로 201",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25450",
+      "name": "아산탕정유니콘점",
+      "address": "충청남도 아산시 탕정면 용머리길 40 108호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25525",
+      "name": "전북대센터점",
+      "address": "전북특별자치도 전주시 덕진구 명륜1길 13-24",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25640",
+      "name": "아산둔포로드점",
+      "address": "충청남도 아산시 둔포면 충무로 1580",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25655",
+      "name": "전주중인로점",
+      "address": "전북특별자치도 전주시 완산구 우림로 981",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25720",
+      "name": "아산배방수철점",
+      "address": "충청남도 아산시 배방읍 고불로 361",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25800",
+      "name": "SMART전북대점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 464-1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25804",
+      "name": "전주효성점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 886",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25865",
+      "name": "전주서신여울점",
+      "address": "전북특별자치도 전주시 완산구 고사평9길 14",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "25985",
+      "name": "아산만로점",
+      "address": "충청남도 아산시 선장면 아산만로 513",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26076",
+      "name": "전주인후타운점",
+      "address": "전북특별자치도 전주시 덕진구 한배미로 16",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26085",
+      "name": "전북대중앙도서관위성점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 567",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26160",
+      "name": "아산충무병원점",
+      "address": "충청남도 아산시 모종남로12번길 11",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26429",
+      "name": "전주광진점",
+      "address": "전북특별자치도 전주시 완산구 덕적골3길 15",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26435",
+      "name": "아산탕정그랜드마크점",
+      "address": "충청남도 아산시 탕정면 갈산교로 224 호반써밋그랜드마크6 상가 316동 603호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26448",
+      "name": "전주풍남문점",
+      "address": "전북특별자치도 전주시 완산구 풍남문2길 22",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26510",
+      "name": "아산탕정지중해점",
+      "address": "충청남도 아산시 탕정면 탕정면로8번길 97-10 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26550",
+      "name": "아산음봉행복점",
+      "address": "충청남도 아산시 음봉면 음봉면로 21",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26707",
+      "name": "R전주금암그랜드점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 226",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26715",
+      "name": "아산탕정호산점",
+      "address": "충청남도 아산시 탕정면 탕정면로 213",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26757",
+      "name": "전주춘향로점",
+      "address": "전북특별자치도 전주시 완산구 춘향로 4915",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26826",
+      "name": "아산모아엘가1차점",
+      "address": "충청남도 아산시 신창면 남성길 72 121동 A110호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26928",
+      "name": "R전북대점",
+      "address": "전북특별자치도 전주시 덕진구 권삼득로 346",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26950",
+      "name": "R전주덕진타운점",
+      "address": "전북특별자치도 전주시 덕진구 우아7길 9-14",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "26960",
+      "name": "R전주에코포레나점",
+      "address": "전북특별자치도 전주시 덕진구 세병로 21 상가동 180호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27106",
+      "name": "전주효자센터점",
+      "address": "전북특별자치도 전주시 완산구 봉곡1길 20",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27177",
+      "name": "아산음봉하나점",
+      "address": "충청남도 아산시 음봉면 연암산로 285",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27240",
+      "name": "현대아산2호점",
+      "address": "충청남도 아산시 인주면 현대로 1077 누우공장",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27275",
+      "name": "현대아산1호점",
+      "address": "충청남도 아산시 인주면 현대로 1077 의장공장",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27307",
+      "name": "현대아산3호점",
+      "address": "충청남도 아산시 인주면 현대로1029번길 200-17 상가동 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27635",
+      "name": "전주포인트점",
+      "address": "전북특별자치도 전주시 완산구 유연로 310",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27640",
+      "name": "전주우아점",
+      "address": "전북특별자치도 전주시 덕진구 우아8길 18",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27810",
+      "name": "아산송용점",
+      "address": "충청남도 아산시 둔포면 윤보선로 652-78",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27851",
+      "name": "아산도고센터점",
+      "address": "충청남도 아산시 도고면 도고면로 151",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27922",
+      "name": "아산아름다운점",
+      "address": "충청남도 아산시 영인면 영인산로 491-1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27934",
+      "name": "아산재리캠핑점",
+      "address": "충청남도 아산시 둔포면 충무로 1258-30",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27942",
+      "name": "남원프라임점",
+      "address": "전북특별자치도 남원시 충정로 127",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27946",
+      "name": "아산음봉두리점",
+      "address": "충청남도 아산시 음봉면 연암율금로106번길 1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "27967",
+      "name": "삼성아름타운점",
+      "address": "충청남도 아산시 탕정면 삼성로 261",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28027",
+      "name": "아산두꺼비점",
+      "address": "충청남도 아산시 선장면 부엉산길 3-1 1층 1호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28098",
+      "name": "전주송천현대점",
+      "address": "전북특별자치도 전주시 덕진구 사근1길 11",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28139",
+      "name": "전주진흥점",
+      "address": "전북특별자치도 전주시 덕진구 호성로 172 상가동 101호,102호,112호,113호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28140",
+      "name": "전주아중대우점",
+      "address": "전북특별자치도 전주시 덕진구 동가재미2길 51",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28321",
+      "name": "전주완산골점",
+      "address": "전북특별자치도 전주시 완산구 완산길 92",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28331",
+      "name": "전주서서학동점",
+      "address": "전북특별자치도 전주시 완산구 장승배기로 323",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28342",
+      "name": "아산음봉소동점",
+      "address": "충청남도 아산시 음봉면 연암율금로295번길 3-1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28368",
+      "name": "전주반월삼오점",
+      "address": "전북특별자치도 전주시 덕진구 반월5길 8-15 상가동 101호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28455",
+      "name": "전주금호점",
+      "address": "전북특별자치도 전주시 완산구 효동3길 33",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28632",
+      "name": "전주아중센터점",
+      "address": "전북특별자치도 전주시 덕진구 아중로 124-1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28645",
+      "name": "전주금암대로점",
+      "address": "전북특별자치도 전주시 덕진구 조경단로 49",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28664",
+      "name": "남원하정점",
+      "address": "전북특별자치도 남원시 광한북로 46",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28667",
+      "name": "아산배방스마일점",
+      "address": "충청남도 아산시 배방읍 배방로 14번길 19",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28700",
+      "name": "아산엘크루점",
+      "address": "충청남도 아산시 순천향로 602 상가 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28726",
+      "name": "전주중산마을점",
+      "address": "전북특별자치도 전주시 완산구 산월2길 9",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28750",
+      "name": "아산음봉탕정점",
+      "address": "충청남도 아산시 음봉면 탕정로 561",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "28857",
+      "name": "R아산모종주공점",
+      "address": "충청남도 아산시 문화로 301-16 상가 104-106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29126",
+      "name": "아산탕정역점",
+      "address": "충청남도 아산시 탕정면 한들물빛6로 32 1층 120호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29198",
+      "name": "전주모악로점",
+      "address": "전북특별자치도 전주시 완산구 모악산자락길 269",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29215",
+      "name": "아산미소지움점",
+      "address": "충청남도 아산시 배방읍 희망로46번길 12 1층 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29310",
+      "name": "아산스타로드점",
+      "address": "충청남도 아산시 온천대로 1282",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29315",
+      "name": "남원쌍교점",
+      "address": "전북특별자치도 남원시 남문로 488",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29319",
+      "name": "아산둔포충무로점",
+      "address": "충청남도 아산시 둔포면 충무로 1752",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29340",
+      "name": "전주효자로점",
+      "address": "전북특별자치도 전주시 완산구 효자로 67-3",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29369",
+      "name": "아산영인센트럴점",
+      "address": "충청남도 아산시 영인면 영인로 82",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29424",
+      "name": "R전주혁신로점",
+      "address": "전북특별자치도 전주시 덕진구 혁신로 465",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29445",
+      "name": "전주중인타운점",
+      "address": "전북특별자치도 전주시 완산구 중인1길 134",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29450",
+      "name": "남원충정로점",
+      "address": "전북특별자치도 남원시 충정로 358",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29461",
+      "name": "남원더라우점",
+      "address": "전북특별자치도 남원시 여수길 47",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29642",
+      "name": "아산올리브점",
+      "address": "충청남도 아산시 청운로84번길 15",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29706",
+      "name": "전북전주센터점",
+      "address": "전북특별자치도 전주시 덕진구 백제대로 586",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29713",
+      "name": "전주우아타운점",
+      "address": "전북특별자치도 전주시 덕진구 진버들1길 83",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29736",
+      "name": "아산도고명당점",
+      "address": "충청남도 아산시 도고면 온천대로 104 104호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29829",
+      "name": "전주법조타운점",
+      "address": "전북특별자치도 전주시 덕진구 만성중앙로 54-58",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29831",
+      "name": "아산도고파라다이스점",
+      "address": "충청남도 아산시 도고면 도고온천로 176",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29847",
+      "name": "아산관광호텔점",
+      "address": "충청남도 아산시 시민로 377",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29891",
+      "name": "아산더퍼스트점",
+      "address": "충청남도 아산시 배방읍 연화로 156",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29983",
+      "name": "SMART전주교대점",
+      "address": "전북특별자치도 전주시 완산구 천경로 11",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29984",
+      "name": "SMART전북대의대생활관점",
+      "address": "전북특별자치도 전주시 덕진구 건지로 20(금암동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "29985",
+      "name": "전북대생활관점",
+      "address": "전북특별자치도 전주시 덕진구 창포길 93(덕진동1가) 참빛1관",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30080",
+      "name": "전주팔복점",
+      "address": "전북특별자치도 전주시 덕진구 팔복로 26",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30271",
+      "name": "전주여의타운점",
+      "address": "전북특별자치도 전주시 덕진구 쪽구름로 52",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30277",
+      "name": "아산배방원룸점",
+      "address": "충청남도 아산시 배방읍 공원로16번길 13-6 1층 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30278",
+      "name": "SMART남원산리지호텔점",
+      "address": "전북특별자치도 남원시 소리길 124",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30334",
+      "name": "아산호서대중문점",
+      "address": "충청남도 아산시 배방읍 호서로 95-1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30428",
+      "name": "전주한신플러스점",
+      "address": "전북특별자치도 전주시 덕진구 안덕원로 251",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30429",
+      "name": "아산퍼스트빌리지점",
+      "address": "충청남도 아산시 둔포면 해위안길 127",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30525",
+      "name": "삼성디스플레이아산2점",
+      "address": "충청남도 아산시 탕정면 탕정로 380-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30537",
+      "name": "전주여의로또점",
+      "address": "전북특별자치도 전주시 덕진구 쪽구름3길 46",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30628",
+      "name": "아산배방한성점",
+      "address": "충청남도 아산시 배방읍 월천4길 19",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30676",
+      "name": "아산블랑루체점",
+      "address": "충청남도 아산시 모종로 73-14",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30718",
+      "name": "아산둔포중앙점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로161번길 27 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30719",
+      "name": "전주호성중앙점",
+      "address": "전북특별자치도 전주시 덕진구 호성1길 33-10 1층 101호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30819",
+      "name": "전주건산중앙점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무6길 15",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "30998",
+      "name": "전북혁신센터점",
+      "address": "전북특별자치도 전주시 덕진구 오공로 49",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "31040",
+      "name": "전주인후이지움점",
+      "address": "전북특별자치도 전주시 덕진구 백동2길 16",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "31087",
+      "name": "아산탕정리버파크점",
+      "address": "충청남도 아산시 탕정면 한내로 200 단지상가 9~11호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "31088",
+      "name": "아산탕정리버파크후문점",
+      "address": "충청남도 아산시 탕정면 한내로 200 단지상가 308호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "31179",
+      "name": "전주(새만금)임시휴게소점",
+      "address": "전북특별자치도 전주시 완산구 새만금전주고속도로 39",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "31180",
+      "name": "전주(전주)임시휴게소위성점",
+      "address": "전북특별자치도 전주시 완산구 새만금전주고속도로 38",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "01073",
+      "name": "아산음봉점",
+      "address": "충청남도 아산시 음봉면 연암율금로 399",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "01538",
+      "name": "아산염치점",
+      "address": "충청남도 아산시 염치읍 현대로  242",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "03400",
+      "name": "아산순천향대점",
+      "address": "충청남도 아산시 신창면 순천향로 43 (읍내리)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "03440",
+      "name": "아산탕정파크점",
+      "address": "충청남도 아산시 염치읍 만전당길 47",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "03515",
+      "name": "아산모종타운점",
+      "address": "충청남도 아산시 삼동로28번길 55-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "04022",
+      "name": "아산용화법원점",
+      "address": "충청남도 아산시 용화로76번길 12",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "04517",
+      "name": "아산송악점",
+      "address": "충청남도 아산시 송악면 외암로 947",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "04578",
+      "name": "아산스파비스점",
+      "address": "충청남도 아산시 음봉면 아산온천로 228",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "05466",
+      "name": "아산온천해수점",
+      "address": "충청남도 아산시 충무로8번길 13",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "05631",
+      "name": "아산권곡점",
+      "address": "충청남도 아산시 청운로176번길 2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "06081",
+      "name": "아산선장파크점",
+      "address": "충청남도 아산시 선장면 서부남로 432",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "06223",
+      "name": "아산염치삼구점",
+      "address": "충청남도 아산시 염치읍 아산로 625",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "06620",
+      "name": "아산모종푸르지오점",
+      "address": "충청남도 아산시 문화로 353",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "07323",
+      "name": "아산번영점",
+      "address": "충청남도 아산시 번영로216번길 12",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "07381",
+      "name": "아산도고점",
+      "address": "충청남도 아산시 도고면 온천대로 170",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "07417",
+      "name": "아산탕정스타점",
+      "address": "충청남도 아산시 탕정면 선문로 209(청해빌라)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "07581",
+      "name": "아산온천휴림점",
+      "address": "충청남도 아산시 온천대로 1532-4(온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "07858",
+      "name": "아산용화센터점",
+      "address": "충청남도 아산시 용화로9번길 3-48(용화동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "08108",
+      "name": "아산테크노벨리점",
+      "address": "충청남도 아산시 둔포면 아산밸리중앙로 102",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "08140",
+      "name": "아산친오애점",
+      "address": "충청남도 아산시 신창면 행목로 217",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "08235",
+      "name": "아산스페이스마리점",
+      "address": "충청남도 아산시 음봉면 아산밸리로 461",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "08293",
+      "name": "아산음봉스타점",
+      "address": "충청남도 아산시 음봉면 연암율금로 31-6",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "이마트24",
+      "code": "00833",
+      "name": "전북대원룸점",
+      "address": "전북특별자치도 전주시 덕진구 금암5길 25",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "06916",
+      "name": "전주문학로점",
+      "address": "전북특별자치도 전주시 완산구 문학대4길 10",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "이마트24",
+      "code": "08138",
+      "name": "전주모래내점",
+      "address": "전북특별자치도 전주시 덕진구 건산로 30",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "GS25",
+      "code": "V4537",
+      "name": "온천파크점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V5K43",
+      "name": "탕정시티점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V6N57",
+      "name": "아산시민점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VD542",
+      "name": "아산중앙점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VDQ67",
+      "name": "온양사랑점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VEP77",
+      "name": "아산유원대점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VFK62",
+      "name": "아산호반점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VFM85",
+      "name": "탕정호반점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VFZ93",
+      "name": "아산삼정점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJE48",
+      "name": "온양행복점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJH65",
+      "name": "아산갈산점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VM481",
+      "name": "아산어의정점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VY928",
+      "name": "아산트라점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V3U95",
+      "name": "종로도렴점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V3X39",
+      "name": "전주교대점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V5H89",
+      "name": "세종마을점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V7G67",
+      "name": "한옥광장점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V7J97",
+      "name": "전주하늘점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V7W49",
+      "name": "종로내수점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V8J82",
+      "name": "전주본점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VEE32",
+      "name": "송천솔빛점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VF605",
+      "name": "종로누하점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VF856",
+      "name": "효자서부점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VFC54",
+      "name": "전주신라스테이점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VFJ22",
+      "name": "서부스카이점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VG426",
+      "name": "종로사직점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VGH59",
+      "name": "삼천라미안점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VGN36",
+      "name": "전주충경로점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VGS49",
+      "name": "효자가로수길점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VGU44",
+      "name": "효자파크점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VGV37",
+      "name": "수성동계곡점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VHX47",
+      "name": "송천대명쌍용점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJ480",
+      "name": "송천시티점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJF75",
+      "name": "전주효자센트럴점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJS84",
+      "name": "전주객사플렉스점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJT93",
+      "name": "전주농수산점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJU99",
+      "name": "송천상아점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VKC66",
+      "name": "효자중앙점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VKM56",
+      "name": "전주한옥마을점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VKP44",
+      "name": "효자프리미엄점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VKP85",
+      "name": "전주경원점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VKY92",
+      "name": "송천비사벌점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VME73",
+      "name": "전주중산센터점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VNC28",
+      "name": "전주센트럴파크점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VNR47",
+      "name": "전주중산중앙점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VNT79",
+      "name": "송천자이언트점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VNU34",
+      "name": "전주중산마을점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VP481",
+      "name": "전주여울점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VP749",
+      "name": "전라감영점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VQ456",
+      "name": "전북도청점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VS334",
+      "name": "전주서호점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VT099",
+      "name": "전주송천점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VT974",
+      "name": "청운중앙점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VU241",
+      "name": "전주풍림점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VU905",
+      "name": "종로스페이스점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VX983",
+      "name": "송천롯데점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V7P85",
+      "name": "남원로타리점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V8556",
+      "name": "진해중앙점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "V8K47",
+      "name": "진해해군점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VHD75",
+      "name": "진해블루빌점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VHP42",
+      "name": "남원승사교점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJ254",
+      "name": "남원노암점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VJA53",
+      "name": "진해중원점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VME42",
+      "name": "뉴남원쌍교점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VMF27",
+      "name": "진해충무공점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VMT84",
+      "name": "남원금동대로점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VU700",
+      "name": "진해해군마린점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "GS25",
+      "code": "VY505",
+      "name": "진해대천점",
+      "address": "",
+      "reason": "SOURCE_ADDRESS_NOT_REGISTERED"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68604",
+      "name": "남원부영점",
+      "address": "전북특별자치도 남원시 농고길 19 1층도통동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68505",
+      "name": "남원금동점",
+      "address": "전라북도 남원시 가방뜰길 57",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67647",
+      "name": "남원신터미널점",
+      "address": "전라북도 남원시 용성로 115",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68502",
+      "name": "남원IC점",
+      "address": "전라북도 남원시 충정로 266",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68160",
+      "name": "남원센터점",
+      "address": "전라북도 남원시 용성로 178",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68062",
+      "name": "남원도통중앙점",
+      "address": "전라북도 남원시 큰들길 35",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67808",
+      "name": "남원삼성점",
+      "address": "전라북도 남원시 요천로 2245",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59696",
+      "name": "남원죽항점",
+      "address": "전라북도 남원시 동림로 8, 죽향주공아파트 가동 1호,2호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59128",
+      "name": "남원남문로점",
+      "address": "전라북도 남원시 남문로 359, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59258",
+      "name": "남원병원점",
+      "address": "전라북도 남원시 동림로 82, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57770",
+      "name": "남원아성점",
+      "address": "전라북도 남원시 동림로 29",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57132",
+      "name": "남원광치산단점",
+      "address": "전라북도 남원시 춘향로 294",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55458",
+      "name": "남원운봉점",
+      "address": "전라북도 남원시 운봉읍 바래봉길 2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55093",
+      "name": "남원동충센터점",
+      "address": "전북특별자치도 남원시 붕맛길 20 1층, 동충동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54276",
+      "name": "남원교룡로점",
+      "address": "전라북도 남원시 붕맛길 83(향교동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54131",
+      "name": "남원시청점",
+      "address": "전라북도 남원시 시청남로 6 (도통동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53436",
+      "name": "남원향교점",
+      "address": "전북특별자치도 남원시 대복사길 12 1층향교동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64812",
+      "name": "아산충무센터점",
+      "address": "충남 아산시 충무로 70 1층 코너 1, 2호권곡동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64767",
+      "name": "아산탕정역센터점",
+      "address": "충남 아산시 탕정면 한들물빛5로 33 1층 104호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64740",
+      "name": "경찰수사연수원점",
+      "address": "충남 아산시 무궁화로 112 1층초사동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64685",
+      "name": "아산선문대의료관점",
+      "address": "충남 아산시 탕정면 선문로221번길 70 119호선문대학교 보건의료관",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64551",
+      "name": "충남아산FC1호점",
+      "address": "충남 아산시 남부로 370-24 3층 매점3호 풍기동, 이순신종합운동장",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64552",
+      "name": "충남아산FC2호점",
+      "address": "충남 아산시 남부로 370-24 3층 매점1호 풍기동, 이순신종합운동장",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64484",
+      "name": "아산둔포본점",
+      "address": "충남 아산시 둔포면 중앙공원로17번길 11 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64473",
+      "name": "경찰대학교점",
+      "address": "충남 아산시 신창면 황산길 100-50 1층 경찰대학 학생회관",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64416",
+      "name": "아산탕정역젤존점",
+      "address": "충남 아산시 탕정면 한들물빛5로 11 115호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64335",
+      "name": "아산포스코더샵점",
+      "address": "충남 아산시 음봉면 음봉로 515-46 1층 110,111호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64302",
+      "name": "아산좌부교차로점",
+      "address": "충남 아산시 고불로 692 102호 좌부동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64273",
+      "name": "아산배방한성5차점",
+      "address": "충남 아산시 배방읍 모산로 52 상가동 102호 (배방5차한성필하우스아파트)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64012",
+      "name": "아산세교와노점",
+      "address": "충남 아산시 배방읍 세교중앙로 42",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63889",
+      "name": "아산둔포이지점",
+      "address": "충남 아산시 둔포면 아산밸리중앙로 67 상가 411동, 114, 115호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63850",
+      "name": "아산아영점",
+      "address": "충남 아산시 탕정면 용머리길 41 A동 1층 116호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68882",
+      "name": "아산선장타운점",
+      "address": "충청남도 아산시 서부남로 48 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68595",
+      "name": "아산주공점",
+      "address": "충청남도 아산시 시민로244번길 11-17",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68588",
+      "name": "아산서해그랑블점",
+      "address": "충청남도 아산시 문화로 257-20 상가동 1층 102호, 103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68661",
+      "name": "아산권곡타운점",
+      "address": "충청남도 아산시 삼동로86번길 9",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68434",
+      "name": "아산장존아름점",
+      "address": "충청남도 아산시 장존동 73-3",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68377",
+      "name": "아산선장행복점",
+      "address": "충청남도 아산시 선장면 아산만로 780",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68342",
+      "name": "아산타운점",
+      "address": "충청남도 아산시 용화로12번길 12-1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68291",
+      "name": "아산더샵점",
+      "address": "충청남도 아산시 권곡로 50, 상가1호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63437",
+      "name": "아산더샵센트로점",
+      "address": "충청남도 아산시 배방읍 북수로 149, 1동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67978",
+      "name": "아산영인점",
+      "address": "충청남도 아산시 영인면 고룡산로 646",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67964",
+      "name": "아산남성점",
+      "address": "충청남도 아산시 신창면 서부북로 849-6, 1층 106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63269",
+      "name": "아산탕정행복점",
+      "address": "충청남도 아산시 배방읍 동방로 131, S001동 4호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63145",
+      "name": "아산신영모닝빌점",
+      "address": "충남 아산시 둔포면 윤보선로450번길 3 상가동 1층 101호,102호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67769",
+      "name": "아산온천타운점",
+      "address": "충청남도 아산시 온화로65번길 19,1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67733",
+      "name": "온양어의정점",
+      "address": "충청남도 아산시 어의정로17번길 6-3, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59641",
+      "name": "배방역진현메디피아점",
+      "address": "충청남도 아산시 배방읍 배방로 13번길 9-4, 106호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59761",
+      "name": "탕정지중해마을점",
+      "address": "충청남도 아산시 탕정면 탕정면로8번길 55-8",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59802",
+      "name": "아산둔포신항점",
+      "address": "충청남도 아산시 둔포면 해위안길 79, 1동 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59745",
+      "name": "아산신남로점",
+      "address": "충청남도 아산시 둔포면 아산호로 907, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67435",
+      "name": "삼성스타점",
+      "address": "충청남도 아산시 탕정면 명암길 2번길 1",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67428",
+      "name": "아산신항점",
+      "address": "충청남도 아산시 둔포면 윤보선로 336번길 96",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67347",
+      "name": "천안아산역점",
+      "address": "충청남도 아산시 배방읍 광장로 177-14, 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67322",
+      "name": "둔포빌리지점",
+      "address": "충청남도 아산시 둔포면 둔포로 41",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59259",
+      "name": "아산오목초점",
+      "address": "충청남도 아산시 서부북로 536",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67221",
+      "name": "아산산동점",
+      "address": "충남 아산시 음봉면 산동로 134 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59279",
+      "name": "아산배방한성점",
+      "address": "충남 아산시 배방읍 월천4길 89 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "67150",
+      "name": "둔포센터점",
+      "address": "충청남도 아산시 둔포면 둔포중앙로 109번길 11, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59099",
+      "name": "아산용화빌리지점",
+      "address": "충청남도 아산시 용화로 75, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59018",
+      "name": "아산창덕에버빌점",
+      "address": "충청남도 아산시 신창면 서부북로 270",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59020",
+      "name": "아산인주휴게소점",
+      "address": "충청남도 아산시 인주면 서해로 488, 490",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57823",
+      "name": "아산갈산이레점",
+      "address": "충남 아산시 탕정면 탕정면로 124 101호이레짬뽕건물",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57519",
+      "name": "아산배방코아루점",
+      "address": "충청남도 아산시 배방읍 희망로46번길 8 118호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57562",
+      "name": "아산행복날개점",
+      "address": "충청남도 아산시 배방읍 온천대로 1829",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57553",
+      "name": "아산봉재희망점",
+      "address": "충남 아산시 둔포면 충무로 1179 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57419",
+      "name": "아산신창로드점",
+      "address": "충청남도 아산시 신창면 남성길 71-1, 103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57387",
+      "name": "아산월천점",
+      "address": "충청남도 아산시 배방읍 북수리 1781",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57045",
+      "name": "아산온천빌리지점",
+      "address": "충청남도 아산시 온천동 1368",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "57047",
+      "name": "아산둔포스카이점",
+      "address": "충남 아산시 둔포면 아산밸리로 394 102, 103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56274",
+      "name": "아산모종어울림점",
+      "address": "충청남도 아산시 삼동로16번길 43 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56276",
+      "name": "호서대기숙사점",
+      "address": "충청남도 아산시 배방읍 호서로79번길 20",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56152",
+      "name": "아산도고온천점",
+      "address": "충청남도 아산시 도고면 기곡로62번길 21-11",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56134",
+      "name": "아산선장로드점",
+      "address": "충청남도 아산시 선장면 아산만로 697",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "56061",
+      "name": "아산염치송곡점",
+      "address": "충청남도 아산시 염치읍 은행나무길215번길 2 9-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55567",
+      "name": "아산홍익점",
+      "address": "충남 아산시 탕정면 선문로 387 제120동 제1층 104호홍익아파트",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55568",
+      "name": "아산선문대동문점",
+      "address": "충청남도 아산시 탕정면 매곡로71번길 32",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55554",
+      "name": "아산선장점",
+      "address": "충남 아산시 선장면 서부남로 115 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55340",
+      "name": "아산신창남성점",
+      "address": "충청남도 아산시 신창면 서부북로 745",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55233",
+      "name": "아산푸드타운점",
+      "address": "충남 아산시 음봉면 연암율금로 119 1동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55210",
+      "name": "아산배방사랑점",
+      "address": "충청남도 아산시 배방읍 배방로187번길 22",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "55131",
+      "name": "아산인주LH점",
+      "address": "충청남도 아산시 인주면 아산만로 1652-4",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54970",
+      "name": "아산동산점",
+      "address": "충청남도 아산시 탕정면로 405 상가동 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "54499",
+      "name": "아산음봉베스트점",
+      "address": "충청남도 아산시 음봉면 음봉로 332",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53876",
+      "name": "아산온양로점",
+      "address": "충남 아산시 온양역길 46-3 1층 1호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53676",
+      "name": "아산둔포송용점",
+      "address": "충청남도 아산시 둔포면 윤보선로 458 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53631",
+      "name": "아산장재점",
+      "address": "충청남도 아산시 장재로 22",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53585",
+      "name": "아산용화성지점",
+      "address": "충청남도 아산시 시민로 292, 1층 (용화동, 성지빌딩)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53528",
+      "name": "아산소동점",
+      "address": "충청남도 아산시 음봉면 연암율금로 220-4",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53249",
+      "name": "아산둔포신남점",
+      "address": "충청남도 아산시 둔포면 윤보선로336번길 6",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53220",
+      "name": "아산문화점",
+      "address": "충남 아산시 문화로 123-8 A동 102호온천동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "53068",
+      "name": "아산염작점",
+      "address": "충청남도 아산시 아산밸리동로 261-11 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "52911",
+      "name": "아산선문대점",
+      "address": "충청남도 아산시 탕정면로 114-22 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "52336",
+      "name": "아산도고로드점",
+      "address": "충청남도 아산시 도고산로 713 3동 4호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "52214",
+      "name": "아산둔포로점",
+      "address": "충청남도 아산시 둔포면 둔포로 92-12",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17644",
+      "name": "아산둔포신양점",
+      "address": "충청남도 아산시 둔포면 봉신로 279",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "51369",
+      "name": "아산고속터미널점",
+      "address": "충청남도 아산시 번영로 223 외3필지 1층 108호(모종동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "51064",
+      "name": "아산배방타운점",
+      "address": "충청남도 아산시 배방로 58-34",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18945",
+      "name": "호서대학사점",
+      "address": "충청남도 아산시 배방읍 호서로 45-14",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18778",
+      "name": "아산법원점",
+      "address": "충청남도 아산시 번영로69번길 24 buy the way 편의점1층(온천동)",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18801",
+      "name": "아산음봉점",
+      "address": "충청남도 아산시 음봉면 음봉면로 3",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "19853",
+      "name": "아산탕정로드점",
+      "address": "충청남도 아산시 탕정면 이순신대로 393 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "51230",
+      "name": "아산염치휴게소점",
+      "address": "충청남도 아산시 염치읍 아산로 724",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17981",
+      "name": "아산권곡점",
+      "address": "충청남도 아산시 삼동로 102-9 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "16310",
+      "name": "아산탕정시티점",
+      "address": "충청남도 아산시 탕정면 탕정로 23",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "13167",
+      "name": "아산온천광장점",
+      "address": "충청남도 아산시 청운로 70",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "15851",
+      "name": "아산용화타운점",
+      "address": "충청남도 아산시 청운로 23-4 용화동",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "16080",
+      "name": "아산블루크리스탈점",
+      "address": "충청남도 아산시 탕정면탕정면로8번길 33-7 명암리 932-8",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "15090",
+      "name": "아산테크노밸리1호점",
+      "address": "충남 아산시 둔포면 아산밸리로 298 104,105호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12481",
+      "name": "아산배방점",
+      "address": "충남 아산시 배방읍 북수로 106 103호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12792",
+      "name": "아산밀두점",
+      "address": "충청남도 아산시 인주면 아산만로 1703",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "16294",
+      "name": "아산용화중점",
+      "address": "충청남도 아산시 용화로47번길 7-1, 1층",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14532",
+      "name": "아산탕정삼성점",
+      "address": "충청남도 아산시 탕정면 명암길2번길 25-2",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17034",
+      "name": "아산모종한성점",
+      "address": "충청남도 아산시 문화로 301-25, 1층 107호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "12538",
+      "name": "인주공단점",
+      "address": "충남 아산시 인주면 인주산단로 23-22 1층 101호",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "16446",
+      "name": "아산신창창조점",
+      "address": "충청남도 아산시 신창면 순천향로 47-25 순천향로 47-25",
+      "reason": "OUTSIDE_THIS_SOURCE_SCOPE"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64737",
+      "name": "전주영생점",
+      "address": "전북특별자치도 전주시 완산구 천잠로 333 1층효자동3가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64725",
+      "name": "전주전일고점",
+      "address": "전북특별자치도 전주시 완산구 우전로 249 1층효자동2가, 전일고등학교",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64704",
+      "name": "전주효자더샵점",
+      "address": "전북특별자치도 전주시 완산구 우전2길 59 1층 101호효자동2가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64669",
+      "name": "전주팔복프라임점",
+      "address": "전북특별자치도 전주시 덕진구 추천4길 44 1층팔복동2가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64629",
+      "name": "전북대캠퍼스점",
+      "address": "전북특별자치도 전주시 덕진구 삼송1길 34 1층금암동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64610",
+      "name": "전주유탑스퀘어점",
+      "address": "전북특별자치도 전주시 완산구 서원로 145 102동 101호, 102호효자동3가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64596",
+      "name": "전주송천한솔점",
+      "address": "전북특별자치도 전주시 덕진구 솔내8길 23-6 상가동 1층 1,2호송천동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64558",
+      "name": "전주홍리단길점",
+      "address": "전북특별자치도 전주시 완산구 마전들로 29 1층 효자동3가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64486",
+      "name": "전주새강병원점",
+      "address": "전북특별자치도 전주시 완산구 백제대로 20 1충평화동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64384",
+      "name": "전주반월오네뜨점",
+      "address": "전북특별자치도 전주시 덕진구 쪽구름로 119 1층 일부호 반월동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64344",
+      "name": "전주금암빌리지점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 400-29 1층 일부 금암동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64318",
+      "name": "전주삼천주공점",
+      "address": "전북특별자치도 전주시 완산구 삼천천변2길 23-4 1층 삼천동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64269",
+      "name": "전주뉴비사벌점",
+      "address": "전북특별자치도 전주시 완산구 당산로 46 1층서신동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64215",
+      "name": "전주자인병원점",
+      "address": "전북특별자치도 전주시 완산구 노송광장로 59 1층서노송동",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "64083",
+      "name": "전주인후중앙점",
+      "address": "전북특별자치도 전주시 덕진구 정언신로 62-2 1층인후동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63973",
+      "name": "전주인후거성점",
+      "address": "전북특별자치도 전주시 덕진구 팽나무5길 8 1층 인후동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "69123",
+      "name": "전주청담점",
+      "address": "전북특별자치도 전주시 덕진구 견훤로 199-1 (인후동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "69096",
+      "name": "전주송천솔내점",
+      "address": "전북특별자치도 전주시 덕진구 솔내7길 10 1층(송천동1가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "69045",
+      "name": "전주한옥마을본점",
+      "address": "전라북도 전주시 완산구 경기전길 120",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "69025",
+      "name": "전주한솔점",
+      "address": "전북특별자치도 전주시 덕진구 상리로 1 1층팔복동2가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68631",
+      "name": "전주여의제일점",
+      "address": "전라북도 전주시 덕진구 쪽구름로 23 상가3동 101호(여의동, 제일아파트)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63792",
+      "name": "전주나래점",
+      "address": "전북특별자치도 전주시 완산구 구룡1길 15 1층 효자동2가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63814",
+      "name": "전주덕진보건소점",
+      "address": "전라북도 전주시 덕진구 우아1길 23 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68765",
+      "name": "전주송천현대점",
+      "address": "전라북도 전주시 덕진구 오송1길 13 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68703",
+      "name": "전주문학타운점",
+      "address": "전라북도 전주시 완산구 문학대4길 23 101,102호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68668",
+      "name": "전주웨스턴점",
+      "address": "전라북도 전주시 완산구 홍산중앙로 45 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68634",
+      "name": "전주홍산중앙로점",
+      "address": "전북특별자치도 전주시 완산구 홍산남로 69-7 전북특별자치도 전주시 완산구 홍산남로 69-7, 1층 101호(효자동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68592",
+      "name": "전주전라감영점",
+      "address": "전북특별자치도 전주시 완산구 전라감영로 41 1층 중앙동4가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63728",
+      "name": "전주산단점",
+      "address": "전라북도 전주시 덕진구 팔복로 140, 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68412",
+      "name": "전주뉴타운점",
+      "address": "전북특별자치도 전주시 완산구 홍산중앙로 46 1층 4호(효자동3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68363",
+      "name": "전주펠리피아점",
+      "address": "전북특별자치도 전주시 덕진구 기린대로 465 1층 101,102호덕진동1가, 전북대세움펠리피아상가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68349",
+      "name": "전주화산지구점",
+      "address": "전북특별자치도 전주시 완산구 신촌4길 10-10 1층중화산동2가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63602",
+      "name": "전주오지오점",
+      "address": "전라북도 전주시 덕진구 석소2길 31, 101호",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "68241",
+      "name": "전주아중스타점",
+      "address": "전라북도 전주시 덕진구 중상보로 30, 1층",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "63451",
+      "name": "전주백마산점",
+      "address": "전북특별자치도 전주시 완산구 백마산길 112 101동 상가101호, 상가102호효자동3가",
+      "reason": "UNIT_CONFLICT"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "59389",
+      "name": "전주대양아리스타점",
+      "address": "전북특별자치도 전주시 완산구 태평4길 11 1층 103호 104호태평동",
+      "reason": "UNIT_CONFLICT"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18682",
+      "name": "전주스타점",
+      "address": "전라북도 전주시 덕진구 인후동1가 827-14",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17965",
+      "name": "전주도교육청점",
+      "address": "전라북도 전주시 완산구 소태정 4길 11(효자동2가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18875",
+      "name": "전주평화동신점",
+      "address": "전라북도 전주시 완산구 양지1길 15-11 5호, 6호",
+      "reason": "UNIT_CONFLICT"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18531",
+      "name": "전주아중리점",
+      "address": "전라북도 전주시 덕진구 우아동2가 아중중아로 17",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "18506",
+      "name": "전주서신으뜸점",
+      "address": "전라북도 전주시 완산구 서신동 933-1",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "19649",
+      "name": "전주인후센터점",
+      "address": "전북특별자치도 전주시 덕진구 무삼지로 90 1층 인후동1가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "17244",
+      "name": "전주한옥태조로점",
+      "address": "전북특별자치도 전주시 완산구 기린대로 85 지하1층 풍남동3가",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "11327",
+      "name": "전주서노송점",
+      "address": "전라북도 전주시 완산구 현무3길80(서노송동)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "10762",
+      "name": "전북대병원점",
+      "address": "전북특별자치도 전주시 덕진구 건지로 20",
+      "reason": "INDEPENDENT_COORDINATE_CONFLICT"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "11130",
+      "name": "전주우아점",
+      "address": "전라북도 전주시 덕진구 도당산로67 (우아동 3가)",
+      "reason": "NO_UNIQUE_NAME_AND_ROAD_MATCH"
+    },
+    {
+      "chain": "세븐일레븐",
+      "code": "14967",
+      "name": "전주효자롯데점",
+      "address": "전라북도 전주시 완산구 용머리로 29-13 외2필지 제상가동 101호,102호(효자동1가)",
+      "reason": "UNIT_CONFLICT"
+    }
+  ],
+  "validation": {
+    "dashboard_stores": 881,
+    "registered": 223,
+    "attached": 223,
+    "pending": 658,
+    "duplicate_keys": 0,
+    "tests_passed": 31,
+    "stock_apis_called": false,
+    "telegram_sent": false,
+    "actions_manually_run": false
+  }
+}
