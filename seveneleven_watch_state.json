@@ -1,7 +1,7 @@
 {
   "version": 1,
   "product": "8800286275732",
-  "cursor": 1,
+  "cursor": 2,
   "stores": {
     "68604": {
       "region": "namwon",
@@ -234,7 +234,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64767": {
       "region": "asan",
@@ -243,7 +243,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -256,7 +256,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64685": {
       "region": "asan",
@@ -265,7 +265,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64551": {
       "region": "asan",
@@ -274,7 +274,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64552": {
       "region": "asan",
@@ -283,7 +283,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64484": {
       "region": "asan",
@@ -292,7 +292,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64473": {
       "region": "asan",
@@ -301,7 +301,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64416": {
       "region": "asan",
@@ -310,7 +310,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64335": {
       "region": "asan",
@@ -319,7 +319,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64302": {
       "region": "asan",
@@ -328,7 +328,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -341,7 +341,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "64012": {
       "region": "asan",
@@ -350,7 +350,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "63889": {
       "region": "asan",
@@ -359,7 +359,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -372,7 +372,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68882": {
       "region": "asan",
@@ -381,7 +381,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68595": {
       "region": "asan",
@@ -390,7 +390,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68588": {
       "region": "asan",
@@ -399,7 +399,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68661": {
       "region": "asan",
@@ -408,7 +408,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68434": {
       "region": "asan",
@@ -417,7 +417,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -430,7 +430,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68342": {
       "region": "asan",
@@ -439,7 +439,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "68291": {
       "region": "asan",
@@ -448,7 +448,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "63437": {
       "region": "asan",
@@ -457,7 +457,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67978": {
       "region": "asan",
@@ -466,7 +466,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67964": {
       "region": "asan",
@@ -475,7 +475,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -488,7 +488,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -501,7 +501,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67769": {
       "region": "asan",
@@ -510,7 +510,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -523,7 +523,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59641": {
       "region": "asan",
@@ -532,7 +532,10 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951,
+      "last_direct_at": 1792353951,
+      "direct_failures": 1,
+      "next_direct_at": 1792354851
     },
     "59761": {
       "region": "asan",
@@ -541,7 +544,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59802": {
       "region": "asan",
@@ -550,7 +553,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59745": {
       "region": "asan",
@@ -559,7 +562,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67435": {
       "region": "asan",
@@ -568,7 +571,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67428": {
       "region": "asan",
@@ -577,7 +580,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67347": {
       "region": "asan",
@@ -586,7 +589,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "67322": {
       "region": "asan",
@@ -595,7 +598,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59259": {
       "region": "asan",
@@ -604,7 +607,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792350589,
       "direct_failures": 1,
       "next_direct_at": 1792351489
@@ -616,7 +619,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59279": {
       "region": "asan",
@@ -625,7 +628,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792353170,
       "direct_failures": 1,
       "next_direct_at": 1792354070
@@ -637,7 +640,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170
+      "checked_at": 1792353951
     },
     "59099": {
       "region": "asan",
@@ -646,7 +649,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792349502,
       "direct_failures": 1,
       "next_direct_at": 1792350402
@@ -658,7 +661,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -672,7 +675,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -686,7 +689,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792345192,
       "direct_failures": 1,
       "next_direct_at": 1792346092
@@ -698,7 +701,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792340882,
       "direct_failures": 1,
       "next_direct_at": 1792341782
@@ -710,7 +713,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792343675,
       "direct_failures": 1,
       "next_direct_at": 1792344575
@@ -722,7 +725,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792342500,
       "direct_failures": 1,
       "next_direct_at": 1792343400
@@ -734,7 +737,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792338069,
       "direct_failures": 1,
       "next_direct_at": 1792338969
@@ -746,7 +749,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792333850,
       "direct_failures": 1,
       "next_direct_at": 1792334750
@@ -758,7 +761,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -772,7 +775,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792332368,
       "direct_failures": 1,
       "next_direct_at": 1792333268
@@ -784,7 +787,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792327888,
       "direct_failures": 1,
       "next_direct_at": 1792328788
@@ -796,7 +799,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792329494,
       "direct_failures": 1,
       "next_direct_at": 1792330394
@@ -808,7 +811,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792325734,
       "direct_failures": 1,
       "next_direct_at": 1792326634
@@ -820,7 +823,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792324560,
       "direct_failures": 1,
       "next_direct_at": 1792325460
@@ -832,7 +835,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792323169,
       "direct_failures": 1,
       "next_direct_at": 1792324069
@@ -844,7 +847,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792319116,
       "direct_failures": 1,
       "next_direct_at": 1792320016
@@ -856,7 +859,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792320646,
       "direct_failures": 1,
       "next_direct_at": 1792321546
@@ -868,7 +871,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792314653,
       "direct_failures": 1,
       "next_direct_at": 1792315553
@@ -880,7 +883,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -894,7 +897,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792311770,
       "direct_failures": 1,
       "next_direct_at": 1792312670
@@ -906,7 +909,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792307213,
       "direct_failures": 1,
       "next_direct_at": 1792308113
@@ -918,7 +921,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792304831,
       "direct_failures": 1,
       "next_direct_at": 1792305731
@@ -930,7 +933,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792301733,
       "direct_failures": 1,
       "next_direct_at": 1792302633
@@ -942,7 +945,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792296886,
       "direct_failures": 1,
       "next_direct_at": 1792297786
@@ -954,7 +957,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -968,7 +971,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792295587,
       "direct_failures": 1,
       "next_direct_at": 1792296487
@@ -980,7 +983,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792293655,
       "direct_failures": 1,
       "next_direct_at": 1792294555
@@ -992,7 +995,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792292258,
       "direct_failures": 1,
       "next_direct_at": 1792293158
@@ -1004,7 +1007,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792290500,
       "direct_failures": 1,
       "next_direct_at": 1792291400
@@ -1016,7 +1019,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792285443,
       "direct_failures": 1,
       "next_direct_at": 1792286343
@@ -1028,7 +1031,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -1042,7 +1045,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792281443,
       "direct_failures": 1,
       "next_direct_at": 1792282343
@@ -1054,7 +1057,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792280539,
       "direct_failures": 1,
       "next_direct_at": 1792281439
@@ -1066,7 +1069,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792278234,
       "direct_failures": 1,
       "next_direct_at": 1792279134
@@ -1078,7 +1081,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792277337,
       "direct_failures": 1,
       "next_direct_at": 1792278237
@@ -1090,7 +1093,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792261489,
       "direct_failures": 1,
       "next_direct_at": 1792262389
@@ -1102,7 +1105,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792276054,
       "direct_failures": 1,
       "next_direct_at": 1792276954
@@ -1114,7 +1117,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792273513,
       "direct_failures": 1,
       "next_direct_at": 1792274413
@@ -1126,7 +1129,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792269255,
       "direct_failures": 1,
       "next_direct_at": 1792270155
@@ -1138,7 +1141,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792266874,
       "direct_failures": 1,
       "next_direct_at": 1792267774
@@ -1150,7 +1153,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792267721,
       "direct_failures": 1,
       "next_direct_at": 1792268621
@@ -1162,7 +1165,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792270726,
       "direct_failures": 1,
       "next_direct_at": 1792271626
@@ -1174,7 +1177,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792274670,
       "direct_failures": 1,
       "next_direct_at": 1792275570
@@ -1186,7 +1189,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792263188,
       "direct_failures": 1,
       "next_direct_at": 1792264088
@@ -1198,7 +1201,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792253349,
       "direct_failures": 1,
       "next_direct_at": 1792254249
@@ -1210,7 +1213,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -1224,7 +1227,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792249456,
       "direct_failures": 1,
       "next_direct_at": 1792250356
@@ -1236,7 +1239,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792250904,
       "direct_failures": 1,
       "next_direct_at": 1792251804
@@ -1248,7 +1251,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792246599,
       "direct_failures": 1,
       "next_direct_at": 1792247499
@@ -1260,7 +1263,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792238672,
       "direct_failures": 1,
       "next_direct_at": 1792239572
@@ -1272,7 +1275,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792242284,
       "direct_failures": 1,
       "next_direct_at": 1792243184
@@ -1284,7 +1287,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792252384,
       "direct_failures": 1,
       "next_direct_at": 1792253284
@@ -1296,7 +1299,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792245415,
       "direct_failures": 1,
       "next_direct_at": 1792246315
@@ -1308,7 +1311,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792259029,
       "direct_failures": 1,
       "next_direct_at": 1792259929
@@ -1320,7 +1323,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_direct_at": 1792240263,
       "direct_failures": 1,
       "next_direct_at": 1792241163
@@ -1332,7 +1335,7 @@
       "status": "UNKNOWN",
       "quantity": null,
       "reason": "HTTP_502",
-      "checked_at": 1792353170,
+      "checked_at": 1792353951,
       "last_known_quantity": 0,
       "last_success_at": 1792350589,
       "direct_failures": 0,
@@ -2751,34 +2754,25 @@
       "next_direct_at": 1792279134
     }
   },
-  "updated_at": 1792353170,
+  "updated_at": 1792353951,
   "calls": [
-    {
-      "region": "namwon",
-      "keyword": "남원시",
-      "target": null,
-      "result": "VALIDATED",
-      "validation_reason": null,
-      "elapsed_seconds": 8.14,
-      "at": 1792353170
-    },
     {
       "region": "asan",
       "keyword": "아산시",
       "target": null,
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 20.9,
-      "at": 1792353170
+      "elapsed_seconds": 20.99,
+      "at": 1792353951
     },
     {
       "region": "asan",
-      "keyword": "아산배방한성점",
-      "target": "59279",
+      "keyword": "배방역진현메디피아점",
+      "target": "59641",
       "result": "HTTP_502",
       "validation_reason": null,
-      "elapsed_seconds": 0.65,
-      "at": 1792353170
+      "elapsed_seconds": 0.93,
+      "at": 1792353951
     }
   ],
   "halted": true,
