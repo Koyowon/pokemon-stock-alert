@@ -21,12 +21,12 @@ function detail(row){
  const source=el('a','위치 확인 출처');source.href=row.location.source;source.target='_blank';source.rel='noopener noreferrer';card.append(source);
  return card;
 }
-function render(rows,{includeZero=false,includeUnknown=false,registryAvailable=false,registryCount=0}={}){
- const selected=root.StockMapModel.pins(rows,{includeZero,includeUnknown});
- const eligible=rows.filter(r=>root.StockMapModel.eligible(r,{includeZero,includeUnknown}));
+function render(rows,{includeZero=false,includeUnknown=false,positiveOnly=false,registryAvailable=false,registryCount=0}={}){
+ const selected=root.StockMapModel.pins(rows,{includeZero,includeUnknown,positiveOnly});
+ const eligible=rows.filter(r=>root.StockMapModel.eligible(r,{includeZero,includeUnknown,positiveOnly}));
  const message=document.getElementById('map-status');
- message.textContent='필터 내 표시 대상 매장 '+eligible.length+'곳 · 지도 표시 '+selected.length+'곳 · 좌표 확인 필요 '+(eligible.length-selected.length)+'곳';
- document.getElementById('map-note').textContent=!registryAvailable?'좌표 목록을 읽지 못했습니다. 임의 위치는 표시하지 않습니다. 아래 목록에서 주소를 확인해 주세요.':registryCount===0?'검증된 매장 좌표가 아직 등록되지 않았습니다. 좌표 등록 후 조건에 맞는 매장이 지도에 표시됩니다.':selected.length===0?'현재 필터에서 지도에 표시할 매장이 없습니다. 미확인 매장 위치 표시를 켜거나 필터를 확인해 주세요.':'초록 숫자: 최근 확인 재고 · 주황 숫자: 이전 수량 유지 · 회색 0: 확인된 0개 · 회색 ?: 현재 재고 미확인. 위치 등록 '+registryCount+'곳이며 미등록 매장은 표시되지 않습니다.';
+ message.textContent=(positiveOnly?'재고 있는 매장 ':'필터 내 표시 대상 매장 ')+eligible.length+'곳 · 지도 표시 '+selected.length+'곳 · 좌표 확인 필요 '+(eligible.length-selected.length)+'곳';
+ document.getElementById('map-note').textContent=!registryAvailable?'좌표 목록을 읽지 못했습니다. 임의 위치는 표시하지 않습니다. 아래 목록에서 주소를 확인해 주세요.':registryCount===0?'검증된 매장 좌표가 아직 등록되지 않았습니다. 좌표 등록 후 조건에 맞는 매장이 지도에 표시됩니다.':selected.length===0?(eligible.length>0?'표시 대상 '+eligible.length+'곳의 좌표가 아직 확인되지 않아 지도에 표시하지 못합니다. 아래 목록에서 매장명과 주소를 확인해 주세요.':positiveOnly?'현재 필터에서 마지막 확인 수량이 1개 이상인 매장이 없습니다. 재고 있는 매장만 표시 옵션을 끄면 다른 매장 위치도 볼 수 있습니다.':'현재 필터에서 지도에 표시할 매장이 없습니다. 미확인 매장 위치 표시를 켜거나 필터를 확인해 주세요.'):'초록 숫자: 최근 확인 재고 · 주황 숫자: 이전 수량 유지 · 회색 0: 확인된 0개 · 회색 ?: 현재 재고 미확인. 위치 등록 '+registryCount+'곳이며 미등록 매장은 표시되지 않습니다.';
  if(!root.L){document.getElementById('stock-map').textContent='지도를 불러오지 못했습니다. 아래 목록의 주소 복사 기능은 이용할 수 있습니다.';return;}
  if(!map){map=root.L.map('stock-map',{scrollWheelZoom:false}).setView([36.3,127.3],8);
  root.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
@@ -44,5 +44,6 @@ function render(rows,{includeZero=false,includeUnknown=false,registryAvailable=f
 }
 root.StockMap={render,copyAddress,detail};
 })(typeof globalThis!=='undefined'?globalThis:this);
+
 
 

@@ -10,7 +10,8 @@ function selection(){return Object.fromEntries(['city','chain','status','reason'
 function render(){
  view=Model.build(data);view.rows=StockMapModel.attachLocations(view.rows,data.coordinates);const selected=selection();filtered=Model.filter(view.rows,selected);
  filtered.sort((a,b)=>(b.qty>0)-(a.qty>0)||a.city.localeCompare(b.city,'ko')||a.name.localeCompare(b.name,'ko'));
- StockMap.render(filtered,{includeZero:$('map-zero').checked,includeUnknown:$('map-unknown').checked,registryAvailable:data.coordinates?.version===1&&Array.isArray(data.coordinates.stores),registryCount:data.coordinates?.stores?.length||0});
+ const positiveOnly=$('map-positive').checked;$('map-zero').disabled=positiveOnly;$('map-unknown').disabled=positiveOnly;
+ StockMap.render(filtered,{positiveOnly,includeZero:$('map-zero').checked,includeUnknown:$('map-unknown').checked,registryAvailable:data.coordinates?.version===1&&Array.isArray(data.coordinates.stores),registryCount:data.coordinates?.stores?.length||0});
  $('cards').innerHTML=view.cards.map(c=>'<article class="card"><h2>'+esc(c.chain)+'</h2><p class="numbers">수량 확인 '+c.known+' <span class="muted">/ '+c.total+'곳</span></p><p><span class="tag '+(c.unknown?'warn':'good')+'">미확인 '+c.unknown+'곳</span>'+(c.retained?' <span class="tag warn">이전 수량 유지 '+c.retained+'곳</span>':'')+(c.disabled?' <span class="tag">감시 꺼짐 '+c.disabled+'</span>':'')+'</p><small>상태 기록: '+esc(time(c.updatedAt))+'</small>'+(c.issue?'<small class="unknown">'+esc(Model.GROUPS[Model.reasonGroup(c.issue)]||'상태 확인 필요')+'</small>':'')+(c.errors.length?'<small>조회 오류 기록 '+c.errors.length+'건</small>':'')+'</article>').join('');
  const unknown=filtered.filter(r=>['unknown','retained'].includes(r.status));
  $('count').textContent='표시 '+filtered.length+'곳 · 재고 있음 '+filtered.filter(r=>r.qty>0).length+' · 0개 '+filtered.filter(r=>r.qty===0).length+' · 이전 수량 유지 '+filtered.filter(r=>r.status==='retained').length+' · 수량 기록 없음 '+filtered.filter(r=>r.status==='unknown').length+' · 감시 꺼짐 '+filtered.filter(r=>r.status==='disabled').length;
@@ -39,12 +40,14 @@ async function load(){
  loading=false;$('reload').disabled=false;
 }
 $('reload').addEventListener('click',load);
+$('map-positive').addEventListener('change',render);
 $('map-zero').addEventListener('change',render);
 $('map-unknown').addEventListener('change',render);
 for(const id of ['city','chain','status','reason','q'])$(id).addEventListener('input',render);
 $('download').addEventListener('click',()=>{const blob=new Blob([Model.csv(filtered)],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='pokemon-stock-unknown-'+new Date().toISOString().slice(0,10)+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 setInterval(()=>{if(loadedAt!==null){render();load();}},60000);
 load();
+
 
 
 
