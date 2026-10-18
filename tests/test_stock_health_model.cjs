@@ -1,0 +1,28 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const m=require('../docs/stock/health-model.js');
+const NOW=1800000000;
+function record(extra={}){return {name:'검증점',address:'전북특별자치도 전주시 완산구 도로로 1',region:'jeonju',status:'OK',quantity:0,reason:'OBSERVED',checked_at:NOW,last_known_quantity:0,last_success_at:NOW,...extra};}
+function health(chain,stores){return {version:1,chain,product:m.PRODUCT,updated_at:NOW,stores};}
+function data(){return {cuDirectory:{stores:[{cu_store_code:'001',name:'검증점',address:'전북특별자치도 전주시 완산구 도로로 1'}]},cuOld:{stores:{'001':{name:'검증점',city:'전주',stock:8}}},cuHealth:health('cu',{'001':record()})};}
+function cu(d,t=NOW){return m.build(d,t).rows.filter(r=>r.chain==='CU');}
+
+test('fresh verified zero is numeric zero, not unknown',()=>{assert.equal(cu(data())[0].qty,0);assert.equal(cu(data())[0].status,'known');});
+test('old saved baseline cannot override missing current health',()=>{const d=data();delete d.cuHealth;const r=cu(d)[0];assert.equal(r.qty,null);assert.equal(r.lastKnown,8);assert.equal(r.lastAt,null);assert.equal(r.group,'file');});
+test('stale snapshot hides even apparently fresh row quantities',()=>{const d=data();d.cuHealth.updated_at=NOW-901;const r=cu(d)[0];assert.equal(r.qty,null);assert.equal(r.reason,'STALE');assert.equal(r.lastKnown,0);});
+test('record expiration threshold and screen time recomputation',()=>{assert.equal(cu(data(),NOW+900)[0].qty,0);assert.equal(cu(data(),NOW+901)[0].qty,null);});
+test('future and missing timestamps cannot make quantities current',()=>{for(const t of [NOW+1,0,null,'1800000000']){const d=data();d.cuHealth.stores['001'].checked_at=t;assert.equal(cu(d)[0].qty,null);assert.equal(cu(d)[0].group,'clock');}});
+test('unknown preserves previous value separately',()=>{const d=data();d.cuHealth.stores['001']=record({status:'UNKNOWN',quantity:null,reason:'HTTP_502',last_known_quantity:5,unknown_runs:4});const r=cu(d)[0];assert.equal(r.qty,null);assert.equal(r.lastKnown,5);assert.equal(r.group,'network');assert.equal(r.unknownRuns,4);});
+test('unobserved official CU store remains listed without inferred cause',()=>{const d=data();d.cuHealth.stores={};const r=cu(d)[0];assert.equal(r.reason,'NOT_IN_HEALTH');assert.equal(r.group,'missing');assert.equal(r.qty,null);});
+test('identity holds are distinct from provider failures',()=>{const d=data();d.cuHealth.stores['001']=record({status:'UNKNOWN',quantity:null,reason:'IDENTITY_HOLD'});assert.equal(cu(d)[0].group,'identity');});
+test('strict product and provider schema gate',()=>{for(const extra of [{product:'wrong'},{chain:'gs25'},{version:2},{stores:[]}]){const d=data();Object.assign(d.cuHealth,extra);assert.equal(cu(d)[0].qty,null);assert.equal(cu(d)[0].reason,'HEALTH_INVALID');}});
+test('invalid quantities never become zero',()=>{for(const q of [null,-1,NaN,Infinity,1.5,'0',true,false]){const d=data();d.cuHealth.stores['001'].quantity=q;assert.equal(cu(d)[0].qty,null);}});
+test('unavailable brand does not hide other brands',()=>{const d=data();d.gsHealth=health('gs25',{'V1':record({name:'GS점',quantity:3})});d.cuHealth=null;const r=m.build(d,NOW).rows;assert.equal(r.find(r=>r.chain==='GS25').qty,3);assert.equal(r.find(r=>r.chain==='CU').qty,null);});
+test('disabled record does not show its stored quantity',()=>{const d=data();d.cuHealth.stores['001'].status='DISABLED';const r=cu(d)[0];assert.equal(r.status,'disabled');assert.equal(r.qty,null);});
+test('seven directory identity mismatch is held',()=>{const d={sevenDirectory:{jeonju:{data:{stores:[{storeCode:'1',storeName:'원래점',address:'전주시 주소'}]}}},sevenState:health(null,{'1':record({name:'다른점',address:'전주시 주소'})})};const r=m.build(d,NOW).rows[0];assert.equal(r.qty,null);assert.equal(r.group,'identity');});
+test('legacy GS25 quantity is historical when health is missing',()=>{const d={gsOld:{regions:{jeonju:{stores:{V1:{name:'점포',quantity:7}}}}}};const r=m.build(d,NOW).rows[0];assert.equal(r.qty,null);assert.equal(r.lastKnown,7);});
+test('Emart canonical code wins historical quantity without showing it as current',()=>{const d={emStores:{stores:{'01':{name:'점포',address:'충청남도 아산시 아산로 1'}}},emOld:{['emart24|01|'+m.PRODUCT]:8,['이마트24|01|'+m.PRODUCT]:3}};const r=m.build(d,NOW).rows[0];assert.equal(r.qty,null);assert.equal(r.lastKnown,3);});
+test('Jeju Namwon-eup address is not treated as Namwon city',()=>{assert.equal(m.build({emStores:{stores:{'1':{name:'남원점',address:'제주특별자치도 서귀포시 남원읍 도로로 1'}}}},NOW).rows.length,0);});
+test('code/address search, unknown filter and reason filter combine',()=>{const r=cu(data(),NOW+901);assert.equal(m.filter(r,{status:'unknown',reason:'stale',q:'001'}).length,1);assert.equal(m.filter(r,{status:'no'}).length,0);assert.equal(m.filter(r,{q:'도로로'}).length,1);});
+test('CSV lists only unknowns and neutralizes spreadsheet formulas',()=>{const d=data();d.cuHealth.stores['001']=record({status:'UNKNOWN',quantity:null,name:'=1+1',reason:'HTTP_502'});const r=cu(d);r[0].name='=1+1';const csv=m.csv(r);assert.ok(csv.startsWith('\ufeff'));assert.ok(csv.includes("'=1+1"));assert.ok(!m.csv(cu(data())).includes('검증점'));});
+test('malformed registry entries degrade without crashing other brand data',()=>{const d=data();d.cuOld={stores:{bad:null}};d.emStores={stores:{bad:null}};d.gsOld={regions:{bad:null}};d.sevenDirectory={jeonju:{data:{stores:{wrong:true}}}};assert.equal(cu(d)[0].qty,0);});
