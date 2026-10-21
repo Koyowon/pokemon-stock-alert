@@ -4,7 +4,7 @@
 const PRODUCT='8800286275732', TTL=900;
 const CHAINS=['CU','이마트24','GS25','세븐일레븐'];
 const CITIES={namwon:'남원',asan:'아산',jeonju:'전주'};
-const PATHS={coordinates:'docs/stock/verified_coordinates.json',cuHealth:'cu_inventory_health.json',emHealth:'emart24_inventory_health.json',gsHealth:'gs25_inventory_health.json',sevenState:'seveneleven_watch_state.json',cuDirectory:'cu_official_verified_directory.json',cuOld:'cu_stock_state.json',emStores:'stores.json',emOld:'state.json',gsOld:'gs25_independent/gs25_stock_state.json',sevenDirectory:'data/seveneleven_watch_directory.json'};
+const PATHS={cuHealth:'cu_inventory_health.json',emHealth:'emart24_inventory_health.json',gsHealth:'gs25_inventory_health.json',sevenState:'seveneleven_watch_state.json',cuDirectory:'cu_official_verified_directory.json',cuOld:'cu_stock_state.json',emStores:'stores.json',emOld:'state.json',gsOld:'gs25_independent/gs25_stock_state.json',sevenDirectory:'data/seveneleven_watch_directory.json'};
 const SOURCES={CU:['cuHealth','cu'],이마트24:['emHealth','emart24'],GS25:['gsHealth','gs25'],세븐일레븐:['sevenState',null]};
 const GROUPS={network:'통신·외부 서비스 오류',missing:'응답에 없음·범위 미확정',quantity:'수량 미확인',identity:'매장 정보 대조 필요',validation:'응답 검증 실패',stale:'오래된 기록',clock:'기록 시각 확인 필요',file:'감시 상태 파일 확인 필요',pending:'아직 확인되지 않음',disabled:'감시 꺼짐'};
 const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
@@ -32,7 +32,7 @@ function build(data,now=Date.now()/1000){
  function add(chain,code,name,address='',city=null,legacy=null){
   code=String(code||'');city=city||cityOf(address);if(!code||!Object.values(CITIES).includes(city))return;
   const key=chain+'|'+code,old=expected.get(key);
-  expected.set(key,{chain,code,name:String(name||code),address:String(address||''),city,...old,...(old?{}:{legacy:quantity(legacy)})});
+  expected.set(key,{chain,code,name:String(name&&String(name)!==code?name:'매장명 확인 필요'),address:String(address||''),city,...old,...(old?{}:{legacy:quantity(legacy)})});
   if(old&&old.legacy===null&&quantity(legacy)!==null)expected.get(key).legacy=quantity(legacy);
  }
  for(const r of list(data.cuDirectory?.stores))if(object(r))add('CU',r.cu_store_code,r.name,r.address);
@@ -76,10 +76,11 @@ function build(data,now=Date.now()/1000){
  const cards=CHAINS.map(chain=>{const rs=rows.filter(r=>r.chain===chain),h=data[SOURCES[chain][0]];return {chain,total:rs.length,known:rs.filter(r=>r.qty!==null).length,retained:rs.filter(r=>r.status==='retained').length,unknown:rs.filter(r=>r.status==='unknown').length,disabled:rs.filter(r=>r.status==='disabled').length,updatedAt:stamp(h?.updated_at),issue:!h?'STATE_FILE_MISSING':!validHealth(h,chain)?'HEALTH_INVALID':timeIssue(h.updated_at,now),errors:Array.isArray(h?.errors)?h.errors:[]};});
  return {rows,cards};
 }
-function filter(rows,{city='',chain='',status='',reason='',q=''}={}){q=q.trim().toLocaleLowerCase();return rows.filter(r=>(!city||r.city===city)&&(!chain||r.chain===chain)&&(!status||(status==='yes'?r.qty>0:status==='no'?r.qty===0:status===r.status))&&(!reason||r.group===reason)&&(!q||[r.name,r.code,r.address].join(' ').toLocaleLowerCase().includes(q)));}
-function csv(rows){const cell=v=>{let s=String(v??'');if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};return '\ufeff'+[['브랜드','지역','점포코드','매장명','주소','미확인 분류','사유 코드','최근 상태 기록(UTC)','이전 확인 수량','이전 수량 확인시각(UTC)','연속 미확인 실행 수'].map(cell).join(','),...rows.filter(r=>['unknown','retained'].includes(r.status)).map(r=>[r.chain,r.city,r.code,r.name,r.address,GROUPS[r.group]||r.group,r.reason,r.checkedAt?new Date(r.checkedAt*1000).toISOString():'',r.lastKnown,r.lastAt?new Date(r.lastAt*1000).toISOString():'',r.unknownRuns].map(cell).join(','))].join('\r\n');}
+function filter(rows,{city='',chain='',status='',reason='',q=''}={}){q=q.trim().toLocaleLowerCase();return rows.filter(r=>(!city||r.city===city)&&(!chain||r.chain===chain)&&(!status||(status==='yes'?r.qty>0:status==='no'?r.qty===0:status===r.status))&&(!reason||r.group===reason)&&(!q||[r.name,r.address].join(' ').toLocaleLowerCase().includes(q)));}
+function csv(rows){const cell=v=>{let s=String(v??'');if(/^[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};return '\ufeff'+[['브랜드','지역','매장명','주소','미확인 분류','사유 코드','최근 상태 기록(UTC)','이전 확인 수량','이전 수량 확인시각(UTC)','연속 미확인 실행 수'].map(cell).join(','),...rows.filter(r=>['unknown','retained'].includes(r.status)).map(r=>[r.chain,r.city,r.name,r.address,GROUPS[r.group]||r.group,r.reason,r.checkedAt?new Date(r.checkedAt*1000).toISOString():'',r.lastKnown,r.lastAt?new Date(r.lastAt*1000).toISOString():'',r.unknownRuns].map(cell).join(','))].join('\r\n');}
 const api={PRODUCT,TTL,CHAINS,CITIES,PATHS,GROUPS,quantity,timeIssue,reasonGroup:group,validHealth,build,filter,csv};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;root.StockHealth=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+
 
 
