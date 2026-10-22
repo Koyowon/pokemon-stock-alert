@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "product_id": "inferno_x_ko",
+  "barcode": "8800286278528",
+  "name": "포켓몬카드 MEGA 확장팩 인페르노X",
+  "enabled": false,
+  "activation": "manual approval after verified provider identity, numeric stock and shared budget plan",
+  "brands": {
+    "cu": {
+      "enabled": false,
+      "verification_status": "unverified",
+      "provider_codes": null,
+      "candidate_barcode": "8800286278528"
+    },
+    "gs25": {
+      "enabled": false,
+      "verification_status": "unverified",
+      "provider_codes": null,
+      "candidate_barcode": "8800286278528"
+    },
+    "emart24": {
+      "enabled": false,
+      "verification_status": "unverified",
+      "provider_codes": null,
+      "candidate_barcode": "8800286278528"
+    },
+    "seven": {
+      "enabled": false,
+      "verification_status": "unverified",
+      "provider_codes": null,
+      "candidate_barcode": "8800286278528"
+    }
+  },
+  "state_namespace": "work/products/8800286278528/<brand>/",
+  "shared_limits": "existing PC brand holds and CU/GS combined response_budget_v1.sqlite; no new product budget",
+  "runtime_integration": false
+}
