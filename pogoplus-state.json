@@ -4,7 +4,7 @@
     "touch": {
       "status": "SOLD_OUT",
       "price": 64800,
-      "checked_at": 1793207707.8876402,
+      "checked_at": 1793210145.089903,
       "confirmations": 0,
       "notified": false,
       "failures": 0
@@ -12,7 +12,7 @@
     "tech": {
       "status": "SOLD_OUT",
       "price": 64800,
-      "checked_at": 1793207707.8876402,
+      "checked_at": 1793210145.089903,
       "confirmations": 0,
       "notified": false,
       "failures": 0
@@ -20,19 +20,19 @@
     "official": {
       "status": "SOLD_OUT",
       "price": 64800,
-      "checked_at": 1793207707.8876402,
+      "checked_at": 1793210145.089903,
       "confirmations": 0,
       "notified": false,
       "failures": 0
     }
   },
   "startup_test_accepted": true,
-  "checked_at": 1793207707.8876402,
+  "checked_at": 1793210145.089903,
   "last_report": {
-    "checked_at": 1793207707.8876402,
+    "checked_at": 1793210145.089903,
     "timing": {
       "target_interval_seconds": 300,
-      "actual_gap_seconds": 2932.5,
+      "actual_gap_seconds": 2437.2,
       "delayed": true,
       "event": "schedule"
     },
