@@ -59,6 +59,7 @@ def request_json(url,token=None,payload=None,method=None):
  headers={'Accept':'application/vnd.github+json','User-Agent':'GOPlus-Restock-Monitor/1.0'}
  if token:headers['Authorization']='Bearer '+token
  body=json.dumps(payload).encode() if payload is not None else None
+ if body is not None:headers['Content-Type']='application/json'
  req=urllib.request.Request(url,data=body,headers=headers,method=method)
  with urllib.request.urlopen(req,timeout=20) as response:return json.load(response)
 
