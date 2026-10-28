@@ -19,19 +19,19 @@ class StockTests(unittest.TestCase):
   self.assertEqual(m.parse_cafe24(self.cafe(stock=''),m.SITES[0])[0],'UNKNOWN')
  def test_duplicate_conflicting_variable_unknown(self):
   self.assertEqual(m.parse_cafe24(self.cafe()+"var product_price = '1';",m.SITES[0])[0],'UNKNOWN')
- def test_two_checks_and_dedup(self):
-  state,send=m.advance({},'AVAILABLE',64800,1000);self.assertFalse(send)
+ def test_single_check_and_dedup(self):
+  state,send=m.advance({},'AVAILABLE',64800,1000);self.assertTrue(send)
   state,send=m.advance(state,'AVAILABLE',64800,1300);self.assertTrue(send)
   state['notified']=True
   state,send=m.advance(state,'AVAILABLE',64800,1600);self.assertFalse(send)
   state,_=m.advance(state,'SOLD_OUT',64800,1900)
-  state,send=m.advance(state,'AVAILABLE',64800,2200);self.assertFalse(send)
+  state,send=m.advance(state,'AVAILABLE',64800,2200);self.assertTrue(send)
   state,send=m.advance(state,'AVAILABLE',64800,2500);self.assertTrue(send)
  def test_error_and_stale_break_confirmation_preserve_notified(self):
   state,_=m.advance({},'AVAILABLE',64800,1000)
   state,_=m.advance(state,'ERROR',None,1300)
-  state,send=m.advance(state,'AVAILABLE',64800,1600);self.assertFalse(send)
-  _,send=m.advance(state,'AVAILABLE',64800,4000);self.assertFalse(send)
+  state,send=m.advance(state,'AVAILABLE',64800,1600);self.assertTrue(send)
+  _,send=m.advance(state,'AVAILABLE',64800,4000);self.assertTrue(send)
   state['notified']=True;state,_=m.advance(state,'UNKNOWN',None,1900);self.assertTrue(state['notified'])
  def test_official_identity_and_price(self):
   data={'text':'Pokémon GO Plus +\n64,800원\n상품번호\n114169355','buttons':[{'text':'구매하기','order':True,'enabled':True}]}

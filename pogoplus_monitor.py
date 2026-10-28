@@ -51,9 +51,8 @@ def advance(old,status,price,now):
   result['confirmations']=0
   if status in ('SOLD_OUT','OVER_PRICE'):result['notified']=False
   return result,False
- continuous=old.get('status')=='AVAILABLE' and old.get('price')==price and 0<now-old.get('checked_at',0)<=1200
- result['confirmations']=min(2,old.get('confirmations',0)+1) if continuous else 1
- return result,result['confirmations']>=2 and not result.get('notified',False)
+ result['confirmations']=1
+ return result,not result.get('notified',False)
 
 def request_json(url,token=None,payload=None,method=None):
  headers={'Accept':'application/vnd.github+json','User-Agent':'GOPlus-Restock-Monitor/1.0'}
@@ -126,7 +125,7 @@ def run():
   if failures:new['retry_until']=now+min(3600,300*2**min(failures-1,4))
   else:new.pop('retry_until',None)
   if send:
-   accepted=telegram(f"[포고플플 구매 가능 감지]\n{site['name']}\n{price:,}원 (배송비 별도)\n서로 다른 2회 조회에서 확인했습니다. 최종 재고·구매 조건은 직접 확인하세요.\n{site['url']}",site['url'])
+   accepted=telegram(f"[포고플플 구매 가능 감지]\n{site['name']}\n{price:,}원 (배송비 별도)\n구매 가능 상태를 1회 확인했습니다. 최종 재고·구매 조건은 직접 확인하세요.\n{site['url']}",site['url'])
    new['notified']=accepted;new['last_alert_accepted']=accepted
   if failures>=3 and now-old.get('failure_notice_at',0)>=21600:
    if telegram(f"[포고플플 감시 점검 필요]\n{site['name']}에서 {failures}회 연속 조회·판독에 실패했습니다. 품절로 판단하지 않으며 대기 후 재확인합니다."):
