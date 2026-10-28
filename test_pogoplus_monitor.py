@@ -1,6 +1,12 @@
 import unittest
+from unittest.mock import patch,MagicMock
 import pogoplus_monitor as m
 class StockTests(unittest.TestCase):
+ def test_json_requests_set_content_type(self):
+  response=MagicMock();response.__enter__.return_value.read.return_value=b'{"ok":true}'
+  with patch.object(m.urllib.request,'urlopen',return_value=response) as call:
+   self.assertTrue(m.request_json('https://example.com',payload={'text':'test'})['ok'])
+   self.assertEqual(call.call_args.args[0].get_header('Content-type'),'application/json')
  def cafe(self,sold='F',stock='2',price='64800',pid='1053',option='F'):
   return f'''<meta property="product:productId" content="{pid}"><script>var product_name = '포켓몬 Pokémon GO Plus+';var product_price = '{price}';var is_soldout_icon = '{sold}';var stock_number = '{stock}';var has_option = '{option}';</script>'''
  def test_positive_and_sold(self):
