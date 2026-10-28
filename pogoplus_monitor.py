@@ -54,6 +54,13 @@ def advance(old,status,price,now):
  result['confirmations']=1
  return result,not result.get('notified',False)
 
+def timing(previous,now):
+ stamp=previous.get('checked_at')
+ gap=round(now-stamp,1) if isinstance(stamp,(int,float)) and 0<stamp<=now else None
+ return {'target_interval_seconds':300,'actual_gap_seconds':gap,
+         'delayed':gap is not None and gap>900,
+         'event':os.environ.get('GITHUB_EVENT_NAME','unknown')}
+
 def request_json(url,token=None,payload=None,method=None):
  headers={'Accept':'application/vnd.github+json','User-Agent':'GOPlus-Restock-Monitor/1.0'}
  if token:headers['Authorization']='Bearer '+token
@@ -108,7 +115,11 @@ def run():
  repo=os.environ['GITHUB_REPOSITORY'];token=os.environ['GITHUB_TOKEN']
  state,sha=load_state(repo,token)
  if state.get('version')!=1 or not isinstance(state.get('sites'),dict):raise RuntimeError('INVALID_STATE')
- now=time.time();report={'checked_at':now,'sites':{}}
+ now=time.time();report={'checked_at':now,'timing':timing(state,now),'sites':{}}
+ if report['timing']['delayed'] and now-state.get('schedule_notice_at',0)>=21600:
+  gap=round(report['timing']['actual_gap_seconds']/60,1)
+  if telegram(f'[포고플플 예약 실행 지연]\n직전 조회 이후 {gap}분이 지나 실행됐습니다. 설정은 5분이지만 GitHub 예약 호출이 늦어질 수 있습니다. 아래 상품 결과는 이번 실행에서 다시 확인합니다.'):
+   state['schedule_notice_at']=now
  if not state.get('startup_test_accepted'):
   accepted=telegram('[포고플플 GitHub 감시 연결 테스트]\n정가 64,800원 이하 상품을 약 5분 예약 주기로 확인합니다. GitHub 사정으로 실행이 늦어질 수 있습니다. 실제 재입고 알림이 아닙니다.')
   report['startup_test_accepted']=accepted;state['startup_test_accepted']=accepted

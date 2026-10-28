@@ -2,6 +2,12 @@ import unittest
 from unittest.mock import patch,MagicMock
 import pogoplus_monitor as m
 class StockTests(unittest.TestCase):
+ def test_schedule_gap_diagnostics(self):
+  self.assertEqual(m.timing({'checked_at':1000},1300)['actual_gap_seconds'],300)
+  self.assertFalse(m.timing({'checked_at':1000},1300)['delayed'])
+  self.assertTrue(m.timing({'checked_at':1000},4780)['delayed'])
+  self.assertIsNone(m.timing({},1300)['actual_gap_seconds'])
+  self.assertIsNone(m.timing({'checked_at':2000},1300)['actual_gap_seconds'])
  def test_json_requests_set_content_type(self):
   response=MagicMock();response.__enter__.return_value.read.return_value=b'{"ok":true}'
   with patch.object(m.urllib.request,'urlopen',return_value=response) as call:
