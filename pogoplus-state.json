@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "sites": {
+    "touch": {
+      "status": "SOLD_OUT",
+      "price": 64800,
+      "checked_at": 1793185988.1140015,
+      "confirmations": 0,
+      "notified": false,
+      "failures": 0
+    },
+    "tech": {
+      "status": "SOLD_OUT",
+      "price": 64800,
+      "checked_at": 1793185988.1140015,
+      "confirmations": 0,
+      "notified": false,
+      "failures": 0
+    },
+    "official": {
+      "status": "SOLD_OUT",
+      "price": 64800,
+      "checked_at": 1793185988.1140015,
+      "confirmations": 0,
+      "notified": false,
+      "failures": 0
+    }
+  },
+  "startup_test_accepted": false,
+  "checked_at": 1793185988.1140015,
+  "last_report": {
+    "checked_at": 1793185988.1140015,
+    "sites": {
+      "touch": {
+        "status": "SOLD_OUT",
+        "price": 64800,
+        "failures": 0,
+        "http_error": null,
+        "alert_attempted": false
+      },
+      "tech": {
+        "status": "SOLD_OUT",
+        "price": 64800,
+        "failures": 0,
+        "http_error": null,
+        "alert_attempted": false
+      },
+      "official": {
+        "status": "SOLD_OUT",
+        "price": 64800,
+        "failures": 0,
+        "http_error": null,
+        "alert_attempted": false
+      }
+    },
+    "startup_test_accepted": false
+  }
+}
